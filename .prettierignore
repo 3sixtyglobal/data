@@ -1,6 +1,6 @@
 package-lock.json
 **/docs/reference
 **/docs/open-api
-schemas/**
+**/schemas
 changelog.md
 release/**
