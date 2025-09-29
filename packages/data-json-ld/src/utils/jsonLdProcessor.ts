@@ -35,7 +35,7 @@ export class JsonLdProcessor {
 	public static getDocumentLoader(): (url: Url) => Promise<RemoteDocument> {
 		let documentLoader =
 			SharedStore.get<(url: Url) => Promise<RemoteDocument>>("jsonLdDocumentLoader");
-		if (Is.empty(documentLoader)) {
+		if (!Is.function(documentLoader)) {
 			documentLoader = async (url: string) => JsonLdProcessor.documentLoader(url);
 		}
 		return documentLoader;
