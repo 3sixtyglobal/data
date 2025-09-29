@@ -1,5 +1,12 @@
 # @twin.org/data-core - Changelog
 
+## [0.0.2-next.3](https://github.com/twinfoundation/data/compare/data-core-v0.0.2-next.2...data-core-v0.0.2-next.3) (2025-09-29)
+
+
+### Features
+
+* use updated Is.function ([46a4715](https://github.com/twinfoundation/data/commit/46a4715f995aea34f2011138662fe003c9727d07))
+
 ## [0.0.2-next.2](https://github.com/twinfoundation/data/compare/data-core-v0.0.2-next.1...data-core-v0.0.2-next.2) (2025-08-29)
 
 
