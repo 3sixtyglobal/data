@@ -24,7 +24,7 @@ export class JsonSchemaHelper {
 	 * The class name.
 	 * @internal
 	 */
-	private static readonly _CLASS_NAME = nameof<JsonSchemaHelper>();
+	public static readonly CLASS_NAME = nameof<JsonSchemaHelper>();
 
 	/**
 	 * Validates data against the schema.
@@ -56,7 +56,7 @@ export class JsonSchemaHelper {
 				try {
 					// We don't have the type in our local data types, so we try to fetch it from the web
 					return FetchHelper.fetchJson<never, IJsonSchema>(
-						JsonSchemaHelper._CLASS_NAME,
+						JsonSchemaHelper.CLASS_NAME,
 						uri,
 						HttpMethod.GET,
 						undefined,

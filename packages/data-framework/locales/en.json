@@ -1,7 +1,1 @@
-{
-	"data-type-names": {
-		"https://schema.twindev.org/framework/URN": "Urn",
-		"https://schema.twindev.org/framework/TimestampMilliseconds": "Milliseconds since 1970",
-		"https://schema.twindev.org/framework/TimestampSeconds": "Seconds since 1970"
-	}
-}
+{}

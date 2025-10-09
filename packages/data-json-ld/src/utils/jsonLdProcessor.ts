@@ -18,7 +18,7 @@ export class JsonLdProcessor {
 	 * The class name.
 	 * @internal
 	 */
-	private static readonly _CLASS_NAME = nameof<JsonLdProcessor>();
+	public static readonly CLASS_NAME = nameof<JsonLdProcessor>();
 
 	/**
 	 * The document loader to use.
@@ -166,7 +166,7 @@ export class JsonLdProcessor {
 		} catch (err) {
 			JsonLdProcessor.handleCommonErrors(err);
 
-			throw new GeneralError(JsonLdProcessor._CLASS_NAME, "compact", undefined, err);
+			throw new GeneralError(JsonLdProcessor.CLASS_NAME, "compact", undefined, err);
 		}
 	}
 
@@ -187,7 +187,7 @@ export class JsonLdProcessor {
 		} catch (err) {
 			JsonLdProcessor.handleCommonErrors(err);
 
-			throw new GeneralError(JsonLdProcessor._CLASS_NAME, "expand", undefined, err);
+			throw new GeneralError(JsonLdProcessor.CLASS_NAME, "expand", undefined, err);
 		}
 	}
 
@@ -214,7 +214,7 @@ export class JsonLdProcessor {
 		} catch (err) {
 			JsonLdProcessor.handleCommonErrors(err);
 
-			throw new GeneralError(JsonLdProcessor._CLASS_NAME, "canonize", undefined, err);
+			throw new GeneralError(JsonLdProcessor.CLASS_NAME, "canonize", undefined, err);
 		}
 	}
 
@@ -312,11 +312,17 @@ export class JsonLdProcessor {
 			for (const prop of Object.keys(element)) {
 				const value = element[prop];
 				if (Is.object(value)) {
-					combinedContexts = this.gatherContexts(value as IJsonLdNodeObject, combinedContexts);
+					combinedContexts = JsonLdProcessor.gatherContexts(
+						value as IJsonLdNodeObject,
+						combinedContexts
+					);
 				} else if (Is.array(value)) {
 					for (const item of value) {
 						if (Is.object(item)) {
-							combinedContexts = this.gatherContexts(item as IJsonLdNodeObject, combinedContexts);
+							combinedContexts = JsonLdProcessor.gatherContexts(
+								item as IJsonLdNodeObject,
+								combinedContexts
+							);
 						}
 					}
 				}
@@ -405,7 +411,7 @@ export class JsonLdProcessor {
 
 		try {
 			const response = await FetchHelper.fetchJson<never, JsonLd>(
-				JsonLdProcessor._CLASS_NAME,
+				JsonLdProcessor.CLASS_NAME,
 				url,
 				HttpMethod.GET,
 				undefined,
@@ -425,7 +431,7 @@ export class JsonLdProcessor {
 			const error = BaseError.fromError(err);
 			if (error.message.includes("is not valid JSON")) {
 				const response = await FetchHelper.fetchJson<never, JsonLd>(
-					JsonLdProcessor._CLASS_NAME,
+					JsonLdProcessor.CLASS_NAME,
 					url,
 					HttpMethod.GET,
 					undefined,
@@ -457,16 +463,17 @@ export class JsonLdProcessor {
 			err.name === "jsonld.InvalidUrl"
 		) {
 			throw new GeneralError(
-				JsonLdProcessor._CLASS_NAME,
+				JsonLdProcessor.CLASS_NAME,
 				"invalidUrl",
 				{ url: err.details?.url },
 				err
 			);
 		} else if (
-			Is.object<{ name: string; details?: { [id: string]: unknown } }>(err) &&
+			Is.object<{ name: string; details?: { code: string } & { [id: string]: unknown } }>(err) &&
 			err.name.startsWith("jsonld.")
 		) {
-			throw new GeneralError(JsonLdProcessor._CLASS_NAME, "jsonLdError", err.details, err);
+			const { code, ...other } = err.details ?? {};
+			throw new GeneralError(JsonLdProcessor.CLASS_NAME, "jsonLdError", { code, ...other }, err);
 		}
 	}
 }
