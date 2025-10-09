@@ -1,5 +1,19 @@
 # @twin.org/data-json-ld - Changelog
 
+## [0.0.2-next.4](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.2-next.3...data-json-ld-v0.0.2-next.4) (2025-10-09)
+
+
+### Features
+
+* add validate-locales ([cf9b761](https://github.com/twinfoundation/data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.2-next.3 to 0.0.2-next.4
+
 ## [0.0.2-next.3](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.2-next.2...data-json-ld-v0.0.2-next.3) (2025-09-29)
 
 
