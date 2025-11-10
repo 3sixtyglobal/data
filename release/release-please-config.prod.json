@@ -28,6 +28,13 @@
 			"extra-files": [
 				"src/index.ts"
 			]
+		},
+		"packages/data-json-path": {
+			"package-name": "data-json-path",
+			"changelog-path": "docs/changelog.md",
+			"extra-files": [
+				"src/index.ts"
+			]
 		}
 	},
 	"plugins": [
@@ -38,7 +45,8 @@
 			"components": [
 				"data-core",
 				"data-json-ld",
-				"data-framework"
+				"data-framework",
+				"data-json-path"
 			]
 		}
 	]

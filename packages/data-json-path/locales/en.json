@@ -1,0 +1,10 @@
+{
+	"error": {
+		"jsonPathHelper": {
+			"query": "The JSONPath query \"{path}\" failed",
+			"extractSingleFailed": "Failed to extract single value from path \"{path}\"",
+			"extractAllFailed": "Failed to extract all values from path \"{path}\"",
+			"validateFailed": "The JSONPath query \"{path}\" is invalid"
+		}
+	}
+}
