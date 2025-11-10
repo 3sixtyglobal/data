@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
 		"target": "ES2022",
 		"outDir": "dist/es",
 		"strict": true,
@@ -10,10 +10,12 @@
 		"noEmitHelpers": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
+		"erasableSyntaxOnly": true,
 		"sourceMap": true,
+		"inlineSources": true,
 		"declaration": true,
 		"declarationDir": "dist/types",
-		"types": [],
+		"types": ["@types/jsonld"],
 		"plugins": [{ "transform": "@twin.org/nameof-transformer" }],
 		"skipLibCheck": true
 	},

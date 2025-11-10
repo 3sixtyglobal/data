@@ -1,7 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import { describe, expect, test } from "vitest";
-import { JsonPathHelper } from "../src/jsonPathHelper";
+import { JsonPathHelper } from "../src/jsonPathHelper.js";
 
 describe("JsonPathHelper", () => {
 	describe("query", () => {

@@ -1,8 +1,8 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import { entity, property, EntitySchemaHelper, SortDirection } from "@twin.org/entity";
-import type { IJsonSchema } from "../../src/models/IJsonSchema";
-import { JsonSchemaHelper } from "../../src/utils/jsonSchemaHelper";
+import type { IJsonSchema } from "../../src/models/IJsonSchema.js";
+import { JsonSchemaHelper } from "../../src/utils/jsonSchemaHelper.js";
 
 /**
  * Test entity.

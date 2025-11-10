@@ -1,15 +1,22 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { ArrayHelper, Is, type IValidationFailure } from "@twin.org/core";
+import { ArrayHelper, Guards, Is, type IValidationFailure } from "@twin.org/core";
 import { DataTypeHelper, type ValidationMode } from "@twin.org/data-core";
-import { JsonLdProcessor } from "./jsonLdProcessor";
-import type { IJsonLdDocument } from "../models/IJsonLdDocument";
-import type { IJsonLdNodeObject } from "../models/IJsonLdNodeObject";
+import { nameof } from "@twin.org/nameof";
+import { JsonLdProcessor } from "./jsonLdProcessor.js";
+import type { IJsonLdDocument } from "../models/IJsonLdDocument.js";
+import type { IJsonLdNodeObject } from "../models/IJsonLdNodeObject.js";
 
 /**
  * Class to help with JSON LD.
  */
 export class JsonLdHelper {
+	/**
+	 * The class name.
+	 * @internal
+	 */
+	public static readonly CLASS_NAME = nameof<JsonLdHelper>();
+
 	/**
 	 * Validate a JSON-LD document.
 	 * @param document The JSON-LD document to validate.
@@ -60,5 +67,33 @@ export class JsonLdHelper {
 		}
 
 		return validationFailures.length === 0;
+	}
+
+	/**
+	 * Expand the JSON-LD document and check if it is of a specific type.
+	 * @param document The JSON-LD document to check.
+	 * @param type The type to check for.
+	 * @returns True if the document is of the specified type.
+	 */
+	public static async isType(document: IJsonLdDocument, type: string[]): Promise<boolean> {
+		Guards.object<IJsonLdDocument>(JsonLdHelper.CLASS_NAME, nameof(document), document);
+		Guards.arrayValue(JsonLdHelper.CLASS_NAME, nameof(type), type);
+
+		const expanded = await JsonLdProcessor.expand(document);
+
+		if (Is.arrayValue(expanded)) {
+			for (const item of expanded) {
+				const types = ArrayHelper.fromObjectOrArray(item["@type"]);
+				if (Is.arrayValue(types)) {
+					// All required types must be present in this item's @type array
+					const itemTypes = new Set(types);
+					if (type.every(t => itemTypes.has(t))) {
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 }

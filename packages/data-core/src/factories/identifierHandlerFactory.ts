@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0.
 import { Factory, Urn } from "@twin.org/core";
 import { nameof } from "@twin.org/nameof";
-import type { IIdentifierHandler } from "../models/IIdentifierHandler";
+import type { IIdentifierHandler } from "../models/IIdentifierHandler.js";
 
 /**
  * Factory for creating handlers for identifiers.

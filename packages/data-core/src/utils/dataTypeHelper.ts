@@ -1,10 +1,10 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import { Is, type IValidationFailure } from "@twin.org/core";
-import { JsonSchemaHelper } from "./jsonSchemaHelper";
-import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory";
-import type { IJsonSchema } from "../models/IJsonSchema";
-import { ValidationMode } from "../models/validationMode";
+import { JsonSchemaHelper } from "./jsonSchemaHelper.js";
+import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory.js";
+import type { IJsonSchema } from "../models/IJsonSchema.js";
+import { ValidationMode } from "../models/validationMode.js";
 
 /**
  * Class to help with data types.
@@ -42,24 +42,26 @@ export class DataTypeHelper {
 				// If we have a validate function use that as it is more specific
 				// and will produce better error messages
 				let hasValidated = false;
+				const validateMethod = handler.validate?.bind(handler);
 				if (
 					(validationMode === ValidationMode.Validate ||
 						validationMode === ValidationMode.Both ||
 						validationMode === ValidationMode.Either) &&
-					Is.function(handler.validate)
+					Is.function(validateMethod)
 				) {
-					isValid = await handler.validate(propertyName, data, validationFailures);
+					isValid = await validateMethod(propertyName, data, validationFailures);
 					hasValidated = true;
 				}
 
+				const jsonSchemaMethod = handler.jsonSchema?.bind(handler);
 				if (
 					(validationMode === ValidationMode.JsonSchema ||
 						(validationMode === ValidationMode.Either && !hasValidated) ||
 						validationMode === ValidationMode.Both) &&
-					Is.function(handler.jsonSchema)
+					Is.function(jsonSchemaMethod)
 				) {
 					// Otherwise use the JSON schema if there is one
-					const schema = await handler.jsonSchema();
+					const schema = await jsonSchemaMethod();
 
 					if (Is.object<IJsonSchema>(schema)) {
 						const validationResult = await JsonSchemaHelper.validate(schema, data);

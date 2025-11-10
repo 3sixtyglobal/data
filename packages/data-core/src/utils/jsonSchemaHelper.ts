@@ -5,11 +5,11 @@ import type { IEntitySchema } from "@twin.org/entity";
 import { nameof } from "@twin.org/nameof";
 import { FetchHelper, HttpMethod } from "@twin.org/web";
 import Ajv from "ajv/dist/2020.js";
-import addFormats from "ajv-formats";
-import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory";
-import type { IJsonSchema } from "../models/IJsonSchema";
-import type { ISchemaValidationError } from "../models/ISchemaValidationError";
-import type { ISchemaValidationResult } from "../models/ISchemaValidationResult";
+import formatsPlugin from "ajv-formats";
+import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory.js";
+import type { IJsonSchema } from "../models/IJsonSchema.js";
+import type { ISchemaValidationError } from "../models/ISchemaValidationError.js";
+import type { ISchemaValidationResult } from "../models/ISchemaValidationResult.js";
 
 /**
  * A helper for JSON schemas.
@@ -38,7 +38,7 @@ export class JsonSchemaHelper {
 		data: T,
 		additionalTypes?: { [id: string]: IJsonSchema }
 	): Promise<ISchemaValidationResult> {
-		const ajv = new Ajv({
+		const ajv = new Ajv.Ajv2020({
 			allowUnionTypes: true,
 			// Disable strict tuples as it causes issues with the schema validation when
 			// you have an array with fixed elements e.g. myType: [string, ...string[]]
@@ -46,8 +46,9 @@ export class JsonSchemaHelper {
 			strictTuples: false,
 			loadSchema: async uri => {
 				const subTypeHandler = DataTypeHandlerFactory.getIfExists(uri);
-				if (Is.function(subTypeHandler?.jsonSchema)) {
-					const subSchema = await subTypeHandler.jsonSchema();
+				const jsonSchemaMethod = subTypeHandler?.jsonSchema?.bind(subTypeHandler);
+				if (Is.function(jsonSchemaMethod)) {
+					const subSchema = await jsonSchemaMethod();
 					if (Is.object<IJsonSchema>(subSchema)) {
 						return subSchema;
 					}
@@ -55,7 +56,7 @@ export class JsonSchemaHelper {
 
 				try {
 					// We don't have the type in our local data types, so we try to fetch it from the web
-					return FetchHelper.fetchJson<never, IJsonSchema>(
+					const result = await FetchHelper.fetchJson<never, IJsonSchema>(
 						JsonSchemaHelper.CLASS_NAME,
 						uri,
 						HttpMethod.GET,
@@ -65,6 +66,7 @@ export class JsonSchemaHelper {
 							cacheTtlMs: 3600000
 						}
 					);
+					return result;
 				} catch {
 					// Failed to load remotely so return an empty object
 					// so the schema validation doesn't completely fail
@@ -73,7 +75,7 @@ export class JsonSchemaHelper {
 			}
 		});
 
-		addFormats(ajv);
+		formatsPlugin.default(ajv);
 
 		// Add the additional types provided by the user
 		if (Is.objectValue(additionalTypes)) {
@@ -83,7 +85,7 @@ export class JsonSchemaHelper {
 		}
 
 		const compiled = await ajv.compileAsync(schema);
-		const result = await compiled(data);
+		const result = compiled(data);
 
 		const output: ISchemaValidationResult = {
 			result

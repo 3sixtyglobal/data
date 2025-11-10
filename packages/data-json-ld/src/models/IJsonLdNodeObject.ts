@@ -1,12 +1,12 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import type { IJsonLdIdMap } from "./IJsonLdIdMap";
-import type { IJsonLdIncludedBlock } from "./IJsonLdIncludedBlock";
-import type { IJsonLdIndexMap } from "./IJsonLdIndexMap";
-import type { IJsonLdLanguageMap } from "./IJsonLdLanguageMap";
-import type { IJsonLdNodePrimitive } from "./IJsonLdNodePrimitive";
-import type { IJsonLdObject } from "./IJsonLdObject";
-import type { IJsonLdTypeMap } from "./IJsonLdTypeMap";
+import type { IJsonLdIdMap } from "./IJsonLdIdMap.js";
+import type { IJsonLdIncludedBlock } from "./IJsonLdIncludedBlock.js";
+import type { IJsonLdIndexMap } from "./IJsonLdIndexMap.js";
+import type { IJsonLdLanguageMap } from "./IJsonLdLanguageMap.js";
+import type { IJsonLdNodePrimitive } from "./IJsonLdNodePrimitive.js";
+import type { IJsonLdObject } from "./IJsonLdObject.js";
+import type { IJsonLdTypeMap } from "./IJsonLdTypeMap.js";
 
 /**
  * This is a copy of the types from the npm jsonld package. This is necessary as the JSON schema generators

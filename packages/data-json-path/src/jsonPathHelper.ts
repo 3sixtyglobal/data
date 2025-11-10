@@ -1,9 +1,9 @@
-// Copyright 2024 IOTA Stiftung.
+// Copyright 2025 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import { BaseError, GeneralError, Guards, Is } from "@twin.org/core";
 import { nameof } from "@twin.org/nameof";
 import { jsonpath, type JSONValue } from "json-p3";
-import type { IJsonPathResult } from "./models/IJsonPathResult";
+import type { IJsonPathResult } from "./models/IJsonPathResult.js";
 
 /**
  * Helper class for JSONPath operations.
@@ -33,7 +33,7 @@ export class JsonPathHelper {
 				resultArray.push({
 					value: node.value,
 					location: node.location,
-					path: node.path
+					path: node.getPath({ form: "canonical" })
 				});
 			}
 			return resultArray;

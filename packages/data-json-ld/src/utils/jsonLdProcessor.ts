@@ -4,11 +4,11 @@ import { BaseError, GeneralError, Is, ObjectHelper, SharedStore } from "@twin.or
 import { nameof } from "@twin.org/nameof";
 import { FetchHelper, HeaderTypes, HttpMethod, MimeTypes } from "@twin.org/web";
 import jsonLd from "jsonld";
-import type { JsonLd, RemoteDocument, Url } from "jsonld/jsonld-spec";
-import type { IJsonLdContextDefinition } from "../models/IJsonLdContextDefinition";
-import type { IJsonLdContextDefinitionElement } from "../models/IJsonLdContextDefinitionElement";
-import type { IJsonLdContextDefinitionRoot } from "../models/IJsonLdContextDefinitionRoot";
-import type { IJsonLdNodeObject } from "../models/IJsonLdNodeObject";
+import type { JsonLd, RemoteDocument, Url } from "jsonld/jsonld-spec.js";
+import type { IJsonLdContextDefinition } from "../models/IJsonLdContextDefinition.js";
+import type { IJsonLdContextDefinitionElement } from "../models/IJsonLdContextDefinitionElement.js";
+import type { IJsonLdContextDefinitionRoot } from "../models/IJsonLdContextDefinitionRoot.js";
+import type { IJsonLdNodeObject } from "../models/IJsonLdNodeObject.js";
 
 /**
  * JSON-LD Processor.
@@ -391,7 +391,7 @@ export class JsonLdProcessor {
 	 * @returns Nothing.
 	 */
 	public static async documentCacheRemove(url: string): Promise<void> {
-		await FetchHelper.removeCacheEntry(url);
+		FetchHelper.removeCacheEntry(url);
 	}
 
 	/**

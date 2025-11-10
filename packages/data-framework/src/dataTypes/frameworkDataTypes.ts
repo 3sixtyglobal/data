@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0.
 import { Urn, Validation } from "@twin.org/core";
 import { DataTypeHandlerFactory, type IJsonSchema } from "@twin.org/data-core";
-import { FrameworkContexts } from "../models/frameworkContexts";
-import { FrameworkTypes } from "../models/frameworkTypes";
-import TimestampMillisecondsSchema from "../schemas/TimestampMilliseconds.json";
-import TimestampSecondsSchema from "../schemas/TimestampSeconds.json";
-import URNSchema from "../schemas/URN.json";
+import { FrameworkContexts } from "../models/frameworkContexts.js";
+import { FrameworkTypes } from "../models/frameworkTypes.js";
+import TimestampMillisecondsSchema from "../schemas/TimestampMilliseconds.json" with { type: "json" };
+import TimestampSecondsSchema from "../schemas/TimestampSeconds.json" with { type: "json" };
+import URNSchema from "../schemas/URN.json" with { type: "json" };
 
 /**
  * Handle all the framework data types.
