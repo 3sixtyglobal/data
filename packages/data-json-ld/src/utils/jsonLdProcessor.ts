@@ -225,7 +225,7 @@ export class JsonLdProcessor {
 	 */
 	public static addRedirect(from: RegExp, to: string): void {
 		const redirects = JsonLdProcessor.getRedirects();
-		if (!redirects.some(r => r.from === from)) {
+		if (!redirects.some(r => r.from.source === from.source)) {
 			redirects.push({ from, to });
 		}
 	}
