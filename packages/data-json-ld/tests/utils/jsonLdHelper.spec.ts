@@ -154,4 +154,51 @@ describe("JsonLdHelper", () => {
 			message: "guard.arrayValue"
 		});
 	});
+
+	test("getType returns expanded @type values", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": ["Person", "Book"]
+		};
+
+		const types = await JsonLdHelper.getType(doc);
+		expect(types).toEqual(
+			expect.arrayContaining(["http://schema.org/Person", "http://schema.org/Book"])
+		);
+	});
+
+	test("getType handles `type` property and returns unique expanded values", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			type: ["Person", "Person", "Book"]
+		};
+
+		const types = await JsonLdHelper.getType(doc);
+		expect(types.length).toEqual(2);
+		expect(types[0]).toBe("http://schema.org/Person");
+		expect(types[1]).toBe("http://schema.org/Book");
+	});
+
+	test("getId returns @id or id when present and undefined otherwise", async () => {
+		const docWithAtId: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@id": "urn:uuid:1234",
+			"@type": "Person"
+		};
+
+		const docWithId: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			id: "did:iota:testnet:0xabc",
+			"@type": "Person"
+		};
+
+		const docWithoutId: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "Person"
+		};
+
+		expect(await JsonLdHelper.getId(docWithAtId)).toBe("urn:uuid:1234");
+		expect(await JsonLdHelper.getId(docWithId)).toBe("did:iota:testnet:0xabc");
+		expect(await JsonLdHelper.getId(docWithoutId)).toBeUndefined();
+	});
 });

@@ -89,3 +89,47 @@ The type to check for.
 `Promise`\<`boolean`\>
 
 True if the document is of the specified type.
+
+***
+
+### getType()
+
+> `static` **getType**(`document`): `Promise`\<`string`[]\>
+
+Get the types from the document.
+
+#### Parameters
+
+##### document
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to check.
+
+#### Returns
+
+`Promise`\<`string`[]\>
+
+The type(s) extracted from the document.
+
+***
+
+### getId()
+
+> `static` **getId**(`document`): `Promise`\<`string` \| `undefined`\>
+
+Get the id from the document.
+
+#### Parameters
+
+##### document
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to get the id from.
+
+#### Returns
+
+`Promise`\<`string` \| `undefined`\>
+
+The id extracted from the document.

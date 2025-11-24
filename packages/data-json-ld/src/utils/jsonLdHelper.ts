@@ -96,4 +96,65 @@ export class JsonLdHelper {
 
 		return false;
 	}
+
+	/**
+	 * Get the types from the document.
+	 * @param document The JSON-LD document to check.
+	 * @returns The type(s) extracted from the document.
+	 */
+	public static async getType(document: IJsonLdDocument): Promise<string[]> {
+		Guards.object<IJsonLdDocument>(JsonLdHelper.CLASS_NAME, nameof(document), document);
+
+		const expandedDocs = await JsonLdProcessor.expand(document);
+
+		const types: Set<string> = new Set<string>();
+		const props = ["@type", "type"];
+
+		for (const expandedDoc of expandedDocs) {
+			for (const prop of props) {
+				const expandedProps = ArrayHelper.fromObjectOrArray(expandedDoc[prop]);
+				if (Is.arrayValue(expandedProps)) {
+					for (const expandedProp of expandedProps) {
+						const arr = ArrayHelper.fromObjectOrArray(expandedProp);
+						for (const arrValue of arr) {
+							if (Is.stringValue(arrValue)) {
+								types.add(arrValue);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return Array.from(types);
+	}
+
+	/**
+	 * Get the id from the document.
+	 * @param document The JSON-LD document to get the id from.
+	 * @returns The id extracted from the document.
+	 */
+	public static async getId(document: IJsonLdDocument): Promise<string | undefined> {
+		Guards.object<IJsonLdDocument>(JsonLdHelper.CLASS_NAME, nameof(document), document);
+
+		const expandedDocs = await JsonLdProcessor.expand(document);
+
+		const props = ["@id", "id"];
+
+		for (const expandedDoc of expandedDocs) {
+			for (const prop of props) {
+				const expandedProps = ArrayHelper.fromObjectOrArray(expandedDoc[prop]);
+				if (Is.arrayValue(expandedProps)) {
+					for (const expandedProp of expandedProps) {
+						const arr = ArrayHelper.fromObjectOrArray(expandedProp);
+						for (const arrValue of arr) {
+							if (Is.stringValue(arrValue)) {
+								return arrValue;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
