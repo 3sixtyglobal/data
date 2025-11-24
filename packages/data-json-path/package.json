@@ -1,6 +1,6 @@
 {
 	"name": "@twin.org/data-json-path",
-	"version": "0.0.3-next.1",
+	"version": "0.0.3-next.2",
 	"description": "JSONPath abstraction layer for TWIN platform",
 	"repository": {
 		"type": "git",

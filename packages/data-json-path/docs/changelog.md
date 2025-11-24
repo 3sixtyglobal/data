@@ -1,5 +1,12 @@
 # @twin.org/data-json-path - Changelog
 
+## [0.0.3-next.2](https://github.com/twinfoundation/data/compare/data-json-path-v0.0.3-next.1...data-json-path-v0.0.3-next.2) (2025-11-24)
+
+
+### Bug Fixes
+
+* extraneous type ([0b5d5c6](https://github.com/twinfoundation/data/commit/0b5d5c6980a07018e6f6bedfae4b3bf55c5de8dc))
+
 ## [0.0.3-next.1](https://github.com/twinfoundation/data/compare/data-json-path-v0.0.3-next.0...data-json-path-v0.0.3-next.1) (2025-11-10)
 
 

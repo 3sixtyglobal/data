@@ -1,5 +1,24 @@
 # @twin.org/data-json-ld - Changelog
 
+## [0.0.3-next.2](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.1...data-json-ld-v0.0.3-next.2) (2025-11-24)
+
+
+### Features
+
+* add JsonLdHelper getId and getType ([4b43e41](https://github.com/twinfoundation/data/commit/4b43e41fa47a16a19d2c759f5e40a1fb51e0a128))
+
+
+### Bug Fixes
+
+* add redirect remove duplicates ([49709e0](https://github.com/twinfoundation/data/commit/49709e04cf087e216f4c9e36a9f35daceeae98fd))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.1 to 0.0.3-next.2
+
 ## [0.0.3-next.1](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.0...data-json-ld-v0.0.3-next.1) (2025-11-10)
 
 
