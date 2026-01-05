@@ -1,5 +1,19 @@
 # @twin.org/data-json-ld - Changelog
 
+## [0.0.3-next.3](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.2...data-json-ld-v0.0.3-next.3) (2026-01-05)
+
+
+### Features
+
+* add JsonLdHelper.toNodeObject method ([93f2add](https://github.com/twinfoundation/data/commit/93f2add1948f168d7a21223929cf6c65a8115f6f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.2 to 0.0.3-next.3
+
 ## [0.0.3-next.2](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.1...data-json-ld-v0.0.3-next.2) (2025-11-24)
 
 
