@@ -70,6 +70,16 @@ export class JsonLdHelper {
 	}
 
 	/**
+	 * Expand an object to a JSON-LD node object.
+	 * @param object The object to expand.
+	 * @returns The expanded JSON-LD node object.
+	 */
+	public static toNodeObject(object: unknown): IJsonLdNodeObject {
+		Guards.object<unknown>(JsonLdHelper.CLASS_NAME, nameof(object), object);
+		return object as IJsonLdNodeObject;
+	}
+
+	/**
 	 * Expand the JSON-LD document and check if it is of a specific type.
 	 * @param document The JSON-LD document to check.
 	 * @param type The type to check for.

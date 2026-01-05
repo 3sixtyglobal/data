@@ -64,6 +64,28 @@ True if the document was valid.
 
 ***
 
+### toNodeObject()
+
+> `static` **toNodeObject**(`object`): [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+Expand an object to a JSON-LD node object.
+
+#### Parameters
+
+##### object
+
+`unknown`
+
+The object to expand.
+
+#### Returns
+
+[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+The expanded JSON-LD node object.
+
+***
+
 ### isType()
 
 > `static` **isType**(`document`, `type`): `Promise`\<`boolean`\>
