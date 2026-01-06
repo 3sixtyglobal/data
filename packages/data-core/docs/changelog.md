@@ -1,5 +1,12 @@
 # @twin.org/data-core - Changelog
 
+## [0.0.3-next.4](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.3...data-core-v0.0.3-next.4) (2026-01-06)
+
+
+### Features
+
+* support JSON Schema 2019 ([#31](https://github.com/twinfoundation/data/issues/31)) ([f798f72](https://github.com/twinfoundation/data/commit/f798f721c998cf50b8ba2318bec574069aad02ae))
+
 ## [0.0.3-next.3](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.2...data-core-v0.0.3-next.3) (2026-01-05)
 
 
