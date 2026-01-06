@@ -4,7 +4,8 @@ import { Is, StringHelper } from "@twin.org/core";
 import type { IEntitySchema } from "@twin.org/entity";
 import { nameof } from "@twin.org/nameof";
 import { FetchHelper, HttpMethod } from "@twin.org/web";
-import Ajv from "ajv/dist/2020.js";
+import Ajv2019 from "ajv/dist/2019.js";
+import Ajv2020 from "ajv/dist/2020.js";
 import formatsPlugin from "ajv-formats";
 import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory.js";
 import type { IJsonSchema } from "../models/IJsonSchema.js";
@@ -16,9 +17,14 @@ import type { ISchemaValidationResult } from "../models/ISchemaValidationResult.
  */
 export class JsonSchemaHelper {
 	/**
-	 * The schema version.
+	 * The schema version 2020 (default).
 	 */
 	public static readonly SCHEMA_VERSION = "https://json-schema.org/draft/2020-12/schema";
+
+	/**
+	 * The schema version 2019.
+	 */
+	public static readonly SCHEMA_VERSION_2019 = "https://json-schema.org/draft/2019-09/schema";
 
 	/**
 	 * The class name.
@@ -38,13 +44,13 @@ export class JsonSchemaHelper {
 		data: T,
 		additionalTypes?: { [id: string]: IJsonSchema }
 	): Promise<ISchemaValidationResult> {
-		const ajv = new Ajv.Ajv2020({
+		const params = {
 			allowUnionTypes: true,
 			// Disable strict tuples as it causes issues with the schema validation when
 			// you have an array with fixed elements e.g. myType: [string, ...string[]]
 			// https://github.com/ajv-validator/ajv/issues/1417
 			strictTuples: false,
-			loadSchema: async uri => {
+			loadSchema: async (uri: string) => {
 				const subTypeHandler = DataTypeHandlerFactory.getIfExists(uri);
 				const jsonSchemaMethod = subTypeHandler?.jsonSchema?.bind(subTypeHandler);
 				if (Is.function(jsonSchemaMethod)) {
@@ -73,7 +79,12 @@ export class JsonSchemaHelper {
 					return {};
 				}
 			}
-		});
+		};
+
+		let ajv = new Ajv2020.Ajv2020(params);
+		if (schema.$schema === JsonSchemaHelper.SCHEMA_VERSION_2019) {
+			ajv = new Ajv2019.Ajv2019({ strict: false, ...params });
+		}
 
 		formatsPlugin.default(ajv);
 

@@ -18,7 +18,15 @@ A helper for JSON schemas.
 
 > `readonly` `static` **SCHEMA\_VERSION**: `"https://json-schema.org/draft/2020-12/schema"` = `"https://json-schema.org/draft/2020-12/schema"`
 
-The schema version.
+The schema version 2020 (default).
+
+***
+
+### SCHEMA\_VERSION\_2019
+
+> `readonly` `static` **SCHEMA\_VERSION\_2019**: `"https://json-schema.org/draft/2019-09/schema"` = `"https://json-schema.org/draft/2019-09/schema"`
+
+The schema version 2019.
 
 ## Methods
 
