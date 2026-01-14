@@ -86,7 +86,7 @@ The type definitions to register.
 
 ### getSchemaForType()
 
-> `static` **getSchemaForType**(`dataType`): `SchemaObject` \| `undefined`
+> `static` **getSchemaForType**(`dataType`): `Promise`\<`SchemaObject` \| `undefined`\>
 
 Get the JSON schema for a data type.
 
@@ -100,7 +100,7 @@ The data type to get the schema for.
 
 #### Returns
 
-`SchemaObject` \| `undefined`
+`Promise`\<`SchemaObject` \| `undefined`\>
 
 The JSON schema for the data type or undefined if not found.
 

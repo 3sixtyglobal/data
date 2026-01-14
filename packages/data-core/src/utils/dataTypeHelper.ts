@@ -55,7 +55,7 @@ export class DataTypeHelper {
 	 * @param dataType The data type to get the schema for.
 	 * @returns The JSON schema for the data type or undefined if not found.
 	 */
-	public static getSchemaForType(dataType: string): IJsonSchema | undefined {
+	public static async getSchemaForType(dataType: string): Promise<IJsonSchema | undefined> {
 		const handler = DataTypeHandlerFactory.getIfExists(dataType);
 		return handler?.jsonSchema ? handler.jsonSchema() : undefined;
 	}
