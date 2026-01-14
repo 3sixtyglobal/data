@@ -1,5 +1,12 @@
 # @twin.org/data-core - Changelog
 
+## [0.0.3-next.5](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.4...data-core-v0.0.3-next.5) (2026-01-14)
+
+
+### Features
+
+* improve data type registration ([#34](https://github.com/twinfoundation/data/issues/34)) ([855d110](https://github.com/twinfoundation/data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
+
 ## [0.0.3-next.4](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.3...data-core-v0.0.3-next.4) (2026-01-06)
 
 

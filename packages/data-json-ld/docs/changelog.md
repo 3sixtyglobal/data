@@ -1,5 +1,19 @@
 # @twin.org/data-json-ld - Changelog
 
+## [0.0.3-next.5](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.4...data-json-ld-v0.0.3-next.5) (2026-01-14)
+
+
+### Features
+
+* improve data type registration ([#34](https://github.com/twinfoundation/data/issues/34)) ([855d110](https://github.com/twinfoundation/data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.4 to 0.0.3-next.5
+
 ## [0.0.3-next.4](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.3...data-json-ld-v0.0.3-next.4) (2026-01-06)
 
 
