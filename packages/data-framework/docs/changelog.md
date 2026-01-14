@@ -1,5 +1,20 @@
 # @twin.org/data-framework - Changelog
 
+## [0.0.3-next.6](https://github.com/twinfoundation/data/compare/data-framework-v0.0.3-next.5...data-framework-v0.0.3-next.6) (2026-01-14)
+
+
+### Miscellaneous Chores
+
+* **data-framework:** Synchronize repo versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.5 to 0.0.3-next.6
+    * @twin.org/data-json-ld bumped from 0.0.3-next.5 to 0.0.3-next.6
+
 ## [0.0.3-next.5](https://github.com/twinfoundation/data/compare/data-framework-v0.0.3-next.4...data-framework-v0.0.3-next.5) (2026-01-14)
 
 

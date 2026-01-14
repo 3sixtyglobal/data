@@ -1,5 +1,12 @@
 # @twin.org/data-json-path - Changelog
 
+## [0.0.3-next.6](https://github.com/twinfoundation/data/compare/data-json-path-v0.0.3-next.5...data-json-path-v0.0.3-next.6) (2026-01-14)
+
+
+### Miscellaneous Chores
+
+* **data-json-path:** Synchronize repo versions
+
 ## [0.0.3-next.5](https://github.com/twinfoundation/data/compare/data-json-path-v0.0.3-next.4...data-json-path-v0.0.3-next.5) (2026-01-14)
 
 

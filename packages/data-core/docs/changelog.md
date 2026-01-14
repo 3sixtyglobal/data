@@ -1,5 +1,12 @@
 # @twin.org/data-core - Changelog
 
+## [0.0.3-next.6](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.5...data-core-v0.0.3-next.6) (2026-01-14)
+
+
+### Bug Fixes
+
+* getSchemaForType async ([a26a4f0](https://github.com/twinfoundation/data/commit/a26a4f09d6e22ee0882597b71a134db3079d72d0))
+
 ## [0.0.3-next.5](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.4...data-core-v0.0.3-next.5) (2026-01-14)
 
 
