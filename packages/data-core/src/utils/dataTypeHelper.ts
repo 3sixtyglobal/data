@@ -11,6 +11,56 @@ import { ValidationMode } from "../models/validationMode.js";
  */
 export class DataTypeHelper {
 	/**
+	 * Register a data type.
+	 * @param namespace The namespace for the type.
+	 * @param type The type for the item.
+	 * @param jsonLdContext The JSON LD context for the type.
+	 * @param schema The JSON schema for the type.
+	 */
+	public static registerType(
+		namespace: string,
+		type: string,
+		jsonLdContext: string | undefined,
+		schema: IJsonSchema | Promise<IJsonSchema>
+	): void {
+		DataTypeHandlerFactory.register(`${namespace}${type}`, () => ({
+			namespace,
+			jsonLdContext,
+			type,
+			jsonSchema: async () => schema
+		}));
+	}
+
+	/**
+	 * Register a  list of types.
+	 * @param namespace The namespace for the types.
+	 * @param jsonLdContext The JSON LD context for the types.
+	 * @param typeDefinition The type definitions to register.
+	 */
+	public static registerTypes(
+		namespace: string,
+		jsonLdContext: string | undefined,
+		typeDefinition: {
+			type: string;
+			schema: IJsonSchema | Promise<IJsonSchema>;
+		}[]
+	): void {
+		for (const typeDef of typeDefinition) {
+			DataTypeHelper.registerType(namespace, typeDef.type, jsonLdContext, typeDef.schema);
+		}
+	}
+
+	/**
+	 * Get the JSON schema for a data type.
+	 * @param dataType The data type to get the schema for.
+	 * @returns The JSON schema for the data type or undefined if not found.
+	 */
+	public static getSchemaForType(dataType: string): IJsonSchema | undefined {
+		const handler = DataTypeHandlerFactory.getIfExists(dataType);
+		return handler?.jsonSchema ? handler.jsonSchema() : undefined;
+	}
+
+	/**
 	 * Validate a data type.
 	 * @param propertyName The name of the property being validated to use in error messages.
 	 * @param dataType The data type to validate.

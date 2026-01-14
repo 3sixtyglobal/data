@@ -6,8 +6,8 @@ The contexts of framework data.
 
 ## Type Declaration
 
-### ContextRoot
+### Namespace
 
-> `readonly` **ContextRoot**: `"https://schema.twindev.org/framework/"` = `"https://schema.twindev.org/framework/"`
+> `readonly` **Namespace**: `"https://schema.twindev.org/framework/"` = `"https://schema.twindev.org/framework/"`
 
-Context Root.
+Namespace.

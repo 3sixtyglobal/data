@@ -6,8 +6,8 @@ The contexts of JSON-LD data.
 
 ## Type Declaration
 
-### ContextRoot
+### Namespace
 
-> `readonly` **ContextRoot**: `"https://schema.twindev.org/json-ld/"` = `"https://schema.twindev.org/json-ld/"`
+> `readonly` **Namespace**: `"https://schema.twindev.org/json-ld/"` = `"https://schema.twindev.org/json-ld/"`
 
-Context Root.
+Namespace.

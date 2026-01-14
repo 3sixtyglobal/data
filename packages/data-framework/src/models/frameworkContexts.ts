@@ -7,9 +7,9 @@
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const FrameworkContexts = {
 	/**
-	 * Context Root.
+	 * Namespace.
 	 */
-	ContextRoot: "https://schema.twindev.org/framework/"
+	Namespace: "https://schema.twindev.org/framework/"
 } as const;
 
 /**

@@ -4,11 +4,11 @@ Interface describing a type which can handle a specific data type.
 
 ## Properties
 
-### context
+### namespace
 
-> **context**: `string`
+> **namespace**: `string`
 
-The context for the type.
+The namespace for the type.
 
 ***
 
@@ -17,6 +17,14 @@ The context for the type.
 > **type**: `string`
 
 The type for the item.
+
+***
+
+### jsonLdContext?
+
+> `optional` **jsonLdContext**: `string`
+
+The JSON LD context for the type.
 
 ***
 

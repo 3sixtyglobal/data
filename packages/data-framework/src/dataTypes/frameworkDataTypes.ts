@@ -16,22 +16,19 @@ export class FrameworkDataTypes {
 	 * Register all the data types.
 	 */
 	public static registerTypes(): void {
-		DataTypeHandlerFactory.register(
-			`${FrameworkContexts.ContextRoot}${FrameworkTypes.Urn}`,
-			() => ({
-				context: FrameworkContexts.ContextRoot,
-				type: FrameworkTypes.Urn,
-				defaultValue: "",
-				jsonSchema: async () => URNSchema as IJsonSchema,
-				validate: async (propertyName, value, failures, container) =>
-					Urn.validate(propertyName, value, failures)
-			})
-		);
+		DataTypeHandlerFactory.register(`${FrameworkContexts.Namespace}${FrameworkTypes.Urn}`, () => ({
+			namespace: FrameworkContexts.Namespace,
+			type: FrameworkTypes.Urn,
+			defaultValue: "",
+			jsonSchema: async () => URNSchema as IJsonSchema,
+			validate: async (propertyName, value, failures, container) =>
+				Urn.validate(propertyName, value, failures)
+		}));
 
 		DataTypeHandlerFactory.register(
-			`${FrameworkContexts.ContextRoot}${FrameworkTypes.TimestampMilliseconds}`,
+			`${FrameworkContexts.Namespace}${FrameworkTypes.TimestampMilliseconds}`,
 			() => ({
-				context: FrameworkContexts.ContextRoot,
+				namespace: FrameworkContexts.Namespace,
 				type: FrameworkTypes.TimestampMilliseconds,
 				defaultValue: Date.now(),
 				jsonSchema: async () => TimestampMillisecondsSchema as IJsonSchema,
@@ -41,9 +38,9 @@ export class FrameworkDataTypes {
 		);
 
 		DataTypeHandlerFactory.register(
-			`${FrameworkContexts.ContextRoot}${FrameworkTypes.TimestampSeconds}`,
+			`${FrameworkContexts.Namespace}${FrameworkTypes.TimestampSeconds}`,
 			() => ({
-				context: FrameworkContexts.ContextRoot,
+				namespace: FrameworkContexts.Namespace,
 				type: FrameworkTypes.TimestampSeconds,
 				defaultValue: Math.floor(Date.now() / 1000),
 				jsonSchema: async () => TimestampSecondsSchema as IJsonSchema,

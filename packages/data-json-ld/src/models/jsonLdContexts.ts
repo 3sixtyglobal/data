@@ -7,9 +7,9 @@
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const JsonLdContexts = {
 	/**
-	 * Context Root.
+	 * Namespace.
 	 */
-	ContextRoot: "https://schema.twindev.org/json-ld/"
+	Namespace: "https://schema.twindev.org/json-ld/"
 } as const;
 
 /**

@@ -14,6 +14,98 @@ Class to help with data types.
 
 ## Methods
 
+### registerType()
+
+> `static` **registerType**(`namespace`, `type`, `jsonLdContext`, `schema`): `void`
+
+Register a data type.
+
+#### Parameters
+
+##### namespace
+
+`string`
+
+The namespace for the type.
+
+##### type
+
+`string`
+
+The type for the item.
+
+##### jsonLdContext
+
+The JSON LD context for the type.
+
+`string` | `undefined`
+
+##### schema
+
+The JSON schema for the type.
+
+`SchemaObject` | `Promise`\<`SchemaObject`\>
+
+#### Returns
+
+`void`
+
+***
+
+### registerTypes()
+
+> `static` **registerTypes**(`namespace`, `jsonLdContext`, `typeDefinition`): `void`
+
+Register a  list of types.
+
+#### Parameters
+
+##### namespace
+
+`string`
+
+The namespace for the types.
+
+##### jsonLdContext
+
+The JSON LD context for the types.
+
+`string` | `undefined`
+
+##### typeDefinition
+
+`object`[]
+
+The type definitions to register.
+
+#### Returns
+
+`void`
+
+***
+
+### getSchemaForType()
+
+> `static` **getSchemaForType**(`dataType`): `SchemaObject` \| `undefined`
+
+Get the JSON schema for a data type.
+
+#### Parameters
+
+##### dataType
+
+`string`
+
+The data type to get the schema for.
+
+#### Returns
+
+`SchemaObject` \| `undefined`
+
+The JSON schema for the data type or undefined if not found.
+
+***
+
 ### validate()
 
 > `static` **validate**(`propertyName`, `dataType`, `data`, `validationFailures`, `options?`): `Promise`\<`boolean`\>

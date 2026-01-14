@@ -7,7 +7,7 @@ import { DataTypeHelper } from "../../src/utils/dataTypeHelper.js";
 describe("DataTypeHelper", () => {
 	beforeAll(async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			defaultValue: "",
 			jsonSchema: async () => ({
@@ -51,7 +51,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can validate an object that has no validate method or schema", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test"
 		}));
 		const validationFailures: IValidationFailure[] = [];
@@ -63,7 +63,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can validate an object that has a validate method and no schema", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			validate: async () => false
 		}));
@@ -76,7 +76,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can validate an object that has no validate method and a schema", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			jsonSchema: async () => ({
 				type: "string"
@@ -91,7 +91,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can fail to validate an object that has no validate method and a schema", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			jsonSchema: async () => ({
 				type: "string"
@@ -126,7 +126,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can validate with missing type and no option set", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			jsonSchema: async () => ({
 				type: "string"
@@ -143,7 +143,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can fail to validate with missing type and option set", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			jsonSchema: async () => ({
 				type: "string"
