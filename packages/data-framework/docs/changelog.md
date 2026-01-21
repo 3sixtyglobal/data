@@ -1,5 +1,20 @@
 # @twin.org/data-framework - Changelog
 
+## [0.0.3-next.7](https://github.com/twinfoundation/data/compare/data-framework-v0.0.3-next.6...data-framework-v0.0.3-next.7) (2026-01-21)
+
+
+### Features
+
+* update context naming ([#37](https://github.com/twinfoundation/data/issues/37)) ([9d99360](https://github.com/twinfoundation/data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.6 to 0.0.3-next.7
+    * @twin.org/data-json-ld bumped from 0.0.3-next.6 to 0.0.3-next.7
+
 ## [0.0.3-next.6](https://github.com/twinfoundation/data/compare/data-framework-v0.0.3-next.5...data-framework-v0.0.3-next.6) (2026-01-14)
 
 
