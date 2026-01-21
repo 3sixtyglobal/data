@@ -7,9 +7,19 @@
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const JsonLdContexts = {
 	/**
-	 * Namespace.
+	 * The canonical RDF namespace URI for JSON-LD.
 	 */
-	Namespace: "https://schema.twindev.org/json-ld/"
+	Namespace: "https://schema.twindev.org/json-ld/",
+
+	/**
+	 * The value to use in JSON-LD context for JSON-LD.
+	 */
+	Context: "https://schema.twindev.org/json-ld/",
+
+	/**
+	 * The JSON-LD Context URL for JSON-LD.
+	 */
+	JsonLdContext: "https://schema.twindev.org/json-ld/types.jsonld"
 } as const;
 
 /**

@@ -140,6 +140,6 @@ export class JsonLdDataTypes {
 			}
 		];
 
-		DataTypeHelper.registerTypes(JsonLdContexts.Namespace, undefined, types);
+		DataTypeHelper.registerTypes(JsonLdContexts.Namespace, JsonLdContexts.JsonLdContext, types);
 	}
 }

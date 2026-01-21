@@ -18,6 +18,7 @@ export class FrameworkDataTypes {
 	public static registerTypes(): void {
 		DataTypeHandlerFactory.register(`${FrameworkContexts.Namespace}${FrameworkTypes.Urn}`, () => ({
 			namespace: FrameworkContexts.Namespace,
+			jsonLdContext: FrameworkContexts.JsonLdContext,
 			type: FrameworkTypes.Urn,
 			defaultValue: "",
 			jsonSchema: async () => URNSchema as IJsonSchema,
@@ -29,6 +30,7 @@ export class FrameworkDataTypes {
 			`${FrameworkContexts.Namespace}${FrameworkTypes.TimestampMilliseconds}`,
 			() => ({
 				namespace: FrameworkContexts.Namespace,
+				jsonLdContext: FrameworkContexts.JsonLdContext,
 				type: FrameworkTypes.TimestampMilliseconds,
 				defaultValue: Date.now(),
 				jsonSchema: async () => TimestampMillisecondsSchema as IJsonSchema,
@@ -41,6 +43,7 @@ export class FrameworkDataTypes {
 			`${FrameworkContexts.Namespace}${FrameworkTypes.TimestampSeconds}`,
 			() => ({
 				namespace: FrameworkContexts.Namespace,
+				jsonLdContext: FrameworkContexts.JsonLdContext,
 				type: FrameworkTypes.TimestampSeconds,
 				defaultValue: Math.floor(Date.now() / 1000),
 				jsonSchema: async () => TimestampSecondsSchema as IJsonSchema,
