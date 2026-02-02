@@ -14,7 +14,7 @@ The value at the matched path.
 
 ### location
 
-> **location**: (`string` \| `number`)[]
+> **location**: [`IJsonPathLocation`](../type-aliases/IJsonPathLocation.md)
 
 The location path to the value.
 

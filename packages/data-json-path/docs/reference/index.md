@@ -7,3 +7,7 @@
 ## Interfaces
 
 - [IJsonPathResult](interfaces/IJsonPathResult.md)
+
+## Type Aliases
+
+- [IJsonPathLocation](type-aliases/IJsonPathLocation.md)

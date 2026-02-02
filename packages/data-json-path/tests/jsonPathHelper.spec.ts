@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0.
 import { describe, expect, test } from "vitest";
 import { JsonPathHelper } from "../src/jsonPathHelper.js";
+import type { IJsonPathLocation } from "../src/models/IJsonPathLocation.js";
 
 describe("JsonPathHelper", () => {
 	describe("query", () => {
@@ -254,6 +255,174 @@ describe("JsonPathHelper", () => {
 			const value = JsonPathHelper.extractSingle("$.a.b.c.d.e", data);
 
 			expect(value).toBe("deep");
+		});
+	});
+
+	describe("setAtLocation", () => {
+		test("Does nothing for empty location", () => {
+			const root = { a: 1 };
+			JsonPathHelper.setAtLocation(root, [] as unknown as IJsonPathLocation, 2);
+			expect(root).toEqual({ a: 1 });
+		});
+
+		test("Sets value on existing nested object", () => {
+			const root: { [key: string]: unknown } = { a: { b: "old" } };
+			JsonPathHelper.setAtLocation(root, ["a", "b"], "new");
+			expect(root).toEqual({ a: { b: "new" } });
+		});
+
+		test("Creates intermediate objects and arrays as needed", () => {
+			const root: { [key: string]: unknown } = {};
+			JsonPathHelper.setAtLocation(root, ["a", "b", 0, "c"], 123);
+
+			expect(root).toEqual({
+				a: {
+					b: [{ c: 123 }]
+				}
+			});
+		});
+
+		test("Does nothing when path expects array but finds object", () => {
+			const root: { [key: string]: unknown } = { a: {} };
+			JsonPathHelper.setAtLocation(root, ["a", 0], "x");
+			expect(root).toEqual({ a: {} });
+		});
+
+		test("Sets value at array index", () => {
+			const root: { [key: string]: unknown } = { items: ["a", "b"] };
+			JsonPathHelper.setAtLocation(root, ["items", 1], "c");
+			expect(root).toEqual({ items: ["a", "c"] });
+		});
+	});
+
+	describe("deleteAtLocation", () => {
+		test("Does nothing for empty location", () => {
+			const root = { a: 1 };
+			JsonPathHelper.deleteAtLocation(root, [] as unknown as IJsonPathLocation);
+			expect(root).toEqual({ a: 1 });
+		});
+
+		test("Deletes property from object", () => {
+			const root: { [key: string]: unknown } = { a: 1, b: 2 };
+			JsonPathHelper.deleteAtLocation(root, ["b"]);
+			expect(root).toEqual({ a: 1 });
+		});
+
+		test("Deletes property from nested object", () => {
+			const root: { [key: string]: unknown } = { a: { b: { c: 3 } } };
+			JsonPathHelper.deleteAtLocation(root, ["a", "b", "c"]);
+			expect(root).toEqual({ a: { b: {} } });
+		});
+
+		test("Clears array element by setting it to undefined", () => {
+			const root: { [key: string]: unknown } = { items: [1, 2, 3] };
+			JsonPathHelper.deleteAtLocation(root, ["items", 1]);
+
+			expect((root.items as unknown[]).length).toBe(3);
+			expect(root).toEqual({ items: [1, undefined, 3] });
+		});
+
+		test("Does nothing when traversal encounters non-object/non-array", () => {
+			const root: { [key: string]: unknown } = { a: 1 };
+			JsonPathHelper.deleteAtLocation(root, ["a", "b"]);
+			expect(root).toEqual({ a: 1 });
+		});
+	});
+
+	describe("Combined operations", () => {
+		test("Uses query locations to set and then delete values", () => {
+			const data = {
+				store: {
+					book: [
+						{ title: "Book 1", price: 10 },
+						{ title: "Book 2", price: 15 }
+					]
+				}
+			};
+
+			const titleResults = JsonPathHelper.query("$.store.book[*].title", data);
+			expect(titleResults).toHaveLength(2);
+			expect(titleResults[0].location).toEqual(["store", "book", 0, "title"]);
+
+			JsonPathHelper.setAtLocation(data, titleResults[0].location, "Updated Book 1");
+			expect(JsonPathHelper.extractAll("$.store.book[*].title", data)).toEqual([
+				"Updated Book 1",
+				"Book 2"
+			]);
+
+			JsonPathHelper.deleteAtLocation(data, titleResults[1].location);
+			expect(JsonPathHelper.extractAll("$.store.book[*].title", data)).toEqual(["Updated Book 1"]);
+		});
+
+		test("Can delete all wildcard matches", () => {
+			const data = {
+				store: {
+					book: [
+						{ title: "Book 1", price: 10, tags: ["a", "b"] },
+						{ title: "Book 2", price: 15, tags: [] },
+						{ title: "Book 3", price: 20 }
+					]
+				}
+			};
+
+			const priceResults = JsonPathHelper.query("$.store.book[*].price", data);
+			expect(priceResults).toHaveLength(3);
+
+			for (const result of priceResults) {
+				JsonPathHelper.deleteAtLocation(data, result.location);
+			}
+
+			expect(JsonPathHelper.extractAll("$.store.book[*].price", data)).toEqual([]);
+			expect(JsonPathHelper.extractAll("$.store.book[*].title", data)).toEqual([
+				"Book 1",
+				"Book 2",
+				"Book 3"
+			]);
+		});
+
+		test("Can update all recursive matches and then delete them", () => {
+			const data = {
+				a: {
+					id: "A",
+					children: [{ id: "B" }, { id: "C", meta: { id: "D" } }]
+				}
+			};
+
+			const idResults = JsonPathHelper.query("$..id", data);
+			expect(idResults).toHaveLength(4);
+
+			for (const result of idResults) {
+				JsonPathHelper.setAtLocation(data, result.location, "X");
+			}
+			expect(JsonPathHelper.extractAll("$..id", data)).toEqual(["X", "X", "X", "X"]);
+
+			for (const result of idResults) {
+				JsonPathHelper.deleteAtLocation(data, result.location);
+			}
+			expect(JsonPathHelper.extractAll("$..id", data)).toEqual([]);
+		});
+
+		test("Can compose a location from query results to set a sibling property", () => {
+			const data: { [key: string]: unknown } = {
+				users: [
+					{ name: "Alice", profile: { email: "a@example.com" } },
+					{ name: "Bob", profile: { email: "b@example.com" } }
+				]
+			};
+
+			const userNodes = JsonPathHelper.query("$.users[*]", data);
+			expect(userNodes).toHaveLength(2);
+
+			const aliceActiveLocation = [...userNodes[0].location, "active"] as IJsonPathLocation;
+			const bobEmailLocation = [...userNodes[1].location, "profile", "email"] as IJsonPathLocation;
+
+			JsonPathHelper.setAtLocation(data, aliceActiveLocation, true);
+			JsonPathHelper.deleteAtLocation(data, bobEmailLocation);
+
+			expect(JsonPathHelper.extractSingle("$.users[0].active", data)).toBe(true);
+			expect(JsonPathHelper.extractAll("$.users[*].profile.email", data)).toEqual([
+				"a@example.com"
+			]);
 		});
 	});
 });

@@ -3,6 +3,7 @@
 import { BaseError, GeneralError, Guards, Is } from "@twin.org/core";
 import { nameof } from "@twin.org/nameof";
 import { jsonpath, type JSONValue } from "json-p3";
+import type { IJsonPathLocation } from "./models/IJsonPathLocation.js";
 import type { IJsonPathResult } from "./models/IJsonPathResult.js";
 
 /**
@@ -140,6 +141,112 @@ export class JsonPathHelper {
 				},
 				BaseError.fromError(error)
 			);
+		}
+	}
+
+	/**
+	 * Set a value on the target object using a JSONPath location.
+	 * @param root The target root object.
+	 * @param location The JSONPath location tokens.
+	 * @param value The value to set.
+	 */
+	public static setAtLocation(root: unknown, location: IJsonPathLocation, value: unknown): void {
+		if (!Is.arrayValue(location) || location.length === 0) {
+			return;
+		}
+
+		let current: unknown = root;
+		for (let i = 0; i < location.length - 1; i++) {
+			const token = location[i];
+			const nextToken = location[i + 1];
+
+			if (!Is.array(current) && !Is.object(current)) {
+				return;
+			}
+
+			if (Is.number(token)) {
+				if (!Is.array(current)) {
+					return;
+				}
+				const existing = current[token];
+				if (!Is.array(existing) && !Is.object(existing)) {
+					current[token] = Is.number(nextToken) ? [] : {};
+				}
+				current = current[token];
+			} else {
+				if (!Is.object(current)) {
+					return;
+				}
+				const existing = current[token];
+				if (!Is.array(existing) && !Is.object(existing)) {
+					current[token] = Is.number(nextToken) ? [] : {};
+				}
+				current = current[token];
+			}
+		}
+
+		const lastToken = location[location.length - 1];
+		if (!Is.array(current) && !Is.object(current)) {
+			return;
+		}
+		if (Is.number(lastToken)) {
+			if (!Is.array(current)) {
+				return;
+			}
+			current[lastToken] = value;
+		} else {
+			if (!Is.object(current)) {
+				return;
+			}
+			current[lastToken] = value;
+		}
+	}
+
+	/**
+	 * Delete a value on the target object using a JSONPath location.
+	 * @param root The target root object.
+	 * @param location The JSONPath location tokens.
+	 */
+	public static deleteAtLocation(root: unknown, location: IJsonPathLocation): void {
+		if (!Is.arrayValue(location) || location.length === 0) {
+			return;
+		}
+
+		let current: unknown = root;
+		for (let i = 0; i < location.length - 1; i++) {
+			const token = location[i];
+			if (!Is.array(current) && !Is.object(current)) {
+				return;
+			}
+
+			if (Is.number(token)) {
+				if (!Is.array(current)) {
+					return;
+				}
+				current = current[token];
+			} else {
+				if (!Is.object(current)) {
+					return;
+				}
+				current = current[token];
+			}
+		}
+
+		if (!Is.array(current) && !Is.object(current)) {
+			return;
+		}
+
+		const lastToken = location[location.length - 1];
+		if (Is.number(lastToken)) {
+			if (!Is.array(current)) {
+				return;
+			}
+			current[lastToken] = undefined;
+		} else {
+			if (!Is.object(current)) {
+				return;
+			}
+			delete current[lastToken];
 		}
 	}
 }

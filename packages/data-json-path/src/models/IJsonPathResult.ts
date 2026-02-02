@@ -1,5 +1,6 @@
 // Copyright 2025 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
+import type { IJsonPathLocation } from "./IJsonPathLocation.js";
 
 /**
  * Result from a JSONPath query operation.
@@ -13,7 +14,7 @@ export interface IJsonPathResult {
 	/**
 	 * The location path to the value.
 	 */
-	location: (string | number)[];
+	location: IJsonPathLocation;
 
 	/**
 	 * The location path as a string for debugging.

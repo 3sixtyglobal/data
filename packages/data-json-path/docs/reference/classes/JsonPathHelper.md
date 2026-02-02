@@ -170,3 +170,61 @@ True if the syntax is valid.
 #### Throws
 
 GeneralError if the path is invalid or data cannot be queried.
+
+***
+
+### setAtLocation()
+
+> `static` **setAtLocation**(`root`, `location`, `value`): `void`
+
+Set a value on the target object using a JSONPath location.
+
+#### Parameters
+
+##### root
+
+`unknown`
+
+The target root object.
+
+##### location
+
+[`IJsonPathLocation`](../type-aliases/IJsonPathLocation.md)
+
+The JSONPath location tokens.
+
+##### value
+
+`unknown`
+
+The value to set.
+
+#### Returns
+
+`void`
+
+***
+
+### deleteAtLocation()
+
+> `static` **deleteAtLocation**(`root`, `location`): `void`
+
+Delete a value on the target object using a JSONPath location.
+
+#### Parameters
+
+##### root
+
+`unknown`
+
+The target root object.
+
+##### location
+
+[`IJsonPathLocation`](../type-aliases/IJsonPathLocation.md)
+
+The JSONPath location tokens.
+
+#### Returns
+
+`void`
