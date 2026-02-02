@@ -1,5 +1,12 @@
 # @twin.org/data-json-path - Changelog
 
+## [0.0.3-next.8](https://github.com/twinfoundation/data/compare/data-json-path-v0.0.3-next.7...data-json-path-v0.0.3-next.8) (2026-02-02)
+
+
+### Features
+
+* add json path set and delete methods ([#39](https://github.com/twinfoundation/data/issues/39)) ([04b73f3](https://github.com/twinfoundation/data/commit/04b73f3d44525f7d3a5d01b56530ff8d9c7bd938))
+
 ## [0.0.3-next.7](https://github.com/twinfoundation/data/compare/data-json-path-v0.0.3-next.6...data-json-path-v0.0.3-next.7) (2026-01-21)
 
 
