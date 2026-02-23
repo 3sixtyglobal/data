@@ -1,5 +1,12 @@
 # @twin.org/data-core - Changelog
 
+## [0.0.3-next.9](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.8...data-core-v0.0.3-next.9) (2026-02-23)
+
+
+### Miscellaneous Chores
+
+* **data-core:** Synchronize repo versions
+
 ## [0.0.3-next.8](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.7...data-core-v0.0.3-next.8) (2026-02-02)
 
 
