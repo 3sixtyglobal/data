@@ -66,31 +66,37 @@ True if the document was valid.
 
 ### toNodeObject()
 
-> `static` **toNodeObject**(`object`): [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+> `static` **toNodeObject**\<`T`\>(`object`): `T` & [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
 
 Expand an object to a JSON-LD node object.
+
+#### Type Parameters
+
+##### T
+
+`T` = `unknown`
 
 #### Parameters
 
 ##### object
 
-`unknown`
+`T`
 
 The object to expand.
 
 #### Returns
 
-[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+`T` & [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
 
 The expanded JSON-LD node object.
 
 ***
 
-### isType()
+### expand()
 
-> `static` **isType**(`document`, `type`): `Promise`\<`boolean`\>
+> `static` **expand**(`document`): `Promise`\<[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)[]\>
 
-Expand the JSON-LD document and check if it is of a specific type.
+Expand the JSON-LD document.
 
 #### Parameters
 
@@ -98,7 +104,29 @@ Expand the JSON-LD document and check if it is of a specific type.
 
 [`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
 
-The JSON-LD document to check.
+The JSON-LD document to expand.
+
+#### Returns
+
+`Promise`\<[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)[]\>
+
+The expanded JSON-LD document.
+
+***
+
+### isType()
+
+> `static` **isType**(`documentOrExpanded`, `type`): `Promise`\<`boolean`\>
+
+Expand the JSON-LD document and check if it is of a specific type.
+
+#### Parameters
+
+##### documentOrExpanded
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to check or already expanded document.
 
 ##### type
 
@@ -116,17 +144,17 @@ True if the document is of the specified type.
 
 ### getType()
 
-> `static` **getType**(`document`): `Promise`\<`string`[]\>
+> `static` **getType**(`documentOrExpanded`): `Promise`\<`string`[]\>
 
 Get the types from the document.
 
 #### Parameters
 
-##### document
+##### documentOrExpanded
 
 [`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
 
-The JSON-LD document to check.
+The JSON-LD document to check or already expanded document.
 
 #### Returns
 
@@ -138,20 +166,88 @@ The type(s) extracted from the document.
 
 ### getId()
 
-> `static` **getId**(`document`): `Promise`\<`string` \| `undefined`\>
+> `static` **getId**(`documentOrExpanded`): `Promise`\<`string` \| `undefined`\>
 
 Get the id from the document.
 
 #### Parameters
 
-##### document
+##### documentOrExpanded
 
 [`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
 
-The JSON-LD document to get the id from.
+The JSON-LD document to get the id from or already expanded document.
 
 #### Returns
 
 `Promise`\<`string` \| `undefined`\>
 
 The id extracted from the document.
+
+***
+
+### getPropertyValue()
+
+> `static` **getPropertyValue**(`documentOrExpanded`, `propertyFullName`, `language?`): `Promise`\<[`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`\>
+
+Get property values by a single full expanded property name.
+
+#### Parameters
+
+##### documentOrExpanded
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to get the property from or already expanded document.
+
+##### propertyFullName
+
+`string`
+
+The full expanded property name.
+
+##### language?
+
+`string`
+
+Optional filter values by their language property.
+
+#### Returns
+
+`Promise`\<[`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`\>
+
+Matching property values for the input property.
+
+***
+
+### getPropertyValues()
+
+> `static` **getPropertyValues**(`documentOrExpanded`, `propertyFullNames`, `language?`): `Promise`\<([`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`)[]\>
+
+Get property values by their full expanded property names.
+
+#### Parameters
+
+##### documentOrExpanded
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to get the property from or already expanded document.
+
+##### propertyFullNames
+
+`string`[]
+
+The full expanded property names.
+
+##### language?
+
+`string`
+
+Optional filter values by their language property.
+
+#### Returns
+
+`Promise`\<([`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`)[]\>
+
+Matching property values for each input property, in the same index order.

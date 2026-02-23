@@ -6,6 +6,7 @@ import { nameof } from "@twin.org/nameof";
 import { JsonLdProcessor } from "./jsonLdProcessor.js";
 import type { IJsonLdDocument } from "../models/IJsonLdDocument.js";
 import type { IJsonLdNodeObject } from "../models/IJsonLdNodeObject.js";
+import type { IJsonLdNodePrimitive } from "../models/IJsonLdNodePrimitive.js";
 
 /**
  * Class to help with JSON LD.
@@ -74,22 +75,33 @@ export class JsonLdHelper {
 	 * @param object The object to expand.
 	 * @returns The expanded JSON-LD node object.
 	 */
-	public static toNodeObject(object: unknown): IJsonLdNodeObject {
-		Guards.object<unknown>(JsonLdHelper.CLASS_NAME, nameof(object), object);
-		return object as IJsonLdNodeObject;
+	public static toNodeObject<T = unknown>(object: T): T & IJsonLdNodeObject {
+		Guards.object<T>(JsonLdHelper.CLASS_NAME, nameof(object), object);
+		return object as T & IJsonLdNodeObject;
+	}
+
+	/**
+	 * Expand the JSON-LD document.
+	 * @param document The JSON-LD document to expand.
+	 * @returns The expanded JSON-LD document.
+	 */
+	public static async expand(document: IJsonLdDocument): Promise<IJsonLdNodeObject[]> {
+		Guards.object<IJsonLdDocument>(JsonLdHelper.CLASS_NAME, nameof(document), document);
+		return JsonLdProcessor.expand(document);
 	}
 
 	/**
 	 * Expand the JSON-LD document and check if it is of a specific type.
-	 * @param document The JSON-LD document to check.
+	 * @param documentOrExpanded The JSON-LD document to check or already expanded document.
 	 * @param type The type to check for.
 	 * @returns True if the document is of the specified type.
 	 */
-	public static async isType(document: IJsonLdDocument, type: string[]): Promise<boolean> {
-		Guards.object<IJsonLdDocument>(JsonLdHelper.CLASS_NAME, nameof(document), document);
+	public static async isType(
+		documentOrExpanded: IJsonLdDocument | IJsonLdNodeObject[],
+		type: string[]
+	): Promise<boolean> {
+		const expanded = await JsonLdHelper.getExpandedDocument(documentOrExpanded);
 		Guards.arrayValue(JsonLdHelper.CLASS_NAME, nameof(type), type);
-
-		const expanded = await JsonLdProcessor.expand(document);
 
 		if (Is.arrayValue(expanded)) {
 			for (const item of expanded) {
@@ -109,18 +121,18 @@ export class JsonLdHelper {
 
 	/**
 	 * Get the types from the document.
-	 * @param document The JSON-LD document to check.
+	 * @param documentOrExpanded The JSON-LD document to check or already expanded document.
 	 * @returns The type(s) extracted from the document.
 	 */
-	public static async getType(document: IJsonLdDocument): Promise<string[]> {
-		Guards.object<IJsonLdDocument>(JsonLdHelper.CLASS_NAME, nameof(document), document);
-
-		const expandedDocs = await JsonLdProcessor.expand(document);
+	public static async getType(
+		documentOrExpanded: IJsonLdDocument | IJsonLdNodeObject[]
+	): Promise<string[]> {
+		const expanded = await JsonLdHelper.getExpandedDocument(documentOrExpanded);
 
 		const types: Set<string> = new Set<string>();
 		const props = ["@type", "type"];
 
-		for (const expandedDoc of expandedDocs) {
+		for (const expandedDoc of expanded) {
 			for (const prop of props) {
 				const expandedProps = ArrayHelper.fromObjectOrArray(expandedDoc[prop]);
 				if (Is.arrayValue(expandedProps)) {
@@ -141,17 +153,17 @@ export class JsonLdHelper {
 
 	/**
 	 * Get the id from the document.
-	 * @param document The JSON-LD document to get the id from.
+	 * @param documentOrExpanded The JSON-LD document to get the id from or already expanded document.
 	 * @returns The id extracted from the document.
 	 */
-	public static async getId(document: IJsonLdDocument): Promise<string | undefined> {
-		Guards.object<IJsonLdDocument>(JsonLdHelper.CLASS_NAME, nameof(document), document);
-
-		const expandedDocs = await JsonLdProcessor.expand(document);
+	public static async getId(
+		documentOrExpanded: IJsonLdDocument | IJsonLdNodeObject[]
+	): Promise<string | undefined> {
+		const expanded = await JsonLdHelper.getExpandedDocument(documentOrExpanded);
 
 		const props = ["@id", "id"];
 
-		for (const expandedDoc of expandedDocs) {
+		for (const expandedDoc of expanded) {
 			for (const prop of props) {
 				const expandedProps = ArrayHelper.fromObjectOrArray(expandedDoc[prop]);
 				if (Is.arrayValue(expandedProps)) {
@@ -166,5 +178,122 @@ export class JsonLdHelper {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Get property values by a single full expanded property name.
+	 * @param documentOrExpanded The JSON-LD document to get the property from or already expanded document.
+	 * @param propertyFullName The full expanded property name.
+	 * @param language Optional filter values by their language property.
+	 * @returns Matching property values for the input property.
+	 */
+	public static async getPropertyValue(
+		documentOrExpanded: IJsonLdDocument | IJsonLdNodeObject[],
+		propertyFullName: string,
+		language?: string
+	): Promise<IJsonLdNodePrimitive[] | undefined> {
+		const results = await JsonLdHelper.getPropertyValues(
+			documentOrExpanded,
+			[propertyFullName],
+			language
+		);
+
+		return results[0];
+	}
+
+	/**
+	 * Get property values by their full expanded property names.
+	 * @param documentOrExpanded The JSON-LD document to get the property from or already expanded document.
+	 * @param propertyFullNames The full expanded property names.
+	 * @param language Optional filter values by their language property.
+	 * @returns Matching property values for each input property, in the same index order.
+	 */
+	public static async getPropertyValues(
+		documentOrExpanded: IJsonLdDocument | IJsonLdNodeObject[],
+		propertyFullNames: string[],
+		language?: string
+	): Promise<(IJsonLdNodePrimitive[] | undefined)[]> {
+		const expanded = await JsonLdHelper.getExpandedDocument(documentOrExpanded);
+
+		Guards.arrayValue(JsonLdHelper.CLASS_NAME, nameof(propertyFullNames), propertyFullNames);
+		if (Is.stringValue(language)) {
+			Guards.stringValue(JsonLdHelper.CLASS_NAME, nameof(language), language);
+		}
+		const languageLower = Is.stringValue(language) ? language.toLowerCase() : undefined;
+		const result: (IJsonLdNodePrimitive[] | undefined)[] = [];
+
+		for (const propertyFullName of propertyFullNames) {
+			Guards.stringValue(JsonLdHelper.CLASS_NAME, nameof(propertyFullName), propertyFullName);
+			const values: IJsonLdNodePrimitive[] = [];
+
+			for (const expandedDoc of expanded) {
+				const propValue = expandedDoc[propertyFullName];
+				if (!Is.empty(propValue)) {
+					const expandedProps = ArrayHelper.fromObjectOrArray(propValue);
+					if (Is.arrayValue(expandedProps)) {
+						for (const expandedProp of expandedProps) {
+							if (
+								Is.object<{ "@value"?: IJsonLdNodePrimitive; "@language"?: string }>(expandedProp)
+							) {
+								if (!Is.empty(expandedProp["@value"])) {
+									let shouldAdd = true;
+									if (Is.stringValue(languageLower)) {
+										const itemLanguage = Is.stringValue(expandedProp["@language"])
+											? expandedProp["@language"].toLowerCase()
+											: undefined;
+										shouldAdd = itemLanguage === languageLower;
+									}
+									if (shouldAdd) {
+										values.push(expandedProp["@value"]);
+									}
+								} else if (!Is.stringValue(languageLower)) {
+									values.push(expandedProp);
+								}
+							} else if (
+								Is.stringValue(expandedProp) ||
+								Is.boolean(expandedProp) ||
+								Is.number(expandedProp)
+							) {
+								if (!Is.stringValue(languageLower)) {
+									values.push(expandedProp);
+								}
+							}
+						}
+					}
+				}
+			}
+
+			result.push(values.length > 0 ? values : undefined);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Get an expanded JSON-LD document from either compact or expanded input.
+	 * @param documentOrExpanded The JSON-LD document or expanded document.
+	 * @returns The expanded JSON-LD document.
+	 * @internal
+	 */
+	private static async getExpandedDocument(
+		documentOrExpanded: IJsonLdDocument | IJsonLdNodeObject[]
+	): Promise<IJsonLdNodeObject[]> {
+		if (Is.array<IJsonLdNodeObject>(documentOrExpanded)) {
+			Guards.array<IJsonLdNodeObject>(
+				JsonLdHelper.CLASS_NAME,
+				nameof(documentOrExpanded),
+				documentOrExpanded
+			);
+
+			return documentOrExpanded;
+		}
+
+		Guards.object<IJsonLdDocument>(
+			JsonLdHelper.CLASS_NAME,
+			nameof(documentOrExpanded),
+			documentOrExpanded
+		);
+
+		return JsonLdProcessor.expand(documentOrExpanded);
 	}
 }
