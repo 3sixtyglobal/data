@@ -251,3 +251,87 @@ Optional filter values by their language property.
 `Promise`\<([`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`)[]\>
 
 Matching property values for each input property, in the same index order.
+
+***
+
+### prefixProperties()
+
+> `static` **prefixProperties**\<`T`\>(`nodeObject`, `prefix`, `properties?`): [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+Prefix all properties in the document with the provided prefix, except for JSON-LD properties.
+This is useful for ensuring that all properties are fully qualified with a namespace.
+For example, if the prefix is "ex" and the document has a property "name", it will be transformed to "ex:name".
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+#### Parameters
+
+##### nodeObject
+
+`T`
+
+The JSON-LD node object to prefix properties on.
+
+##### prefix
+
+`string`
+
+The prefix to add to the properties.
+
+##### properties?
+
+`string`[]
+
+Optional list of properties to prefix. If not provided, all properties except for JSON-LD properties.
+
+#### Returns
+
+[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+A new JSON-LD node object with the properties prefixed.
+
+***
+
+### stripPrefixProperties()
+
+> `static` **stripPrefixProperties**\<`T`\>(`nodeObject`, `prefix`, `properties?`): [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+Strip a prefix from properties in the document, except for JSON-LD properties.
+This is useful for converting fully qualified namespaced properties back to local names.
+For example, if the prefix is "ex" and the document has a property "ex:name", it will be transformed to "name".
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+#### Parameters
+
+##### nodeObject
+
+`T`
+
+The JSON-LD node object to strip prefixed properties from.
+
+##### prefix
+
+`string`
+
+The prefix to remove from the properties.
+
+##### properties?
+
+`string`[]
+
+Optional list of unprefixed properties to strip. If not provided, all matching prefixed properties.
+
+#### Returns
+
+[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+A new JSON-LD node object with the prefix stripped from matching properties.

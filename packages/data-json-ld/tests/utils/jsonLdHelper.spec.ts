@@ -630,4 +630,163 @@ describe("JsonLdHelper", () => {
 			"Una descripción"
 		]);
 	});
+
+	test("prefixProperties prefixes non JSON-LD properties", async () => {
+		const nodeObject = {
+			"@context": "https://schema.org",
+			"@id": "urn:uuid:1234",
+			"@type": "Person",
+			name: "Jane Doe",
+			jobTitle: "Professor"
+		};
+
+		const prefixed = JsonLdHelper.prefixProperties(nodeObject, "schema");
+
+		expect(prefixed).toEqual({
+			"@context": "https://schema.org",
+			"@id": "urn:uuid:1234",
+			"@type": "Person",
+			"schema:name": "Jane Doe",
+			"schema:jobTitle": "Professor"
+		});
+		expect(nodeObject).toEqual({
+			"@context": "https://schema.org",
+			"@id": "urn:uuid:1234",
+			"@type": "Person",
+			name: "Jane Doe",
+			jobTitle: "Professor"
+		});
+	});
+
+	test("prefixProperties only prefixes selected properties", async () => {
+		const nodeObject = {
+			"@type": "Person",
+			name: "Jane Doe",
+			jobTitle: "Professor",
+			url: "https://example.org"
+		};
+
+		const prefixed = JsonLdHelper.prefixProperties(nodeObject, "schema", ["name", "jobTitle"]);
+
+		expect(prefixed).toEqual({
+			"@type": "Person",
+			"schema:name": "Jane Doe",
+			"schema:jobTitle": "Professor",
+			url: "https://example.org"
+		});
+	});
+
+	test("prefixProperties removes a trailing colon from prefix", async () => {
+		const nodeObject = {
+			"@type": "Person",
+			name: "Jane Doe"
+		};
+
+		const prefixed = JsonLdHelper.prefixProperties(nodeObject, "schema:");
+
+		expect(prefixed).toEqual({
+			"@type": "Person",
+			"schema:name": "Jane Doe"
+		});
+	});
+
+	test("prefixProperties does not prefix properties already starting with @", async () => {
+		const nodeObject = {
+			"@type": "Person",
+			"@graph": [
+				{
+					"@id": "urn:uuid:5678"
+				}
+			],
+			name: "Jane Doe"
+		};
+
+		const prefixed = JsonLdHelper.prefixProperties(nodeObject, "schema", ["@type", "name"]);
+
+		expect(prefixed).toEqual({
+			"@type": "Person",
+			"@graph": [
+				{
+					"@id": "urn:uuid:5678"
+				}
+			],
+			"schema:name": "Jane Doe"
+		});
+	});
+
+	test("prefixProperties throws when prefix is invalid", () => {
+		expect(() => JsonLdHelper.prefixProperties({ "@type": "Person" }, "")).toThrowError(
+			expect.objectContaining({
+				source: "JsonLdHelper",
+				name: "GuardError",
+				message: "guard.stringEmpty"
+			})
+		);
+	});
+
+	test("stripPrefixProperties strips matching non JSON-LD prefixed properties", async () => {
+		const nodeObject = {
+			"@type": "Person",
+			"schema:name": "Jane Doe",
+			"schema:jobTitle": "Professor",
+			"other:name": "Should stay"
+		};
+
+		const stripped = JsonLdHelper.stripPrefixProperties(nodeObject, "schema");
+
+		expect(stripped).toEqual({
+			"@type": "Person",
+			name: "Jane Doe",
+			jobTitle: "Professor",
+			"other:name": "Should stay"
+		});
+		expect(nodeObject).toEqual({
+			"@type": "Person",
+			"schema:name": "Jane Doe",
+			"schema:jobTitle": "Professor",
+			"other:name": "Should stay"
+		});
+	});
+
+	test("stripPrefixProperties removes a trailing colon from prefix", async () => {
+		const nodeObject = {
+			"@type": "Person",
+			"schema:name": "Jane Doe"
+		};
+
+		const stripped = JsonLdHelper.stripPrefixProperties(nodeObject, "schema:");
+
+		expect(stripped).toEqual({
+			"@type": "Person",
+			name: "Jane Doe"
+		});
+	});
+
+	test("stripPrefixProperties only strips selected properties", async () => {
+		const nodeObject = {
+			"@type": "Person",
+			"schema:name": "Jane Doe",
+			"schema:jobTitle": "Professor",
+			"schema:url": "https://example.org"
+		};
+
+		const stripped = JsonLdHelper.stripPrefixProperties(nodeObject, "schema", ["name", "jobTitle"]);
+
+		expect(stripped).toEqual({
+			"@type": "Person",
+			name: "Jane Doe",
+			jobTitle: "Professor",
+			"schema:url": "https://example.org"
+		});
+	});
+
+	test("stripPrefixProperties throws when prefix is invalid", () => {
+		expect(() => JsonLdHelper.stripPrefixProperties({ "@type": "Person" }, "")).toThrowError(
+			expect.objectContaining({
+				source: "JsonLdHelper",
+				name: "GuardError",
+				message: "guard.stringEmpty"
+			})
+		);
+	});
 });

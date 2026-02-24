@@ -270,6 +270,81 @@ export class JsonLdHelper {
 	}
 
 	/**
+	 * Prefix all properties in the document with the provided prefix, except for JSON-LD properties.
+	 * This is useful for ensuring that all properties are fully qualified with a namespace.
+	 * For example, if the prefix is "ex" and the document has a property "name", it will be transformed to "ex:name".
+	 * @param nodeObject The JSON-LD node object to prefix properties on.
+	 * @param prefix The prefix to add to the properties.
+	 * @param properties Optional list of properties to prefix. If not provided, all properties except for JSON-LD properties.
+	 * @returns A new JSON-LD node object with the properties prefixed.
+	 */
+	public static prefixProperties<T extends IJsonLdNodeObject>(
+		nodeObject: T,
+		prefix: string,
+		properties?: string[]
+	): IJsonLdNodeObject {
+		Guards.object<IJsonLdNodeObject>(JsonLdHelper.CLASS_NAME, nameof(nodeObject), nodeObject);
+		Guards.stringValue(JsonLdHelper.CLASS_NAME, nameof(prefix), prefix);
+		const normalizedPrefix = prefix.endsWith(":") ? prefix.slice(0, -1) : prefix;
+		const hasNoPropertiesFilter = !Is.arrayValue(properties);
+
+		const prefixedNodeObject: IJsonLdNodeObject = {};
+
+		for (const key in nodeObject) {
+			const value = nodeObject[key];
+			if (
+				Is.stringValue(key) &&
+				!key.startsWith("@") &&
+				(hasNoPropertiesFilter || properties.includes(key))
+			) {
+				prefixedNodeObject[`${normalizedPrefix}:${key}`] = value;
+			} else {
+				prefixedNodeObject[key] = value;
+			}
+		}
+
+		return prefixedNodeObject;
+	}
+
+	/**
+	 * Strip a prefix from properties in the document, except for JSON-LD properties.
+	 * This is useful for converting fully qualified namespaced properties back to local names.
+	 * For example, if the prefix is "ex" and the document has a property "ex:name", it will be transformed to "name".
+	 * @param nodeObject The JSON-LD node object to strip prefixed properties from.
+	 * @param prefix The prefix to remove from the properties.
+	 * @param properties Optional list of unprefixed properties to strip. If not provided, all matching prefixed properties.
+	 * @returns A new JSON-LD node object with the prefix stripped from matching properties.
+	 */
+	public static stripPrefixProperties<T extends IJsonLdNodeObject>(
+		nodeObject: T,
+		prefix: string,
+		properties?: string[]
+	): IJsonLdNodeObject {
+		Guards.object<IJsonLdNodeObject>(JsonLdHelper.CLASS_NAME, nameof(nodeObject), nodeObject);
+		Guards.stringValue(JsonLdHelper.CLASS_NAME, nameof(prefix), prefix);
+		const normalizedPrefix = prefix.endsWith(":") ? prefix.slice(0, -1) : prefix;
+		const hasNoPropertiesFilter = !Is.arrayValue(properties);
+
+		const strippedNodeObject: IJsonLdNodeObject = {};
+
+		for (const key in nodeObject) {
+			const value = nodeObject[key];
+			if (Is.stringValue(key) && !key.startsWith("@") && key.startsWith(`${normalizedPrefix}:`)) {
+				const strippedKey = key.slice(normalizedPrefix.length + 1);
+				if (hasNoPropertiesFilter || properties.includes(strippedKey)) {
+					strippedNodeObject[strippedKey] = value;
+				} else {
+					strippedNodeObject[key] = value;
+				}
+			} else {
+				strippedNodeObject[key] = value;
+			}
+		}
+
+		return strippedNodeObject;
+	}
+
+	/**
 	 * Get an expanded JSON-LD document from either compact or expanded input.
 	 * @param documentOrExpanded The JSON-LD document or expanded document.
 	 * @returns The expanded JSON-LD document.
