@@ -78,6 +78,91 @@ describe("JsonLdHelper", () => {
 		expect(validationFailures).toEqual([]);
 	});
 
+	test("Can validate a document with @graph nodes", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@graph": [
+				{
+					"@type": "Person",
+					name: "Jane Doe"
+				}
+			]
+		};
+
+		const validationFailures: IValidationFailure[] = [];
+		await JsonLdHelper.validate(doc, validationFailures);
+		expect(validationFailures).toEqual([]);
+	});
+
+	test("Can validate an array of node objects", async () => {
+		const doc: IJsonLdDocument = [
+			{
+				"@context": "https://schema.org",
+				"@type": "Person",
+				name: "Jane Doe"
+			},
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				name: "IOTA Stiftung"
+			}
+		];
+
+		const validationFailures: IValidationFailure[] = [];
+		await JsonLdHelper.validate(doc, validationFailures);
+		expect(validationFailures).toEqual([]);
+	});
+
+	test("toNodeObject returns the same object reference", () => {
+		const data = {
+			"@type": "Person",
+			name: "Jane Doe"
+		};
+
+		const nodeObject = JsonLdHelper.toNodeObject(data);
+
+		expect(nodeObject).toBe(data);
+		expect(nodeObject).toEqual({
+			"@type": "Person",
+			name: "Jane Doe"
+		});
+	});
+
+	test("toStructuredObject returns the same object reference", () => {
+		interface TPerson {
+			name: string;
+			jobTitle: string;
+		}
+
+		const nodeObject = {
+			"@type": "Person",
+			name: "Jane Doe",
+			jobTitle: "Professor"
+		};
+
+		const structured = JsonLdHelper.toStructuredObject<TPerson>(nodeObject);
+
+		expect(structured).toBe(nodeObject);
+		expect(structured).toEqual({
+			"@type": "Person",
+			name: "Jane Doe",
+			jobTitle: "Professor"
+		});
+	});
+
+	test("expand returns an expanded JSON-LD array", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "Person",
+			name: "Jane Doe"
+		};
+
+		const expanded = await JsonLdHelper.expand(doc);
+
+		expect(Array.isArray(expanded)).toBe(true);
+		expect(expanded[0]["@type"]).toEqual(["http://schema.org/Person"]);
+	});
+
 	test("isType can find all the types in JSON-LD document", async () => {
 		const doc: IJsonLdDocument = {
 			"@context": "https://vocabulary.uncefact.org/unece-context-D23B.jsonld",
@@ -266,6 +351,19 @@ describe("JsonLdHelper", () => {
 		const expandedDoc = await JsonLdHelper.expand(doc);
 
 		expect(await JsonLdHelper.getId(expandedDoc)).toBe("urn:uuid:5678");
+	});
+
+	test("getId supports additional id properties", async () => {
+		const expandedDoc = [
+			{
+				"@type": ["http://schema.org/Person"],
+				"https://example.org/identifier": ["did:iota:testnet:0xabc123"]
+			}
+		];
+
+		expect(await JsonLdHelper.getId(expandedDoc, ["https://example.org/identifier"])).toBe(
+			"did:iota:testnet:0xabc123"
+		);
 	});
 
 	test("getPropertyValues can retrieve a full-name property from a document", async () => {
