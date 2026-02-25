@@ -1,5 +1,19 @@
 # @twin.org/data-json-ld - Changelog
 
+## [0.0.3-next.13](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.12...data-json-ld-v0.0.3-next.13) (2026-02-25)
+
+
+### Features
+
+* publish npm await ([7bdf0cd](https://github.com/twinfoundation/data/commit/7bdf0cd5d9417e7f8811f295ccf3ab3403ae3753))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.12 to 0.0.3-next.13
+
 ## [0.0.3-next.12](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.11...data-json-ld-v0.0.3-next.12) (2026-02-25)
 
 
