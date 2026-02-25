@@ -71,13 +71,23 @@ export class JsonLdHelper {
 	}
 
 	/**
-	 * Expand an object to a JSON-LD node object.
-	 * @param object The object to expand.
-	 * @returns The expanded JSON-LD node object.
+	 * Convert an object to a JSON-LD node object.
+	 * @param object The object to convert.
+	 * @returns The JSON-LD node object.
 	 */
 	public static toNodeObject<T = unknown>(object: T): T & IJsonLdNodeObject {
 		Guards.object<T>(JsonLdHelper.CLASS_NAME, nameof(object), object);
 		return object as T & IJsonLdNodeObject;
+	}
+
+	/**
+	 * Convert the JSON-LD node object to a structured object.
+	 * @param nodeObject The JSON-LD node object to convert.
+	 * @returns The structured object.
+	 */
+	public static toStructuredObject<T = unknown>(nodeObject: IJsonLdNodeObject): T {
+		Guards.object<IJsonLdNodeObject>(JsonLdHelper.CLASS_NAME, nameof(nodeObject), nodeObject);
+		return nodeObject as unknown as T;
 	}
 
 	/**

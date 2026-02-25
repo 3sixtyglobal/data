@@ -68,7 +68,7 @@ True if the document was valid.
 
 > `static` **toNodeObject**\<`T`\>(`object`): `T` & [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
 
-Expand an object to a JSON-LD node object.
+Convert an object to a JSON-LD node object.
 
 #### Type Parameters
 
@@ -82,13 +82,41 @@ Expand an object to a JSON-LD node object.
 
 `T`
 
-The object to expand.
+The object to convert.
 
 #### Returns
 
 `T` & [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
 
-The expanded JSON-LD node object.
+The JSON-LD node object.
+
+***
+
+### toStructuredObject()
+
+> `static` **toStructuredObject**\<`T`\>(`nodeObject`): `T`
+
+Convert the JSON-LD node object to a structured object.
+
+#### Type Parameters
+
+##### T
+
+`T` = `unknown`
+
+#### Parameters
+
+##### nodeObject
+
+[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+The JSON-LD node object to convert.
+
+#### Returns
+
+`T`
+
+The structured object.
 
 ***
 
