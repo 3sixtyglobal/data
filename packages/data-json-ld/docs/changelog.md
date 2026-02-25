@@ -1,5 +1,19 @@
 # @twin.org/data-json-ld - Changelog
 
+## [0.0.3-next.11](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.10...data-json-ld-v0.0.3-next.11) (2026-02-25)
+
+
+### Features
+
+* expand JsonLdHelper.getId with custom properties names ([8ec4dcf](https://github.com/twinfoundation/data/commit/8ec4dcf807a6dc416b2df2a77749f841a60be05f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.10 to 0.0.3-next.11
+
 ## [0.0.3-next.10](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.9...data-json-ld-v0.0.3-next.10) (2026-02-24)
 
 
