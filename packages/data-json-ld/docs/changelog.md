@@ -1,5 +1,19 @@
 # @twin.org/data-json-ld - Changelog
 
+## [0.0.3-next.12](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.11...data-json-ld-v0.0.3-next.12) (2026-02-25)
+
+
+### Features
+
+* add toStructuredObject ([58354e0](https://github.com/twinfoundation/data/commit/58354e0096c917f2e2e64214107d68326c79260d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.11 to 0.0.3-next.12
+
 ## [0.0.3-next.11](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.10...data-json-ld-v0.0.3-next.11) (2026-02-25)
 
 
