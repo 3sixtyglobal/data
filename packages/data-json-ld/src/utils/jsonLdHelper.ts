@@ -154,14 +154,16 @@ export class JsonLdHelper {
 	/**
 	 * Get the id from the document.
 	 * @param documentOrExpanded The JSON-LD document to get the id from or already expanded document.
+	 * @param additionalIdProperties Optional additional properties to check for the id, in addition to "@id" and "id".
 	 * @returns The id extracted from the document.
 	 */
 	public static async getId(
-		documentOrExpanded: IJsonLdDocument | IJsonLdNodeObject[]
+		documentOrExpanded: IJsonLdDocument | IJsonLdNodeObject[],
+		additionalIdProperties?: string[]
 	): Promise<string | undefined> {
 		const expanded = await JsonLdHelper.getExpandedDocument(documentOrExpanded);
 
-		const props = ["@id", "id"];
+		const props = ["@id", "id", ...(additionalIdProperties ?? [])];
 
 		for (const expandedDoc of expanded) {
 			for (const prop of props) {

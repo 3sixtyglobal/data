@@ -86,7 +86,10 @@ export class JsonSchemaHelper {
 			ajv = new Ajv2019.Ajv2019({ strict: false, ...params });
 		}
 
-		formatsPlugin.default(ajv);
+		// There is an inconsistency in the types of the formats plugin,
+		// so we have to cast it to unknown and then to the correct type
+		const applyFormats = formatsPlugin.default as unknown as (ajvInstance: unknown) => void;
+		applyFormats(ajv);
 
 		// Add the additional types provided by the user
 		if (Is.objectValue(additionalTypes)) {

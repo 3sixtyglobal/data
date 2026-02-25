@@ -166,7 +166,7 @@ The type(s) extracted from the document.
 
 ### getId()
 
-> `static` **getId**(`documentOrExpanded`): `Promise`\<`string` \| `undefined`\>
+> `static` **getId**(`documentOrExpanded`, `additionalIdProperties?`): `Promise`\<`string` \| `undefined`\>
 
 Get the id from the document.
 
@@ -177,6 +177,12 @@ Get the id from the document.
 [`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
 
 The JSON-LD document to get the id from or already expanded document.
+
+##### additionalIdProperties?
+
+`string`[]
+
+Optional additional properties to check for the id, in addition to "@id" and "id".
 
 #### Returns
 
