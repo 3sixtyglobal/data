@@ -2,6 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0.
 import type {
 	JsonLdKeys,
+	JsonLdObjectWithNoContext,
+	JsonLdObjectWithNoId,
+	JsonLdObjectWithNoType,
 	JsonLdObjectWithAliases,
 	JsonLdObjectWithContext,
 	JsonLdObjectWithId,
@@ -231,6 +234,20 @@ describe("JsonLdHelperTypes", () => {
 		expect(invalidInferredOptional["@context"]).toBe("not-a-number");
 	});
 
+	test("can omit @context from a type", () => {
+		interface TSourceWithContext {
+			name: string;
+			"@context": number;
+		}
+
+		const withoutContext: JsonLdObjectWithNoContext<TSourceWithContext> = {
+			name: "NoContext"
+		};
+
+		expect(withoutContext.name).toBe("NoContext");
+		expect((withoutContext as { "@context"?: unknown })["@context"]).toBeUndefined();
+	});
+
 	test("can add @type to a type", () => {
 		const withTypeSingle: JsonLdObjectWithType<{ name: string }> = {
 			name: "SingleType",
@@ -365,6 +382,20 @@ describe("JsonLdHelperTypes", () => {
 		expect(invalidInferredRequired["@type"]).toBeUndefined();
 	});
 
+	test("can omit @type from a type", () => {
+		interface TSourceWithType {
+			name: string;
+			"@type": number;
+		}
+
+		const withoutType: JsonLdObjectWithNoType<TSourceWithType> = {
+			name: "NoType"
+		};
+
+		expect(withoutType.name).toBe("NoType");
+		expect((withoutType as { "@type"?: unknown })["@type"]).toBeUndefined();
+	});
+
 	test("can add @id to a type", () => {
 		const withId: JsonLdObjectWithId<{ name: string }> = {
 			name: "WithId",
@@ -492,6 +523,20 @@ describe("JsonLdHelperTypes", () => {
 
 		expect(inferredRequired["@id"]).toBe(23);
 		expect(invalidInferredRequired["@id"]).toBeUndefined();
+	});
+
+	test("can omit @id from a type", () => {
+		interface TSourceWithId {
+			name: string;
+			"@id": number;
+		}
+
+		const withoutId: JsonLdObjectWithNoId<TSourceWithId> = {
+			name: "NoId"
+		};
+
+		expect(withoutId.name).toBe("NoId");
+		expect((withoutId as { "@id"?: unknown })["@id"]).toBeUndefined();
 	});
 
 	test("can use fallback defaults when source has no JSON-LD keys", () => {

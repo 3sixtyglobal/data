@@ -75,6 +75,12 @@ export type JsonLdObjectWithOptionalContext<
 };
 
 /**
+ * Omit optional "@context" from a type, inferring an existing context type from
+ * the source type when available, otherwise using the provided default.
+ */
+export type JsonLdObjectWithNoContext<T extends object> = Omit<T, "@context">;
+
+/**
  * Add "@type" to a type.
  */
 export type JsonLdObjectWithType<
@@ -95,6 +101,11 @@ export type JsonLdObjectWithOptionalType<
 };
 
 /**
+ * Omit "@type" from a type.
+ */
+export type JsonLdObjectWithNoType<T extends object> = Omit<T, "@type">;
+
+/**
  * Add "@id" to a type.
  */
 export type JsonLdObjectWithId<
@@ -113,3 +124,8 @@ export type JsonLdObjectWithOptionalId<
 > = Omit<T, "@id"> & {
 	"@id"?: Id;
 };
+
+/**
+ * Omit "@id" from a type.
+ */
+export type JsonLdObjectWithNoId<T extends object> = Omit<T, "@id">;
