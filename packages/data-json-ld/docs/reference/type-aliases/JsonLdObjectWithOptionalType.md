@@ -1,14 +1,14 @@
 # Type Alias: JsonLdObjectWithOptionalType\<T, Ty\>
 
-> **JsonLdObjectWithOptionalType**\<`T`, `Ty`\> = `Omit`\<`T`, `"@type"`\> & `object`
+> **JsonLdObjectWithOptionalType**\<`T`, `Ty`\> = `Omit`\<`T`, `"type"` \| `"@type"`\> & `object`
 
-Add optional "@type" to a type.
+Add optional "type" to a type.
 
 ## Type Declaration
 
-### @type?
+### type?
 
-> `optional` **@type**: `Ty`
+> `optional` **type**: `Ty`
 
 ## Type Parameters
 
@@ -18,4 +18,4 @@ Add optional "@type" to a type.
 
 ### Ty
 
-`Ty` = [`JsonLdExistingProperty`](JsonLdExistingProperty.md)\<`T`, `"@type"`, `string` \| `string`[]\>
+`Ty` = [`JsonLdExistingPropertyEither`](JsonLdExistingPropertyEither.md)\<`T`, `"type"`, `"@type"`, `string` \| `string`[]\>

@@ -1,8 +1,8 @@
 # Type Alias: JsonLdObjectWithNoType\<T\>
 
-> **JsonLdObjectWithNoType**\<`T`\> = `Omit`\<`T`, `"@type"`\>
+> **JsonLdObjectWithNoType**\<`T`\> = `Omit`\<`T`, `"type"`\>
 
-Omit "@type" from a type.
+Omit "type" from a type.
 
 ## Type Parameters
 
