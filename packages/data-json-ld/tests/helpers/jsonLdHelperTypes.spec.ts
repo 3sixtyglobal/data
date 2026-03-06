@@ -2,12 +2,18 @@
 // SPDX-License-Identifier: Apache-2.0.
 import type {
 	JsonLdKeys,
+	JsonLdObjectWithAtId,
+	JsonLdObjectWithAtType,
 	JsonLdObjectWithNoContext,
+	JsonLdObjectWithNoAtId,
+	JsonLdObjectWithNoAtType,
 	JsonLdObjectWithNoId,
 	JsonLdObjectWithNoType,
 	JsonLdObjectWithAliases,
 	JsonLdObjectWithContext,
 	JsonLdObjectWithId,
+	JsonLdObjectWithOptionalAtId,
+	JsonLdObjectWithOptionalAtType,
 	JsonLdObjectWithOptionalContext,
 	JsonLdObjectWithOptionalId,
 	JsonLdObjectWithOptionalType,
@@ -249,12 +255,12 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can add @type to a type", () => {
-		const withTypeSingle: JsonLdObjectWithType<{ name: string }> = {
+		const withTypeSingle: JsonLdObjectWithAtType<{ name: string }> = {
 			name: "SingleType",
 			"@type": "ExampleType"
 		};
 
-		const withTypeArray: JsonLdObjectWithType<{ name: string }> = {
+		const withTypeArray: JsonLdObjectWithAtType<{ name: string }> = {
 			name: "MultiType",
 			"@type": ["TypeOne", "TypeTwo"]
 		};
@@ -264,11 +270,11 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can add optional @type to a type", () => {
-		const withoutType: JsonLdObjectWithOptionalType<{ name: string }> = {
+		const withoutType: JsonLdObjectWithOptionalAtType<{ name: string }> = {
 			name: "NoType"
 		};
 
-		const withOptionalType: JsonLdObjectWithOptionalType<{ name: string }> = {
+		const withOptionalType: JsonLdObjectWithOptionalAtType<{ name: string }> = {
 			name: "WithType",
 			"@type": "OptionalType"
 		};
@@ -282,7 +288,7 @@ describe("JsonLdHelperTypes", () => {
 			value: string;
 		}
 
-		const customType: JsonLdObjectWithType<{ name: string }, TTypeReplacement> = {
+		const customType: JsonLdObjectWithAtType<{ name: string }, TTypeReplacement> = {
 			name: "CustomType",
 			"@type": {
 				value: "custom"
@@ -302,12 +308,12 @@ describe("JsonLdHelperTypes", () => {
 			value: string;
 		}
 
-		const replacedRequired: JsonLdObjectWithType<TSourceWithType, TTypeReplacement> = {
+		const replacedRequired: JsonLdObjectWithAtType<TSourceWithType, TTypeReplacement> = {
 			name: "ReplacedRequiredType",
 			"@type": { value: "replacement" }
 		};
 
-		const replacedOptional: JsonLdObjectWithOptionalType<TSourceWithType, TTypeReplacement> = {
+		const replacedOptional: JsonLdObjectWithOptionalAtType<TSourceWithType, TTypeReplacement> = {
 			name: "ReplacedOptionalType"
 		};
 
@@ -321,16 +327,16 @@ describe("JsonLdHelperTypes", () => {
 			"@type": number;
 		}
 
-		const inferredRequired: JsonLdObjectWithType<TSourceWithType> = {
+		const inferredRequired: JsonLdObjectWithAtType<TSourceWithType> = {
 			name: "InferredRequiredType",
 			"@type": 10
 		};
 
-		const inferredOptionalWithoutType: JsonLdObjectWithOptionalType<TSourceWithType> = {
+		const inferredOptionalWithoutType: JsonLdObjectWithOptionalAtType<TSourceWithType> = {
 			name: "InferredOptionalType"
 		};
 
-		const inferredOptionalWithType: JsonLdObjectWithOptionalType<TSourceWithType> = {
+		const inferredOptionalWithType: JsonLdObjectWithOptionalAtType<TSourceWithType> = {
 			name: "InferredOptionalTypeWithValue",
 			"@type": 11
 		};
@@ -346,12 +352,12 @@ describe("JsonLdHelperTypes", () => {
 			"@type": number;
 		}
 
-		const explicitType: JsonLdObjectWithType<TSourceWithType, string> = {
+		const explicitType: JsonLdObjectWithAtType<TSourceWithType, string> = {
 			name: "ExplicitType",
 			"@type": "CustomType"
 		};
 
-		const invalidExplicitType: JsonLdObjectWithType<TSourceWithType, string> = {
+		const invalidExplicitType: JsonLdObjectWithAtType<TSourceWithType, string> = {
 			name: "InvalidExplicitType",
 			// @ts-expect-error Explicit generic should override inferred number type.
 			"@type": 12
@@ -367,12 +373,12 @@ describe("JsonLdHelperTypes", () => {
 			"@type"?: number;
 		}
 
-		const inferredRequired: JsonLdObjectWithType<TSourceWithOptionalType> = {
+		const inferredRequired: JsonLdObjectWithAtType<TSourceWithOptionalType> = {
 			name: "InferredRequiredTypeFromOptional",
 			"@type": 13
 		};
 
-		const invalidInferredRequired: JsonLdObjectWithType<TSourceWithOptionalType> = {
+		const invalidInferredRequired: JsonLdObjectWithAtType<TSourceWithOptionalType> = {
 			name: "InvalidInferredRequiredTypeFromOptional",
 			// @ts-expect-error Inferred type excludes undefined.
 			"@type": undefined
@@ -388,7 +394,7 @@ describe("JsonLdHelperTypes", () => {
 			"@type": number;
 		}
 
-		const withoutType: JsonLdObjectWithNoType<TSourceWithType> = {
+		const withoutType: JsonLdObjectWithNoAtType<TSourceWithType> = {
 			name: "NoType"
 		};
 
@@ -397,7 +403,7 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can add @id to a type", () => {
-		const withId: JsonLdObjectWithId<{ name: string }> = {
+		const withId: JsonLdObjectWithAtId<{ name: string }> = {
 			name: "WithId",
 			"@id": "did:example:id-only"
 		};
@@ -407,11 +413,11 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can add optional @id to a type", () => {
-		const withoutId: JsonLdObjectWithOptionalId<{ name: string }> = {
+		const withoutId: JsonLdObjectWithOptionalAtId<{ name: string }> = {
 			name: "NoId"
 		};
 
-		const withOptionalId: JsonLdObjectWithOptionalId<{ name: string }> = {
+		const withOptionalId: JsonLdObjectWithOptionalAtId<{ name: string }> = {
 			name: "WithOptionalId",
 			"@id": "did:example:optional"
 		};
@@ -425,7 +431,7 @@ describe("JsonLdHelperTypes", () => {
 			id: string;
 		}
 
-		const customId: JsonLdObjectWithId<{ name: string }, TIdReplacement> = {
+		const customId: JsonLdObjectWithAtId<{ name: string }, TIdReplacement> = {
 			name: "CustomId",
 			"@id": {
 				id: "custom"
@@ -445,12 +451,12 @@ describe("JsonLdHelperTypes", () => {
 			id: string;
 		}
 
-		const replacedRequired: JsonLdObjectWithId<TSourceWithId, TIdReplacement> = {
+		const replacedRequired: JsonLdObjectWithAtId<TSourceWithId, TIdReplacement> = {
 			name: "ReplacedRequiredId",
 			"@id": { id: "replacement" }
 		};
 
-		const replacedOptional: JsonLdObjectWithOptionalId<TSourceWithId, TIdReplacement> = {
+		const replacedOptional: JsonLdObjectWithOptionalAtId<TSourceWithId, TIdReplacement> = {
 			name: "ReplacedOptionalId"
 		};
 
@@ -464,16 +470,16 @@ describe("JsonLdHelperTypes", () => {
 			"@id": number;
 		}
 
-		const inferredRequired: JsonLdObjectWithId<TSourceWithId> = {
+		const inferredRequired: JsonLdObjectWithAtId<TSourceWithId> = {
 			name: "InferredRequiredId",
 			"@id": 20
 		};
 
-		const inferredOptionalWithoutId: JsonLdObjectWithOptionalId<TSourceWithId> = {
+		const inferredOptionalWithoutId: JsonLdObjectWithOptionalAtId<TSourceWithId> = {
 			name: "InferredOptionalId"
 		};
 
-		const inferredOptionalWithId: JsonLdObjectWithOptionalId<TSourceWithId> = {
+		const inferredOptionalWithId: JsonLdObjectWithOptionalAtId<TSourceWithId> = {
 			name: "InferredOptionalIdWithValue",
 			"@id": 21
 		};
@@ -489,12 +495,12 @@ describe("JsonLdHelperTypes", () => {
 			"@id": number;
 		}
 
-		const explicitId: JsonLdObjectWithId<TSourceWithId, string> = {
+		const explicitId: JsonLdObjectWithAtId<TSourceWithId, string> = {
 			name: "ExplicitId",
 			"@id": "did:example:explicit"
 		};
 
-		const invalidExplicitId: JsonLdObjectWithId<TSourceWithId, string> = {
+		const invalidExplicitId: JsonLdObjectWithAtId<TSourceWithId, string> = {
 			name: "InvalidExplicitId",
 			// @ts-expect-error Explicit generic should override inferred number id.
 			"@id": 22
@@ -510,12 +516,12 @@ describe("JsonLdHelperTypes", () => {
 			"@id"?: number;
 		}
 
-		const inferredRequired: JsonLdObjectWithId<TSourceWithOptionalId> = {
+		const inferredRequired: JsonLdObjectWithAtId<TSourceWithOptionalId> = {
 			name: "InferredRequiredIdFromOptional",
 			"@id": 23
 		};
 
-		const invalidInferredRequired: JsonLdObjectWithId<TSourceWithOptionalId> = {
+		const invalidInferredRequired: JsonLdObjectWithAtId<TSourceWithOptionalId> = {
 			name: "InvalidInferredRequiredIdFromOptional",
 			// @ts-expect-error Inferred id type excludes undefined.
 			"@id": undefined
@@ -531,12 +537,199 @@ describe("JsonLdHelperTypes", () => {
 			"@id": number;
 		}
 
-		const withoutId: JsonLdObjectWithNoId<TSourceWithId> = {
+		const withoutId: JsonLdObjectWithNoAtId<TSourceWithId> = {
 			name: "NoId"
 		};
 
 		expect(withoutId.name).toBe("NoId");
 		expect((withoutId as { "@id"?: unknown })["@id"]).toBeUndefined();
+	});
+
+	test("can add and infer plain type keys", () => {
+		interface TSourceWithType {
+			name: string;
+			type: number;
+		}
+
+		const plainType: JsonLdObjectWithType<{ name: string }> = {
+			name: "PlainType",
+			type: "ExampleType"
+		};
+
+		const inferredType: JsonLdObjectWithType<TSourceWithType> = {
+			name: "InferredPlainType",
+			type: 7
+		};
+
+		expect(plainType.type).toBe("ExampleType");
+		expect(inferredType.type).toBe(7);
+	});
+
+	test("can add optional and omit plain type keys", () => {
+		interface TSourceWithType {
+			name: string;
+			type: number;
+		}
+
+		const withoutType: JsonLdObjectWithOptionalType<{ name: string }> = {
+			name: "NoPlainType"
+		};
+
+		const withOptionalType: JsonLdObjectWithOptionalType<{ name: string }> = {
+			name: "WithPlainType",
+			type: "OptionalType"
+		};
+
+		const omittedType: JsonLdObjectWithNoType<TSourceWithType> = {
+			name: "OmittedPlainType"
+		};
+
+		expect(withoutType.type).toBeUndefined();
+		expect(withOptionalType.type).toBe("OptionalType");
+		expect((omittedType as { type?: unknown }).type).toBeUndefined();
+	});
+
+	test("can add and infer plain id keys", () => {
+		interface TSourceWithId {
+			name: string;
+			id: number;
+		}
+
+		const plainId: JsonLdObjectWithId<{ name: string }> = {
+			name: "PlainId",
+			id: "did:example:plain"
+		};
+
+		const inferredId: JsonLdObjectWithId<TSourceWithId> = {
+			name: "InferredPlainId",
+			id: 8
+		};
+
+		expect(plainId.id).toBe("did:example:plain");
+		expect(inferredId.id).toBe(8);
+	});
+
+	test("can add optional and omit plain id keys", () => {
+		interface TSourceWithId {
+			name: string;
+			id: number;
+		}
+
+		const withoutId: JsonLdObjectWithOptionalId<{ name: string }> = {
+			name: "NoPlainId"
+		};
+
+		const withOptionalId: JsonLdObjectWithOptionalId<{ name: string }> = {
+			name: "WithPlainId",
+			id: "did:example:optional-plain"
+		};
+
+		const omittedId: JsonLdObjectWithNoId<TSourceWithId> = {
+			name: "OmittedPlainId"
+		};
+
+		expect(withoutId.id).toBeUndefined();
+		expect(withOptionalId.id).toBe("did:example:optional-plain");
+		expect((omittedId as { id?: unknown }).id).toBeUndefined();
+	});
+
+	test("can infer plain type from @type and remove both source variants", () => {
+		interface TSourceWithAtType {
+			name: string;
+			"@type": number;
+		}
+
+		const inferredFromAtType: JsonLdObjectWithType<TSourceWithAtType> = {
+			name: "InferredFromAtType",
+			type: 14
+		};
+
+		expect(inferredFromAtType.type).toBe(14);
+		expect((inferredFromAtType as { "@type"?: unknown })["@type"]).toBeUndefined();
+	});
+
+	test("can infer @type from plain type and remove both source variants", () => {
+		interface TSourceWithType {
+			name: string;
+			type: number;
+		}
+
+		const inferredFromType: JsonLdObjectWithAtType<TSourceWithType> = {
+			name: "InferredFromType",
+			"@type": 16
+		};
+
+		expect(inferredFromType["@type"]).toBe(16);
+		expect((inferredFromType as { type?: unknown }).type).toBeUndefined();
+	});
+
+	test("can infer plain id from @id and remove both source variants", () => {
+		interface TSourceWithAtId {
+			name: string;
+			"@id": number;
+		}
+
+		const inferredFromAtId: JsonLdObjectWithId<TSourceWithAtId> = {
+			name: "InferredFromAtId",
+			id: 24
+		};
+
+		expect(inferredFromAtId.id).toBe(24);
+		expect((inferredFromAtId as { "@id"?: unknown })["@id"]).toBeUndefined();
+	});
+
+	test("can infer @id from plain id and remove both source variants", () => {
+		interface TSourceWithId {
+			name: string;
+			id: number;
+		}
+
+		const inferredFromId: JsonLdObjectWithAtId<TSourceWithId> = {
+			name: "InferredFromId",
+			"@id": 25
+		};
+
+		expect(inferredFromId["@id"]).toBe(25);
+		expect((inferredFromId as { id?: unknown }).id).toBeUndefined();
+	});
+
+	test("can infer union when both plain and @ variants exist", () => {
+		interface TSourceWithBothTypeKeys {
+			name: string;
+			type: number;
+			"@type": string;
+		}
+
+		interface TSourceWithBothIdKeys {
+			name: string;
+			id: number;
+			"@id": string;
+		}
+
+		const typeFromBothAsNumber: JsonLdObjectWithType<TSourceWithBothTypeKeys> = {
+			name: "TypeFromBothAsNumber",
+			type: 26
+		};
+
+		const typeFromBothAsString: JsonLdObjectWithType<TSourceWithBothTypeKeys> = {
+			name: "TypeFromBothAsString",
+			type: "TwentySix"
+		};
+
+		const idFromBothAsNumber: JsonLdObjectWithAtId<TSourceWithBothIdKeys> = {
+			name: "IdFromBothAsNumber",
+			"@id": 27
+		};
+
+		const idFromBothAsString: JsonLdObjectWithAtId<TSourceWithBothIdKeys> = {
+			name: "IdFromBothAsString",
+			"@id": "did:example:twenty-seven"
+		};
+
+		expect(typeFromBothAsNumber.type).toBe(26);
+		expect(typeFromBothAsString.type).toBe("TwentySix");
+		expect(idFromBothAsNumber["@id"]).toBe(27);
+		expect(idFromBothAsString["@id"]).toBe("did:example:twenty-seven");
 	});
 
 	test("can use fallback defaults when source has no JSON-LD keys", () => {
@@ -545,12 +738,12 @@ describe("JsonLdHelperTypes", () => {
 			"@context": "https://schema.org"
 		};
 
-		const defaultType: JsonLdObjectWithType<{ name: string }> = {
+		const defaultType: JsonLdObjectWithAtType<{ name: string }> = {
 			name: "DefaultType",
 			"@type": ["TypeOne", "TypeTwo"]
 		};
 
-		const defaultId: JsonLdObjectWithId<{ name: string }> = {
+		const defaultId: JsonLdObjectWithAtId<{ name: string }> = {
 			name: "DefaultId",
 			"@id": "did:example:default"
 		};
