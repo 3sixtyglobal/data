@@ -1,6 +1,6 @@
 # TWIN Data JSONPath
 
-JSONPath abstraction layer for TWIN platform.
+This package provides a consistent abstraction for JSONPath queries, helping teams read and filter complex JSON structures through one stable interface. It builds on [JSONPath](https://goessner.net/articles/JsonPath/) concepts and the `json-p3` implementation to support reliable document querying across the repository.
 
 ## Installation
 

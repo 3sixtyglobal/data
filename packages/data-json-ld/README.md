@@ -1,6 +1,6 @@
 # TWIN JSON LD Data
 
-Models which define the structure of [JSON LD](https://json-ld.org/).
+This package provides JSON-LD data models and helper utilities for working with linked data documents in a predictable and reusable way. It aligns package-level data structures with the [JSON-LD](https://json-ld.org/) ecosystem, making it easier to represent interoperable semantic data across services.
 
 ## Installation
 

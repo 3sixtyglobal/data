@@ -1,7 +1,7 @@
 {
 	"name": "@twin.org/data-framework",
 	"version": "0.0.3-next.16",
-	"description": "Models which define the structure of framework types",
+	"description": "Framework data models that define common structures used by other packages.",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/twinfoundation/data.git",
