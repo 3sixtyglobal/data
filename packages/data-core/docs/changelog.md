@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3-next.17](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.16...data-core-v0.0.3-next.17) (2026-03-12)
+
+
+### Features
+
+* enhanced json schema validation ([#55](https://github.com/twinfoundation/data/issues/55)) ([a4dbf76](https://github.com/twinfoundation/data/commit/a4dbf768103356abca4b5bd91a0a5265819bc62b))
+
 ## [0.0.3-next.16](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.15...data-core-v0.0.3-next.16) (2026-03-06)
 
 
