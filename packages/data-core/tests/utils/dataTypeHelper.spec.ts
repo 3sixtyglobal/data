@@ -101,27 +101,81 @@ describe("DataTypeHelper", () => {
 		const validation = await DataTypeHelper.validate("value", "test", 123, validationFailures);
 
 		expect(validation).toEqual(false);
-		expect(validationFailures).toEqual([
-			{
-				property: "value",
-				reason: "validation.schema.failedValidation",
-				properties: {
-					value: 123,
-					schemaErrors: [
-						{
-							instancePath: "",
-							keyword: "type",
-							message: "must be string",
-							params: {
-								type: "string"
-							},
-							schemaPath: "#/type"
-						}
-					],
-					message: "must be string"
-				}
+		expect(validationFailures).toHaveLength(1);
+		expect(validationFailures[0]).toEqual({
+			property: "value",
+			reason: "validation.schemaFailed",
+			properties: {
+				keyword: "type",
+				message: "must be string",
+				params: {
+					type: "string"
+				},
+				schemaPath: "#/type"
 			}
-		]);
+		});
+	});
+
+	test("Can include nested property path for complex object schema failures", async () => {
+		DataTypeHandlerFactory.register("test", () => ({
+			namespace: "test",
+			type: "test",
+			jsonSchema: async () => ({
+				type: "object",
+				properties: {
+					profile: {
+						type: "object",
+						properties: {
+							addresses: {
+								type: "array",
+								items: {
+									type: "object",
+									properties: {
+										postalCode: {
+											type: "string",
+											pattern: "^[A-Z]{2}[0-9]{2}$"
+										}
+									},
+									required: ["postalCode"]
+								}
+							}
+						},
+						required: ["addresses"]
+					}
+				},
+				required: ["profile"]
+			})
+		}));
+		const validationFailures: IValidationFailure[] = [];
+		const validation = await DataTypeHelper.validate(
+			"value",
+			"test",
+			{
+				profile: {
+					addresses: [
+						{
+							postalCode: "bad"
+						}
+					]
+				}
+			},
+			validationFailures
+		);
+
+		expect(validation).toEqual(false);
+		expect(validationFailures).toHaveLength(1);
+		expect(validationFailures[0]).toEqual({
+			property: "value.profile.addresses.0.postalCode",
+			reason: "validation.schemaFailed",
+			properties: {
+				keyword: "pattern",
+				message: 'must match pattern "^[A-Z]{2}[0-9]{2}$"',
+				params: {
+					pattern: "^[A-Z]{2}[0-9]{2}$"
+				},
+				schemaPath: "#/properties/profile/properties/addresses/items/properties/postalCode/pattern"
+			}
+		});
 	});
 
 	test("Can validate with missing type and no option set", async () => {

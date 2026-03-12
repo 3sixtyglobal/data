@@ -2,9 +2,9 @@
 	"error": {
 		"validation": {
 			"schema": {
-				"failedValidation": "The JSON schema failed validation, {message}",
 				"missingType": "Failed to validate as there is no handler for type \"{dataType}\""
-			}
+			},
+			"schemaFailed": "Schema failed validation, \"{message}\", keyword: \"{keyword}\", schemaPath: \"{schemaPath}\""
 		}
 	}
 }

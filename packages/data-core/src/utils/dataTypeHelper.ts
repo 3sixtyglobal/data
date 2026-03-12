@@ -114,19 +114,14 @@ export class DataTypeHelper {
 					const schema = await jsonSchemaMethod();
 
 					if (Is.object<IJsonSchema>(schema)) {
-						const validationResult = await JsonSchemaHelper.validate(schema, data);
-						if (Is.arrayValue(validationResult.error)) {
-							validationFailures.push({
-								property: propertyName,
-								reason: "validation.schema.failedValidation",
-								properties: {
-									value: data,
-									schemaErrors: validationResult.error,
-									message: validationResult.error.map(e => e.message).join("\n")
-								}
-							});
-						}
-						if (!validationResult.result) {
+						const failures = await JsonSchemaHelper.validate(schema, data);
+						if (failures.length > 0) {
+							validationFailures.push(
+								...failures.map(f => ({
+									...f,
+									property: f.property.length > 0 ? `${propertyName}.${f.property}` : propertyName
+								}))
+							);
 							isValid = false;
 						}
 					}

@@ -1,6 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { Is, StringHelper } from "@twin.org/core";
+import { BaseError, type IError, Is, type IValidationFailure, StringHelper } from "@twin.org/core";
 import type { IEntitySchema } from "@twin.org/entity";
 import { nameof } from "@twin.org/nameof";
 import { FetchHelper, HttpMethod } from "@twin.org/web";
@@ -9,8 +9,6 @@ import Ajv2020 from "ajv/dist/2020.js";
 import formatsPlugin from "ajv-formats";
 import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory.js";
 import type { IJsonSchema } from "../models/IJsonSchema.js";
-import type { ISchemaValidationError } from "../models/ISchemaValidationError.js";
-import type { ISchemaValidationResult } from "../models/ISchemaValidationResult.js";
 
 /**
  * A helper for JSON schemas.
@@ -33,6 +31,31 @@ export class JsonSchemaHelper {
 	public static readonly CLASS_NAME = nameof<JsonSchemaHelper>();
 
 	/**
+	 * Optional loggers for schema loading.
+	 * @internal
+	 */
+	private static _loggers?: {
+		loadingSchema?: (uri: string) => Promise<void>;
+		schemaLoaded?: (uri: string) => Promise<void>;
+		schemaLoadFailed?: (uri: string, error: IError) => Promise<void>;
+	};
+
+	/**
+	 * Set the loggers used during schema loading.
+	 * @param loggers Optional loggers for schema loading, useful when you have a lot of references in your schema and want to track the loading process.
+	 * @param loggers.loadingSchema Called when a schema is being loaded.
+	 * @param loggers.schemaLoaded Called when a schema has been successfully loaded.
+	 * @param loggers.schemaLoadFailed Called when a schema fails to load.
+	 */
+	public static setLoggers(loggers?: {
+		loadingSchema?: (uri: string) => Promise<void>;
+		schemaLoaded?: (uri: string) => Promise<void>;
+		schemaLoadFailed?: (uri: string, error: IError) => Promise<void>;
+	}): void {
+		JsonSchemaHelper._loggers = loggers;
+	}
+
+	/**
 	 * Validates data against the schema.
 	 * @param schema The schema to validate the data with.
 	 * @param data The data to be validated.
@@ -43,9 +66,10 @@ export class JsonSchemaHelper {
 		schema: IJsonSchema,
 		data: T,
 		additionalTypes?: { [id: string]: IJsonSchema }
-	): Promise<ISchemaValidationResult> {
+	): Promise<IValidationFailure[]> {
 		const params = {
 			allowUnionTypes: true,
+			allErrors: true,
 			// Disable strict tuples as it causes issues with the schema validation when
 			// you have an array with fixed elements e.g. myType: [string, ...string[]]
 			// https://github.com/ajv-validator/ajv/issues/1417
@@ -61,6 +85,8 @@ export class JsonSchemaHelper {
 				}
 
 				try {
+					await JsonSchemaHelper._loggers?.loadingSchema?.(uri);
+
 					// We don't have the type in our local data types, so we try to fetch it from the web
 					const result = await FetchHelper.fetchJson<never, IJsonSchema>(
 						JsonSchemaHelper.CLASS_NAME,
@@ -72,8 +98,10 @@ export class JsonSchemaHelper {
 							cacheTtlMs: 3600000
 						}
 					);
+					await JsonSchemaHelper._loggers?.schemaLoaded?.(uri);
 					return result;
-				} catch {
+				} catch (error) {
+					await JsonSchemaHelper._loggers?.schemaLoadFailed?.(uri, BaseError.fromError(error));
 					// Failed to load remotely so return an empty object
 					// so the schema validation doesn't completely fail
 					return {};
@@ -99,17 +127,28 @@ export class JsonSchemaHelper {
 		}
 
 		const compiled = await ajv.compileAsync(schema);
-		const result = compiled(data);
+		compiled(data);
 
-		const output: ISchemaValidationResult = {
-			result
-		};
+		const validationFailures: IValidationFailure[] = [];
 
-		if (!output.result) {
-			output.error = compiled.errors as ISchemaValidationError;
+		if (Is.arrayValue(compiled.errors)) {
+			for (const err of compiled.errors) {
+				const { instancePath, message, keyword, schemaPath, params: errParams, ...rest } = err;
+				validationFailures.push({
+					property: JsonSchemaHelper.instancePathToPropertyPath(instancePath),
+					reason: "validation.schemaFailed",
+					properties: {
+						message: message ?? "",
+						keyword,
+						schemaPath,
+						params: errParams,
+						...rest
+					}
+				});
+			}
 		}
 
-		return output;
+		return validationFailures;
 	}
 
 	/**
@@ -197,5 +236,22 @@ export class JsonSchemaHelper {
 			properties,
 			additionalProperties: false
 		};
+	}
+
+	/**
+	 * Convert an AJV instance path to a dotted property path.
+	 * @param instancePath The AJV instance path.
+	 * @returns The dotted property path.
+	 */
+	private static instancePathToPropertyPath(instancePath: string | undefined): string {
+		if (!Is.stringValue(instancePath) || instancePath.length === 0) {
+			return "";
+		}
+
+		return instancePath
+			.split("/")
+			.filter(segment => segment.length > 0)
+			.map(segment => segment.replace(/~1/g, "/").replace(/~0/g, "~"))
+			.join(".");
 	}
 }

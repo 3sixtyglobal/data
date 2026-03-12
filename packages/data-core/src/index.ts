@@ -5,8 +5,6 @@ export * from "./factories/identifierHandlerFactory.js";
 export * from "./models/IDataTypeHandler.js";
 export * from "./models/IIdentifierHandler.js";
 export * from "./models/IJsonSchema.js";
-export * from "./models/ISchemaValidationError.js";
-export * from "./models/ISchemaValidationResult.js";
 export * from "./models/validationMode.js";
 export * from "./utils/dataTypeHelper.js";
 export * from "./utils/jsonSchemaHelper.js";
