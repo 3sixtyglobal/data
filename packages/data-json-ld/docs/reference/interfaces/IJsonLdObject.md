@@ -13,43 +13,43 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ## Properties
 
-### @context?
+### @context? {#context}
 
 > `optional` **@context**: [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
 
 ***
 
-### @id?
+### @id? {#id}
 
 > `optional` **@id**: `string` \| `string`[]
 
 ***
 
-### @included?
+### @included? {#included}
 
 > `optional` **@included**: [`IJsonLdIncludedBlock`](../type-aliases/IJsonLdIncludedBlock.md)
 
 ***
 
-### @graph?
+### @graph? {#graph}
 
 > `optional` **@graph**: [`IJsonLdNodeObject`](IJsonLdNodeObject.md) \| [`IJsonLdNodeObject`](IJsonLdNodeObject.md)[]
 
 ***
 
-### @nest?
+### @nest? {#nest}
 
 > `optional` **@nest**: [`IJsonLdJsonObject`](IJsonLdJsonObject.md) \| [`IJsonLdJsonObject`](IJsonLdJsonObject.md)[]
 
 ***
 
-### @type?
+### @type? {#type}
 
 > `optional` **@type**: `string` \| `string`[]
 
 ***
 
-### @reverse?
+### @reverse? {#reverse}
 
 > `optional` **@reverse**: `object`
 
@@ -59,6 +59,6 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ***
 
-### @index?
+### @index? {#index}
 
 > `optional` **@index**: `string`

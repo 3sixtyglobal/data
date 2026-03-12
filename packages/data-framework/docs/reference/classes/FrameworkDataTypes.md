@@ -14,7 +14,7 @@ Handle all the framework data types.
 
 ## Methods
 
-### registerTypes()
+### registerTypes() {#registertypes}
 
 > `static` **registerTypes**(): `void`
 

@@ -8,24 +8,24 @@ https://www.w3.org/TR/json-ld11/#graph-objects
 
 ## Properties
 
-### @graph
+### @graph {#graph}
 
 > **@graph**: [`IJsonLdNodeObject`](IJsonLdNodeObject.md) \| [`IJsonLdNodeObject`](IJsonLdNodeObject.md)[]
 
 ***
 
-### @index?
+### @index? {#index}
 
 > `optional` **@index**: `string`
 
 ***
 
-### @id?
+### @id? {#id}
 
 > `optional` **@id**: `string` \| `string`[]
 
 ***
 
-### @context?
+### @context? {#context}
 
 > `optional` **@context**: [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)

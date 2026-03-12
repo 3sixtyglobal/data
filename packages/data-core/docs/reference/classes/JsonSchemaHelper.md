@@ -14,7 +14,7 @@ A helper for JSON schemas.
 
 ## Properties
 
-### SCHEMA\_VERSION
+### SCHEMA\_VERSION {#schema_version}
 
 > `readonly` `static` **SCHEMA\_VERSION**: `"https://json-schema.org/draft/2020-12/schema"` = `"https://json-schema.org/draft/2020-12/schema"`
 
@@ -22,7 +22,7 @@ The schema version 2020 (default).
 
 ***
 
-### SCHEMA\_VERSION\_2019
+### SCHEMA\_VERSION\_2019 {#schema_version_2019}
 
 > `readonly` `static` **SCHEMA\_VERSION\_2019**: `"https://json-schema.org/draft/2019-09/schema"` = `"https://json-schema.org/draft/2019-09/schema"`
 
@@ -30,7 +30,7 @@ The schema version 2019.
 
 ## Methods
 
-### setLoggers()
+### setLoggers() {#setloggers}
 
 > `static` **setLoggers**(`loggers?`): `void`
 
@@ -66,7 +66,7 @@ Called when a schema fails to load.
 
 ***
 
-### validate()
+### validate() {#validate}
 
 > `static` **validate**\<`T`\>(`schema`, `data`, `additionalTypes?`): `Promise`\<`IValidationFailure`[]\>
 
@@ -104,7 +104,7 @@ Result containing errors if there are any.
 
 ***
 
-### getPropertyType()
+### getPropertyType() {#getpropertytype}
 
 > `static` **getPropertyType**(`schema`, `propertyName`): `string` \| `undefined`
 
@@ -132,7 +132,7 @@ The types of the property.
 
 ***
 
-### entitySchemaToJsonSchema()
+### entitySchemaToJsonSchema() {#entityschematojsonschema}
 
 > `static` **entitySchemaToJsonSchema**(`entitySchema`, `baseDomain?`): `SchemaObject`
 

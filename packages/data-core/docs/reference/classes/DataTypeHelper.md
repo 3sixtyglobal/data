@@ -14,7 +14,7 @@ Class to help with data types.
 
 ## Methods
 
-### registerType()
+### registerType() {#registertype}
 
 > `static` **registerType**(`namespace`, `type`, `jsonLdContext`, `schema`): `void`
 
@@ -52,7 +52,7 @@ The JSON schema for the type.
 
 ***
 
-### registerTypes()
+### registerTypes() {#registertypes}
 
 > `static` **registerTypes**(`namespace`, `jsonLdContext`, `typeDefinition`): `void`
 
@@ -84,7 +84,7 @@ The type definitions to register.
 
 ***
 
-### getSchemaForType()
+### getSchemaForType() {#getschemafortype}
 
 > `static` **getSchemaForType**(`dataType`): `Promise`\<`SchemaObject` \| `undefined`\>
 
@@ -106,7 +106,7 @@ The JSON schema for the data type or undefined if not found.
 
 ***
 
-### validate()
+### validate() {#validate}
 
 > `static` **validate**(`propertyName`, `dataType`, `data`, `validationFailures`, `options?`): `Promise`\<`boolean`\>
 

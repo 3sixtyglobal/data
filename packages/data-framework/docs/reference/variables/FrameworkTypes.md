@@ -6,19 +6,19 @@ The types of framework data.
 
 ## Type Declaration
 
-### Urn
+### Urn {#urn}
 
 > `readonly` **Urn**: `"URN"` = `"URN"`
 
 Represents a urn.
 
-### TimestampMilliseconds
+### TimestampMilliseconds {#timestampmilliseconds}
 
 > `readonly` **TimestampMilliseconds**: `"TimestampMilliseconds"` = `"TimestampMilliseconds"`
 
 Represents a timestamp as an integer, milliseconds since 1 Jan 1970.
 
-### TimestampSeconds
+### TimestampSeconds {#timestampseconds}
 
 > `readonly` **TimestampSeconds**: `"TimestampSeconds"` = `"TimestampSeconds"`
 

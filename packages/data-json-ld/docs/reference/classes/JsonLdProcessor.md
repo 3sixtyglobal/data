@@ -14,7 +14,7 @@ JSON-LD Processor.
 
 ## Methods
 
-### setDocumentLoader()
+### setDocumentLoader() {#setdocumentloader}
 
 > `static` **setDocumentLoader**(`documentLoader`): `void`
 
@@ -34,7 +34,7 @@ The document loader to use.
 
 ***
 
-### getDocumentLoader()
+### getDocumentLoader() {#getdocumentloader}
 
 > `static` **getDocumentLoader**(): (`url`) => `Promise`\<`RemoteDocument`\>
 
@@ -58,7 +58,7 @@ The document loader.
 
 ***
 
-### setCacheLimit()
+### setCacheLimit() {#setcachelimit}
 
 > `static` **setCacheLimit**(`cacheLimitMs`): `void`
 
@@ -78,7 +78,7 @@ The cache limit in milliseconds.
 
 ***
 
-### getCacheLimit()
+### getCacheLimit() {#getcachelimit}
 
 > `static` **getCacheLimit**(): `number`
 
@@ -92,7 +92,7 @@ The document loader.
 
 ***
 
-### setRedirects()
+### setRedirects() {#setredirects}
 
 > `static` **setRedirects**(`redirects`): `void`
 
@@ -112,7 +112,7 @@ The redirects to use.
 
 ***
 
-### getRedirects()
+### getRedirects() {#getredirects}
 
 > `static` **getRedirects**(): `object`[]
 
@@ -126,7 +126,7 @@ The registered redirects.
 
 ***
 
-### compact()
+### compact() {#compact}
 
 > `static` **compact**\<`T`\>(`document`, `context?`, `options?`): `Promise`\<`T`\>
 
@@ -170,7 +170,7 @@ The compacted JSON-LD document.
 
 ***
 
-### expand()
+### expand() {#expand}
 
 > `static` **expand**\<`T`\>(`compacted`): `Promise`\<[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)[]\>
 
@@ -198,7 +198,7 @@ The expanded JSON-LD document.
 
 ***
 
-### canonize()
+### canonize() {#canonize}
 
 > `static` **canonize**\<`T`\>(`document`, `options?`): `Promise`\<`string`\>
 
@@ -236,7 +236,7 @@ The canonized document.
 
 ***
 
-### addRedirect()
+### addRedirect() {#addredirect}
 
 > `static` **addRedirect**(`from`, `to`): `void`
 
@@ -262,7 +262,7 @@ The URL to redirect to.
 
 ***
 
-### combineContexts()
+### combineContexts() {#combinecontexts}
 
 > `static` **combineContexts**(`context1`, `context2`): [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
@@ -290,7 +290,7 @@ The combined context.
 
 ***
 
-### gatherContexts()
+### gatherContexts() {#gathercontexts}
 
 > `static` **gatherContexts**\<`T`\>(`element`, `initial?`): [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
@@ -324,7 +324,7 @@ The combined contexts.
 
 ***
 
-### removeContexts()
+### removeContexts() {#removecontexts}
 
 > `static` **removeContexts**(`context`, `match?`): [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
@@ -352,7 +352,7 @@ The updated contexts.
 
 ***
 
-### documentCacheAdd()
+### documentCacheAdd() {#documentcacheadd}
 
 > `static` **documentCacheAdd**(`url`, `ldContext`): `Promise`\<`void`\>
 
@@ -380,7 +380,7 @@ Nothing.
 
 ***
 
-### documentCacheRemove()
+### documentCacheRemove() {#documentcacheremove}
 
 > `static` **documentCacheRemove**(`url`): `Promise`\<`void`\>
 

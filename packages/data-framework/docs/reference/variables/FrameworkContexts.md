@@ -6,19 +6,19 @@ The contexts of framework data.
 
 ## Type Declaration
 
-### Namespace
+### Namespace {#namespace}
 
 > `readonly` **Namespace**: `"https://schema.twindev.org/framework/"` = `"https://schema.twindev.org/framework/"`
 
 The canonical RDF namespace URI for Framework.
 
-### Context
+### Context {#context}
 
 > `readonly` **Context**: `"https://schema.twindev.org/framework/"` = `"https://schema.twindev.org/framework/"`
 
 The value to use in JSON-LD context for Framework.
 
-### JsonLdContext
+### JsonLdContext {#jsonldcontext}
 
 > `readonly` **JsonLdContext**: `"https://schema.twindev.org/framework/types.jsonld"` = `"https://schema.twindev.org/framework/types.jsonld"`
 

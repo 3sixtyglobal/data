@@ -12,43 +12,43 @@ https://www.w3.org/TR/json-ld11/#context-definitions
 
 ## Properties
 
-### @base?
+### @base? {#base}
 
 > `optional` **@base**: `string` \| `null`
 
 ***
 
-### @direction?
+### @direction? {#direction}
 
 > `optional` **@direction**: `"ltr"` \| `"rtl"` \| `null`
 
 ***
 
-### @import?
+### @import? {#import}
 
 > `optional` **@import**: `string`
 
 ***
 
-### @language?
+### @language? {#language}
 
 > `optional` **@language**: `string`
 
 ***
 
-### @propagate?
+### @propagate? {#propagate}
 
 > `optional` **@propagate**: `boolean`
 
 ***
 
-### @protected?
+### @protected? {#protected}
 
 > `optional` **@protected**: `boolean`
 
 ***
 
-### @type?
+### @type? {#type}
 
 > `optional` **@type**: `object`
 
@@ -62,12 +62,12 @@ https://www.w3.org/TR/json-ld11/#context-definitions
 
 ***
 
-### @version?
+### @version? {#version}
 
 > `optional` **@version**: `"1.1"`
 
 ***
 
-### @vocab?
+### @vocab? {#vocab}
 
 > `optional` **@vocab**: `string` \| `null`

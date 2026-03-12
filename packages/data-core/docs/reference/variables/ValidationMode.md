@@ -6,25 +6,25 @@ Validation modes for validating data types.
 
 ## Type Declaration
 
-### Validate
+### Validate {#validate}
 
 > `readonly` **Validate**: `"validate"` = `"validate"`
 
 Use the validation method of the data type.
 
-### JsonSchema
+### JsonSchema {#jsonschema}
 
 > `readonly` **JsonSchema**: `"json-schema"` = `"json-schema"`
 
 Use the JSON Schema methods of the data type.
 
-### Either
+### Either {#either}
 
 > `readonly` **Either**: `"either"` = `"either"`
 
 Use either validation mode.
 
-### Both
+### Both {#both}
 
 > `readonly` **Both**: `"both"` = `"both"`
 

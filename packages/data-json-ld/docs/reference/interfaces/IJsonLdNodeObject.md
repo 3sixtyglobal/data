@@ -17,7 +17,7 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ## Properties
 
-### @context?
+### @context? {#context}
 
 > `optional` **@context**: [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
 
@@ -27,7 +27,7 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ***
 
-### @id?
+### @id? {#id}
 
 > `optional` **@id**: `string` \| `string`[]
 
@@ -37,7 +37,7 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ***
 
-### @included?
+### @included? {#included}
 
 > `optional` **@included**: [`IJsonLdIncludedBlock`](../type-aliases/IJsonLdIncludedBlock.md)
 
@@ -47,7 +47,7 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ***
 
-### @graph?
+### @graph? {#graph}
 
 > `optional` **@graph**: `IJsonLdNodeObject` \| `IJsonLdNodeObject`[]
 
@@ -57,7 +57,7 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ***
 
-### @nest?
+### @nest? {#nest}
 
 > `optional` **@nest**: [`IJsonLdJsonObject`](IJsonLdJsonObject.md) \| [`IJsonLdJsonObject`](IJsonLdJsonObject.md)[]
 
@@ -67,7 +67,7 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ***
 
-### @type?
+### @type? {#type}
 
 > `optional` **@type**: `string` \| `string`[]
 
@@ -77,7 +77,7 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ***
 
-### @reverse?
+### @reverse? {#reverse}
 
 > `optional` **@reverse**: `object`
 
@@ -91,7 +91,7 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ***
 
-### @index?
+### @index? {#index}
 
 > `optional` **@index**: `string`
 

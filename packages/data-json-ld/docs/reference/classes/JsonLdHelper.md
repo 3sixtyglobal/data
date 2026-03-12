@@ -14,7 +14,7 @@ Class to help with JSON LD.
 
 ## Methods
 
-### validate()
+### validate() {#validate}
 
 > `static` **validate**\<`T`\>(`document`, `validationFailures`, `options?`): `Promise`\<`boolean`\>
 
@@ -64,7 +64,7 @@ True if the document was valid.
 
 ***
 
-### toNodeObject()
+### toNodeObject() {#tonodeobject}
 
 > `static` **toNodeObject**\<`T`\>(`object`): `T` & [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
 
@@ -92,7 +92,7 @@ The JSON-LD node object.
 
 ***
 
-### toStructuredObject()
+### toStructuredObject() {#tostructuredobject}
 
 > `static` **toStructuredObject**\<`T`\>(`nodeObject`): `T`
 
@@ -120,7 +120,7 @@ The structured object.
 
 ***
 
-### expand()
+### expand() {#expand}
 
 > `static` **expand**(`document`): `Promise`\<[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)[]\>
 
@@ -142,7 +142,7 @@ The expanded JSON-LD document.
 
 ***
 
-### isType()
+### isType() {#istype}
 
 > `static` **isType**(`documentOrExpanded`, `type`): `Promise`\<`boolean`\>
 
@@ -170,7 +170,7 @@ True if the document is of the specified type.
 
 ***
 
-### getType()
+### getType() {#gettype}
 
 > `static` **getType**(`documentOrExpanded`): `Promise`\<`string`[]\>
 
@@ -192,7 +192,7 @@ The type(s) extracted from the document.
 
 ***
 
-### getId()
+### getId() {#getid}
 
 > `static` **getId**(`documentOrExpanded`, `additionalIdProperties?`): `Promise`\<`string` \| `undefined`\>
 
@@ -220,7 +220,7 @@ The id extracted from the document.
 
 ***
 
-### getPropertyValue()
+### getPropertyValue() {#getpropertyvalue}
 
 > `static` **getPropertyValue**(`documentOrExpanded`, `propertyFullName`, `language?`): `Promise`\<[`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`\>
 
@@ -254,7 +254,7 @@ Matching property values for the input property.
 
 ***
 
-### getPropertyValues()
+### getPropertyValues() {#getpropertyvalues}
 
 > `static` **getPropertyValues**(`documentOrExpanded`, `propertyFullNames`, `language?`): `Promise`\<([`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`)[]\>
 
@@ -288,7 +288,7 @@ Matching property values for each input property, in the same index order.
 
 ***
 
-### prefixProperties()
+### prefixProperties() {#prefixproperties}
 
 > `static` **prefixProperties**\<`T`\>(`nodeObject`, `prefix`, `properties?`): [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
 
@@ -330,7 +330,7 @@ A new JSON-LD node object with the properties prefixed.
 
 ***
 
-### stripPrefixProperties()
+### stripPrefixProperties() {#stripprefixproperties}
 
 > `static` **stripPrefixProperties**\<`T`\>(`nodeObject`, `prefix`, `properties?`): [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
 

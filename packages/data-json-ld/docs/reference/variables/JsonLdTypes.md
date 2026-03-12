@@ -6,157 +6,157 @@ The types of JSON-LD data.
 
 ## Type Declaration
 
-### Document
+### Document {#document}
 
 > `readonly` **Document**: `"JsonLdDocument"` = `"JsonLdDocument"`
 
 Represents JSON-LD Document.
 
-### Object
+### Object {#object}
 
 > `readonly` **Object**: `"JsonLdObject"` = `"JsonLdObject"`
 
 Represents JSON-LD Object.
 
-### NodeObject
+### NodeObject {#nodeobject}
 
 > `readonly` **NodeObject**: `"JsonLdNodeObject"` = `"JsonLdNodeObject"`
 
 Represents JSON-LD Node Object.
 
-### NodePrimitive
+### NodePrimitive {#nodeprimitive}
 
 > `readonly` **NodePrimitive**: `"JsonLdNodePrimitive"` = `"JsonLdNodePrimitive"`
 
 Represents JSON-LD Node Primitive.
 
-### GraphObject
+### GraphObject {#graphobject}
 
 > `readonly` **GraphObject**: `"JsonLdGraphObject"` = `"JsonLdGraphObject"`
 
 Represents JSON-LD Graph Object.
 
-### ValueObject
+### ValueObject {#valueobject}
 
 > `readonly` **ValueObject**: `"JsonLdValueObject"` = `"JsonLdValueObject"`
 
 Represents JSON-LD Value Object.
 
-### ListObject
+### ListObject {#listobject}
 
 > `readonly` **ListObject**: `"JsonLdListObject"` = `"JsonLdListObject"`
 
 Represents JSON-LD List Object.
 
-### SetObject
+### SetObject {#setobject}
 
 > `readonly` **SetObject**: `"JsonLdSetObject"` = `"JsonLdSetObject"`
 
 Represents JSON-LD Set Object.
 
-### LanguageMap
+### LanguageMap {#languagemap}
 
 > `readonly` **LanguageMap**: `"JsonLdLanguageMap"` = `"JsonLdLanguageMap"`
 
 Represents JSON-LD Language Map.
 
-### IndexMap
+### IndexMap {#indexmap}
 
 > `readonly` **IndexMap**: `"JsonLdIndexMap"` = `"JsonLdIndexMap"`
 
 Represents JSON-LD Index Map.
 
-### IndexMapItem
+### IndexMapItem {#indexmapitem}
 
 > `readonly` **IndexMapItem**: `"JsonLdIndexMapItem"` = `"JsonLdIndexMapItem"`
 
 Represents JSON-LD Index Map Item.
 
-### IdMap
+### IdMap {#idmap}
 
 > `readonly` **IdMap**: `"JsonLdIdMap"` = `"JsonLdIdMap"`
 
 Represents JSON-LD Id Map.
 
-### TypeMap
+### TypeMap {#typemap}
 
 > `readonly` **TypeMap**: `"JsonLdTypeMap"` = `"JsonLdTypeMap"`
 
 Represents JSON-LD Type Map.
 
-### IncludedBlock
+### IncludedBlock {#includedblock}
 
 > `readonly` **IncludedBlock**: `"JsonLdIncludedBlock"` = `"JsonLdIncludedBlock"`
 
 Represents JSON-LD Included block.
 
-### ContextDefinition
+### ContextDefinition {#contextdefinition}
 
 > `readonly` **ContextDefinition**: `"JsonLdContextDefinition"` = `"JsonLdContextDefinition"`
 
 Represents JSON-LD Context Definition.
 
-### ContextDefinitionElement
+### ContextDefinitionElement {#contextdefinitionelement}
 
 > `readonly` **ContextDefinitionElement**: `"JsonLdContextDefinitionElement"` = `"JsonLdContextDefinitionElement"`
 
 Represents JSON-LD Context Definition Element.
 
-### ContextDefinitionRoot
+### ContextDefinitionRoot {#contextdefinitionroot}
 
 > `readonly` **ContextDefinitionRoot**: `"JsonLdContextDefinitionRoot"` = `"JsonLdContextDefinitionRoot"`
 
 Represents JSON-LD Context Definition Root.
 
-### ExpandedTermDefinition
+### ExpandedTermDefinition {#expandedtermdefinition}
 
 > `readonly` **ExpandedTermDefinition**: `"JsonLdExpandedTermDefinition"` = `"JsonLdExpandedTermDefinition"`
 
 Represents JSON-LD Expanded Term Definition.
 
-### Keyword
+### Keyword {#keyword}
 
 > `readonly` **Keyword**: `"JsonLdKeyword"` = `"JsonLdKeyword"`
 
 Represents JSON-LD Keyword.
 
-### ListOrSetItem
+### ListOrSetItem {#listorsetitem}
 
 > `readonly` **ListOrSetItem**: `"JsonLdListOrSetItem"` = `"JsonLdListOrSetItem"`
 
 Represents JSON-LD List or Set Item.
 
-### ContainerType
+### ContainerType {#containertype}
 
 > `readonly` **ContainerType**: `"JsonLdContainerType"` = `"JsonLdContainerType"`
 
 Represents JSON-LD Container Type.
 
-### ContainerTypeArray
+### ContainerTypeArray {#containertypearray}
 
 > `readonly` **ContainerTypeArray**: `"JsonLdContainerTypeArray"` = `"JsonLdContainerTypeArray"`
 
 Represents JSON-LD Container Type Array.
 
-### JsonPrimitive
+### JsonPrimitive {#jsonprimitive}
 
 > `readonly` **JsonPrimitive**: `"JsonLdJsonPrimitive"` = `"JsonLdJsonPrimitive"`
 
 Represents JSON-LD JSON Primitive.
 
-### JsonArray
+### JsonArray {#jsonarray}
 
 > `readonly` **JsonArray**: `"JsonLdJsonArray"` = `"JsonLdJsonArray"`
 
 Represents JSON-LD JSON Array.
 
-### JsonObject
+### JsonObject {#jsonobject}
 
 > `readonly` **JsonObject**: `"JsonLdJsonObject"` = `"JsonLdJsonObject"`
 
 Represents JSON-LD JSON Object.
 
-### JsonValue
+### JsonValue {#jsonvalue}
 
 > `readonly` **JsonValue**: `"JsonLdJsonValue"` = `"JsonLdJsonValue"`
 

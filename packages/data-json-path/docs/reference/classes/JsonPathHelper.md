@@ -15,7 +15,7 @@ Provides abstraction over the json-p3 library.
 
 ## Properties
 
-### CLASS\_NAME
+### CLASS\_NAME {#class_name}
 
 > `readonly` `static` **CLASS\_NAME**: `string`
 
@@ -23,7 +23,7 @@ The name of the class name of the JsonPathHelper class.
 
 ## Methods
 
-### query()
+### query() {#query}
 
 > `static` **query**(`path`, `data`): [`IJsonPathResult`](../interfaces/IJsonPathResult.md)[]
 
@@ -55,7 +55,7 @@ GeneralError if the path is invalid or data cannot be queried.
 
 ***
 
-### exists()
+### exists() {#exists}
 
 > `static` **exists**(`path`, `data`): `boolean`
 
@@ -83,7 +83,7 @@ True if the path exists and returns at least one result.
 
 ***
 
-### extractSingle()
+### extractSingle() {#extractsingle}
 
 > `static` **extractSingle**(`path`, `data`): `unknown`
 
@@ -115,7 +115,7 @@ GeneralError if the path is invalid or data cannot be queried.
 
 ***
 
-### extractAll()
+### extractAll() {#extractall}
 
 > `static` **extractAll**(`path`, `data`): `unknown`[]
 
@@ -147,7 +147,7 @@ GeneralError if the path is invalid or data cannot be queried.
 
 ***
 
-### validate()
+### validate() {#validate}
 
 > `static` **validate**(`path`): `boolean`
 
@@ -173,7 +173,7 @@ GeneralError if the path is invalid or data cannot be queried.
 
 ***
 
-### setAtLocation()
+### setAtLocation() {#setatlocation}
 
 > `static` **setAtLocation**(`root`, `location`, `value`): `void`
 
@@ -205,7 +205,7 @@ The value to set.
 
 ***
 
-### deleteAtLocation()
+### deleteAtLocation() {#deleteatlocation}
 
 > `static` **deleteAtLocation**(`root`, `location`): `void`
 

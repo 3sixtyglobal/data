@@ -4,7 +4,7 @@ Interface describing a type which can handle a specific data type.
 
 ## Properties
 
-### namespace
+### namespace {#namespace}
 
 > **namespace**: `string`
 
@@ -12,7 +12,7 @@ The namespace for the type.
 
 ***
 
-### type
+### type {#type}
 
 > **type**: `string`
 
@@ -20,7 +20,7 @@ The type for the item.
 
 ***
 
-### jsonLdContext?
+### jsonLdContext? {#jsonldcontext}
 
 > `optional` **jsonLdContext**: `string`
 
@@ -28,7 +28,7 @@ The JSON LD context for the type.
 
 ***
 
-### defaultValue?
+### defaultValue? {#defaultvalue}
 
 > `optional` **defaultValue**: `unknown`
 
@@ -36,7 +36,7 @@ The default value for the item to use when constructing a new object.
 
 ## Methods
 
-### jsonSchema()?
+### jsonSchema()? {#jsonschema}
 
 > `optional` **jsonSchema**(): `Promise`\<`SchemaObject` \| `undefined`\>
 
@@ -50,7 +50,7 @@ The JSON schema for the data type.
 
 ***
 
-### validate()?
+### validate()? {#validate}
 
 > `optional` **validate**(`propertyName`, `value`, `failures`, `container?`): `Promise`\<`boolean`\>
 

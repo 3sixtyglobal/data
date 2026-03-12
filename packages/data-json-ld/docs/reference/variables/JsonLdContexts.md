@@ -6,19 +6,19 @@ The contexts of JSON-LD data.
 
 ## Type Declaration
 
-### Namespace
+### Namespace {#namespace}
 
 > `readonly` **Namespace**: `"https://schema.twindev.org/json-ld/"` = `"https://schema.twindev.org/json-ld/"`
 
 The canonical RDF namespace URI for JSON-LD.
 
-### Context
+### Context {#context}
 
 > `readonly` **Context**: `"https://schema.twindev.org/json-ld/"` = `"https://schema.twindev.org/json-ld/"`
 
 The value to use in JSON-LD context for JSON-LD.
 
-### JsonLdContext
+### JsonLdContext {#jsonldcontext}
 
 > `readonly` **JsonLdContext**: `"https://schema.twindev.org/json-ld/types.jsonld"` = `"https://schema.twindev.org/json-ld/types.jsonld"`
 
