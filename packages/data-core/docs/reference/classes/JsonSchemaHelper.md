@@ -30,9 +30,45 @@ The schema version 2019.
 
 ## Methods
 
+### setLoggers()
+
+> `static` **setLoggers**(`loggers?`): `void`
+
+Set the loggers used during schema loading.
+
+#### Parameters
+
+##### loggers?
+
+Optional loggers for schema loading, useful when you have a lot of references in your schema and want to track the loading process.
+
+###### loadingSchema?
+
+(`uri`) => `Promise`\<`void`\>
+
+Called when a schema is being loaded.
+
+###### schemaLoaded?
+
+(`uri`) => `Promise`\<`void`\>
+
+Called when a schema has been successfully loaded.
+
+###### schemaLoadFailed?
+
+(`uri`, `error`) => `Promise`\<`void`\>
+
+Called when a schema fails to load.
+
+#### Returns
+
+`void`
+
+***
+
 ### validate()
 
-> `static` **validate**\<`T`\>(`schema`, `data`, `additionalTypes?`): `Promise`\<[`ISchemaValidationResult`](../interfaces/ISchemaValidationResult.md)\>
+> `static` **validate**\<`T`\>(`schema`, `data`, `additionalTypes?`): `Promise`\<`IValidationFailure`[]\>
 
 Validates data against the schema.
 
@@ -62,7 +98,7 @@ Additional types to add for reference, not already in DataTypeHandlerFactory.
 
 #### Returns
 
-`Promise`\<[`ISchemaValidationResult`](../interfaces/ISchemaValidationResult.md)\>
+`Promise`\<`IValidationFailure`[]\>
 
 Result containing errors if there are any.
 
