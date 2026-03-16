@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3-next.18](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.17...data-core-v0.0.3-next.18) (2026-03-16)
+
+
+### Features
+
+* improve JSON schema speed ([#58](https://github.com/twinfoundation/data/issues/58)) ([551d74f](https://github.com/twinfoundation/data/commit/551d74f652bd88b9fe9d2f72800a3aa0dcb98c14))
+
 ## [0.0.3-next.17](https://github.com/twinfoundation/data/compare/data-core-v0.0.3-next.16...data-core-v0.0.3-next.17) (2026-03-12)
 
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.3-next.18](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.17...data-json-ld-v0.0.3-next.18) (2026-03-16)
+
+
+### Miscellaneous Chores
+
+* **data-json-ld:** Synchronize repo versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.17 to 0.0.3-next.18
+
 ## [0.0.3-next.17](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.16...data-json-ld-v0.0.3-next.17) (2026-03-12)
 
 
