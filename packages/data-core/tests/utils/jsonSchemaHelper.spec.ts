@@ -1,5 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
+import { SharedStore } from "@twin.org/core";
 import { entity, property, EntitySchemaHelper, SortDirection } from "@twin.org/entity";
 import type { IJsonSchema } from "../../src/models/IJsonSchema.js";
 import { JsonSchemaHelper } from "../../src/utils/jsonSchemaHelper.js";
@@ -771,6 +772,57 @@ describe("JsonSchemaHelper", () => {
 		expect((failures[0]?.properties as { [key: string]: unknown })?.keyword).toBe(
 			"additionalProperties"
 		);
+	});
+
+	test("Can cache validator instances for 2020 schemas", async () => {
+		const cache = new Map<string, unknown>();
+		const getSpy = vi.spyOn(SharedStore, "get");
+		const setSpy = vi.spyOn(SharedStore, "set");
+
+		getSpy.mockImplementation((key: string) => cache.get(key) as never);
+		setSpy.mockImplementation((key: string, value: unknown) => {
+			cache.set(key, value);
+		});
+
+		const schema: IJsonSchema = {
+			type: "string"
+		};
+
+		const failures1 = await JsonSchemaHelper.validate(schema, "first-value");
+		const failures2 = await JsonSchemaHelper.validate(schema, "second-value");
+
+		expect(failures1).toHaveLength(0);
+		expect(failures2).toHaveLength(0);
+		expect(cache.has(`${JsonSchemaHelper.CLASS_NAME}2020`)).toBe(true);
+		expect(setSpy).toHaveBeenCalledTimes(1);
+
+		vi.restoreAllMocks();
+	});
+
+	test("Can cache validator instances for 2019 schemas", async () => {
+		const cache = new Map<string, unknown>();
+		const getSpy = vi.spyOn(SharedStore, "get");
+		const setSpy = vi.spyOn(SharedStore, "set");
+
+		getSpy.mockImplementation((key: string) => cache.get(key) as never);
+		setSpy.mockImplementation((key: string, value: unknown) => {
+			cache.set(key, value);
+		});
+
+		const schema: IJsonSchema = {
+			$schema: JsonSchemaHelper.SCHEMA_VERSION_2019,
+			type: "string"
+		};
+
+		const failures1 = await JsonSchemaHelper.validate(schema, "first-value");
+		const failures2 = await JsonSchemaHelper.validate(schema, "second-value");
+
+		expect(failures1).toHaveLength(0);
+		expect(failures2).toHaveLength(0);
+		expect(cache.has(`${JsonSchemaHelper.CLASS_NAME}2019`)).toBe(true);
+		expect(setSpy).toHaveBeenCalledTimes(1);
+
+		vi.restoreAllMocks();
 	});
 
 	test("Can convert undefined entity schema to JSON schema", () => {
