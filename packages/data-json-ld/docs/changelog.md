@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.3-next.19](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.18...data-json-ld-v0.0.3-next.19) (2026-03-20)
+
+
+### Features
+
+* use local LD context fixture in tests instead of remotes ([#60](https://github.com/twinfoundation/data/issues/60)) ([df18303](https://github.com/twinfoundation/data/commit/df18303301f031a5032850c900eea24b094a99a5))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.18 to 0.0.3-next.19
+
 ## [0.0.3-next.18](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.17...data-json-ld-v0.0.3-next.18) (2026-03-16)
 
 
