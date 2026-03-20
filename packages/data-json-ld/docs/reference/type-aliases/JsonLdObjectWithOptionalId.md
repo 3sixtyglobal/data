@@ -8,7 +8,7 @@ Add optional "id" to a type.
 
 ### id?
 
-> `optional` **id**: `Id`
+> `optional` **id?**: `Id`
 
 ## Type Parameters
 

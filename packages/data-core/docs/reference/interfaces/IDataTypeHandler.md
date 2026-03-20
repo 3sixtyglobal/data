@@ -22,7 +22,7 @@ The type for the item.
 
 ### jsonLdContext? {#jsonldcontext}
 
-> `optional` **jsonLdContext**: `string`
+> `optional` **jsonLdContext?**: `string`
 
 The JSON LD context for the type.
 
@@ -30,7 +30,7 @@ The JSON LD context for the type.
 
 ### defaultValue? {#defaultvalue}
 
-> `optional` **defaultValue**: `unknown`
+> `optional` **defaultValue?**: `unknown`
 
 The default value for the item to use when constructing a new object.
 

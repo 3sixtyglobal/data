@@ -8,49 +8,49 @@ https://www.w3.org/TR/json-ld11/#context-definitions
 
 ## Indexable
 
-\[`key`: `string`\]: `string` \| `boolean` \| [`IJsonLdExpandedTermDefinition`](../type-aliases/IJsonLdExpandedTermDefinition.md) \| \{ `@container`: `"@set"`; `@protected?`: `boolean`; \} \| `null` \| `undefined`
+> \[`key`: `string`\]: `string` \| `boolean` \| [`IJsonLdExpandedTermDefinition`](../type-aliases/IJsonLdExpandedTermDefinition.md) \| \{ `@container`: `"@set"`; `@protected?`: `boolean`; \} \| `null` \| `undefined`
 
 ## Properties
 
 ### @base? {#base}
 
-> `optional` **@base**: `string` \| `null`
+> `optional` **@base?**: `string` \| `null`
 
 ***
 
 ### @direction? {#direction}
 
-> `optional` **@direction**: `"ltr"` \| `"rtl"` \| `null`
+> `optional` **@direction?**: `"ltr"` \| `"rtl"` \| `null`
 
 ***
 
 ### @import? {#import}
 
-> `optional` **@import**: `string`
+> `optional` **@import?**: `string`
 
 ***
 
 ### @language? {#language}
 
-> `optional` **@language**: `string`
+> `optional` **@language?**: `string`
 
 ***
 
 ### @propagate? {#propagate}
 
-> `optional` **@propagate**: `boolean`
+> `optional` **@propagate?**: `boolean`
 
 ***
 
 ### @protected? {#protected}
 
-> `optional` **@protected**: `boolean`
+> `optional` **@protected?**: `boolean`
 
 ***
 
 ### @type? {#type}
 
-> `optional` **@type**: `object`
+> `optional` **@type?**: `object`
 
 #### @container
 
@@ -58,16 +58,16 @@ https://www.w3.org/TR/json-ld11/#context-definitions
 
 #### @protected?
 
-> `optional` **@protected**: `boolean`
+> `optional` **@protected?**: `boolean`
 
 ***
 
 ### @version? {#version}
 
-> `optional` **@version**: `"1.1"`
+> `optional` **@version?**: `"1.1"`
 
 ***
 
 ### @vocab? {#vocab}
 
-> `optional` **@vocab**: `string` \| `null`
+> `optional` **@vocab?**: `string` \| `null`

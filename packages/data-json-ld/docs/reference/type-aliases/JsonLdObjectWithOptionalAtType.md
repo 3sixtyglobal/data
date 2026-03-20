@@ -8,7 +8,7 @@ Add optional "@type" to a type.
 
 ### @type?
 
-> `optional` **@type**: `Ty`
+> `optional` **@type?**: `Ty`
 
 ## Type Parameters
 

@@ -44,17 +44,7 @@ The document loader to use for retrieving JSON-LD documents.
 
 The document loader.
 
-> (`url`): `Promise`\<`RemoteDocument`\>
-
-##### Parameters
-
-###### url
-
-`string`
-
-##### Returns
-
-`Promise`\<`RemoteDocument`\>
+(`url`) => `Promise`\<`RemoteDocument`\>
 
 ***
 
@@ -272,15 +262,15 @@ Combine contexts.
 
 ##### context1
 
-The first JSON-LD context to combine.
+[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
-[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) | `undefined`
+The first JSON-LD context to combine.
 
 ##### context2
 
-The second JSON-LD context to combine.
+[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
-[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) | `undefined`
+The second JSON-LD context to combine.
 
 #### Returns
 
@@ -334,9 +324,9 @@ Remove all the contexts that match the pattern.
 
 ##### context
 
-The context to remove the entries from.
+[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
-[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) | `undefined`
+The context to remove the entries from.
 
 ##### match?
 

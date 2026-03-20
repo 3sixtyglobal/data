@@ -16,4 +16,4 @@ https://www.w3.org/TR/json-ld11/#lists-and-sets
 
 ### @index? {#index}
 
-> `optional` **@index**: `string`
+> `optional` **@index?**: `string`

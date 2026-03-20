@@ -36,15 +36,15 @@ The type for the item.
 
 ##### jsonLdContext
 
-The JSON LD context for the type.
+`string` \| `undefined`
 
-`string` | `undefined`
+The JSON LD context for the type.
 
 ##### schema
 
-The JSON schema for the type.
+`SchemaObject` \| `Promise`\<`SchemaObject`\>
 
-`SchemaObject` | `Promise`\<`SchemaObject`\>
+The JSON schema for the type.
 
 #### Returns
 
@@ -68,9 +68,9 @@ The namespace for the types.
 
 ##### jsonLdContext
 
-The JSON LD context for the types.
+`string` \| `undefined`
 
-`string` | `undefined`
+The JSON LD context for the types.
 
 ##### typeDefinition
 
@@ -122,9 +122,9 @@ The name of the property being validated to use in error messages.
 
 ##### dataType
 
-The data type to validate.
+`string` \| `undefined`
 
-`string` | `undefined`
+The data type to validate.
 
 ##### data
 

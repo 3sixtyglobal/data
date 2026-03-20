@@ -9,11 +9,11 @@ to create a typed value or a language-tagged string and possibly associate a bas
 
 ### @index?
 
-> `optional` **@index**: `string`
+> `optional` **@index?**: `string`
 
 ### @context?
 
-> `optional` **@context**: [`IJsonLdContextDefinitionRoot`](IJsonLdContextDefinitionRoot.md)
+> `optional` **@context?**: [`IJsonLdContextDefinitionRoot`](IJsonLdContextDefinitionRoot.md)
 
 ## See
 

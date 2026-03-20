@@ -142,9 +142,9 @@ Convert an entity schema to JSON schema e.g https://example.com/schemas/.
 
 ##### entitySchema
 
-The entity schema to convert.
+`IEntitySchema`\<`unknown`\> \| `undefined`
 
-`IEntitySchema`\<`unknown`\> | `undefined`
+The entity schema to convert.
 
 ##### baseDomain?
 

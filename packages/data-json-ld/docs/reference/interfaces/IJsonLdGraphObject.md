@@ -16,16 +16,16 @@ https://www.w3.org/TR/json-ld11/#graph-objects
 
 ### @index? {#index}
 
-> `optional` **@index**: `string`
+> `optional` **@index?**: `string`
 
 ***
 
 ### @id? {#id}
 
-> `optional` **@id**: `string` \| `string`[]
+> `optional` **@id?**: `string` \| `string`[]
 
 ***
 
 ### @context? {#context}
 
-> `optional` **@context**: [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
+> `optional` **@context?**: [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)

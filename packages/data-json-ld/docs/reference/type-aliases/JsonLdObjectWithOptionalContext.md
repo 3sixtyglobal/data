@@ -9,7 +9,7 @@ the source type when available, otherwise using the provided default.
 
 ### @context?
 
-> `optional` **@context**: `C`
+> `optional` **@context?**: `C`
 
 ## Type Parameters
 
