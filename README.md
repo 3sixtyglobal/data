@@ -11,10 +11,6 @@ The workspace is organised so each package focuses on one concern, while still f
 - [data-framework](packages/data-framework/README.md) - Framework data models that define common structures used by other packages.
 - [data-json-path](packages/data-json-path/README.md) - A consistent [JSONPath](https://goessner.net/articles/JsonPath/) query abstraction built on top of json-p3.
 
-## Architecture
-
-- [Data Validation](docs/architecture/data-validation.mdx) - Validation architecture across type handlers, JSON Schema, JSON-LD, and schema generation tooling.
-
 ## Contributing
 
 To contribute to this package see the guidelines for building and publishing in [CONTRIBUTING](./CONTRIBUTING.md)
