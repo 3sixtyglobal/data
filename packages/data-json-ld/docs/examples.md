@@ -87,6 +87,30 @@ await JsonLdProcessor.documentCacheAdd('https://example.org/context', {
 await JsonLdProcessor.documentCacheRemove('https://example.org/context');
 ```
 
+### Remote `@context` URLs: redirects and HTTP `Link` discovery
+
+When a remote `@context` URL is a string, the default document loader resolves it in this order:
+
+1. **Registered redirects** — `setRedirects` / `addRedirect` run first. If a pattern matches, the request uses the replacement URL only (no `HEAD` or discovery against the original namespace URL).
+2. **GET with `Accept: application/ld+json`**. If the response is an **HTTP error** (for example **404**), the load fails and discovery does not run. If the response is **OK** but the body is **not valid JSON** (for example HTML), retry **GET** with **`Accept: application/json`**.
+3. **HTTP `Link` discovery** — only if **both** `GET`s in step 2 failed with a **JSON decode** error: `HEAD` on the current URL (or `GET` if the server returns **405** / **501** for `HEAD`), then inspect `Link` for `rel="alternate"` and `type="application/ld+json"`, resolve the target URL, and **fetch that context document once** (at most **one** discovery hop per load chain).
+
+Use **manual redirects** for stable overrides, offline tests, or hosts that do not expose a suitable `Link` header. Rely on **discovery** when the namespace URL serves HTML but advertises a JSON-LD context via `Link`.
+
+```typescript
+import { JsonLdProcessor } from '@twin.org/data-json-ld';
+
+// Optional: force a namespace URL to a known context document (runs before discovery).
+JsonLdProcessor.addRedirect(
+  /^https:\/\/example\.org\/vocab\/?$/,
+  'https://example.org/context/doc.jsonld'
+);
+```
+
+### Standards packages and `registerRedirects()`
+
+Vocabulary packages (for example `@twin.org/standards-schema-org`) often expose `SchemaOrgDataTypes.registerRedirects()`, which forwards to `JsonLdProcessor.addRedirect` for a known namespace URL. That call is **optional** in many deployments: the default loader can reach the same JSON-LD context via **HTTP `Link` discovery** when the namespace URL returns HTML and advertises `rel="alternate"` with `type="application/ld+json"`. Prefer **explicit redirects** when you want predictable URLs without an extra `HEAD`/`GET` for discovery, **fully offline** or hermetic tests, or when the host does not send a usable `Link` header.
+
 ## JsonLdHelper
 
 ```typescript

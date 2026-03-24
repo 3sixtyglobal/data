@@ -2,7 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0.
 import { BaseError, GeneralError, Is, ObjectHelper, SharedStore } from "@twin.org/core";
 import { nameof } from "@twin.org/nameof";
-import { FetchHelper, HeaderTypes, HttpMethod, MimeTypes } from "@twin.org/web";
+import {
+	FetchHelper,
+	HeaderHelper,
+	HeaderTypes,
+	HttpLinkRelType,
+	HttpMethod,
+	HttpStatusCode,
+	MimeTypes
+} from "@twin.org/web";
 import jsonLd from "jsonld";
 import type { JsonLd, RemoteDocument, Url } from "jsonld/jsonld-spec.js";
 import type { IJsonLdContextDefinition } from "../models/IJsonLdContextDefinition.js";
@@ -19,6 +27,12 @@ export class JsonLdProcessor {
 	 * @internal
 	 */
 	public static readonly CLASS_NAME = nameof<JsonLdProcessor>();
+
+	/**
+	 * Maximum number of HTTP Link-header discovery hops (namespace URL → context document).
+	 * @internal
+	 */
+	private static readonly _MAX_LINK_DISCOVERY_DEPTH = 1;
 
 	/**
 	 * The document loader to use.
@@ -63,7 +77,8 @@ export class JsonLdProcessor {
 	}
 
 	/**
-	 * Set the global redirects for JSON-LD, use addRedirect for default handling.
+	 * Replace the global redirect list (use {@link JsonLdProcessor.addRedirect} to append without replacing).
+	 * Redirects run before any HTTP GET or `Link` discovery; use them for stable overrides, tests, or hosts that do not expose a suitable `Link` header.
 	 * @param redirects The redirects to use.
 	 */
 	public static setRedirects(
@@ -94,6 +109,20 @@ export class JsonLdProcessor {
 			SharedStore.set("jsonLdRedirects", redirects);
 		}
 		return redirects;
+	}
+
+	/**
+	 * Append a redirect rule (ignored if the same `RegExp.source` is already registered).
+	 * Optional when the vocabulary URL supports HTTP `Link` discovery (`rel` includes `alternate`, `type` is `application/ld+json`) via the default document loader.
+	 * Standards packages often expose `registerRedirects()` helpers that call this method; those are optional for the same reason.
+	 * @param from The URL to redirect from.
+	 * @param to The URL to redirect to.
+	 */
+	public static addRedirect(from: RegExp, to: string): void {
+		const redirects = JsonLdProcessor.getRedirects();
+		if (!redirects.some(r => r.from.source === from.source)) {
+			redirects.push({ from, to });
+		}
 	}
 
 	/**
@@ -215,18 +244,6 @@ export class JsonLdProcessor {
 			JsonLdProcessor.handleCommonErrors(err);
 
 			throw new GeneralError(JsonLdProcessor.CLASS_NAME, "canonize", undefined, err);
-		}
-	}
-
-	/**
-	 * Add a redirect to use during document resolution.
-	 * @param from The URL to redirect from.
-	 * @param to The URL to redirect to.
-	 */
-	public static addRedirect(from: RegExp, to: string): void {
-		const redirects = JsonLdProcessor.getRedirects();
-		if (!redirects.some(r => r.from.source === from.source)) {
-			redirects.push({ from, to });
 		}
 	}
 
@@ -409,46 +426,159 @@ export class JsonLdProcessor {
 			}
 		}
 
+		return JsonLdProcessor.fetchRemoteJsonLdDocument(url, 0);
+	}
+
+	/**
+	 * True when FetchHelper failed to decode JSON from the response (e.g. HTML or plain text).
+	 * @param err The error from fetchJson.
+	 * @internal
+	 */
+	private static isFetchJsonDecodeFailure(err: unknown): boolean {
+		// Raw JSON.parse / response.json() failures (FetchHelper may rethrow as FetchError with cause,
+		// or propagate SyntaxError when error-response body is not JSON).
+		const error = BaseError.fromError(err);
+		if (error.name === "SyntaxError" || error.cause?.name === "SyntaxError") {
+			return true;
+		}
+		return error.message.includes("decodingJSON") || error.message.includes("is not valid JSON");
+	}
+
+	/**
+	 * Use HTTP Link (rel=alternate, type=application/ld+json) to discover a JSON-LD context URL.
+	 * @param sourceUrl URL that did not yield JSON (e.g. vocabulary namespace HTML page).
+	 * @returns Absolute context document URL, or undefined.
+	 * @internal
+	 */
+	private static async tryDiscoverAlternateJsonLdContextUrl(
+		sourceUrl: string
+	): Promise<string | undefined> {
+		const fetchOpts = {
+			timeoutMs: 30_000,
+			headers: {
+				[HeaderTypes.Accept]: `${MimeTypes.JsonLd},${MimeTypes.Json};q=0.9,*/*;q=0.8`
+			}
+		};
+
+		let response = await FetchHelper.fetch(
+			JsonLdProcessor.CLASS_NAME,
+			sourceUrl,
+			HttpMethod.HEAD,
+			undefined,
+			fetchOpts
+		);
+
+		if (
+			response.status === HttpStatusCode.methodNotAllowed ||
+			response.status === HttpStatusCode.notImplemented
+		) {
+			response = await FetchHelper.fetch(
+				JsonLdProcessor.CLASS_NAME,
+				sourceUrl,
+				HttpMethod.GET,
+				undefined,
+				fetchOpts
+			);
+			await response.arrayBuffer();
+		}
+
+		if (!response.ok) {
+			return undefined;
+		}
+
+		const linkHeader = response.headers.get(HeaderTypes.Link);
+		if (Is.empty(linkHeader)) {
+			return undefined;
+		}
+
+		// response.url is "" for many mocked/synthetic Responses; Is.empty("") is false, but
+		// new URL(absoluteHref, "") throws — use a non-empty resolved URL as base only.
+		const baseUrl = Is.stringValue(response.url) ? response.url : sourceUrl;
+
+		const alternateLinkHeaders = HeaderHelper.extractLinkHeaderRelations(
+			linkHeader,
+			HttpLinkRelType.alternate
+		);
+
+		if (Is.arrayValue(alternateLinkHeaders)) {
+			for (const alternateLinkHeader of alternateLinkHeaders) {
+				if (alternateLinkHeader.params?.type === MimeTypes.JsonLd) {
+					try {
+						return new URL(alternateLinkHeader.url, baseUrl).href;
+					} catch {
+						// Malformed URL for this segment; try the next Link segment.
+					}
+				}
+			}
+		}
+
+		return undefined;
+	}
+
+	/**
+	 * Fetch a remote JSON-LD document, with Accept fallbacks and optional Link-header discovery.
+	 * @param url Resolved document URL.
+	 * @param linkDiscoveryDepth Current discovery recursion depth.
+	 * @internal
+	 */
+	private static async fetchRemoteJsonLdDocument(
+		url: string,
+		linkDiscoveryDepth: number
+	): Promise<RemoteDocument> {
+		const cacheTtlMs = JsonLdProcessor.getCacheLimit();
+		const fetchJsonLdOptions = {
+			cacheTtlMs,
+			headers: {
+				[HeaderTypes.Accept]: MimeTypes.JsonLd
+			}
+		};
+		const fetchJsonOptions = {
+			cacheTtlMs,
+			headers: {
+				[HeaderTypes.Accept]: MimeTypes.Json
+			}
+		};
+
 		try {
-			const response = await FetchHelper.fetchJson<never, JsonLd>(
+			const document = await FetchHelper.fetchJson<never, JsonLd>(
 				JsonLdProcessor.CLASS_NAME,
 				url,
 				HttpMethod.GET,
 				undefined,
-				{
-					cacheTtlMs: JsonLdProcessor.getCacheLimit(),
-					headers: {
-						[HeaderTypes.Accept]: MimeTypes.JsonLd
-					}
-				}
+				fetchJsonLdOptions
 			);
-
 			return {
 				documentUrl: url,
-				document: response
+				document
 			};
-		} catch (err) {
-			const error = BaseError.fromError(err);
-			if (error.message.includes("is not valid JSON")) {
-				const response = await FetchHelper.fetchJson<never, JsonLd>(
-					JsonLdProcessor.CLASS_NAME,
-					url,
-					HttpMethod.GET,
-					undefined,
-					{
-						cacheTtlMs: JsonLdProcessor.getCacheLimit(),
-						headers: {
-							[HeaderTypes.Accept]: MimeTypes.Json
+		} catch (errLd) {
+			if (JsonLdProcessor.isFetchJsonDecodeFailure(errLd)) {
+				try {
+					const document = await FetchHelper.fetchJson<never, JsonLd>(
+						JsonLdProcessor.CLASS_NAME,
+						url,
+						HttpMethod.GET,
+						undefined,
+						fetchJsonOptions
+					);
+					return {
+						documentUrl: url,
+						document
+					};
+				} catch (errJson) {
+					if (
+						linkDiscoveryDepth < JsonLdProcessor._MAX_LINK_DISCOVERY_DEPTH &&
+						JsonLdProcessor.isFetchJsonDecodeFailure(errJson)
+					) {
+						const discovered = await JsonLdProcessor.tryDiscoverAlternateJsonLdContextUrl(url);
+						if (Is.stringValue(discovered) && discovered !== url) {
+							return JsonLdProcessor.fetchRemoteJsonLdDocument(discovered, linkDiscoveryDepth + 1);
 						}
 					}
-				);
-
-				return {
-					documentUrl: url,
-					document: response
-				};
+					throw errJson;
+				}
 			}
-			throw err;
+			throw errLd;
 		}
 	}
 

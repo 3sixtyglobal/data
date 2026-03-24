@@ -86,7 +86,8 @@ The document loader.
 
 > `static` **setRedirects**(`redirects`): `void`
 
-Set the global redirects for JSON-LD, use addRedirect for default handling.
+Replace the global redirect list (use [JsonLdProcessor.addRedirect](#addredirect) to append without replacing).
+Redirects run before any HTTP GET or `Link` discovery; use them for stable overrides, tests, or hosts that do not expose a suitable `Link` header.
 
 #### Parameters
 
@@ -230,7 +231,9 @@ The canonized document.
 
 > `static` **addRedirect**(`from`, `to`): `void`
 
-Add a redirect to use during document resolution.
+Append a redirect rule (ignored if the same `RegExp.source` is already registered).
+Optional when the vocabulary URL supports HTTP `Link` discovery (`rel` includes `alternate`, `type` is `application/ld+json`) via the default document loader.
+Standards packages often expose `registerRedirects()` helpers that call this method; those are optional for the same reason.
 
 #### Parameters
 

@@ -3,14 +3,11 @@
 import type { IValidationFailure } from "@twin.org/core";
 import type { IJsonLdDocument } from "../../src/models/IJsonLdDocument.js";
 import { JsonLdHelper } from "../../src/utils/jsonLdHelper.js";
-import { JsonLdProcessor } from "../../src/utils/jsonLdProcessor.js";
+import { seedSchemaOrgDocumentCache } from "../helpers/schemaOrgDocumentCache.js";
 
 describe("JsonLdHelper", () => {
-	beforeAll(() => {
-		JsonLdProcessor.addRedirect(
-			/https?:\/\/schema.org\/?/,
-			"https://schema.org/docs/jsonldcontext.jsonld"
-		);
+	beforeAll(async () => {
+		await seedSchemaOrgDocumentCache();
 	});
 
 	test("Can validate a document", async () => {
