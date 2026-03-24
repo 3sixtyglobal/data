@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.0.3-next.20](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.19...data-json-ld-v0.0.3-next.20) (2026-03-23)
+
+
+### Features
+
+* **JsonLdProcessor:** discover JSON-LD context URLs via HTTP `Link` (`rel="alternate"`, `type="application/ld+json"`) after `GET` Accept fallbacks fail to return JSON; `HEAD` with `GET` fallback on 405/501; at most one discovery hop; resolve `Link` targets with a safe base when `response.url` is empty (e.g. synthetic responses). Registered redirects still take precedence over discovery.
+
+
+### Documentation
+
+* Document remote context resolution order (`docs/examples.md`).
+* Document when vocabulary `registerRedirects()` helpers are optional versus HTTP `Link` discovery (`docs/examples.md`).
+* Expand `JsonLdProcessor` redirect JSDoc (`setRedirects` / `addRedirect`).
+
+
+### Tests
+
+* Share schema.org fixture document-cache seeding via `tests/helpers/schemaOrgDocumentCache.ts` (`jsonLdProcessor` / `jsonLdHelper` specs).
+
+
 ## [0.0.3-next.19](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.18...data-json-ld-v0.0.3-next.19) (2026-03-20)
 
 

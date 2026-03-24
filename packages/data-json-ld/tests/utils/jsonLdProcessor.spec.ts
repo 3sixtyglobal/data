@@ -2,19 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0.
 import type { IJsonLdDocument } from "../../src/models/IJsonLdDocument.js";
 import { JsonLdProcessor } from "../../src/utils/jsonLdProcessor.js";
-import schemaOrgContext from "../fixtures/schema.org.json" with { type: "json" };
+import { seedSchemaOrgDocumentCache } from "../helpers/schemaOrgDocumentCache.js";
 
 describe("JsonLdProcessor", () => {
 	beforeAll(async () => {
-		for (const url of [
-			"https://schema.org",
-			"http://schema.org",
-			"https://schema.org/",
-			"http://schema.org/",
-			"https://schema.org/docs/jsonldcontext.jsonld"
-		]) {
-			await JsonLdProcessor.documentCacheAdd(url, schemaOrgContext);
-		}
+		await seedSchemaOrgDocumentCache();
 	});
 
 	test("Can expand a document", async () => {
