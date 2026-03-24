@@ -117,6 +117,34 @@ The registered redirects.
 
 ***
 
+### addRedirect() {#addredirect}
+
+> `static` **addRedirect**(`from`, `to`): `void`
+
+Append a redirect rule (ignored if the same `RegExp.source` is already registered).
+Optional when the vocabulary URL supports HTTP `Link` discovery (`rel` includes `alternate`, `type` is `application/ld+json`) via the default document loader.
+Standards packages often expose `registerRedirects()` helpers that call this method; those are optional for the same reason.
+
+#### Parameters
+
+##### from
+
+`RegExp`
+
+The URL to redirect from.
+
+##### to
+
+`string`
+
+The URL to redirect to.
+
+#### Returns
+
+`void`
+
+***
+
 ### compact() {#compact}
 
 > `static` **compact**\<`T`\>(`document`, `context?`, `options?`): `Promise`\<`T`\>
@@ -224,34 +252,6 @@ The algorithm to use for canonization, defaults to URDNA2015.
 `Promise`\<`string`\>
 
 The canonized document.
-
-***
-
-### addRedirect() {#addredirect}
-
-> `static` **addRedirect**(`from`, `to`): `void`
-
-Append a redirect rule (ignored if the same `RegExp.source` is already registered).
-Optional when the vocabulary URL supports HTTP `Link` discovery (`rel` includes `alternate`, `type` is `application/ld+json`) via the default document loader.
-Standards packages often expose `registerRedirects()` helpers that call this method; those are optional for the same reason.
-
-#### Parameters
-
-##### from
-
-`RegExp`
-
-The URL to redirect from.
-
-##### to
-
-`string`
-
-The URL to redirect to.
-
-#### Returns
-
-`void`
 
 ***
 
