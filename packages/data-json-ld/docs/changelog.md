@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.3-next.20](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.19...data-json-ld-v0.0.3-next.20) (2026-03-24)
+
+
+### Features
+
+* discover JSON-LD context via HTTP Link ([#62](https://github.com/twinfoundation/data/issues/62)) ([5545864](https://github.com/twinfoundation/data/commit/5545864c08e8c42fb93844f552907648a1130b64))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.19 to 0.0.3-next.20
+
 ## [0.0.3-next.20](https://github.com/twinfoundation/data/compare/data-json-ld-v0.0.3-next.19...data-json-ld-v0.0.3-next.20) (2026-03-23)
 
 

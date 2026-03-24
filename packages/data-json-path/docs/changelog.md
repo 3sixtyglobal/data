@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3-next.20](https://github.com/twinfoundation/data/compare/data-json-path-v0.0.3-next.19...data-json-path-v0.0.3-next.20) (2026-03-24)
+
+
+### Miscellaneous Chores
+
+* **data-json-path:** Synchronize repo versions
+
 ## [0.0.3-next.19](https://github.com/twinfoundation/data/compare/data-json-path-v0.0.3-next.18...data-json-path-v0.0.3-next.19) (2026-03-20)
 
 
