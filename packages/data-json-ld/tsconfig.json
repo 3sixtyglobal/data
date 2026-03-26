@@ -3,6 +3,7 @@
 		"module": "nodenext",
 		"moduleResolution": "nodenext",
 		"target": "ES2022",
+		"rootDir": "./src",
 		"outDir": "dist/es",
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
@@ -15,7 +16,7 @@
 		"inlineSources": true,
 		"declaration": true,
 		"declarationDir": "dist/types",
-		"types": ["@types/jsonld"],
+		"types": [],
 		"plugins": [{ "transform": "@twin.org/nameof-transformer" }],
 		"skipLibCheck": true
 	},
