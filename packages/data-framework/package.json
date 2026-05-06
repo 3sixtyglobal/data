@@ -4,7 +4,7 @@
 	"description": "Framework data models that define common structures used by other packages.",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/twinfoundation/data.git",
+		"url": "git+https://github.com/iotaledger/data.git",
 		"directory": "packages/data-framework"
 	},
 	"author": "martyn.janes@iota.org",
@@ -73,7 +73,7 @@
 		"data"
 	],
 	"bugs": {
-		"url": "git+https://github.com/twinfoundation/data/issues"
+		"url": "git+https://github.com/iotaledger/data/issues"
 	},
 	"homepage": "https://twindev.org"
 }

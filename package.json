@@ -4,7 +4,7 @@
 	"description": "Data",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/twinfoundation/data.git"
+		"url": "git+https://github.com/iotaledger/data.git"
 	},
 	"author": "martyn.janes@iota.org",
 	"license": "Apache-2.0",
@@ -61,7 +61,7 @@
 	],
 	"type": "module",
 	"bugs": {
-		"url": "git+https://github.com/twinfoundation/data/issues"
+		"url": "git+https://github.com/iotaledger/data/issues"
 	},
 	"homepage": "https://twindev.org"
 }

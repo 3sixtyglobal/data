@@ -4,7 +4,7 @@
 	"description": "JSON-LD data models and helpers for working with linked data documents.",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/twinfoundation/data.git",
+		"url": "git+https://github.com/iotaledger/data.git",
 		"directory": "packages/data-json-ld"
 	},
 	"author": "martyn.janes@iota.org",
@@ -77,7 +77,7 @@
 		"data"
 	],
 	"bugs": {
-		"url": "git+https://github.com/twinfoundation/data/issues"
+		"url": "git+https://github.com/iotaledger/data/issues"
 	},
 	"homepage": "https://twindev.org"
 }
