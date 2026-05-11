@@ -33,9 +33,9 @@ describe("JsonLdHelper", () => {
 				id: "did:iota:testnet:0x123456"
 			},
 			object: {
-				"@context": "https://vocabulary.uncefact.org/",
-				type: "Document",
-				globalId: "24KEP051219453I002610796"
+				"@context": "https://schema.org",
+				type: "CreativeWork",
+				identifier: "24KEP051219453I002610796"
 			},
 			updated: 123
 		};
@@ -53,9 +53,9 @@ describe("JsonLdHelper", () => {
 				id: "did:iota:testnet:0x123456"
 			},
 			object: {
-				"@context": "https://vocabulary.uncefact.org/",
-				type: "Document",
-				globalId: "24KEP051219453I002610796"
+				"@context": "https://schema.org",
+				type: "CreativeWork",
+				identifier: "24KEP051219453I002610796"
 			},
 			updated: 123,
 			itemListElement: [
@@ -162,18 +162,18 @@ describe("JsonLdHelper", () => {
 
 	test("isType can find all the types in JSON-LD document", async () => {
 		const doc: IJsonLdDocument = {
-			"@context": "https://vocabulary.uncefact.org/unece-context-D23B.jsonld",
-			type: ["Consignment", "Document"],
-			globalId: "KE-123456-8"
+			"@context": "https://schema.org",
+			type: ["Organization", "LocalBusiness"],
+			identifier: "KE-123456-8"
 		};
 
 		expect(
 			await JsonLdHelper.isType(doc, [
-				"https://vocabulary.uncefact.org/Consignment",
-				"https://vocabulary.uncefact.org/Document"
+				"http://schema.org/Organization",
+				"http://schema.org/LocalBusiness"
 			])
 		).toBe(true);
-		expect(await JsonLdHelper.isType(doc, ["http://schema.org/Organization"])).toBe(false);
+		expect(await JsonLdHelper.isType(doc, ["http://schema.org/Person"])).toBe(false);
 	});
 
 	test("isType returns false when one of the required types is missing", async () => {

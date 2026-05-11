@@ -261,7 +261,7 @@ describe("JsonPathHelper", () => {
 	describe("setAtLocation", () => {
 		test("Does nothing for empty location", () => {
 			const root = { a: 1 };
-			JsonPathHelper.setAtLocation(root, [] as unknown as IJsonPathLocation, 2);
+			JsonPathHelper.setAtLocation(root, [], 2);
 			expect(root).toEqual({ a: 1 });
 		});
 
@@ -298,7 +298,7 @@ describe("JsonPathHelper", () => {
 	describe("deleteAtLocation", () => {
 		test("Does nothing for empty location", () => {
 			const root = { a: 1 };
-			JsonPathHelper.deleteAtLocation(root, [] as unknown as IJsonPathLocation);
+			JsonPathHelper.deleteAtLocation(root, []);
 			expect(root).toEqual({ a: 1 });
 		});
 

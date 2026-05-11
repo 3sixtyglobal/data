@@ -178,8 +178,7 @@ export class JsonSchemaHelper {
 				const jsonPropertySchema: IJsonSchema = {
 					type: propertySchema.type,
 					description: propertySchema.description,
-					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					examples: propertySchema.examples as unknown as any
+					examples: propertySchema.examples
 				};
 
 				if (Is.stringValue(propertySchema.itemType) && propertySchema.type === "array") {

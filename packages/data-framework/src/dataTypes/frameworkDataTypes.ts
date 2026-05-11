@@ -1,7 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import { Urn, Validation } from "@twin.org/core";
-import { DataTypeHandlerFactory, type IJsonSchema } from "@twin.org/data-core";
+import { DataTypeHandlerFactory } from "@twin.org/data-core";
 import { FrameworkContexts } from "../models/frameworkContexts.js";
 import { FrameworkTypes } from "../models/frameworkTypes.js";
 import TimestampMillisecondsSchema from "../schemas/TimestampMilliseconds.json" with { type: "json" };
@@ -21,7 +21,7 @@ export class FrameworkDataTypes {
 			jsonLdContext: FrameworkContexts.JsonLdContext,
 			type: FrameworkTypes.Urn,
 			defaultValue: "",
-			jsonSchema: async () => URNSchema as IJsonSchema,
+			jsonSchema: async () => URNSchema,
 			validate: async (propertyName, value, failures, container) =>
 				Urn.validate(propertyName, value, failures)
 		}));
@@ -33,7 +33,7 @@ export class FrameworkDataTypes {
 				jsonLdContext: FrameworkContexts.JsonLdContext,
 				type: FrameworkTypes.TimestampMilliseconds,
 				defaultValue: Date.now(),
-				jsonSchema: async () => TimestampMillisecondsSchema as IJsonSchema,
+				jsonSchema: async () => TimestampMillisecondsSchema,
 				validate: async (propertyName, value, failures, container) =>
 					Validation.timestampMilliseconds(propertyName, value, failures)
 			})
@@ -46,7 +46,7 @@ export class FrameworkDataTypes {
 				jsonLdContext: FrameworkContexts.JsonLdContext,
 				type: FrameworkTypes.TimestampSeconds,
 				defaultValue: Math.floor(Date.now() / 1000),
-				jsonSchema: async () => TimestampSecondsSchema as IJsonSchema,
+				jsonSchema: async () => TimestampSecondsSchema,
 				validate: async (propertyName, value, failures, container) =>
 					Validation.timestampSeconds(propertyName, value, failures)
 			})

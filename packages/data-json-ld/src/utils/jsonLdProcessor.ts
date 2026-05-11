@@ -183,10 +183,9 @@ export class JsonLdProcessor {
 
 				if (!Is.empty(overrideContext)) {
 					// Remove the override context from the compacted document
-					compacted["@context"] = JsonLdProcessor.removeContexts(
-						compacted["@context"] as IJsonLdContextDefinitionRoot,
-						[overrideContext]
-					);
+					compacted["@context"] = JsonLdProcessor.removeContexts(compacted["@context"], [
+						overrideContext
+					]);
 				}
 
 				return compacted as T;
@@ -320,10 +319,7 @@ export class JsonLdProcessor {
 
 		if (Is.object<IJsonLdNodeObject>(element)) {
 			if (!Is.empty(element["@context"])) {
-				combinedContexts = JsonLdProcessor.combineContexts(
-					initial,
-					element["@context"] as IJsonLdContextDefinitionRoot
-				);
+				combinedContexts = JsonLdProcessor.combineContexts(initial, element["@context"]);
 			}
 
 			for (const prop of Object.keys(element)) {
