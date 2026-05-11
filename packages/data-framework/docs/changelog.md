@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.0.3-next.21](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.20...data-framework-v0.0.3-next.21) (2026-05-11)
+
+
+### Features
+
+* typescript 6 update ([44cbfe8](https://github.com/iotaledger/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.20 to 0.0.3-next.21
+    * @twin.org/data-json-ld bumped from 0.0.3-next.20 to 0.0.3-next.21
+
 ## [0.0.3-next.20](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.19...data-framework-v0.0.3-next.20) (2026-03-24)
 
 
