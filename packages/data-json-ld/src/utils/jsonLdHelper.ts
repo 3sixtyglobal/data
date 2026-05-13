@@ -148,9 +148,11 @@ export class JsonLdHelper {
 				if (Is.arrayValue(expandedProps)) {
 					for (const expandedProp of expandedProps) {
 						const arr = ArrayHelper.fromObjectOrArray(expandedProp);
-						for (const arrValue of arr) {
-							if (Is.stringValue(arrValue)) {
-								types.add(arrValue);
+						if (Is.arrayValue(arr)) {
+							for (const arrValue of arr) {
+								if (Is.stringValue(arrValue)) {
+									types.add(arrValue);
+								}
 							}
 						}
 					}
@@ -181,9 +183,11 @@ export class JsonLdHelper {
 				if (Is.arrayValue(expandedProps)) {
 					for (const expandedProp of expandedProps) {
 						const arr = ArrayHelper.fromObjectOrArray(expandedProp);
-						for (const arrValue of arr) {
-							if (Is.stringValue(arrValue)) {
-								return arrValue;
+						if (Is.arrayValue(arr)) {
+							for (const arrValue of arr) {
+								if (Is.stringValue(arrValue)) {
+									return arrValue;
+								}
 							}
 						}
 					}
