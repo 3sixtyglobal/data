@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.0.3-next.22](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.21...data-framework-v0.0.3-next.22) (2026-05-13)
+
+
+### Miscellaneous Chores
+
+* **data-framework:** Synchronize repo versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.21 to 0.0.3-next.22
+    * @twin.org/data-json-ld bumped from 0.0.3-next.21 to 0.0.3-next.22
+
 ## [0.0.3-next.21](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.20...data-framework-v0.0.3-next.21) (2026-05-11)
 
 

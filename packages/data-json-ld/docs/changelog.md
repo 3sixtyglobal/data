@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.3-next.22](https://github.com/iotaledger/twin-data/compare/data-json-ld-v0.0.3-next.21...data-json-ld-v0.0.3-next.22) (2026-05-13)
+
+
+### Bug Fixes
+
+* handle possible undefined array ([094d188](https://github.com/iotaledger/twin-data/commit/094d1887b9f280ffa035d6a1f811a943184f4655))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.21 to 0.0.3-next.22
+
 ## [0.0.3-next.21](https://github.com/iotaledger/twin-data/compare/data-json-ld-v0.0.3-next.20...data-json-ld-v0.0.3-next.21) (2026-05-11)
 
 
