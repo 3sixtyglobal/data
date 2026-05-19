@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3-next.23](https://github.com/iotaledger/twin-data/compare/data-json-path-v0.0.3-next.22...data-json-path-v0.0.3-next.23) (2026-05-19)
+
+
+### Features
+
+* update dependencies ([b622475](https://github.com/iotaledger/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
+
 ## [0.0.3-next.22](https://github.com/iotaledger/twin-data/compare/data-json-path-v0.0.3-next.21...data-json-path-v0.0.3-next.22) (2026-05-13)
 
 
