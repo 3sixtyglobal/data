@@ -19,7 +19,7 @@ import type {
 	JsonLdObjectWithOptionalType,
 	JsonLdObjectWithType,
 	JsonLdWithAliases
-} from "../../src/helpers/jsonLdHelperTypes.js";
+} from "../../src/index.js";
 
 interface ITestJsonLdShape {
 	"@id": string;
