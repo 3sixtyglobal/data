@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3-next.24](https://github.com/iotaledger/twin-data/compare/data-core-v0.0.3-next.23...data-core-v0.0.3-next.24) (2026-05-22)
+
+
+### Bug Fixes
+
+* dedupe in-flight compileAsync by schemaId ([#70](https://github.com/iotaledger/twin-data/issues/70)) ([fcd0e70](https://github.com/iotaledger/twin-data/commit/fcd0e7082b0ebed465faf718097adf19340b287c))
+
 ## [0.0.3-next.23](https://github.com/iotaledger/twin-data/compare/data-core-v0.0.3-next.22...data-core-v0.0.3-next.23) (2026-05-19)
 
 

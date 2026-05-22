@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3-next.24](https://github.com/iotaledger/twin-data/compare/data-json-path-v0.0.3-next.23...data-json-path-v0.0.3-next.24) (2026-05-22)
+
+
+### Miscellaneous Chores
+
+* **data-json-path:** Synchronize repo versions
+
 ## [0.0.3-next.23](https://github.com/iotaledger/twin-data/compare/data-json-path-v0.0.3-next.22...data-json-path-v0.0.3-next.23) (2026-05-19)
 
 
