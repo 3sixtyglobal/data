@@ -1,6 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import {
+	AsyncCache,
 	BaseError,
 	Converter,
 	type IError,
@@ -39,6 +40,12 @@ export class JsonSchemaHelper {
 	 * @internal
 	 */
 	public static readonly CLASS_NAME = nameof<JsonSchemaHelper>();
+
+	/**
+	 * TTL for in-flight / recent compileAsync results in AsyncCache.
+	 * @internal
+	 */
+	private static readonly _COMPILE_CACHE_TTL_MS = 5000;
 
 	/**
 	 * Optional loggers for schema loading.
@@ -85,10 +92,9 @@ export class JsonSchemaHelper {
 			);
 		}
 
-		const ajv = await JsonSchemaHelper.buildValidator(
-			additionalTypes,
-			schema.$schema === JsonSchemaHelper.SCHEMA_VERSION_2019
-		);
+		const is2019Schema = schema.$schema === JsonSchemaHelper.SCHEMA_VERSION_2019;
+
+		const ajv = await JsonSchemaHelper.buildValidator(additionalTypes, is2019Schema);
 
 		// Add the additional types provided by the user
 		if (Is.objectValue(additionalTypes)) {
@@ -107,7 +113,11 @@ export class JsonSchemaHelper {
 
 		let validateMethod = ajv.getSchema(schemaId);
 		if (Is.empty(validateMethod)) {
-			validateMethod = await ajv.compileAsync(schema);
+			validateMethod = await AsyncCache.exec(
+				`${schemaId}.${is2019Schema ? "2019" : "2020"}`,
+				JsonSchemaHelper._COMPILE_CACHE_TTL_MS,
+				async () => ajv.compileAsync(schema)
+			);
 		}
 
 		await validateMethod(data);

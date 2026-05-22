@@ -1,7 +1,9 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { SharedStore } from "@twin.org/core";
+import { AsyncCache, SharedStore } from "@twin.org/core";
 import { entity, property, EntitySchemaHelper, SortDirection } from "@twin.org/entity";
+import { FetchHelper } from "@twin.org/web";
+import { afterEach, describe, expect, test, vi } from "vitest";
 import type { IJsonSchema } from "../../src/models/IJsonSchema.js";
 import { JsonSchemaHelper } from "../../src/utils/jsonSchemaHelper.js";
 
@@ -779,7 +781,7 @@ describe("JsonSchemaHelper", () => {
 		const getSpy = vi.spyOn(SharedStore, "get");
 		const setSpy = vi.spyOn(SharedStore, "set");
 
-		getSpy.mockImplementation((key: string) => cache.get(key) as never);
+		getSpy.mockImplementation((key: string) => cache.get(key));
 		setSpy.mockImplementation((key: string, value: unknown) => {
 			cache.set(key, value);
 		});
@@ -794,7 +796,8 @@ describe("JsonSchemaHelper", () => {
 		expect(failures1).toHaveLength(0);
 		expect(failures2).toHaveLength(0);
 		expect(cache.has(`${JsonSchemaHelper.CLASS_NAME}2020`)).toBe(true);
-		expect(setSpy).toHaveBeenCalledTimes(1);
+		expect(cache.has("asyncCache")).toBe(true);
+		expect(setSpy).toHaveBeenCalledTimes(2);
 
 		vi.restoreAllMocks();
 	});
@@ -804,7 +807,7 @@ describe("JsonSchemaHelper", () => {
 		const getSpy = vi.spyOn(SharedStore, "get");
 		const setSpy = vi.spyOn(SharedStore, "set");
 
-		getSpy.mockImplementation((key: string) => cache.get(key) as never);
+		getSpy.mockImplementation((key: string) => cache.get(key));
 		setSpy.mockImplementation((key: string, value: unknown) => {
 			cache.set(key, value);
 		});
@@ -820,7 +823,8 @@ describe("JsonSchemaHelper", () => {
 		expect(failures1).toHaveLength(0);
 		expect(failures2).toHaveLength(0);
 		expect(cache.has(`${JsonSchemaHelper.CLASS_NAME}2019`)).toBe(true);
-		expect(setSpy).toHaveBeenCalledTimes(1);
+		expect(cache.has("asyncCache")).toBe(true);
+		expect(setSpy).toHaveBeenCalledTimes(2);
 
 		vi.restoreAllMocks();
 	});
@@ -915,5 +919,101 @@ describe("JsonSchemaHelper", () => {
 		// Either validation fails, or loggers track the failure
 		expect(failures.length).toBe(0);
 		expect(logCalls.failed.length).toBe(1);
+	});
+
+	describe("Concurrent compileAsync", () => {
+		const ajvStoreKey = `${JsonSchemaHelper.CLASS_NAME}2020`;
+
+		afterEach(() => {
+			SharedStore.remove(ajvStoreKey);
+			SharedStore.remove(`${JsonSchemaHelper.CLASS_NAME}2019`);
+			AsyncCache.clearCache();
+			JsonSchemaHelper.setLoggers(undefined);
+			vi.restoreAllMocks();
+		});
+
+		function createUnregisteredAllOfSchema(suffix: string): IJsonSchema {
+			return {
+				$schema: JsonSchemaHelper.SCHEMA_VERSION,
+				$id: `https://test.concurrent-compile.example/Entity-${suffix}`,
+				type: "object",
+				properties: {
+					name: { type: "string" }
+				},
+				required: ["name"],
+				allOf: [
+					{
+						$ref: `https://test.concurrent-compile.example/UnregisteredListItem-${suffix}`
+					}
+				]
+			};
+		}
+
+		test("parallel cold validate does not throw when $ref fetch fails (shared schema object)", async () => {
+			vi.spyOn(FetchHelper, "fetchJson").mockRejectedValue(new Error("mocked fetch failure"));
+
+			const schema = createUnregisteredAllOfSchema("shared-object");
+			const parallelCount = 25;
+
+			const results = await Promise.all(
+				[...new Array(parallelCount).keys()].map(async index =>
+					JsonSchemaHelper.validate(schema, { name: `item-${index}` })
+				)
+			);
+
+			for (const failures of results) {
+				expect(failures).toHaveLength(0);
+			}
+		});
+
+		test("parallel cold validate does not throw when $ref fetch fails (distinct schema clones, same $id)", async () => {
+			vi.spyOn(FetchHelper, "fetchJson").mockRejectedValue(new Error("mocked fetch failure"));
+
+			const schemaId = "https://test.concurrent-compile.example/Entity-cloned";
+			const ref = "https://test.concurrent-compile.example/UnregisteredListItem-cloned";
+			const parallelCount = 25;
+
+			const results = await Promise.all(
+				[...new Array(parallelCount).keys()].map(async index =>
+					JsonSchemaHelper.validate(
+						{
+							$schema: JsonSchemaHelper.SCHEMA_VERSION,
+							$id: schemaId,
+							type: "object",
+							properties: { name: { type: "string" } },
+							required: ["name"],
+							allOf: [{ $ref: ref }]
+						},
+						{ name: `clone-${index}` }
+					)
+				)
+			);
+
+			for (const failures of results) {
+				expect(failures).toHaveLength(0);
+			}
+		});
+
+		test("repeated parallel cold starts stay stable across fresh AJV instances", async () => {
+			vi.spyOn(FetchHelper, "fetchJson").mockRejectedValue(new Error("mocked fetch failure"));
+
+			const parallelCount = 20;
+
+			for (let attempt = 0; attempt < 15; attempt++) {
+				SharedStore.remove(ajvStoreKey);
+				AsyncCache.clearCache();
+				const schema = createUnregisteredAllOfSchema(`attempt-${attempt}`);
+
+				const results = await Promise.all(
+					[...new Array(parallelCount).keys()].map(async index =>
+						JsonSchemaHelper.validate(schema, { name: `a${attempt}-${index}` })
+					)
+				);
+
+				for (const failures of results) {
+					expect(failures).toHaveLength(0);
+				}
+			}
+		});
 	});
 });
