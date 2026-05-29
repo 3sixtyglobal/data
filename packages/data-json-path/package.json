@@ -4,7 +4,7 @@
 	"description": "A consistent JSONPath query abstraction.",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/iotaledger/data.git",
+		"url": "git+https://github.com/iotaledger/twin-data.git",
 		"directory": "packages/data-json-path"
 	},
 	"contributors": [
@@ -79,7 +79,7 @@
 		"conversion"
 	],
 	"bugs": {
-		"url": "git+https://github.com/iotaledger/data/issues"
+		"url": "git+https://github.com/iotaledger/twin-data/issues"
 	},
 	"homepage": "https://twindev.org"
 }
