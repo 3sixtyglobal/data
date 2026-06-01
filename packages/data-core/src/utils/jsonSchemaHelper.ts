@@ -327,6 +327,28 @@ export class JsonSchemaHelper {
 		const applyFormats = formatsPlugin.default as unknown as (ajvInstance: unknown) => void;
 		applyFormats(ajv);
 
+		// contentEncoding is registered by AJV as an annotation-only keyword (no validation).
+		// Remove it and re-add with actual validation so base64-encoded values are verified.
+		ajv.removeKeyword("contentEncoding");
+		ajv.addKeyword({
+			keyword: "contentEncoding",
+			type: "string",
+			schemaType: "string",
+			/**
+			 * Validate the data against the content encoding specified in the schema.
+			 * @param schema The content encoding specified in the schema.
+			 * @param data The data to be validated.
+			 * @returns True if the data is valid according to the content encoding, false otherwise.
+			 * Currently only supports base64 encoding, other encodings will be treated as valid without additional checks.
+			 * This is because AJV's formats plugin does not support all content encodings and we want to allow for custom encodings as well.
+			 */
+			validate(schema: string, data: string): boolean {
+				// Not currently support quoted-printable, base16, base32
+				return schema !== "base64" || Is.stringBase64(data);
+			},
+			errors: false
+		});
+
 		return ajv;
 	}
 }

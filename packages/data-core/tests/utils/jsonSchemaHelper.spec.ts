@@ -921,6 +921,97 @@ describe("JsonSchemaHelper", () => {
 		expect(logCalls.failed.length).toBe(1);
 	});
 
+	describe("contentEncoding base64 validation", () => {
+		test("Can validate a valid base64 string when contentEncoding is base64", async () => {
+			const schema: IJsonSchema = {
+				type: "string",
+				contentEncoding: "base64"
+			};
+
+			const failures = await JsonSchemaHelper.validate(schema, "SGVsbG8gV29ybGQ=");
+
+			expect(failures).toHaveLength(0);
+		});
+
+		test("Can fail to validate an invalid base64 string when contentEncoding is base64", async () => {
+			const schema: IJsonSchema = {
+				type: "string",
+				contentEncoding: "base64"
+			};
+
+			const failures = await JsonSchemaHelper.validate(schema, "not-base64!!!");
+
+			expect(failures).toHaveLength(1);
+			expect(failures[0]?.property).toBe("");
+			expect(failures[0]?.reason).toBe("validation.schemaFailed");
+			expect((failures[0]?.properties as { [key: string]: unknown })?.keyword).toBe(
+				"contentEncoding"
+			);
+		});
+
+		test("Can pass through unknown contentEncoding values without validation", async () => {
+			const schema: IJsonSchema = {
+				type: "string",
+				contentEncoding: "quoted-printable"
+			};
+
+			const failures = await JsonSchemaHelper.validate(schema, "not-base64!!!");
+
+			expect(failures).toHaveLength(0);
+		});
+
+		test("Can fail to validate an invalid base64 value on a nested property", async () => {
+			const schema: IJsonSchema = {
+				type: "object",
+				properties: {
+					data: {
+						type: "string",
+						contentEncoding: "base64"
+					}
+				},
+				required: ["data"]
+			};
+
+			const failures = await JsonSchemaHelper.validate(schema, { data: "not-base64!!!" });
+
+			expect(failures).toHaveLength(1);
+			expect(failures[0]?.property).toBe("data");
+			expect(failures[0]?.reason).toBe("validation.schemaFailed");
+			expect((failures[0]?.properties as { [key: string]: unknown })?.keyword).toBe(
+				"contentEncoding"
+			);
+		});
+
+		test("Can validate a valid base64 string with 2019 schema draft", async () => {
+			const schema: IJsonSchema = {
+				$schema: JsonSchemaHelper.SCHEMA_VERSION_2019,
+				type: "string",
+				contentEncoding: "base64"
+			};
+
+			const failures = await JsonSchemaHelper.validate(schema, "SGVsbG8gV29ybGQ=");
+
+			expect(failures).toHaveLength(0);
+		});
+
+		test("Can fail to validate an invalid base64 string with 2019 schema draft", async () => {
+			const schema: IJsonSchema = {
+				$schema: JsonSchemaHelper.SCHEMA_VERSION_2019,
+				type: "string",
+				contentEncoding: "base64"
+			};
+
+			const failures = await JsonSchemaHelper.validate(schema, "not-base64!!!");
+
+			expect(failures).toHaveLength(1);
+			expect(failures[0]?.property).toBe("");
+			expect(failures[0]?.reason).toBe("validation.schemaFailed");
+			expect((failures[0]?.properties as { [key: string]: unknown })?.keyword).toBe(
+				"contentEncoding"
+			);
+		});
+	});
+
 	describe("Concurrent compileAsync", () => {
 		const ajvStoreKey = `${JsonSchemaHelper.CLASS_NAME}2020`;
 
