@@ -777,6 +777,10 @@ describe("JsonSchemaHelper", () => {
 	});
 
 	test("Can cache validator instances for 2020 schemas", async () => {
+		// Clear state from previous tests so the spy sees a clean slate
+		SharedStore.remove(`${JsonSchemaHelper.CLASS_NAME}2020`);
+		AsyncCache.clearCache();
+
 		const cache = new Map<string, unknown>();
 		const getSpy = vi.spyOn(SharedStore, "get");
 		const setSpy = vi.spyOn(SharedStore, "set");
@@ -797,12 +801,21 @@ describe("JsonSchemaHelper", () => {
 		expect(failures2).toHaveLength(0);
 		expect(cache.has(`${JsonSchemaHelper.CLASS_NAME}2020`)).toBe(true);
 		expect(cache.has("asyncCache")).toBe(true);
-		expect(setSpy).toHaveBeenCalledTimes(2);
+		// The AJV 2020 instance must be created exactly once — the second validate reuses it.
+		// We only assert on this specific key rather than the total set-call count because
+		// AsyncCache / FetchHelper may also call SharedStore.set for their own caching.
+		expect(
+			setSpy.mock.calls.filter(([key]) => key === `${JsonSchemaHelper.CLASS_NAME}2020`)
+		).toHaveLength(1);
 
 		vi.restoreAllMocks();
 	});
 
 	test("Can cache validator instances for 2019 schemas", async () => {
+		// Clear state from previous tests so the spy sees a clean slate
+		SharedStore.remove(`${JsonSchemaHelper.CLASS_NAME}2019`);
+		AsyncCache.clearCache();
+
 		const cache = new Map<string, unknown>();
 		const getSpy = vi.spyOn(SharedStore, "get");
 		const setSpy = vi.spyOn(SharedStore, "set");
@@ -824,7 +837,10 @@ describe("JsonSchemaHelper", () => {
 		expect(failures2).toHaveLength(0);
 		expect(cache.has(`${JsonSchemaHelper.CLASS_NAME}2019`)).toBe(true);
 		expect(cache.has("asyncCache")).toBe(true);
-		expect(setSpy).toHaveBeenCalledTimes(2);
+		// The AJV 2019 instance must be created exactly once — the second validate reuses it.
+		expect(
+			setSpy.mock.calls.filter(([key]) => key === `${JsonSchemaHelper.CLASS_NAME}2019`)
+		).toHaveLength(1);
 
 		vi.restoreAllMocks();
 	});
