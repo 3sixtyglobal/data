@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3-next.25](https://github.com/iotaledger/twin-data/compare/data-core-v0.0.3-next.24...data-core-v0.0.3-next.25) (2026-06-01)
+
+
+### Features
+
+* add contentEncoding base64 support to ajv ([#73](https://github.com/iotaledger/twin-data/issues/73)) ([b5c35f7](https://github.com/iotaledger/twin-data/commit/b5c35f790354db4f1f909a92527d3c957cb4f9f4))
+
 ## [0.0.3-next.24](https://github.com/iotaledger/twin-data/compare/data-core-v0.0.3-next.23...data-core-v0.0.3-next.24) (2026-05-22)
 
 
