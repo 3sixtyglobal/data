@@ -428,6 +428,7 @@ export class JsonLdProcessor {
 	/**
 	 * True when FetchHelper failed to decode JSON from the response (e.g. HTML or plain text).
 	 * @param err The error from fetchJson.
+	 * @returns True if the error is a JSON decode failure, false otherwise.
 	 * @internal
 	 */
 	private static isFetchJsonDecodeFailure(err: unknown): boolean {
@@ -515,6 +516,7 @@ export class JsonLdProcessor {
 	 * Fetch a remote JSON-LD document, with Accept fallbacks and optional Link-header discovery.
 	 * @param url Resolved document URL.
 	 * @param linkDiscoveryDepth Current discovery recursion depth.
+	 * @returns The fetched remote JSON-LD document.
 	 * @internal
 	 */
 	private static async fetchRemoteJsonLdDocument(
@@ -581,6 +583,7 @@ export class JsonLdProcessor {
 	/**
 	 * Handle common errors.
 	 * @param err The error to handle.
+	 * @throws GeneralError if the error is a known JSON-LD error type.
 	 * @internal
 	 */
 	private static handleCommonErrors(err: unknown): void {

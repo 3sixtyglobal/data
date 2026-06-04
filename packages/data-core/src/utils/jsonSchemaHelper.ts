@@ -234,6 +234,7 @@ export class JsonSchemaHelper {
 	 * Convert an AJV instance path to a dotted property path.
 	 * @param instancePath The AJV instance path.
 	 * @returns The dotted property path.
+	 * @internal
 	 */
 	private static instancePathToPropertyPath(instancePath: string | undefined): string {
 		if (!Is.stringValue(instancePath) || instancePath.length === 0) {
@@ -249,9 +250,8 @@ export class JsonSchemaHelper {
 
 	/**
 	 * Build an AJV validator instance with the appropriate settings and schemas.
-	 * @param params The parameters for building the validator, including options and the loadSchema function.
-	 * @param schema The root schema to be used for validation, used to determine the AJV version.
 	 * @param additionalTypes Additional types to add for reference, not already in DataTypeHandlerFactory.
+	 * @param is2019Schema Whether to use the AJV 2019 schema version.
 	 * @returns An AJV validator instance ready for validation.
 	 * @internal
 	 */
