@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.3-next.26](https://github.com/iotaledger/twin-data/compare/data-core-v0.0.3-next.25...data-core-v0.0.3-next.26) (2026-06-05)
+
+
+### Features
+
+* align entity schema ([37e1c7f](https://github.com/iotaledger/twin-data/commit/37e1c7fc15cf7f5f518d47cb2eabdfdf0b8613e9))
+
+
+### Bug Fixes
+
+* async cache test ([7a677a1](https://github.com/iotaledger/twin-data/commit/7a677a174af31725cd3633ca0e2f4bf3f86b8fc5))
+
 ## [0.0.3-next.25](https://github.com/iotaledger/twin-data/compare/data-core-v0.0.3-next.24...data-core-v0.0.3-next.25) (2026-06-01)
 
 

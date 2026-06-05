@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.3-next.26](https://github.com/iotaledger/twin-data/compare/data-json-ld-v0.0.3-next.25...data-json-ld-v0.0.3-next.26) (2026-06-05)
+
+
+### Miscellaneous Chores
+
+* **data-json-ld:** Synchronize repo versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.0.3-next.25 to 0.0.3-next.26
+
 ## [0.0.3-next.25](https://github.com/iotaledger/twin-data/compare/data-json-ld-v0.0.3-next.24...data-json-ld-v0.0.3-next.25) (2026-06-01)
 
 
