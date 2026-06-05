@@ -223,7 +223,7 @@ export class JsonSchemaHelper {
 			$id: `${domain}${entitySchema?.type}`,
 			title: entitySchema?.type,
 			type: entitySchema ? "object" : "null",
-			description: entitySchema?.options?.description,
+			description: entitySchema?.description,
 			required,
 			properties,
 			additionalProperties: false
