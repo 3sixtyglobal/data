@@ -240,7 +240,7 @@ export class JsonPathHelper {
 			if (!Is.array(current)) {
 				return;
 			}
-			current.splice(lastToken, 1);
+			current[lastToken] = undefined;
 		} else {
 			if (!Is.object(current)) {
 				return;
