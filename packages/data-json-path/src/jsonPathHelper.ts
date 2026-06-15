@@ -8,11 +8,10 @@ import type { IJsonPathResult } from "./models/IJsonPathResult.js";
 
 /**
  * Helper class for JSONPath operations.
- * Provides abstraction over the json-p3 library.
  */
 export class JsonPathHelper {
 	/**
-	 * The name of the class name of the JsonPathHelper class.
+	 * The class name.
 	 */
 	public static readonly CLASS_NAME: string = nameof<JsonPathHelper>();
 
@@ -118,10 +117,10 @@ export class JsonPathHelper {
 	}
 
 	/**
-	 * Validate if a JSONPath query is valid.
+	 * Validate if a JSONPath query string has valid syntax.
 	 * @param path The JSONPath query string to validate.
-	 * @returns True if the syntax is valid.
-	 * @throws GeneralError if the path is invalid or data cannot be queried.
+	 * @returns True if the syntax is valid, false if the path is empty or not a string.
+	 * @throws GeneralError if an unexpected error occurs during syntax checking.
 	 */
 	public static validate(path: string): boolean {
 		if (!Is.stringValue(path)) {
@@ -241,7 +240,7 @@ export class JsonPathHelper {
 			if (!Is.array(current)) {
 				return;
 			}
-			current[lastToken] = undefined;
+			current.splice(lastToken, 1);
 		} else {
 			if (!Is.object(current)) {
 				return;

@@ -338,9 +338,7 @@ export class JsonSchemaHelper {
 			 * Validate the data against the content encoding specified in the schema.
 			 * @param schema The content encoding specified in the schema.
 			 * @param data The data to be validated.
-			 * @returns True if the data is valid according to the content encoding, false otherwise.
-			 * Currently only supports base64 encoding, other encodings will be treated as valid without additional checks.
-			 * This is because AJV's formats plugin does not support all content encodings and we want to allow for custom encodings as well.
+			 * @returns True if the data is valid for the given encoding, false otherwise.
 			 */
 			validate(schema: string, data: string): boolean {
 				// Not currently support quoted-printable, base16, base32

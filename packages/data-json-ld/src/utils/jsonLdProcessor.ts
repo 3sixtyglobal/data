@@ -35,7 +35,7 @@ export class JsonLdProcessor {
 	private static readonly _MAX_LINK_DISCOVERY_DEPTH = 1;
 
 	/**
-	 * The document loader to use.
+	 * Set the document loader used for retrieving JSON-LD documents.
 	 * @param documentLoader The document loader to use.
 	 */
 	public static setDocumentLoader(documentLoader: (url: Url) => Promise<RemoteDocument>): void {
@@ -43,8 +43,8 @@ export class JsonLdProcessor {
 	}
 
 	/**
-	 * The document loader to use for retrieving JSON-LD documents.
-	 * @returns The document loader.
+	 * Get the document loader used for retrieving JSON-LD documents.
+	 * @returns The active document loader function.
 	 */
 	public static getDocumentLoader(): (url: Url) => Promise<RemoteDocument> {
 		let documentLoader =
@@ -65,7 +65,7 @@ export class JsonLdProcessor {
 
 	/**
 	 * Get the cache limit for documents.
-	 * @returns The document loader.
+	 * @returns The cache limit in milliseconds.
 	 */
 	public static getCacheLimit(): number {
 		let cacheLimitMs = SharedStore.get<number>("jsonLdDocumentCacheLimit");
@@ -392,7 +392,7 @@ export class JsonLdProcessor {
 	 * Add a context directly to the document loader cache.
 	 * @param url The url the ld context is for.
 	 * @param ldContext The context to add.
-	 * @returns Nothing.
+	 * @returns A promise that resolves when the entry has been stored in the cache.
 	 */
 	public static async documentCacheAdd(url: string, ldContext: unknown): Promise<void> {
 		await FetchHelper.setCacheEntry(url, ldContext);
@@ -401,7 +401,7 @@ export class JsonLdProcessor {
 	/**
 	 * Remove a context from the document loader cache.
 	 * @param url The url the ld context is for.
-	 * @returns Nothing.
+	 * @returns A promise that resolves when the entry has been removed from the cache.
 	 */
 	public static async documentCacheRemove(url: string): Promise<void> {
 		FetchHelper.removeCacheEntry(url);

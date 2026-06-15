@@ -32,7 +32,7 @@ export class DataTypeHelper {
 	}
 
 	/**
-	 * Register a  list of types.
+	 * Register a list of types.
 	 * @param namespace The namespace for the types.
 	 * @param jsonLdContext The JSON LD context for the types.
 	 * @param typeDefinition The type definitions to register.
