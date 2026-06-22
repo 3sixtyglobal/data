@@ -1,6 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import type { IJsonLdContextDefinition } from "./IJsonLdContextDefinition";
+import type { IJsonLdContextDefinition } from "./IJsonLdContextDefinition.js";
 
 /**
  * This is a copy of the types from the npm jsonld package. This is necessary as the JSON schema generators

@@ -9,12 +9,10 @@
 
 - [IDataTypeHandler](interfaces/IDataTypeHandler.md)
 - [IIdentifierHandler](interfaces/IIdentifierHandler.md)
-- [ISchemaValidationResult](interfaces/ISchemaValidationResult.md)
 
 ## Type Aliases
 
 - [IJsonSchema](type-aliases/IJsonSchema.md)
-- [ISchemaValidationError](type-aliases/ISchemaValidationError.md)
 - [ValidationMode](type-aliases/ValidationMode.md)
 
 ## Variables

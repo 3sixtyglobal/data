@@ -1,8 +1,8 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import type { IJsonLdContextDefinitionRoot } from "./IJsonLdContextDefinitionRoot";
-import type { IJsonLdJsonArray } from "./IJsonLdJsonArray";
-import type { IJsonLdJsonObject } from "./IJsonLdJsonObject";
+import type { IJsonLdContextDefinitionRoot } from "./IJsonLdContextDefinitionRoot.js";
+import type { IJsonLdJsonArray } from "./IJsonLdJsonArray.js";
+import type { IJsonLdJsonObject } from "./IJsonLdJsonObject.js";
 
 /**
  * This is a copy of the types from the npm jsonld package. This is necessary as the JSON schema generators

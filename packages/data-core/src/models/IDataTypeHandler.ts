@@ -1,21 +1,26 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import type { IValidationFailure } from "@twin.org/core";
-import type { IJsonSchema } from "./IJsonSchema";
+import type { IJsonSchema } from "./IJsonSchema.js";
 
 /**
  * Interface describing a type which can handle a specific data type.
  */
 export interface IDataTypeHandler {
 	/**
-	 * The context for the type.
+	 * The namespace for the type.
 	 */
-	context: string;
+	namespace: string;
 
 	/**
 	 * The type for the item.
 	 */
 	type: string;
+
+	/**
+	 * The JSON LD context for the type.
+	 */
+	jsonLdContext?: string;
 
 	/**
 	 * The default value for the item to use when constructing a new object.

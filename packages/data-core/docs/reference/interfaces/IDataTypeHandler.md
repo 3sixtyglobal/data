@@ -4,15 +4,15 @@ Interface describing a type which can handle a specific data type.
 
 ## Properties
 
-### context
+### namespace {#namespace}
 
-> **context**: `string`
+> **namespace**: `string`
 
-The context for the type.
+The namespace for the type.
 
 ***
 
-### type
+### type {#type}
 
 > **type**: `string`
 
@@ -20,29 +20,37 @@ The type for the item.
 
 ***
 
-### defaultValue?
+### jsonLdContext? {#jsonldcontext}
 
-> `optional` **defaultValue**: `unknown`
+> `optional` **jsonLdContext?**: `string`
+
+The JSON LD context for the type.
+
+***
+
+### defaultValue? {#defaultvalue}
+
+> `optional` **defaultValue?**: `unknown`
 
 The default value for the item to use when constructing a new object.
 
 ## Methods
 
-### jsonSchema()?
+### jsonSchema()? {#jsonschema}
 
-> `optional` **jsonSchema**(): `Promise`\<`undefined` \| `SchemaObject`\>
+> `optional` **jsonSchema**(): `Promise`\<`SchemaObject` \| `undefined`\>
 
 Get the JSON schema for the data type.
 
 #### Returns
 
-`Promise`\<`undefined` \| `SchemaObject`\>
+`Promise`\<`SchemaObject` \| `undefined`\>
 
 The JSON schema for the data type.
 
 ***
 
-### validate()?
+### validate()? {#validate}
 
 > `optional` **validate**(`propertyName`, `value`, `failures`, `container?`): `Promise`\<`boolean`\>
 

@@ -13,45 +13,45 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ## Properties
 
-### @context?
+### @context? {#context}
 
-> `optional` **@context**: [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
-
-***
-
-### @id?
-
-> `optional` **@id**: `string` \| `string`[]
+> `optional` **@context?**: [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
 
 ***
 
-### @included?
+### @id? {#id}
 
-> `optional` **@included**: [`IJsonLdIncludedBlock`](../type-aliases/IJsonLdIncludedBlock.md)
-
-***
-
-### @graph?
-
-> `optional` **@graph**: [`IJsonLdNodeObject`](IJsonLdNodeObject.md) \| [`IJsonLdNodeObject`](IJsonLdNodeObject.md)[]
+> `optional` **@id?**: `string` \| `string`[]
 
 ***
 
-### @nest?
+### @included? {#included}
 
-> `optional` **@nest**: [`IJsonLdJsonObject`](IJsonLdJsonObject.md) \| [`IJsonLdJsonObject`](IJsonLdJsonObject.md)[]
-
-***
-
-### @type?
-
-> `optional` **@type**: `string` \| `string`[]
+> `optional` **@included?**: [`IJsonLdIncludedBlock`](../type-aliases/IJsonLdIncludedBlock.md)
 
 ***
 
-### @reverse?
+### @graph? {#graph}
 
-> `optional` **@reverse**: `object`
+> `optional` **@graph?**: [`IJsonLdNodeObject`](IJsonLdNodeObject.md) \| [`IJsonLdNodeObject`](IJsonLdNodeObject.md)[]
+
+***
+
+### @nest? {#nest}
+
+> `optional` **@nest?**: [`IJsonLdJsonObject`](IJsonLdJsonObject.md) \| [`IJsonLdJsonObject`](IJsonLdJsonObject.md)[]
+
+***
+
+### @type? {#type}
+
+> `optional` **@type?**: `string` \| `string`[]
+
+***
+
+### @reverse? {#reverse}
+
+> `optional` **@reverse?**: `object`
 
 #### Index Signature
 
@@ -59,6 +59,6 @@ https://www.w3.org/TR/json-ld11/#node-objects
 
 ***
 
-### @index?
+### @index? {#index}
 
-> `optional` **@index**: `string`
+> `optional` **@index?**: `string`

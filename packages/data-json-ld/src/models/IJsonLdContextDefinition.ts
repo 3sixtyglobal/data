@@ -1,7 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 /* eslint-disable jsdoc/require-jsdoc */
-import type { IJsonLdExpandedTermDefinition } from "./IJsonLdExpandedTermDefinition";
+import type { IJsonLdExpandedTermDefinition } from "./IJsonLdExpandedTermDefinition.js";
 
 /**
  * This is a copy of the types from the npm jsonld package. This is necessary as the JSON schema generators

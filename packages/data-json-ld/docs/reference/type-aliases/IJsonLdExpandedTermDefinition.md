@@ -6,35 +6,35 @@ An expanded term definition is used to describe the mapping between a term
 and its expanded identifier, as well as other properties of the value
 associated with the term when it is used as key in a node object.
 
-## Type declaration
+## Type Declaration
 
 ### @type?
 
-> `optional` **@type**: `"@id"` \| `"@json"` \| `"@none"` \| `"@vocab"` \| `string`
+> `optional` **@type?**: `"@id"` \| `"@json"` \| `"@none"` \| `"@vocab"` \| `string`
 
 ### @language?
 
-> `optional` **@language**: `string`
+> `optional` **@language?**: `string`
 
 ### @index?
 
-> `optional` **@index**: `string`
+> `optional` **@index?**: `string`
 
 ### @context?
 
-> `optional` **@context**: [`IJsonLdContextDefinition`](../interfaces/IJsonLdContextDefinition.md)
+> `optional` **@context?**: [`IJsonLdContextDefinition`](../interfaces/IJsonLdContextDefinition.md)
 
 ### @prefix?
 
-> `optional` **@prefix**: `boolean`
+> `optional` **@prefix?**: `boolean`
 
 ### @propagate?
 
-> `optional` **@propagate**: `boolean`
+> `optional` **@propagate?**: `boolean`
 
 ### @protected?
 
-> `optional` **@protected**: `boolean`
+> `optional` **@protected?**: `boolean`
 
 ## See
 

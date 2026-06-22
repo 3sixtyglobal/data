@@ -14,7 +14,7 @@ Class to help with JSON LD.
 
 ## Methods
 
-### validate()
+### validate() {#validate}
 
 > `static` **validate**\<`T`\>(`document`, `validationFailures`, `options?`): `Promise`\<`boolean`\>
 
@@ -61,3 +61,311 @@ If true, will fail validation if the data type is missing, defaults to false.
 `Promise`\<`boolean`\>
 
 True if the document was valid.
+
+***
+
+### toNodeObject() {#tonodeobject}
+
+> `static` **toNodeObject**\<`T`\>(`object`): `T` & [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+Convert an object to a JSON-LD node object.
+
+#### Type Parameters
+
+##### T
+
+`T` = `unknown`
+
+#### Parameters
+
+##### object
+
+`T`
+
+The object to convert.
+
+#### Returns
+
+`T` & [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+The JSON-LD node object.
+
+***
+
+### toStructuredObject() {#tostructuredobject}
+
+> `static` **toStructuredObject**\<`T`\>(`nodeObject`): `T`
+
+Convert the JSON-LD node object to a structured object.
+
+#### Type Parameters
+
+##### T
+
+`T` = `unknown`
+
+#### Parameters
+
+##### nodeObject
+
+[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+The JSON-LD node object to convert.
+
+#### Returns
+
+`T`
+
+The structured object.
+
+***
+
+### expand() {#expand}
+
+> `static` **expand**(`document`): `Promise`\<[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)[]\>
+
+Expand the JSON-LD document.
+
+#### Parameters
+
+##### document
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to expand.
+
+#### Returns
+
+`Promise`\<[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)[]\>
+
+The expanded JSON-LD document.
+
+***
+
+### isType() {#istype}
+
+> `static` **isType**(`documentOrExpanded`, `type`): `Promise`\<`boolean`\>
+
+Expand the JSON-LD document and check if it is of a specific type.
+
+#### Parameters
+
+##### documentOrExpanded
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to check or already expanded document.
+
+##### type
+
+`string`[]
+
+The type to check for.
+
+#### Returns
+
+`Promise`\<`boolean`\>
+
+True if the document is of the specified type.
+
+***
+
+### getType() {#gettype}
+
+> `static` **getType**(`documentOrExpanded`): `Promise`\<`string`[]\>
+
+Get the types from the document.
+
+#### Parameters
+
+##### documentOrExpanded
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to check or already expanded document.
+
+#### Returns
+
+`Promise`\<`string`[]\>
+
+The type(s) extracted from the document.
+
+***
+
+### getId() {#getid}
+
+> `static` **getId**(`documentOrExpanded`, `additionalIdProperties?`): `Promise`\<`string` \| `undefined`\>
+
+Get the id from the document.
+
+#### Parameters
+
+##### documentOrExpanded
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to get the id from or already expanded document.
+
+##### additionalIdProperties?
+
+`string`[]
+
+Optional additional properties to check for the id, in addition to "@id" and "id".
+
+#### Returns
+
+`Promise`\<`string` \| `undefined`\>
+
+The id extracted from the document.
+
+***
+
+### getPropertyValue() {#getpropertyvalue}
+
+> `static` **getPropertyValue**(`documentOrExpanded`, `propertyFullName`, `language?`): `Promise`\<[`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`\>
+
+Get property values by a single full expanded property name.
+
+#### Parameters
+
+##### documentOrExpanded
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to get the property from or already expanded document.
+
+##### propertyFullName
+
+`string`
+
+The full expanded property name.
+
+##### language?
+
+`string`
+
+Optional filter values by their language property.
+
+#### Returns
+
+`Promise`\<[`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`\>
+
+Matching property values for the input property.
+
+***
+
+### getPropertyValues() {#getpropertyvalues}
+
+> `static` **getPropertyValues**(`documentOrExpanded`, `propertyFullNames`, `language?`): `Promise`\<([`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`)[]\>
+
+Get property values by their full expanded property names.
+
+#### Parameters
+
+##### documentOrExpanded
+
+[`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
+
+The JSON-LD document to get the property from or already expanded document.
+
+##### propertyFullNames
+
+`string`[]
+
+The full expanded property names.
+
+##### language?
+
+`string`
+
+Optional filter values by their language property.
+
+#### Returns
+
+`Promise`\<([`IJsonLdNodePrimitive`](../type-aliases/IJsonLdNodePrimitive.md)[] \| `undefined`)[]\>
+
+Matching property values for each input property, in the same index order.
+
+***
+
+### prefixProperties() {#prefixproperties}
+
+> `static` **prefixProperties**\<`T`\>(`nodeObject`, `prefix`, `properties?`): [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+Prefix all properties in the document with the provided prefix, except for JSON-LD properties.
+This is useful for ensuring that all properties are fully qualified with a namespace.
+For example, if the prefix is "ex" and the document has a property "name", it will be transformed to "ex:name".
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+#### Parameters
+
+##### nodeObject
+
+`T`
+
+The JSON-LD node object to prefix properties on.
+
+##### prefix
+
+`string`
+
+The prefix to add to the properties.
+
+##### properties?
+
+`string`[]
+
+Optional list of properties to prefix. If not provided, all properties except for JSON-LD properties.
+
+#### Returns
+
+[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+A new JSON-LD node object with the properties prefixed.
+
+***
+
+### stripPrefixProperties() {#stripprefixproperties}
+
+> `static` **stripPrefixProperties**\<`T`\>(`nodeObject`, `prefix`, `properties?`): [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+Strip a prefix from properties in the document, except for JSON-LD properties.
+This is useful for converting fully qualified namespaced properties back to local names.
+For example, if the prefix is "ex" and the document has a property "ex:name", it will be transformed to "name".
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+#### Parameters
+
+##### nodeObject
+
+`T`
+
+The JSON-LD node object to strip prefixed properties from.
+
+##### prefix
+
+`string`
+
+The prefix to remove from the properties.
+
+##### properties?
+
+`string`[]
+
+Optional list of unprefixed properties to strip. If not provided, all matching prefixed properties.
+
+#### Returns
+
+[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
+
+A new JSON-LD node object with the prefix stripped from matching properties.

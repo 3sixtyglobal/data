@@ -1,6 +1,7 @@
 {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"$id": "https://schema.twindev.org/json-ld/JsonLdGraphObject",
+	"title": "JsonLdGraphObject",
 	"description": "A graph object represents a named graph, which MAY include an explicit graph name.",
 	"type": "object",
 	"properties": {
@@ -11,12 +12,9 @@
 				},
 				{
 					"type": "array",
-					"items": false,
-					"prefixItems": [
-						{
-							"$ref": "https://schema.twindev.org/json-ld/JsonLdNodeObject"
-						}
-					]
+					"items": {
+						"$ref": "https://schema.twindev.org/json-ld/JsonLdNodeObject"
+					}
 				}
 			]
 		},
@@ -30,12 +28,9 @@
 				},
 				{
 					"type": "array",
-					"items": false,
-					"prefixItems": [
-						{
-							"type": "string"
-						}
-					]
+					"items": {
+						"type": "string"
+					}
 				}
 			]
 		},
@@ -45,6 +40,5 @@
 	},
 	"required": [
 		"@graph"
-	],
-	"additionalProperties": false
+	]
 }

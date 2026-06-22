@@ -8,12 +8,12 @@ https://www.w3.org/TR/json-ld11/#lists-and-sets
 
 ## Properties
 
-### @set
+### @set {#set}
 
 > **@set**: [`IJsonLdListOrSetItem`](../type-aliases/IJsonLdListOrSetItem.md) \| [`IJsonLdListOrSetItem`](../type-aliases/IJsonLdListOrSetItem.md)[]
 
 ***
 
-### @index?
+### @index? {#index}
 
-> `optional` **@index**: `string`
+> `optional` **@index?**: `string`

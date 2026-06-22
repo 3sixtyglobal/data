@@ -1,5 +1,6 @@
 {
-	"packages/data-core": "0.0.1-next.37",
-	"packages/data-json-ld": "0.0.1-next.37",
-	"packages/data-framework": "0.0.1-next.37"
+	"packages/data-core": "0.9.0-next.1",
+	"packages/data-json-ld": "0.9.0-next.1",
+	"packages/data-framework": "0.9.0-next.1",
+	"packages/data-json-path": "0.9.0-next.1"
 }

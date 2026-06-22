@@ -14,17 +14,61 @@ A helper for JSON schemas.
 
 ## Properties
 
-### SCHEMA\_VERSION
+### SCHEMA\_VERSION {#schema_version}
 
 > `readonly` `static` **SCHEMA\_VERSION**: `"https://json-schema.org/draft/2020-12/schema"` = `"https://json-schema.org/draft/2020-12/schema"`
 
-The schema version.
+The schema version 2020 (default).
+
+***
+
+### SCHEMA\_VERSION\_2019 {#schema_version_2019}
+
+> `readonly` `static` **SCHEMA\_VERSION\_2019**: `"https://json-schema.org/draft/2019-09/schema"` = `"https://json-schema.org/draft/2019-09/schema"`
+
+The schema version 2019.
 
 ## Methods
 
-### validate()
+### setLoggers() {#setloggers}
 
-> `static` **validate**\<`T`\>(`schema`, `data`, `additionalTypes?`): `Promise`\<[`ISchemaValidationResult`](../interfaces/ISchemaValidationResult.md)\>
+> `static` **setLoggers**(`loggers?`): `void`
+
+Set the loggers used during schema loading.
+
+#### Parameters
+
+##### loggers?
+
+Optional loggers for schema loading, useful when you have a lot of references in your schema and want to track the loading process.
+
+###### loadingSchema?
+
+(`uri`) => `Promise`\<`void`\>
+
+Called when a schema is being loaded.
+
+###### schemaLoaded?
+
+(`uri`) => `Promise`\<`void`\>
+
+Called when a schema has been successfully loaded.
+
+###### schemaLoadFailed?
+
+(`uri`, `error`) => `Promise`\<`void`\>
+
+Called when a schema fails to load.
+
+#### Returns
+
+`void`
+
+***
+
+### validate() {#validate}
+
+> `static` **validate**\<`T`\>(`schema`, `data`, `additionalTypes?`): `Promise`\<`IValidationFailure`[]\>
 
 Validates data against the schema.
 
@@ -54,15 +98,15 @@ Additional types to add for reference, not already in DataTypeHandlerFactory.
 
 #### Returns
 
-`Promise`\<[`ISchemaValidationResult`](../interfaces/ISchemaValidationResult.md)\>
+`Promise`\<`IValidationFailure`[]\>
 
 Result containing errors if there are any.
 
 ***
 
-### getPropertyType()
+### getPropertyType() {#getpropertytype}
 
-> `static` **getPropertyType**(`schema`, `propertyName`): `undefined` \| `string`
+> `static` **getPropertyType**(`schema`, `propertyName`): `string` \| `undefined`
 
 Get the property type from a schema.
 
@@ -82,13 +126,13 @@ The name of the property to get the type for.
 
 #### Returns
 
-`undefined` \| `string`
+`string` \| `undefined`
 
 The types of the property.
 
 ***
 
-### entitySchemaToJsonSchema()
+### entitySchemaToJsonSchema() {#entityschematojsonschema}
 
 > `static` **entitySchemaToJsonSchema**(`entitySchema`, `baseDomain?`): `SchemaObject`
 
@@ -98,9 +142,9 @@ Convert an entity schema to JSON schema e.g https://example.com/schemas/.
 
 ##### entitySchema
 
-The entity schema to convert.
+`IEntitySchema`\<`unknown`\> \| `undefined`
 
-`undefined` | `IEntitySchema`\<`unknown`\>
+The entity schema to convert.
 
 ##### baseDomain?
 

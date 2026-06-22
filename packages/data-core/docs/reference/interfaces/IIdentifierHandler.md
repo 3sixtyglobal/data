@@ -4,7 +4,7 @@ Interface describing a type which can handle a specific urn namespace.
 
 ## Properties
 
-### namespace
+### namespace {#namespace}
 
 > **namespace**: `string`
 
@@ -12,7 +12,7 @@ The namespace for the identifier.
 
 ## Methods
 
-### validate()
+### validate() {#validate}
 
 > **validate**(`propertyName`, `value`, `failures`): `boolean`
 

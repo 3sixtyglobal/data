@@ -14,11 +14,11 @@ JSON-LD Processor.
 
 ## Methods
 
-### setDocumentLoader()
+### setDocumentLoader() {#setdocumentloader}
 
 > `static` **setDocumentLoader**(`documentLoader`): `void`
 
-The document loader to use.
+Set the document loader used for retrieving JSON-LD documents.
 
 #### Parameters
 
@@ -34,31 +34,21 @@ The document loader to use.
 
 ***
 
-### getDocumentLoader()
+### getDocumentLoader() {#getdocumentloader}
 
 > `static` **getDocumentLoader**(): (`url`) => `Promise`\<`RemoteDocument`\>
 
-The document loader to use for retrieving JSON-LD documents.
+Get the document loader used for retrieving JSON-LD documents.
 
 #### Returns
 
-The document loader.
+The active document loader function.
 
-> (`url`): `Promise`\<`RemoteDocument`\>
-
-##### Parameters
-
-###### url
-
-`string`
-
-##### Returns
-
-`Promise`\<`RemoteDocument`\>
+(`url`) => `Promise`\<`RemoteDocument`\>
 
 ***
 
-### setCacheLimit()
+### setCacheLimit() {#setcachelimit}
 
 > `static` **setCacheLimit**(`cacheLimitMs`): `void`
 
@@ -78,7 +68,7 @@ The cache limit in milliseconds.
 
 ***
 
-### getCacheLimit()
+### getCacheLimit() {#getcachelimit}
 
 > `static` **getCacheLimit**(): `number`
 
@@ -88,15 +78,16 @@ Get the cache limit for documents.
 
 `number`
 
-The document loader.
+The cache limit in milliseconds.
 
 ***
 
-### setRedirects()
+### setRedirects() {#setredirects}
 
 > `static` **setRedirects**(`redirects`): `void`
 
-Set the global redirects for JSON-LD, use addRedirect for default handling.
+Replace the global redirect list (use [JsonLdProcessor.addRedirect](#addredirect) to append without replacing).
+Redirects run before any HTTP GET or `Link` discovery; use them for stable overrides, tests, or hosts that do not expose a suitable `Link` header.
 
 #### Parameters
 
@@ -112,7 +103,7 @@ The redirects to use.
 
 ***
 
-### getRedirects()
+### getRedirects() {#getredirects}
 
 > `static` **getRedirects**(): `object`[]
 
@@ -126,7 +117,35 @@ The registered redirects.
 
 ***
 
-### compact()
+### addRedirect() {#addredirect}
+
+> `static` **addRedirect**(`from`, `to`): `void`
+
+Append a redirect rule (ignored if the same `RegExp.source` is already registered).
+Optional when the vocabulary URL supports HTTP `Link` discovery (`rel` includes `alternate`, `type` is `application/ld+json`) via the default document loader.
+Standards packages often expose `registerRedirects()` helpers that call this method; those are optional for the same reason.
+
+#### Parameters
+
+##### from
+
+`RegExp`
+
+The URL to redirect from.
+
+##### to
+
+`string`
+
+The URL to redirect to.
+
+#### Returns
+
+`void`
+
+***
+
+### compact() {#compact}
 
 > `static` **compact**\<`T`\>(`document`, `context?`, `options?`): `Promise`\<`T`\>
 
@@ -170,7 +189,7 @@ The compacted JSON-LD document.
 
 ***
 
-### expand()
+### expand() {#expand}
 
 > `static` **expand**\<`T`\>(`compacted`): `Promise`\<[`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)[]\>
 
@@ -198,7 +217,7 @@ The expanded JSON-LD document.
 
 ***
 
-### canonize()
+### canonize() {#canonize}
 
 > `static` **canonize**\<`T`\>(`document`, `options?`): `Promise`\<`string`\>
 
@@ -236,35 +255,9 @@ The canonized document.
 
 ***
 
-### addRedirect()
+### combineContexts() {#combinecontexts}
 
-> `static` **addRedirect**(`from`, `to`): `void`
-
-Add a redirect to use during document resolution.
-
-#### Parameters
-
-##### from
-
-`RegExp`
-
-The URL to redirect from.
-
-##### to
-
-`string`
-
-The URL to redirect to.
-
-#### Returns
-
-`void`
-
-***
-
-### combineContexts()
-
-> `static` **combineContexts**(`context1`, `context2`): `undefined` \| [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
+> `static` **combineContexts**(`context1`, `context2`): [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
 Combine contexts.
 
@@ -272,27 +265,27 @@ Combine contexts.
 
 ##### context1
 
-The first JSON-LD context to combine.
+[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
-`undefined` | [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
+The first JSON-LD context to combine.
 
 ##### context2
 
-The second JSON-LD context to combine.
+[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
-`undefined` | [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
+The second JSON-LD context to combine.
 
 #### Returns
 
-`undefined` \| [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
+[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
 The combined context.
 
 ***
 
-### gatherContexts()
+### gatherContexts() {#gathercontexts}
 
-> `static` **gatherContexts**\<`T`\>(`element`, `initial?`): `undefined` \| [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
+> `static` **gatherContexts**\<`T`\>(`element`, `initial?`): [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
 Gather all the contexts from the element and it's children.
 
@@ -318,15 +311,15 @@ The initial context.
 
 #### Returns
 
-`undefined` \| [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
+[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
 The combined contexts.
 
 ***
 
-### removeContexts()
+### removeContexts() {#removecontexts}
 
-> `static` **removeContexts**(`context`, `match?`): `undefined` \| [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
+> `static` **removeContexts**(`context`, `match?`): [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
 Remove all the contexts that match the pattern.
 
@@ -334,9 +327,9 @@ Remove all the contexts that match the pattern.
 
 ##### context
 
-The context to remove the entries from.
+[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
-`undefined` | [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
+The context to remove the entries from.
 
 ##### match?
 
@@ -346,13 +339,13 @@ The element to try and match.
 
 #### Returns
 
-`undefined` \| [`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md)
+[`IJsonLdContextDefinitionRoot`](../type-aliases/IJsonLdContextDefinitionRoot.md) \| `undefined`
 
 The updated contexts.
 
 ***
 
-### documentCacheAdd()
+### documentCacheAdd() {#documentcacheadd}
 
 > `static` **documentCacheAdd**(`url`, `ldContext`): `Promise`\<`void`\>
 
@@ -376,11 +369,11 @@ The context to add.
 
 `Promise`\<`void`\>
 
-Nothing.
+A promise that resolves when the entry has been stored in the cache.
 
 ***
 
-### documentCacheRemove()
+### documentCacheRemove() {#documentcacheremove}
 
 > `static` **documentCacheRemove**(`url`): `Promise`\<`void`\>
 
@@ -398,4 +391,4 @@ The url the ld context is for.
 
 `Promise`\<`void`\>
 
-Nothing.
+A promise that resolves when the entry has been removed from the cache.

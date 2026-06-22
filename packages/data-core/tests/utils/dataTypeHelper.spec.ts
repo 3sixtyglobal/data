@@ -1,15 +1,13 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { I18n, Validation, type IValidationFailure } from "@twin.org/core";
-import { DataTypeHandlerFactory } from "../../src/factories/dataTypeHandlerFactory";
-import { DataTypeHelper } from "../../src/utils/dataTypeHelper";
+import { Validation, type IValidationFailure } from "@twin.org/core";
+import { DataTypeHandlerFactory } from "../../src/factories/dataTypeHandlerFactory.js";
+import { DataTypeHelper } from "../../src/utils/dataTypeHelper.js";
 
 describe("DataTypeHelper", () => {
 	beforeAll(async () => {
-		I18n.addDictionary("en", await import("../../locales/en.json"));
-
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			defaultValue: "",
 			jsonSchema: async () => ({
@@ -53,7 +51,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can validate an object that has no validate method or schema", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test"
 		}));
 		const validationFailures: IValidationFailure[] = [];
@@ -65,7 +63,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can validate an object that has a validate method and no schema", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			validate: async () => false
 		}));
@@ -78,7 +76,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can validate an object that has no validate method and a schema", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			jsonSchema: async () => ({
 				type: "string"
@@ -93,7 +91,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can fail to validate an object that has no validate method and a schema", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			jsonSchema: async () => ({
 				type: "string"
@@ -103,35 +101,86 @@ describe("DataTypeHelper", () => {
 		const validation = await DataTypeHelper.validate("value", "test", 123, validationFailures);
 
 		expect(validation).toEqual(false);
-		expect(validationFailures).toEqual([
-			{
-				property: "value",
-				reason: "validation.schema.failedValidation",
-				properties: {
-					value: 123,
-					schemaErrors: [
-						{
-							instancePath: "",
-							keyword: "type",
-							message: "must be string",
-							params: {
-								type: "string"
-							},
-							schemaPath: "#/type"
-						}
-					],
-					message: "must be string"
-				}
+		expect(validationFailures).toHaveLength(1);
+		expect(validationFailures[0]).toEqual({
+			property: "value",
+			reason: "validation.schemaFailed",
+			properties: {
+				keyword: "type",
+				message: "must be string",
+				params: {
+					type: "string"
+				},
+				schemaPath: "#/type"
 			}
-		]);
-		expect(
-			I18n.formatMessage(`error.${validationFailures[0].reason}`, validationFailures[0].properties)
-		).toEqual("The JSON schema failed validation, must be string");
+		});
+	});
+
+	test("Can include nested property path for complex object schema failures", async () => {
+		DataTypeHandlerFactory.register("test", () => ({
+			namespace: "test",
+			type: "test",
+			jsonSchema: async () => ({
+				type: "object",
+				properties: {
+					profile: {
+						type: "object",
+						properties: {
+							addresses: {
+								type: "array",
+								items: {
+									type: "object",
+									properties: {
+										postalCode: {
+											type: "string",
+											pattern: "^[A-Z]{2}[0-9]{2}$"
+										}
+									},
+									required: ["postalCode"]
+								}
+							}
+						},
+						required: ["addresses"]
+					}
+				},
+				required: ["profile"]
+			})
+		}));
+		const validationFailures: IValidationFailure[] = [];
+		const validation = await DataTypeHelper.validate(
+			"value",
+			"test",
+			{
+				profile: {
+					addresses: [
+						{
+							postalCode: "bad"
+						}
+					]
+				}
+			},
+			validationFailures
+		);
+
+		expect(validation).toEqual(false);
+		expect(validationFailures).toHaveLength(1);
+		expect(validationFailures[0]).toEqual({
+			property: "value.profile.addresses.0.postalCode",
+			reason: "validation.schemaFailed",
+			properties: {
+				keyword: "pattern",
+				message: 'must match pattern "^[A-Z]{2}[0-9]{2}$"',
+				params: {
+					pattern: "^[A-Z]{2}[0-9]{2}$"
+				},
+				schemaPath: "#/properties/profile/properties/addresses/items/properties/postalCode/pattern"
+			}
+		});
 	});
 
 	test("Can validate with missing type and no option set", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			jsonSchema: async () => ({
 				type: "string"
@@ -148,7 +197,7 @@ describe("DataTypeHelper", () => {
 
 	test("Can fail to validate with missing type and option set", async () => {
 		DataTypeHandlerFactory.register("test", () => ({
-			context: "test",
+			namespace: "test",
 			type: "test",
 			jsonSchema: async () => ({
 				type: "string"

@@ -1,6 +1,6 @@
 # TWIN Framework Data
 
-Models which define the structure of framework types.
+This package provides framework data models that define common structures consumed by other packages in the repository. It centralises shared domain shapes so integrations can rely on clearer contracts and maintain semantic consistency as the ecosystem evolves.
 
 ## Installation
 
