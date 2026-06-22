@@ -1,7 +1,6 @@
 # Class: JsonPathHelper
 
 Helper class for JSONPath operations.
-Provides abstraction over the json-p3 library.
 
 ## Constructors
 
@@ -19,7 +18,7 @@ Provides abstraction over the json-p3 library.
 
 > `readonly` `static` **CLASS\_NAME**: `string`
 
-The name of the class name of the JsonPathHelper class.
+The class name.
 
 ## Methods
 
@@ -151,7 +150,7 @@ GeneralError if the path is invalid or data cannot be queried.
 
 > `static` **validate**(`path`): `boolean`
 
-Validate if a JSONPath query is valid.
+Validate if a JSONPath query string has valid syntax.
 
 #### Parameters
 
@@ -165,11 +164,11 @@ The JSONPath query string to validate.
 
 `boolean`
 
-True if the syntax is valid.
+True if the syntax is valid, false if the path is empty or not a string.
 
 #### Throws
 
-GeneralError if the path is invalid or data cannot be queried.
+GeneralError if an unexpected error occurs during syntax checking.
 
 ***
 

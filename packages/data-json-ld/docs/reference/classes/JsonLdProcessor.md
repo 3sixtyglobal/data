@@ -18,7 +18,7 @@ JSON-LD Processor.
 
 > `static` **setDocumentLoader**(`documentLoader`): `void`
 
-The document loader to use.
+Set the document loader used for retrieving JSON-LD documents.
 
 #### Parameters
 
@@ -38,11 +38,11 @@ The document loader to use.
 
 > `static` **getDocumentLoader**(): (`url`) => `Promise`\<`RemoteDocument`\>
 
-The document loader to use for retrieving JSON-LD documents.
+Get the document loader used for retrieving JSON-LD documents.
 
 #### Returns
 
-The document loader.
+The active document loader function.
 
 (`url`) => `Promise`\<`RemoteDocument`\>
 
@@ -78,7 +78,7 @@ Get the cache limit for documents.
 
 `number`
 
-The document loader.
+The cache limit in milliseconds.
 
 ***
 
@@ -369,7 +369,7 @@ The context to add.
 
 `Promise`\<`void`\>
 
-Nothing.
+A promise that resolves when the entry has been stored in the cache.
 
 ***
 
@@ -391,4 +391,4 @@ The url the ld context is for.
 
 `Promise`\<`void`\>
 
-Nothing.
+A promise that resolves when the entry has been removed from the cache.

@@ -56,7 +56,7 @@ The JSON schema for the type.
 
 > `static` **registerTypes**(`namespace`, `jsonLdContext`, `typeDefinition`): `void`
 
-Register a  list of types.
+Register a list of types.
 
 #### Parameters
 
