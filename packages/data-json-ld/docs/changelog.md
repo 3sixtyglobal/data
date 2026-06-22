@@ -1,5 +1,54 @@
 # Changelog
 
+## [0.9.0-next.1](https://github.com/iotaledger/twin-data/compare/data-json-ld-v0.9.0-next.0...data-json-ld-v0.9.0-next.1) (2026-06-22)
+
+
+### Features
+
+* add context id features ([#25](https://github.com/iotaledger/twin-data/issues/25)) ([6592f2e](https://github.com/iotaledger/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
+* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* add fail on missing type option and both mode ([e8b9702](https://github.com/iotaledger/twin-data/commit/e8b97029a04b646497ff0e55b9610291e58ae92a))
+* add json ld helper types ([#46](https://github.com/iotaledger/twin-data/issues/46)) ([22e998e](https://github.com/iotaledger/twin-data/commit/22e998e29e7eadc9202026ee9743d64ed98035df))
+* add JsonLdHelper getId and getType ([4b43e41](https://github.com/iotaledger/twin-data/commit/4b43e41fa47a16a19d2c759f5e40a1fb51e0a128))
+* add JsonLdHelper.toNodeObject method ([93f2add](https://github.com/iotaledger/twin-data/commit/93f2add1948f168d7a21223929cf6c65a8115f6f))
+* add toStructuredObject ([58354e0](https://github.com/iotaledger/twin-data/commit/58354e0096c917f2e2e64214107d68326c79260d))
+* add validate-locales ([cf9b761](https://github.com/iotaledger/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
+* additional JSON-LD helper types ([575627c](https://github.com/iotaledger/twin-data/commit/575627c707e691086e07163dac44ba1396ac322e))
+* additional json-ld helpers ([c74cbd6](https://github.com/iotaledger/twin-data/commit/c74cbd60e423c5f780243da9868723e9d54d068a))
+* additional JsonLdHelper methods ([#44](https://github.com/iotaledger/twin-data/issues/44)) ([ebe2cf5](https://github.com/iotaledger/twin-data/commit/ebe2cf50d1a7fbe0474f0a556d49f43eb7767a2f))
+* discover JSON-LD context via HTTP Link ([#62](https://github.com/iotaledger/twin-data/issues/62)) ([5545864](https://github.com/iotaledger/twin-data/commit/5545864c08e8c42fb93844f552907648a1130b64))
+* eslint migration to flat config ([b0db6e6](https://github.com/iotaledger/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
+* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* expand JsonLdHelper.getId with custom properties names ([8ec4dcf](https://github.com/iotaledger/twin-data/commit/8ec4dcf807a6dc416b2df2a77749f841a60be05f))
+* improve data type registration ([#34](https://github.com/iotaledger/twin-data/issues/34)) ([855d110](https://github.com/iotaledger/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
+* publish npm await ([7bdf0cd](https://github.com/iotaledger/twin-data/commit/7bdf0cd5d9417e7f8811f295ccf3ab3403ae3753))
+* support multiple type JSON-LD ([8f0d530](https://github.com/iotaledger/twin-data/commit/8f0d530f66302ab19413ecf968f170f97456e31e))
+* typescript 6 update ([44cbfe8](https://github.com/iotaledger/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
+* update context naming ([#37](https://github.com/iotaledger/twin-data/issues/37)) ([9d99360](https://github.com/iotaledger/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
+* update dependencies ([b622475](https://github.com/iotaledger/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
+* update framework core ([c077b8c](https://github.com/iotaledger/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
+* update schemas ([c30159c](https://github.com/iotaledger/twin-data/commit/c30159cd24e5f60f9124752738dd1c0312ee17dd))
+* update ts-to-schema ([8c3cd91](https://github.com/iotaledger/twin-data/commit/8c3cd9131113f2d609f6e709562402e5c7766c1a))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use local LD context fixture in tests instead of remotes ([#60](https://github.com/iotaledger/twin-data/issues/60)) ([df18303](https://github.com/iotaledger/twin-data/commit/df18303301f031a5032850c900eea24b094a99a5))
+* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* use updated Is.function ([46a4715](https://github.com/iotaledger/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
+* use updated JSON schema specs ([465223a](https://github.com/iotaledger/twin-data/commit/465223a9e9c24af546480ef084327a78fa366eaa))
+
+
+### Bug Fixes
+
+* add redirect remove duplicates ([49709e0](https://github.com/iotaledger/twin-data/commit/49709e04cf087e216f4c9e36a9f35daceeae98fd))
+* handle possible undefined array ([094d188](https://github.com/iotaledger/twin-data/commit/094d1887b9f280ffa035d6a1f811a943184f4655))
+* itemListElement compaction override ([d908a10](https://github.com/iotaledger/twin-data/commit/d908a1043d7792e31b3101221d17850757b6c2a6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.9.0-next.0 to 0.9.0-next.1
+
 ## [0.0.3-next.26](https://github.com/iotaledger/twin-data/compare/data-json-ld-v0.0.3-next.25...data-json-ld-v0.0.3-next.26) (2026-06-05)
 
 
