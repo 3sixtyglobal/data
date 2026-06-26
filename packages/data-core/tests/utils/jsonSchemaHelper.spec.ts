@@ -785,7 +785,14 @@ describe("JsonSchemaHelper", () => {
 		const getSpy = vi.spyOn(SharedStore, "get");
 		const setSpy = vi.spyOn(SharedStore, "set");
 
-		getSpy.mockImplementation((key: string) => cache.get(key));
+		getSpy.mockImplementation((key: string, factory?: () => unknown) => {
+			if (!cache.has(key) && factory !== undefined) {
+				const value = factory();
+				cache.set(key, value);
+				return value;
+			}
+			return cache.get(key);
+		});
 		setSpy.mockImplementation((key: string, value: unknown) => {
 			cache.set(key, value);
 		});
@@ -820,7 +827,14 @@ describe("JsonSchemaHelper", () => {
 		const getSpy = vi.spyOn(SharedStore, "get");
 		const setSpy = vi.spyOn(SharedStore, "set");
 
-		getSpy.mockImplementation((key: string) => cache.get(key));
+		getSpy.mockImplementation((key: string, factory?: () => unknown) => {
+			if (!cache.has(key) && factory !== undefined) {
+				const value = factory();
+				cache.set(key, value);
+				return value;
+			}
+			return cache.get(key);
+		});
 		setSpy.mockImplementation((key: string, value: unknown) => {
 			cache.set(key, value);
 		});

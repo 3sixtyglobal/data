@@ -68,12 +68,7 @@ export class JsonLdProcessor {
 	 * @returns The cache limit in milliseconds.
 	 */
 	public static getCacheLimit(): number {
-		let cacheLimitMs = SharedStore.get<number>("jsonLdDocumentCacheLimit");
-		if (Is.empty(cacheLimitMs)) {
-			cacheLimitMs = 3600000;
-			SharedStore.set("jsonLdDocumentCacheLimit", cacheLimitMs);
-		}
-		return cacheLimitMs;
+		return SharedStore.get<number>("jsonLdDocumentCacheLimit", () => 3600000);
 	}
 
 	/**
@@ -98,17 +93,12 @@ export class JsonLdProcessor {
 		from: RegExp;
 		to: string;
 	}[] {
-		let redirects = SharedStore.get<
+		return SharedStore.get<
 			{
 				from: RegExp;
 				to: string;
 			}[]
-		>("jsonLdRedirects");
-		if (Is.empty(redirects)) {
-			redirects = [];
-			SharedStore.set("jsonLdRedirects", redirects);
-		}
-		return redirects;
+		>("jsonLdRedirects", () => []);
 	}
 
 	/**
