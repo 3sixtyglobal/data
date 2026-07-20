@@ -175,11 +175,17 @@ The context to compact the document to, if not provided will use the one in the 
 
 The options for compacting the document.
 
-###### itemListOverride
+###### compactArrays?
 
 `boolean`
 
-Whether to override the itemListElement context with a set, defaults to true.
+Whether to allow single-item arrays to be compacted to scalars, defaults to true (matches jsonld.js default behaviour). Set to false to preserve all single-item arrays.
+
+###### noCompactProperties?
+
+`string`[]
+
+Additional dot-notation property paths that must always remain arrays, merged with the built-in always-array set.
 
 #### Returns
 
