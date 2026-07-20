@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.9.1-next.2](https://github.com/iotaledger/twin-data/compare/data-json-ld-v0.9.1-next.1...data-json-ld-v0.9.1-next.2) (2026-07-20)
+
+
+### Features
+
+* array compaction options ([#86](https://github.com/iotaledger/twin-data/issues/86)) ([e20ddf2](https://github.com/iotaledger/twin-data/commit/e20ddf2c482d90cead1e672faad6292d6fa168c9))
+* update components ([54901e4](https://github.com/iotaledger/twin-data/commit/54901e4032d0a072ab1afc601a92d54f96f16e9b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.9.1-next.1 to 0.9.1-next.2
+
 ## [0.9.1-next.1](https://github.com/iotaledger/twin-data/compare/data-json-ld-v0.9.1-next.0...data-json-ld-v0.9.1-next.1) (2026-06-26)
 
 

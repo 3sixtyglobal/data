@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.9.1-next.2](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.1-next.1...data-framework-v0.9.1-next.2) (2026-07-20)
+
+
+### Miscellaneous Chores
+
+* **data-framework:** Synchronize repo versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.9.1-next.1 to 0.9.1-next.2
+    * @twin.org/data-json-ld bumped from 0.9.1-next.1 to 0.9.1-next.2
+
 ## [0.9.1-next.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.1-next.0...data-framework-v0.9.1-next.1) (2026-06-26)
 
 

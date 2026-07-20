@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1-next.2](https://github.com/iotaledger/twin-data/compare/data-core-v0.9.1-next.1...data-core-v0.9.1-next.2) (2026-07-20)
+
+
+### Features
+
+* update components ([54901e4](https://github.com/iotaledger/twin-data/commit/54901e4032d0a072ab1afc601a92d54f96f16e9b))
+
 ## [0.9.1-next.1](https://github.com/iotaledger/twin-data/compare/data-core-v0.9.1-next.0...data-core-v0.9.1-next.1) (2026-06-26)
 
 
