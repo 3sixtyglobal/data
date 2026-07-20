@@ -35,6 +35,14 @@ export class JsonLdProcessor {
 	private static readonly _MAX_LINK_DISCOVERY_DEPTH = 1;
 
 	/**
+	 * Properties that must always be arrays after compaction, regardless of the compactArrays option.
+	 * @internal
+	 */
+	private static readonly _NO_COMPACT_ARRAY_PROPERTIES: ReadonlySet<string> = new Set([
+		"itemListElement"
+	]);
+
+	/**
 	 * Set the document loader used for retrieving JSON-LD documents.
 	 * @param documentLoader The document loader to use.
 	 */
@@ -120,13 +128,14 @@ export class JsonLdProcessor {
 	 * @param document The JSON-LD document to compact.
 	 * @param context The context to compact the document to, if not provided will use the one in the document.
 	 * @param options The options for compacting the document.
-	 * @param options.itemListOverride Whether to override the itemListElement context with a set, defaults to true.
+	 * @param options.compactArrays Whether to allow single-item arrays to be compacted to scalars, defaults to true (matches jsonld.js default behaviour). Set to false to preserve all single-item arrays.
+	 * @param options.noCompactProperties Additional dot-notation property paths that must always remain arrays, merged with the built-in always-array set.
 	 * @returns The compacted JSON-LD document.
 	 */
 	public static async compact<T>(
 		document: T,
 		context?: IJsonLdContextDefinitionRoot,
-		options?: { itemListOverride: boolean }
+		options?: { compactArrays?: boolean; noCompactProperties?: string[] }
 	): Promise<T> {
 		try {
 			if (Is.object<IJsonLdNodeObject>(document)) {
@@ -135,32 +144,14 @@ export class JsonLdProcessor {
 					context = document["@context"];
 				}
 
-				const overrideListElementOption = options?.itemListOverride ?? true;
-				let overrideContext: IJsonLdContextDefinitionElement | undefined;
-
-				if (overrideListElementOption) {
-					// The compactArrays flag doesn't work with the current version of jsonld.js
-					// For list results we standardise on ItemList and itemListElement
-					// so we modify the schema.org type for itemListElement to be a set which bypasses the issue
-					// https://github.com/digitalbazaar/jsonld.js/issues/247
-					overrideContext = {
-						itemListElement: {
-							"@id": "http://schema.org/itemListElement",
-							"@container": "@set",
-							"@protected": true
-						}
-					};
-
-					if (Is.object(context) && "@context" in context) {
-						// If the context is an object, we need to merge it with the override context
-						context = JsonLdProcessor.combineContexts(
-							context["@context"] as IJsonLdContextDefinitionRoot,
-							overrideContext
-						);
-					} else {
-						// If the context is a string or an array, we need to merge it with the override context
-						context = JsonLdProcessor.combineContexts(context, overrideContext);
+				const pathsToRestore = new Set<string>(JsonLdProcessor._NO_COMPACT_ARRAY_PROPERTIES);
+				if (Is.arrayValue(options?.noCompactProperties)) {
+					for (const p of options.noCompactProperties) {
+						pathsToRestore.add(p);
 					}
+				}
+				if (!(options?.compactArrays ?? true)) {
+					JsonLdProcessor.gatherArrayPropertyPaths(document, pathsToRestore);
 				}
 
 				const compacted = await jsonLd.compact(
@@ -171,12 +162,7 @@ export class JsonLdProcessor {
 					}
 				);
 
-				if (!Is.empty(overrideContext)) {
-					// Remove the override context from the compacted document
-					compacted["@context"] = JsonLdProcessor.removeContexts(compacted["@context"], [
-						overrideContext
-					]);
-				}
+				JsonLdProcessor.expandArrayProperties(compacted, pathsToRestore);
 
 				return compacted as T;
 			}
@@ -567,6 +553,73 @@ export class JsonLdProcessor {
 				}
 			}
 			throw errLd;
+		}
+	}
+
+	/**
+	 * Recursively collect dot-notation paths of all single-element array properties in an object,
+	 * skipping JSON-LD keywords (keys starting with "@"). Paths are added to the provided set.
+	 * @param obj The object to scan.
+	 * @param arrayPaths The accumulator set to add discovered paths to.
+	 * @param prefix The dot-path prefix accumulated from parent calls.
+	 * @internal
+	 */
+	private static gatherArrayPropertyPaths(
+		obj: { [key: string]: unknown },
+		arrayPaths: Set<string>,
+		prefix: string = ""
+	): void {
+		for (const key of Object.keys(obj)) {
+			if (!key.startsWith("@")) {
+				const path = prefix.length > 0 ? `${prefix}.${key}` : key;
+				const value = obj[key];
+				if (Is.array(value)) {
+					if (value.length === 1) {
+						arrayPaths.add(path);
+					}
+					for (const item of value) {
+						if (Is.object(item)) {
+							JsonLdProcessor.gatherArrayPropertyPaths(item, arrayPaths, path);
+						}
+					}
+				} else if (Is.object(value)) {
+					JsonLdProcessor.gatherArrayPropertyPaths(value, arrayPaths, path);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Recursively ensure that properties identified by dot-notation paths are arrays.
+	 * Properties that were collapsed to a single value during compaction are wrapped back into an array.
+	 * @param obj The object to update in place.
+	 * @param arrayPaths The set of dot-notation paths that must remain arrays.
+	 * @param prefix The dot-path prefix accumulated from parent calls.
+	 * @internal
+	 */
+	private static expandArrayProperties(
+		obj: { [key: string]: unknown },
+		arrayPaths: Set<string>,
+		prefix: string = ""
+	): void {
+		for (const key of Object.keys(obj)) {
+			if (!key.startsWith("@")) {
+				const path = prefix.length > 0 ? `${prefix}.${key}` : key;
+				const value = obj[key];
+				if (arrayPaths.has(path) && !Is.array(value)) {
+					obj[key] = [value];
+				}
+				const current = obj[key];
+				if (Is.array(current)) {
+					for (const item of current) {
+						if (Is.object(item)) {
+							JsonLdProcessor.expandArrayProperties(item, arrayPaths, path);
+						}
+					}
+				} else if (Is.object(current)) {
+					JsonLdProcessor.expandArrayProperties(current, arrayPaths, path);
+				}
+			}
 		}
 	}
 

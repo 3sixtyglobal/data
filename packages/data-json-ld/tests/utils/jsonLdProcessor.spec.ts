@@ -120,7 +120,7 @@ describe("JsonLdProcessor", () => {
 		});
 	});
 
-	test("Can compact a document and retain single item array", async () => {
+	test("Can compact a document and always retain itemListElement as single item array", async () => {
 		const doc: IJsonLdDocument = {
 			"@context": "https://schema.org",
 			type: "ItemList",
@@ -144,7 +144,7 @@ describe("JsonLdProcessor", () => {
 		});
 	});
 
-	test("Can compact a document and retain multi item array", async () => {
+	test("Can compact a document and always retain itemListElement as multi item array", async () => {
 		const doc: IJsonLdDocument = {
 			"@context": "https://schema.org",
 			type: "ItemList",
@@ -176,27 +176,181 @@ describe("JsonLdProcessor", () => {
 		});
 	});
 
-	test("Can compact a document and disable single item array override", async () => {
+	test("Can compact a document with compactArrays true collapses single item arrays", async () => {
 		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "Person",
+			name: ["Jane Doe"],
+			jobTitle: "Professor"
+		};
+		const compacted = await JsonLdProcessor.compact(doc, doc["@context"], {
+			compactArrays: true
+		});
+		expect(compacted).toEqual({
+			"@context": "https://schema.org",
+			type: "Person",
+			name: "Jane Doe",
+			jobTitle: "Professor"
+		});
+	});
+
+	test("Can compact a document with compactArrays false preserves single item arrays", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "Person",
+			name: ["Jane Doe"],
+			jobTitle: "Professor"
+		};
+		const compacted = await JsonLdProcessor.compact(doc, doc["@context"], { compactArrays: false });
+		expect(compacted).toEqual({
+			"@context": "https://schema.org",
+			type: "Person",
+			name: ["Jane Doe"],
+			jobTitle: "Professor"
+		});
+	});
+
+	test("Can compact a document with compactArrays does not affect scalar properties", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "Person",
+			name: "Jane Doe",
+			jobTitle: "Professor"
+		};
+		const compacted = await JsonLdProcessor.compact(doc, doc["@context"]);
+		expect(compacted).toEqual({
+			"@context": "https://schema.org",
+			type: "Person",
+			name: "Jane Doe",
+			jobTitle: "Professor"
+		});
+	});
+
+	test("Can compact a document with compactArrays true does not collapse multi item arrays", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "Person",
+			name: ["Jane Doe", "Jane Smith"],
+			jobTitle: "Professor"
+		};
+		const compacted = await JsonLdProcessor.compact(doc, doc["@context"], { compactArrays: true });
+		expect(compacted).toEqual({
+			"@context": "https://schema.org",
+			type: "Person",
+			name: ["Jane Doe", "Jane Smith"],
+			jobTitle: "Professor"
+		});
+	});
+
+	test("Can compact a document with compactArrays false preserves nested single item array in object", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "ItemList",
+			itemListElement: [
+				{
+					"@type": "ListItem",
+					name: ["First item"],
+					position: 1
+				}
+			]
+		};
+		const compacted = await JsonLdProcessor.compact(doc, doc["@context"], { compactArrays: false });
+		expect(compacted).toEqual({
 			"@context": "https://schema.org",
 			type: "ItemList",
 			itemListElement: [
 				{
-					dateCreated: "2025-05-08T07:24:11.757Z",
-					id: "did:iota:testnet:0x1a7bded4d22dc54722435d624e4323e10fcbc570cd57462eabbf3a5ab2ced24f"
+					type: "ListItem",
+					name: ["First item"],
+					position: 1
+				}
+			]
+		});
+	});
+
+	test("Can compact a document with noCompactProperties keeps a single specified path as array", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "Person",
+			name: ["Jane Doe"],
+			jobTitle: "Professor"
+		};
+		const compacted = await JsonLdProcessor.compact(doc, doc["@context"], {
+			compactArrays: true,
+			noCompactProperties: ["name"]
+		});
+		expect(compacted).toEqual({
+			"@context": "https://schema.org",
+			type: "Person",
+			name: ["Jane Doe"],
+			jobTitle: "Professor"
+		});
+	});
+
+	test("Can compact a document with noCompactProperties keeps multiple specified paths as arrays", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "Person",
+			name: ["Jane Doe"],
+			jobTitle: ["Professor"]
+		};
+		const compacted = await JsonLdProcessor.compact(doc, doc["@context"], {
+			compactArrays: true,
+			noCompactProperties: ["name", "jobTitle"]
+		});
+		expect(compacted).toEqual({
+			"@context": "https://schema.org",
+			type: "Person",
+			name: ["Jane Doe"],
+			jobTitle: ["Professor"]
+		});
+	});
+
+	test("Can compact a document with noCompactProperties only affects specified paths", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "Person",
+			name: ["Jane Doe"],
+			jobTitle: ["Professor"]
+		};
+		const compacted = await JsonLdProcessor.compact(doc, doc["@context"], {
+			compactArrays: true,
+			noCompactProperties: ["name"]
+		});
+		expect(compacted).toEqual({
+			"@context": "https://schema.org",
+			type: "Person",
+			name: ["Jane Doe"],
+			jobTitle: "Professor"
+		});
+	});
+
+	test("Can compact a document with noCompactProperties keeps nested path as array", async () => {
+		const doc: IJsonLdDocument = {
+			"@context": "https://schema.org",
+			"@type": "ItemList",
+			itemListElement: [
+				{
+					"@type": "ListItem",
+					name: ["First item"],
+					position: 1
 				}
 			]
 		};
 		const compacted = await JsonLdProcessor.compact(doc, doc["@context"], {
-			itemListOverride: false
+			compactArrays: true,
+			noCompactProperties: ["itemListElement.name"]
 		});
 		expect(compacted).toEqual({
 			"@context": "https://schema.org",
 			type: "ItemList",
-			itemListElement: {
-				dateCreated: "2025-05-08T07:24:11.757Z",
-				id: "did:iota:testnet:0x1a7bded4d22dc54722435d624e4323e10fcbc570cd57462eabbf3a5ab2ced24f"
-			}
+			itemListElement: [
+				{
+					type: "ListItem",
+					name: ["First item"],
+					position: 1
+				}
+			]
 		});
 	});
 
