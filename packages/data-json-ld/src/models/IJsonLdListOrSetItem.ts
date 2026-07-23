@@ -12,9 +12,4 @@ import type { IJsonLdValueObject } from "./IJsonLdValueObject.js";
  * A list or set item can be a null, boolean, number, string, node object, or value object.
  */
 export type IJsonLdListOrSetItem =
-	| null
-	| boolean
-	| number
-	| string
-	| IJsonLdNodeObject
-	| IJsonLdValueObject;
+	null | boolean | number | string | IJsonLdNodeObject | IJsonLdValueObject;

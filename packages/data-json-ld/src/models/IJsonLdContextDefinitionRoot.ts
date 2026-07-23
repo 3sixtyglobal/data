@@ -11,5 +11,4 @@ import type { IJsonLdContextDefinitionElement } from "./IJsonLdContextDefinition
  * A context definition root is used to define the root of a context definition.
  */
 export type IJsonLdContextDefinitionRoot =
-	| IJsonLdContextDefinitionElement
-	| IJsonLdContextDefinitionElement[];
+	IJsonLdContextDefinitionElement | IJsonLdContextDefinitionElement[];
