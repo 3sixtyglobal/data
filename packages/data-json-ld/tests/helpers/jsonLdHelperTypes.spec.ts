@@ -1,25 +1,23 @@
 // Copyright 2026 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import type {
-	JsonLdKeys,
-	JsonLdObjectWithAtId,
-	JsonLdObjectWithAtType,
-	JsonLdObjectWithNoContext,
-	JsonLdObjectWithNoAtId,
-	JsonLdObjectWithNoAtType,
-	JsonLdObjectWithNoId,
-	JsonLdObjectWithNoType,
-	JsonLdObjectWithAliases,
-	JsonLdObjectWithContext,
-	JsonLdObjectWithId,
-	JsonLdObjectWithOptionalAtId,
-	JsonLdObjectWithOptionalAtType,
-	JsonLdObjectWithOptionalContext,
-	JsonLdObjectWithOptionalId,
-	JsonLdObjectWithOptionalType,
-	JsonLdObjectWithType,
-	JsonLdWithAliases
-} from "../../src/index.js";
+import type { JsonLdKeys } from "../../src/helpers/jsonLdKeys.js";
+import type { JsonLdObjectWithAliases } from "../../src/helpers/jsonLdObjectWithAliases.js";
+import type { JsonLdObjectWithAtId } from "../../src/helpers/jsonLdObjectWithAtId.js";
+import type { JsonLdObjectWithAtType } from "../../src/helpers/jsonLdObjectWithAtType.js";
+import type { JsonLdObjectWithContext } from "../../src/helpers/jsonLdObjectWithContext.js";
+import type { JsonLdObjectWithId } from "../../src/helpers/jsonLdObjectWithId.js";
+import type { JsonLdObjectWithNoAtId } from "../../src/helpers/jsonLdObjectWithNoAtId.js";
+import type { JsonLdObjectWithNoAtType } from "../../src/helpers/jsonLdObjectWithNoAtType.js";
+import type { JsonLdObjectWithNoContext } from "../../src/helpers/jsonLdObjectWithNoContext.js";
+import type { JsonLdObjectWithNoId } from "../../src/helpers/jsonLdObjectWithNoId.js";
+import type { JsonLdObjectWithNoType } from "../../src/helpers/jsonLdObjectWithNoType.js";
+import type { JsonLdObjectWithOptionalAtId } from "../../src/helpers/jsonLdObjectWithOptionalAtId.js";
+import type { JsonLdObjectWithOptionalAtType } from "../../src/helpers/jsonLdObjectWithOptionalAtType.js";
+import type { JsonLdObjectWithOptionalContext } from "../../src/helpers/jsonLdObjectWithOptionalContext.js";
+import type { JsonLdObjectWithOptionalId } from "../../src/helpers/jsonLdObjectWithOptionalId.js";
+import type { JsonLdObjectWithOptionalType } from "../../src/helpers/jsonLdObjectWithOptionalType.js";
+import type { JsonLdObjectWithType } from "../../src/helpers/jsonLdObjectWithType.js";
+import type { JsonLdWithAliases } from "../../src/helpers/jsonLdWithAliases.js";
 
 interface ITestJsonLdShape {
 	"@id": string;
