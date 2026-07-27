@@ -1,6 +1,6 @@
 {
 	"name": "@twin.org/data-json-ld",
-	"version": "0.9.1-next.2",
+	"version": "0.9.1",
 	"description": "JSON-LD data models and helpers for working with linked data documents.",
 	"repository": {
 		"type": "git",
@@ -29,19 +29,19 @@
 		"dist:no-test": "npm run clean && npm run build && npm run test:build"
 	},
 	"dependencies": {
-		"@twin.org/core": "next",
-		"@twin.org/data-core": "0.9.1-next.2",
-		"@twin.org/entity": "next",
-		"@twin.org/nameof": "next",
-		"@twin.org/web": "next",
+		"@twin.org/core": "^0.9.1",
+		"@twin.org/data-core": "^0.9.1",
+		"@twin.org/entity": "^0.9.1",
+		"@twin.org/nameof": "^0.9.1",
+		"@twin.org/web": "^0.9.1",
 		"@types/jsonld": "1.5.15",
 		"jsonld": "9.0.0"
 	},
 	"devDependencies": {
-		"@twin.org/nameof-transformer": "next",
-		"@twin.org/nameof-vitest-plugin": "next",
-		"@twin.org/validate-locales": "next",
-		"@twin.org/ts-to-schema": "next",
+		"@twin.org/nameof-transformer": "^0.9.1",
+		"@twin.org/nameof-vitest-plugin": "^0.9.1",
+		"@twin.org/validate-locales": "^0.9.1",
+		"@twin.org/ts-to-schema": "^0.9.1",
 		"@vitest/coverage-v8": "4.1.10",
 		"copyfiles": "2.4.1",
 		"nodemon": "3.1.14",
