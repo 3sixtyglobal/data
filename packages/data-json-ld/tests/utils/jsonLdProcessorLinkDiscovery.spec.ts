@@ -204,7 +204,7 @@ describe("JsonLdProcessor Link header discovery", () => {
 
 				if (sameUrl(url, contextNs)) {
 					throw new Error(
-						`unexpected ${method} to namespace URL — redirect should have replaced it: ${url}`
+						`unexpected ${method} to namespace URL - redirect should have replaced it: ${url}`
 					);
 				}
 

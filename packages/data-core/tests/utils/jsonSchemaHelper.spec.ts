@@ -808,7 +808,7 @@ describe("JsonSchemaHelper", () => {
 		expect(failures2).toHaveLength(0);
 		expect(cache.has(`${JsonSchemaHelper.CLASS_NAME}2020`)).toBe(true);
 		expect(cache.has("asyncCache")).toBe(true);
-		// The AJV 2020 instance must be created exactly once — the second validate reuses it.
+		// The AJV 2020 instance must be created exactly once - the second validate reuses it.
 		// We only assert on this specific key rather than the total set-call count because
 		// AsyncCache / FetchHelper may also call SharedStore.set for their own caching.
 		expect(
@@ -851,7 +851,7 @@ describe("JsonSchemaHelper", () => {
 		expect(failures2).toHaveLength(0);
 		expect(cache.has(`${JsonSchemaHelper.CLASS_NAME}2019`)).toBe(true);
 		expect(cache.has("asyncCache")).toBe(true);
-		// The AJV 2019 instance must be created exactly once — the second validate reuses it.
+		// The AJV 2019 instance must be created exactly once - the second validate reuses it.
 		expect(
 			setSpy.mock.calls.filter(([key]) => key === `${JsonSchemaHelper.CLASS_NAME}2019`)
 		).toHaveLength(1);
