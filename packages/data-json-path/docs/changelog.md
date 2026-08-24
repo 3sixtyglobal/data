@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.9.2](https://github.com/iotaledger/twin-data/compare/data-json-path-v0.9.2...data-json-path-v0.9.2) (2026-08-24)
+
+
+### Features
+
+* release to production ([#82](https://github.com/iotaledger/twin-data/issues/82)) ([edd0d67](https://github.com/iotaledger/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
+* release to production ([#91](https://github.com/iotaledger/twin-data/issues/91)) ([6f77214](https://github.com/iotaledger/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
+* release to production ([#97](https://github.com/iotaledger/twin-data/issues/97)) ([7857485](https://github.com/iotaledger/twin-data/commit/7857485d50c22b005cd148d4686b736fdc4d5401))
+
 ## [0.9.2-next.1](https://github.com/iotaledger/twin-data/compare/data-json-path-v0.9.2-next.0...data-json-path-v0.9.2-next.1) (2026-08-07)
 
 
