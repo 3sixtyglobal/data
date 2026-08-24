@@ -465,7 +465,7 @@ export class JsonLdProcessor {
 		}
 
 		// response.url is "" for many mocked/synthetic Responses; Is.empty("") is false, but
-		// new URL(absoluteHref, "") throws — use a non-empty resolved URL as base only.
+		// new URL(absoluteHref, "") throws - use a non-empty resolved URL as base only.
 		const baseUrl = Is.stringValue(response.url) ? response.url : sourceUrl;
 
 		const alternateLinkHeaders = HeaderHelper.extractLinkHeaderRelations(

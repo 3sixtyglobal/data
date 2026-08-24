@@ -18,7 +18,17 @@
 		"**/wordlists/**",
 		"changelog.md"
 	],
-	"words": ["autorelease", "jsonld", "nameof", "Stiftung", "URDNA", "URGNA", "vocab", "abbrev"],
+	"words": [
+		"autorelease",
+		"hotfixes",
+		"jsonld",
+		"nameof",
+		"Stiftung",
+		"URDNA",
+		"URGNA",
+		"vocab",
+		"abbrev"
+	],
 	"ignoreRegExpList": [
 		"/from\\s+(['\"]).*\\1/",
 		"/eslint-disable.*/",
