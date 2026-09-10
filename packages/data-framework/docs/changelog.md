@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.9.3-next.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.3-next.0...data-framework-v0.9.3-next.1) (2026-09-10)
+
+
+### Features
+
+* add context id features ([#25](https://github.com/iotaledger/twin-data/issues/25)) ([6592f2e](https://github.com/iotaledger/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
+* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* add validate-locales ([cf9b761](https://github.com/iotaledger/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
+* eslint migration to flat config ([b0db6e6](https://github.com/iotaledger/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
+* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* improve data type registration ([#34](https://github.com/iotaledger/twin-data/issues/34)) ([855d110](https://github.com/iotaledger/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
+* typescript 6 update ([44cbfe8](https://github.com/iotaledger/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
+* update context naming ([#37](https://github.com/iotaledger/twin-data/issues/37)) ([9d99360](https://github.com/iotaledger/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
+* update dependencies ([b622475](https://github.com/iotaledger/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
+* update framework core ([c077b8c](https://github.com/iotaledger/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* use updated Is.function ([46a4715](https://github.com/iotaledger/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.9.3-next.0 to 0.9.3-next.1
+    * @twin.org/data-json-ld bumped from 0.9.3-next.0 to 0.9.3-next.1
+
 ## [0.9.2](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.2...data-framework-v0.9.2) (2026-08-24)
 
 

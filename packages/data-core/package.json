@@ -1,6 +1,6 @@
 {
 	"name": "@twin.org/data-core",
-	"version": "0.9.3-next.0",
+	"version": "0.9.3-next.1",
 	"description": "Shared schema models, identifiers, and validation utilities used across the repository.",
 	"repository": {
 		"type": "git",
