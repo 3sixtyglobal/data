@@ -4,6 +4,7 @@ import {
 	AsyncCache,
 	BaseError,
 	Converter,
+	GeneralError,
 	type IError,
 	Is,
 	type IValidationFailure,
@@ -17,6 +18,7 @@ import { nameof } from "@twin.org/nameof";
 import { FetchHelper, HttpMethod } from "@twin.org/web";
 import Ajv2019 from "ajv/dist/2019.js";
 import Ajv2020 from "ajv/dist/2020.js";
+import type { AnyValidateFunction } from "ajv/dist/core.js";
 import formatsPlugin from "ajv-formats";
 import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory.js";
 import type { IJsonSchema } from "../models/IJsonSchema.js";
@@ -77,13 +79,19 @@ export class JsonSchemaHelper {
 	 * @param schema The schema to validate the data with.
 	 * @param data The data to be validated.
 	 * @param additionalTypes Additional types to add for reference, not already in DataTypeHandlerFactory.
+	 * @param options Options for the validation.
+	 * @param options.throwOnMissing Throw if a referenced schema cannot be loaded, instead of treating it as an empty schema which matches any value, defaults to false.
 	 * @returns Result containing errors if there are any.
+	 * @throws GeneralError if throwOnMissing is set and a referenced schema cannot be loaded.
 	 */
 	public static async validate<T = unknown>(
 		schema: IJsonSchema,
 		data: T,
-		additionalTypes?: { [id: string]: IJsonSchema }
+		additionalTypes?: { [id: string]: IJsonSchema },
+		options?: { throwOnMissing?: boolean }
 	): Promise<IValidationFailure[]> {
+		const throwOnMissing = options?.throwOnMissing ?? false;
+
 		let schemaId = schema.$id;
 
 		if (!Is.stringValue(schemaId)) {
@@ -94,7 +102,7 @@ export class JsonSchemaHelper {
 
 		const is2019Schema = schema.$schema === JsonSchemaHelper.SCHEMA_VERSION_2019;
 
-		const ajv = await JsonSchemaHelper.buildValidator(additionalTypes, is2019Schema);
+		const ajv = await JsonSchemaHelper.buildValidator(is2019Schema, throwOnMissing);
 
 		// Add the additional types provided by the user
 		if (Is.objectValue(additionalTypes)) {
@@ -111,14 +119,34 @@ export class JsonSchemaHelper {
 			}
 		}
 
-		let validateMethod = ajv.getSchema(schemaId);
-		if (Is.empty(validateMethod)) {
-			validateMethod = await AsyncCache.exec(
-				`${schemaId}.${is2019Schema ? "2019" : "2020"}`,
-				JsonSchemaHelper._COMPILE_CACHE_TTL_MS,
-				async () => ajv.compileAsync(schema)
-			);
-		}
+		// The lookup is routed through the cache keyed by the schema id so that a validation
+		// which starts while another one is still compiling the same schema waits for that
+		// compilation instead of calling getSchema itself. compileAsync adds the schema to AJV
+		// before it awaits its references, so a getSchema during that window would compile the
+		// partially populated schema synchronously and throw MissingRefError.
+		const validateMethod = await AsyncCache.exec<AnyValidateFunction<unknown>>(
+			JsonSchemaHelper.compileCacheKey(schemaId, is2019Schema, throwOnMissing),
+			JsonSchemaHelper._COMPILE_CACHE_TTL_MS,
+			async () => {
+				const compiled = ajv.getSchema(schemaId);
+				if (!Is.empty(compiled)) {
+					return compiled;
+				}
+
+				try {
+					return await ajv.compileAsync(schema);
+				} catch (error) {
+					// A failed compileAsync leaves the schema registered with its references
+					// unresolved, so any later getSchema for it would throw MissingRefError rather
+					// than retry the load. Remove it so the next attempt starts from scratch.
+					ajv.removeSchema(schemaId);
+					throw error;
+				}
+			},
+			// Failures are cached so that the callers waiting on this compilation are given its
+			// error, rather than each of them re-running the compilation concurrently.
+			true
+		);
 
 		await validateMethod(data);
 
@@ -249,23 +277,56 @@ export class JsonSchemaHelper {
 	}
 
 	/**
+	 * Build the shared store key for a validator instance.
+	 * @param is2019Schema Whether the validator is for the AJV 2019 schema version.
+	 * @param throwOnMissing Whether the validator throws when a reference cannot be loaded.
+	 * @returns The shared store key.
+	 * @internal
+	 */
+	private static validatorStoreKey(is2019Schema: boolean, throwOnMissing: boolean): string {
+		return `${JsonSchemaHelper.CLASS_NAME}${is2019Schema ? "2019" : "2020"}${throwOnMissing ? "ThrowOnMissing" : ""}`;
+	}
+
+	/**
+	 * Build the compile cache key for a schema on a validator instance.
+	 * @param schemaId The id of the schema being compiled.
+	 * @param is2019Schema Whether the validator is for the AJV 2019 schema version.
+	 * @param throwOnMissing Whether the validator throws when a reference cannot be loaded.
+	 * @returns The compile cache key.
+	 * @internal
+	 */
+	private static compileCacheKey(
+		schemaId: string,
+		is2019Schema: boolean,
+		throwOnMissing: boolean
+	): string {
+		// A compiled validator belongs to the instance it was compiled on, so the key of that
+		// instance is part of the cache key.
+		return `${JsonSchemaHelper.validatorStoreKey(is2019Schema, throwOnMissing)}.${schemaId}`;
+	}
+
+	/**
 	 * Build an AJV validator instance with the appropriate settings and schemas.
-	 * @param additionalTypes Additional types to add for reference, not already in DataTypeHandlerFactory.
 	 * @param is2019Schema Whether to use the AJV 2019 schema version.
+	 * @param throwOnMissing Whether a reference which cannot be loaded should throw instead of resolving to an empty schema.
 	 * @returns An AJV validator instance ready for validation.
 	 * @internal
 	 */
 	private static async buildValidator(
-		additionalTypes?: { [id: string]: IJsonSchema },
-		is2019Schema = false
+		is2019Schema = false,
+		throwOnMissing = false
 	): Promise<Ajv2020.Ajv2020 | Ajv2019.Ajv2019> {
+		// The behaviour on a missing reference is baked into the loadSchema of the instance,
+		// so each mode is cached separately.
+		const storeKey = JsonSchemaHelper.validatorStoreKey(is2019Schema, throwOnMissing);
+
 		if (is2019Schema) {
-			const cache = SharedStore.get<Ajv2019.Ajv2019>(`${JsonSchemaHelper.CLASS_NAME}2019`);
+			const cache = SharedStore.get<Ajv2019.Ajv2019>(storeKey);
 			if (Is.objectValue(cache)) {
 				return cache;
 			}
 		} else {
-			const cache = SharedStore.get<Ajv2020.Ajv2020>(`${JsonSchemaHelper.CLASS_NAME}2020`);
+			const cache = SharedStore.get<Ajv2020.Ajv2020>(storeKey);
 			if (Is.objectValue(cache)) {
 				return cache;
 			}
@@ -306,6 +367,16 @@ export class JsonSchemaHelper {
 					return result;
 				} catch (error) {
 					await JsonSchemaHelper._loggers?.schemaLoadFailed?.(uri, BaseError.fromError(error));
+
+					if (throwOnMissing) {
+						throw new GeneralError(
+							JsonSchemaHelper.CLASS_NAME,
+							"schemaLoadFailed",
+							{ uri },
+							BaseError.fromError(error)
+						);
+					}
+
 					// Failed to load remotely so return an empty object
 					// so the schema validation doesn't completely fail
 					return {};
@@ -316,10 +387,10 @@ export class JsonSchemaHelper {
 		let ajv;
 		if (is2019Schema) {
 			ajv = new Ajv2019.Ajv2019({ strict: false, ...params });
-			SharedStore.set<Ajv2019.Ajv2019>(`${JsonSchemaHelper.CLASS_NAME}2019`, ajv);
+			SharedStore.set<Ajv2019.Ajv2019>(storeKey, ajv);
 		} else {
 			ajv = new Ajv2020.Ajv2020(params);
-			SharedStore.set<Ajv2020.Ajv2020>(`${JsonSchemaHelper.CLASS_NAME}2020`, ajv);
+			SharedStore.set<Ajv2020.Ajv2020>(storeKey, ajv);
 		}
 
 		// There is an inconsistency in the types of the formats plugin,

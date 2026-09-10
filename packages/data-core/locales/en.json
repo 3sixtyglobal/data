@@ -1,5 +1,8 @@
 {
 	"error": {
+		"jsonSchemaHelper": {
+			"schemaLoadFailed": "Failed to load the referenced schema \"{uri}\""
+		},
 		"validation": {
 			"schema": {
 				"missingType": "Failed to validate as there is no handler for type \"{dataType}\""

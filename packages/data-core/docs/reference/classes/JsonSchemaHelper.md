@@ -68,7 +68,7 @@ Called when a schema fails to load.
 
 ### validate() {#validate}
 
-> `static` **validate**\<`T`\>(`schema`, `data`, `additionalTypes?`): `Promise`\<`IValidationFailure`[]\>
+> `static` **validate**\<`T`\>(`schema`, `data`, `additionalTypes?`, `options?`): `Promise`\<`IValidationFailure`[]\>
 
 Validates data against the schema.
 
@@ -96,11 +96,25 @@ The data to be validated.
 
 Additional types to add for reference, not already in DataTypeHandlerFactory.
 
+##### options?
+
+Options for the validation.
+
+###### throwOnMissing?
+
+`boolean`
+
+Throw if a referenced schema cannot be loaded, instead of treating it as an empty schema which matches any value, defaults to false.
+
 #### Returns
 
 `Promise`\<`IValidationFailure`[]\>
 
 Result containing errors if there are any.
+
+#### Throws
+
+GeneralError if throwOnMissing is set and a referenced schema cannot be loaded.
 
 ***
 
