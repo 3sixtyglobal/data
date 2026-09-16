@@ -1,6 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { AsyncCache, SharedStore } from "@twin.org/core";
+import { AsyncCache, type IValidationFailure, SharedStore } from "@twin.org/core";
 import { entity, property, EntitySchemaHelper, SortDirection } from "@twin.org/entity";
 import { FetchHelper } from "@twin.org/web";
 import { afterEach, describe, expect, test, vi } from "vitest";
@@ -951,6 +951,190 @@ describe("JsonSchemaHelper", () => {
 		expect(logCalls.failed.length).toBe(1);
 	});
 
+	describe("throwOnMissing", () => {
+		const throwStoreKey = `${JsonSchemaHelper.CLASS_NAME}2020ThrowOnMissing`;
+
+		afterEach(() => {
+			SharedStore.remove(throwStoreKey);
+			SharedStore.remove(`${JsonSchemaHelper.CLASS_NAME}2019ThrowOnMissing`);
+			AsyncCache.clearCache();
+			JsonSchemaHelper.setLoggers(undefined);
+			vi.restoreAllMocks();
+		});
+
+		function createMissingRefSchema(suffix: string): IJsonSchema {
+			return {
+				$schema: JsonSchemaHelper.SCHEMA_VERSION,
+				$id: `https://test.throw-on-missing.example/Entity-${suffix}`,
+				type: "object",
+				properties: {
+					mode: { $ref: `https://test.throw-on-missing.example/Modes-${suffix}` }
+				},
+				required: ["mode"]
+			};
+		}
+
+		test("Can accept anything for an unloadable reference by default", async () => {
+			vi.spyOn(FetchHelper, "fetchJson").mockRejectedValue(new Error("mocked fetch failure"));
+
+			const failures = await JsonSchemaHelper.validate(createMissingRefSchema("default"), {
+				mode: "unsupported"
+			});
+
+			expect(failures).toHaveLength(0);
+		});
+
+		test("Can throw for an unloadable reference when throwOnMissing is set", async () => {
+			vi.spyOn(FetchHelper, "fetchJson").mockRejectedValue(new Error("mocked fetch failure"));
+
+			const failed: string[] = [];
+			JsonSchemaHelper.setLoggers({
+				schemaLoadFailed: async (uri: string) => {
+					failed.push(uri);
+				}
+			});
+
+			await expect(
+				JsonSchemaHelper.validate(
+					createMissingRefSchema("throws"),
+					{ mode: "unsupported" },
+					undefined,
+					{ throwOnMissing: true }
+				)
+			).rejects.toMatchObject({
+				name: "GeneralError",
+				source: JsonSchemaHelper.CLASS_NAME,
+				message: "jsonSchemaHelper.schemaLoadFailed",
+				properties: {
+					uri: "https://test.throw-on-missing.example/Modes-throws"
+				}
+			});
+
+			// The failure is reported to the logger before it is thrown.
+			expect(failed).toEqual(["https://test.throw-on-missing.example/Modes-throws"]);
+		});
+
+		test("Can validate against a loadable reference when throwOnMissing is set", async () => {
+			const refId = "https://test.throw-on-missing.example/Modes-loadable";
+
+			vi.spyOn(FetchHelper, "fetchJson").mockResolvedValue({
+				$schema: JsonSchemaHelper.SCHEMA_VERSION,
+				$id: refId,
+				type: "string",
+				enum: ["read", "write"]
+			});
+
+			const schema: IJsonSchema = {
+				$schema: JsonSchemaHelper.SCHEMA_VERSION,
+				$id: "https://test.throw-on-missing.example/Entity-loadable",
+				type: "object",
+				properties: {
+					mode: { $ref: refId }
+				},
+				required: ["mode"]
+			};
+
+			const failures = await JsonSchemaHelper.validate(schema, { mode: "unsupported" }, undefined, {
+				throwOnMissing: true
+			});
+
+			expect(failures).toHaveLength(1);
+			expect(failures[0].properties?.keyword).toEqual("enum");
+		});
+
+		test("Can throw the same error for every concurrent caller when throwOnMissing is set", async () => {
+			vi.spyOn(FetchHelper, "fetchJson").mockImplementation(async () => {
+				await new Promise(resolve => {
+					setTimeout(resolve, 200);
+				});
+				throw new Error("mocked fetch failure");
+			});
+
+			const schema = createMissingRefSchema("concurrent");
+
+			// The later calls land while the first compile is still awaiting the reference, so
+			// they wait on it rather than compiling the partially populated schema themselves.
+			const validateAfter = async (delayMs: number): Promise<unknown> => {
+				await new Promise(resolve => {
+					setTimeout(resolve, delayMs);
+				});
+				return JsonSchemaHelper.validate(schema, { mode: "unsupported" }, undefined, {
+					throwOnMissing: true
+				});
+			};
+
+			const results = await Promise.allSettled([
+				validateAfter(0),
+				validateAfter(50),
+				validateAfter(100)
+			]);
+
+			for (const result of results) {
+				expect(result.status).toEqual("rejected");
+				expect((result as PromiseRejectedResult).reason).toMatchObject({
+					name: "GeneralError",
+					message: "jsonSchemaHelper.schemaLoadFailed",
+					properties: {
+						uri: "https://test.throw-on-missing.example/Modes-concurrent"
+					}
+				});
+			}
+		});
+
+		test("Can retry a failed compile once the reference becomes loadable", async () => {
+			const schema = createMissingRefSchema("retry");
+			const refId = "https://test.throw-on-missing.example/Modes-retry";
+
+			const fetchSpy = vi
+				.spyOn(FetchHelper, "fetchJson")
+				.mockRejectedValueOnce(new Error("mocked fetch failure"))
+				.mockResolvedValue({
+					$schema: JsonSchemaHelper.SCHEMA_VERSION,
+					$id: refId,
+					type: "string",
+					enum: ["read", "write"]
+				});
+
+			await expect(
+				JsonSchemaHelper.validate(schema, { mode: "unsupported" }, undefined, {
+					throwOnMissing: true
+				})
+			).rejects.toThrow();
+
+			// The failed compile is removed from AJV, so the retry resolves the reference rather
+			// than throwing MissingRefError for the schema left behind by the first attempt.
+			AsyncCache.clearCache();
+
+			const failures = await JsonSchemaHelper.validate(schema, { mode: "unsupported" }, undefined, {
+				throwOnMissing: true
+			});
+
+			expect(failures).toHaveLength(1);
+			expect(failures[0].properties?.keyword).toEqual("enum");
+			expect(fetchSpy).toHaveBeenCalledTimes(2);
+		});
+
+		test("Can use a separate validator instance for throwOnMissing", async () => {
+			vi.spyOn(FetchHelper, "fetchJson").mockRejectedValue(new Error("mocked fetch failure"));
+
+			expect(SharedStore.get(throwStoreKey)).toBeUndefined();
+
+			await expect(
+				JsonSchemaHelper.validate(
+					createMissingRefSchema("separate"),
+					{ mode: "unsupported" },
+					undefined,
+					{ throwOnMissing: true }
+				)
+			).rejects.toThrow();
+
+			expect(SharedStore.get(throwStoreKey)).toBeDefined();
+			expect(SharedStore.get(`${JsonSchemaHelper.CLASS_NAME}2020`)).not.toEqual(
+				SharedStore.get(throwStoreKey)
+			);
+		});
+	});
+
 	describe("contentEncoding base64 validation", () => {
 		test("Can validate a valid base64 string when contentEncoding is base64", async () => {
 			const schema: IJsonSchema = {
@@ -1113,6 +1297,53 @@ describe("JsonSchemaHelper", () => {
 			for (const failures of results) {
 				expect(failures).toHaveLength(0);
 			}
+		});
+
+		test("staggered cold validate waits for the in-flight compile of the same schema id", async () => {
+			const refId = "https://test.concurrent-compile.example/StaggeredModes";
+			const loadDelayMs = 200;
+
+			vi.spyOn(FetchHelper, "fetchJson").mockImplementation(async () => {
+				await new Promise(resolve => {
+					setTimeout(resolve, loadDelayMs);
+				});
+				return {
+					$schema: JsonSchemaHelper.SCHEMA_VERSION,
+					$id: refId,
+					type: "string",
+					enum: ["read", "write"]
+				};
+			});
+
+			const schema: IJsonSchema = {
+				$schema: JsonSchemaHelper.SCHEMA_VERSION,
+				$id: "https://test.concurrent-compile.example/Entity-staggered",
+				type: "object",
+				properties: {
+					mode: { $ref: refId }
+				},
+				required: ["mode"]
+			};
+
+			// Stagger the calls so the later ones land while the first compile is still
+			// awaiting the reference, which is the window the schema is added but not compiled.
+			const validateAfter = async (delayMs: number): Promise<IValidationFailure[]> => {
+				await new Promise(resolve => {
+					setTimeout(resolve, delayMs);
+				});
+				return JsonSchemaHelper.validate(schema, { mode: "unsupported" });
+			};
+
+			const results = await Promise.all([validateAfter(0), validateAfter(50), validateAfter(100)]);
+
+			for (const failures of results) {
+				expect(failures).toHaveLength(1);
+				expect(failures[0].properties?.keyword).toEqual("enum");
+			}
+
+			// A call after the compile has settled resolves from the compiled validator.
+			const afterFailures = await JsonSchemaHelper.validate(schema, { mode: "unsupported" });
+			expect(afterFailures).toHaveLength(1);
 		});
 
 		test("repeated parallel cold starts stay stable across fresh AJV instances", async () => {
