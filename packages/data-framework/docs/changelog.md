@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.10.0](https://github.com/iotaledger/twin-data/compare/data-framework-v0.10.0...data-framework-v0.10.0) (2026-09-16)
+
+
+### Features
+
+* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* release to production ([#82](https://github.com/iotaledger/twin-data/issues/82)) ([edd0d67](https://github.com/iotaledger/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
+* release to production ([#91](https://github.com/iotaledger/twin-data/issues/91)) ([6f77214](https://github.com/iotaledger/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
+* release to production ([#97](https://github.com/iotaledger/twin-data/issues/97)) ([7857485](https://github.com/iotaledger/twin-data/commit/7857485d50c22b005cd148d4686b736fdc4d5401))
+* release to production [skip ci] ([#105](https://github.com/iotaledger/twin-data/issues/105)) ([05e12aa](https://github.com/iotaledger/twin-data/commit/05e12aaea22cd544dde256372c62f238fc97b422))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+
 ## [0.9.3-next.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.3-next.0...data-framework-v0.9.3-next.1) (2026-09-10)
 
 
