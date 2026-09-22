@@ -148,12 +148,24 @@ export class JsonSchemaHelper {
 			true
 		);
 
-		await validateMethod(data);
+		// AJV stores the errors of the most recent call on the compiled validator, which is shared
+		// by every validation of the schema, so they have to be read in the same synchronous step
+		// as the call. Awaiting before reading them lets another validation of the same schema
+		// overwrite them, which would swap or drop the failures of this one.
+		const validateResult = validateMethod(data);
+		let validateErrors = validateMethod.errors;
+
+		if (Is.promise(validateResult)) {
+			// An async schema resolves with the data when it is valid and rejects with a
+			// ValidationError carrying its own failures, so the shared errors are not used for it.
+			validateErrors = undefined;
+			await validateResult;
+		}
 
 		const validationFailures: IValidationFailure[] = [];
 
-		if (Is.arrayValue(validateMethod.errors)) {
-			for (const err of validateMethod.errors) {
+		if (Is.arrayValue(validateErrors)) {
+			for (const err of validateErrors) {
 				const { instancePath, message, keyword, schemaPath, params: errParams, ...rest } = err;
 				validationFailures.push({
 					property: JsonSchemaHelper.instancePathToPropertyPath(instancePath),
