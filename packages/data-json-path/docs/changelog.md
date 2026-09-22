@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.10.1-next.1](https://github.com/iotaledger/twin-data/compare/data-json-path-v0.10.1-next.0...data-json-path-v0.10.1-next.1) (2026-09-22)
+
+
+### Features
+
+* add context id features ([#25](https://github.com/iotaledger/twin-data/issues/25)) ([6592f2e](https://github.com/iotaledger/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
+* add json path set and delete methods ([#39](https://github.com/iotaledger/twin-data/issues/39)) ([04b73f3](https://github.com/iotaledger/twin-data/commit/04b73f3d44525f7d3a5d01b56530ff8d9c7bd938))
+* json path handler ([#24](https://github.com/iotaledger/twin-data/issues/24)) ([467a0a7](https://github.com/iotaledger/twin-data/commit/467a0a7e5b7b93d4242ab0f27d042a566bfa6b68))
+* typescript 6 update ([44cbfe8](https://github.com/iotaledger/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
+* update dependencies ([b622475](https://github.com/iotaledger/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
+
+
+### Bug Fixes
+
+* extraneous type ([0b5d5c6](https://github.com/iotaledger/twin-data/commit/0b5d5c6980a07018e6f6bedfae4b3bf55c5de8dc))
+* use async getStore in tests ([ca252fd](https://github.com/iotaledger/twin-data/commit/ca252fde068c336dd94841cf16b9b42a076040cf))
+
 ## [0.10.0](https://github.com/iotaledger/twin-data/compare/data-json-path-v0.10.0...data-json-path-v0.10.0) (2026-09-16)
 
 
