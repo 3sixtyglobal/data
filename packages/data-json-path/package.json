@@ -33,7 +33,7 @@
 	"dependencies": {
 		"@twin.org/core": "next",
 		"@twin.org/nameof": "next",
-		"json-p3": "2.3.2"
+		"json-p3": "2.3.1"
 	},
 	"devDependencies": {
 		"@twin.org/nameof-transformer": "next",
