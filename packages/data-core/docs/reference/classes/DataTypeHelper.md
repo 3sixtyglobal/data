@@ -16,9 +16,10 @@ Class to help with data types.
 
 ### registerType() {#registertype}
 
-> `static` **registerType**(`namespace`, `type`, `jsonLdContext`, `schema`): `void`
+> `static` **registerType**(`namespace`, `type`, `jsonLdContext`, `schema`, `compiledValidator?`, `options?`): `void`
 
-Register a data type.
+Register a data type, a type which is already registered is left unchanged so registering
+dependent types more than once has no effect, unless the force option is set.
 
 #### Parameters
 
@@ -46,6 +47,22 @@ The JSON LD context for the type.
 
 The JSON schema for the type.
 
+##### compiledValidator?
+
+[`ICompiledValidator`](../interfaces/ICompiledValidator.md) \| `Promise`\<[`ICompiledValidator`](../interfaces/ICompiledValidator.md)\>
+
+Optional validator compiled from the JSON schema, used in place of compiling the schema at runtime.
+
+##### options?
+
+Options for the registration.
+
+###### force?
+
+`boolean`
+
+Replace the type if it is already registered, defaults to false.
+
 #### Returns
 
 `void`
@@ -54,9 +71,10 @@ The JSON schema for the type.
 
 ### registerTypes() {#registertypes}
 
-> `static` **registerTypes**(`namespace`, `jsonLdContext`, `typeDefinition`): `void`
+> `static` **registerTypes**(`namespace`, `jsonLdContext`, `typeDefinition`, `options?`): `void`
 
-Register a list of types.
+Register a list of types, types which are already registered are left unchanged unless the
+force option is set.
 
 #### Parameters
 
@@ -77,6 +95,42 @@ The JSON LD context for the types.
 `object`[]
 
 The type definitions to register.
+
+##### options?
+
+Options for the registration.
+
+###### force?
+
+`boolean`
+
+Replace the types which are already registered, defaults to false.
+
+#### Returns
+
+`void`
+
+***
+
+### unregisterType() {#unregistertype}
+
+> `static` **unregisterType**(`namespace`, `type`): `void`
+
+Unregister a data type, so it can be registered again with a different definition.
+
+#### Parameters
+
+##### namespace
+
+`string`
+
+The namespace for the type.
+
+##### type
+
+`string`
+
+The type for the item.
 
 #### Returns
 
@@ -103,6 +157,28 @@ The data type to get the schema for.
 `Promise`\<`SchemaObject` \| `undefined`\>
 
 The JSON schema for the data type or undefined if not found.
+
+***
+
+### getCompiledValidatorForType() {#getcompiledvalidatorfortype}
+
+> `static` **getCompiledValidatorForType**(`dataType`): `Promise`\<[`ICompiledValidator`](../interfaces/ICompiledValidator.md) \| `undefined`\>
+
+Get the compiled validator for a data type.
+
+#### Parameters
+
+##### dataType
+
+`string`
+
+The data type to get the compiled validator for.
+
+#### Returns
+
+`Promise`\<[`ICompiledValidator`](../interfaces/ICompiledValidator.md) \| `undefined`\>
+
+The compiled validator for the data type or undefined if not found.
 
 ***
 

@@ -50,6 +50,20 @@ The JSON schema for the data type.
 
 ***
 
+### compiledValidator()? {#compiledvalidator}
+
+> `optional` **compiledValidator**(): `Promise`\<[`ICompiledValidator`](ICompiledValidator.md) \| `undefined`\>
+
+Get the validator compiled from the JSON schema, used in place of compiling the schema at runtime.
+
+#### Returns
+
+`Promise`\<[`ICompiledValidator`](ICompiledValidator.md) \| `undefined`\>
+
+The compiled validator for the data type.
+
+***
+
 ### validate()? {#validate}
 
 > `optional` **validate**(`propertyName`, `value`, `failures`, `container?`): `Promise`\<`boolean`\>

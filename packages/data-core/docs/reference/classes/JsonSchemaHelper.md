@@ -118,6 +118,54 @@ GeneralError if throwOnMissing is set and a referenced schema cannot be loaded.
 
 ***
 
+### validateCompiled() {#validatecompiled}
+
+> `static` **validateCompiled**\<`T`\>(`validator`, `data`): `IValidationFailure`[]
+
+Validates data with a validator compiled ahead of time from a JSON schema.
+
+#### Type Parameters
+
+##### T
+
+`T` = `unknown`
+
+#### Parameters
+
+##### validator
+
+[`ICompiledValidator`](../interfaces/ICompiledValidator.md)
+
+The compiled validator to validate the data with.
+
+##### data
+
+`T`
+
+The data to be validated.
+
+#### Returns
+
+`IValidationFailure`[]
+
+Result containing errors if there are any.
+
+***
+
+### clearCache() {#clearcache}
+
+> `static` **clearCache**(): `void`
+
+Clear the compiled schemas, so the next validation compiles them again from the registered
+data types, e.g. after a data type has been replaced or removed. A compiled schema includes
+the schemas it references, so all of them are cleared rather than just the one which changed.
+
+#### Returns
+
+`void`
+
+***
+
 ### getPropertyType() {#getpropertytype}
 
 > `static` **getPropertyType**(`schema`, `propertyName`): `string` \| `undefined`
