@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.10.1-next.2](https://github.com/iotaledger/twin-data/compare/data-json-ld-v0.10.1-next.1...data-json-ld-v0.10.1-next.2) (2026-09-26)
+
+
+### Features
+
+* compiled schemas ([#111](https://github.com/iotaledger/twin-data/issues/111)) ([8c7aafd](https://github.com/iotaledger/twin-data/commit/8c7aafd0e3cf2b965b4e0dbc0a93c15e68dc08af))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/data-core bumped from 0.10.1-next.1 to 0.10.1-next.2
+
 ## [0.10.1-next.1](https://github.com/iotaledger/twin-data/compare/data-json-ld-v0.10.1-next.0...data-json-ld-v0.10.1-next.1) (2026-09-22)
 
 

@@ -309,10 +309,10 @@ importers:
         specifier: next
         version: 0.10.1-next.12
       '@twin.org/data-core':
-        specifier: 0.10.1-next.1
+        specifier: 0.10.1-next.2
         version: link:../data-core
       '@twin.org/data-json-ld':
-        specifier: 0.10.1-next.1
+        specifier: 0.10.1-next.2
         version: link:../data-json-ld
       '@twin.org/entity':
         specifier: next
@@ -367,7 +367,7 @@ importers:
         specifier: next
         version: 0.10.1-next.12
       '@twin.org/data-core':
-        specifier: 0.10.1-next.1
+        specifier: 0.10.1-next.2
         version: link:../data-core
       '@twin.org/entity':
         specifier: next
