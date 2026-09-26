@@ -21,7 +21,9 @@ import Ajv2020 from "ajv/dist/2020.js";
 import type { AnyValidateFunction } from "ajv/dist/core.js";
 import formatsPlugin from "ajv-formats";
 import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory.js";
+import type { ICompiledValidator } from "../models/ICompiledValidator.js";
 import type { IJsonSchema } from "../models/IJsonSchema.js";
+import type { IJsonSchemaError } from "../models/IJsonSchemaError.js";
 
 /**
  * A helper for JSON schemas.
@@ -162,26 +164,37 @@ export class JsonSchemaHelper {
 			await validateResult;
 		}
 
-		const validationFailures: IValidationFailure[] = [];
+		return JsonSchemaHelper.errorsToFailures(validateErrors);
+	}
 
-		if (Is.arrayValue(validateErrors)) {
-			for (const err of validateErrors) {
-				const { instancePath, message, keyword, schemaPath, params: errParams, ...rest } = err;
-				validationFailures.push({
-					property: JsonSchemaHelper.instancePathToPropertyPath(instancePath),
-					reason: "validation.schemaFailed",
-					properties: {
-						message: message ?? "",
-						keyword,
-						schemaPath,
-						params: errParams,
-						...rest
-					}
-				});
+	/**
+	 * Validates data with a validator compiled ahead of time from a JSON schema.
+	 * @param validator The compiled validator to validate the data with.
+	 * @param data The data to be validated.
+	 * @returns Result containing errors if there are any.
+	 */
+	public static validateCompiled<T = unknown>(
+		validator: ICompiledValidator,
+		data: T
+	): IValidationFailure[] {
+		// The errors are stored on the validator, which is shared by every validation, so they
+		// are read in the same synchronous step as the call.
+		const isValid = validator(data);
+		return isValid ? [] : JsonSchemaHelper.errorsToFailures(validator.errors);
+	}
+
+	/**
+	 * Clear the compiled schemas, so the next validation compiles them again from the registered
+	 * data types, e.g. after a data type has been replaced or removed. A compiled schema includes
+	 * the schemas it references, so all of them are cleared rather than just the one which changed.
+	 */
+	public static clearCache(): void {
+		for (const is2019Schema of [false, true]) {
+			for (const throwOnMissing of [false, true]) {
+				SharedStore.remove(JsonSchemaHelper.validatorStoreKey(is2019Schema, throwOnMissing));
 			}
 		}
-
-		return validationFailures;
+		AsyncCache.clearCache(JsonSchemaHelper.CLASS_NAME);
 	}
 
 	/**
@@ -271,6 +284,37 @@ export class JsonSchemaHelper {
 	}
 
 	/**
+	 * Convert JSON schema errors to validation failures.
+	 * @param errors The JSON schema errors to convert.
+	 * @returns The validation failures.
+	 * @internal
+	 */
+	private static errorsToFailures(
+		errors: IJsonSchemaError[] | null | undefined
+	): IValidationFailure[] {
+		const validationFailures: IValidationFailure[] = [];
+
+		if (Is.arrayValue(errors)) {
+			for (const err of errors) {
+				const { instancePath, message, keyword, schemaPath, params: errParams, ...rest } = err;
+				validationFailures.push({
+					property: JsonSchemaHelper.instancePathToPropertyPath(instancePath),
+					reason: "validation.schemaFailed",
+					properties: {
+						message: message ?? "",
+						keyword,
+						schemaPath,
+						params: errParams,
+						...rest
+					}
+				});
+			}
+		}
+
+		return validationFailures;
+	}
+
+	/**
 	 * Convert an AJV instance path to a dotted property path.
 	 * @param instancePath The AJV instance path.
 	 * @returns The dotted property path.
@@ -345,55 +389,8 @@ export class JsonSchemaHelper {
 		}
 
 		const params = {
-			allowUnionTypes: true,
-			allErrors: true,
-			// Disable strict tuples as it causes issues with the schema validation when
-			// you have an array with fixed elements e.g. myType: [string, ...string[]]
-			// https://github.com/ajv-validator/ajv/issues/1417
-			strictTuples: false,
-			loadSchema: async (uri: string) => {
-				const subTypeHandler = DataTypeHandlerFactory.getIfExists(uri);
-				const jsonSchemaMethod = subTypeHandler?.jsonSchema?.bind(subTypeHandler);
-				if (Is.function(jsonSchemaMethod)) {
-					const subSchema = await jsonSchemaMethod();
-					if (Is.object<IJsonSchema>(subSchema)) {
-						return subSchema;
-					}
-				}
-
-				try {
-					await JsonSchemaHelper._loggers?.loadingSchema?.(uri);
-
-					// We don't have the type in our local data types, so we try to fetch it from the web
-					const result = await FetchHelper.fetchJson<never, IJsonSchema>(
-						JsonSchemaHelper.CLASS_NAME,
-						uri,
-						HttpMethod.GET,
-						undefined,
-						{
-							// Cache for an hour
-							cacheTtlMs: 3600000
-						}
-					);
-					await JsonSchemaHelper._loggers?.schemaLoaded?.(uri);
-					return result;
-				} catch (error) {
-					await JsonSchemaHelper._loggers?.schemaLoadFailed?.(uri, BaseError.fromError(error));
-
-					if (throwOnMissing) {
-						throw new GeneralError(
-							JsonSchemaHelper.CLASS_NAME,
-							"schemaLoadFailed",
-							{ uri },
-							BaseError.fromError(error)
-						);
-					}
-
-					// Failed to load remotely so return an empty object
-					// so the schema validation doesn't completely fail
-					return {};
-				}
-			}
+			...JsonSchemaHelper.validatorOptions(),
+			loadSchema: JsonSchemaHelper.createLoadSchema(throwOnMissing)
 		};
 
 		let ajv;
@@ -405,6 +402,93 @@ export class JsonSchemaHelper {
 			SharedStore.set<Ajv2020.Ajv2020>(storeKey, ajv);
 		}
 
+		JsonSchemaHelper.configureValidator(ajv);
+
+		return ajv;
+	}
+
+	/**
+	 * The options shared by every validator instance.
+	 * @returns The validator options.
+	 * @internal
+	 */
+	private static validatorOptions(): {
+		allowUnionTypes: boolean;
+		allErrors: boolean;
+		strictTuples: boolean;
+		inlineRefs: boolean;
+	} {
+		return {
+			allowUnionTypes: true,
+			allErrors: true,
+			// Disable strict tuples as it causes issues with the schema validation when
+			// you have an array with fixed elements e.g. myType: [string, ...string[]]
+			// https://github.com/ajv-validator/ajv/issues/1417
+			strictTuples: false,
+			// Validate each referenced schema with its own function rather than inlining it, which
+			// matches the compiled validators generated by ts-to-schema so errors are the same.
+			inlineRefs: false
+		};
+	}
+
+	/**
+	 * Create the method which loads a referenced schema for a validator instance.
+	 * @param throwOnMissing Whether a reference which cannot be loaded should throw instead of resolving to an empty schema.
+	 * @returns The method which loads a referenced schema.
+	 * @internal
+	 */
+	private static createLoadSchema(throwOnMissing: boolean): (uri: string) => Promise<IJsonSchema> {
+		return async (uri: string) => {
+			const subTypeHandler = DataTypeHandlerFactory.getIfExists(uri);
+			const jsonSchemaMethod = subTypeHandler?.jsonSchema?.bind(subTypeHandler);
+			if (Is.function(jsonSchemaMethod)) {
+				const subSchema = await jsonSchemaMethod();
+				if (Is.object<IJsonSchema>(subSchema)) {
+					return subSchema;
+				}
+			}
+
+			try {
+				await JsonSchemaHelper._loggers?.loadingSchema?.(uri);
+
+				// We don't have the type in our local data types, so we try to fetch it from the web
+				const result = await FetchHelper.fetchJson<never, IJsonSchema>(
+					JsonSchemaHelper.CLASS_NAME,
+					uri,
+					HttpMethod.GET,
+					undefined,
+					{
+						// Cache for an hour
+						cacheTtlMs: 3600000
+					}
+				);
+				await JsonSchemaHelper._loggers?.schemaLoaded?.(uri);
+				return result;
+			} catch (error) {
+				await JsonSchemaHelper._loggers?.schemaLoadFailed?.(uri, BaseError.fromError(error));
+
+				if (throwOnMissing) {
+					throw new GeneralError(
+						JsonSchemaHelper.CLASS_NAME,
+						"schemaLoadFailed",
+						{ uri },
+						BaseError.fromError(error)
+					);
+				}
+
+				// Failed to load remotely so return an empty object
+				// so the schema validation doesn't completely fail
+				return {};
+			}
+		};
+	}
+
+	/**
+	 * Add the formats and keywords used by every validator instance.
+	 * @param ajv The validator instance to configure.
+	 * @internal
+	 */
+	private static configureValidator(ajv: Ajv2020.Ajv2020 | Ajv2019.Ajv2019): void {
 		// There is an inconsistency in the types of the formats plugin,
 		// so we have to cast it to unknown and then to the correct type
 		const applyFormats = formatsPlugin.default as unknown as (ajvInstance: unknown) => void;
@@ -429,7 +513,5 @@ export class JsonSchemaHelper {
 			},
 			errors: false
 		});
-
-		return ajv;
 	}
 }
