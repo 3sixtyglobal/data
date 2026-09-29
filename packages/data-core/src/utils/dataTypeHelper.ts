@@ -3,6 +3,7 @@
 import { Is, type IValidationFailure } from "@twin.org/core";
 import { JsonSchemaHelper } from "./jsonSchemaHelper.js";
 import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory.js";
+import type { ICompiledValidator } from "../models/ICompiledValidator.js";
 import type { IJsonSchema } from "../models/IJsonSchema.js";
 import { ValidationMode } from "../models/validationMode.js";
 
@@ -11,31 +12,51 @@ import { ValidationMode } from "../models/validationMode.js";
  */
 export class DataTypeHelper {
 	/**
-	 * Register a data type.
+	 * Register a data type, a type which is already registered is left unchanged so registering
+	 * dependent types more than once has no effect, unless the force option is set.
 	 * @param namespace The namespace for the type.
 	 * @param type The type for the item.
 	 * @param jsonLdContext The JSON LD context for the type.
 	 * @param schema The JSON schema for the type.
+	 * @param compiledValidator Optional validator compiled from the JSON schema, used in place of compiling the schema at runtime.
+	 * @param options Options for the registration.
+	 * @param options.force Replace the type if it is already registered, defaults to false.
 	 */
 	public static registerType(
 		namespace: string,
 		type: string,
 		jsonLdContext: string | undefined,
-		schema: IJsonSchema | Promise<IJsonSchema>
+		schema: IJsonSchema | Promise<IJsonSchema>,
+		compiledValidator?: ICompiledValidator | Promise<ICompiledValidator>,
+		options?: {
+			force?: boolean;
+		}
 	): void {
-		DataTypeHandlerFactory.register(`${namespace}${type}`, () => ({
+		const name = `${namespace}${type}`;
+		if (DataTypeHandlerFactory.hasName(name)) {
+			if (!(options?.force ?? false)) {
+				return;
+			}
+			// The replaced type may already be compiled into the cached schemas.
+			JsonSchemaHelper.clearCache();
+		}
+		DataTypeHandlerFactory.register(name, () => ({
 			namespace,
 			jsonLdContext,
 			type,
-			jsonSchema: async () => schema
+			jsonSchema: async () => schema,
+			compiledValidator: Is.empty(compiledValidator) ? undefined : async () => compiledValidator
 		}));
 	}
 
 	/**
-	 * Register a list of types.
+	 * Register a list of types, types which are already registered are left unchanged unless the
+	 * force option is set.
 	 * @param namespace The namespace for the types.
 	 * @param jsonLdContext The JSON LD context for the types.
 	 * @param typeDefinition The type definitions to register.
+	 * @param options Options for the registration.
+	 * @param options.force Replace the types which are already registered, defaults to false.
 	 */
 	public static registerTypes(
 		namespace: string,
@@ -43,10 +64,35 @@ export class DataTypeHelper {
 		typeDefinition: {
 			type: string;
 			schema: IJsonSchema | Promise<IJsonSchema>;
-		}[]
+			compiledValidator?: ICompiledValidator | Promise<ICompiledValidator>;
+		}[],
+		options?: {
+			force?: boolean;
+		}
 	): void {
 		for (const typeDef of typeDefinition) {
-			DataTypeHelper.registerType(namespace, typeDef.type, jsonLdContext, typeDef.schema);
+			DataTypeHelper.registerType(
+				namespace,
+				typeDef.type,
+				jsonLdContext,
+				typeDef.schema,
+				typeDef.compiledValidator,
+				options
+			);
+		}
+	}
+
+	/**
+	 * Unregister a data type, so it can be registered again with a different definition.
+	 * @param namespace The namespace for the type.
+	 * @param type The type for the item.
+	 */
+	public static unregisterType(namespace: string, type: string): void {
+		const name = `${namespace}${type}`;
+		if (DataTypeHandlerFactory.hasName(name)) {
+			DataTypeHandlerFactory.unregister(name);
+			// The removed type may already be compiled into the cached schemas.
+			JsonSchemaHelper.clearCache();
 		}
 	}
 
@@ -58,6 +104,18 @@ export class DataTypeHelper {
 	public static async getSchemaForType(dataType: string): Promise<IJsonSchema | undefined> {
 		const handler = DataTypeHandlerFactory.getIfExists(dataType);
 		return handler?.jsonSchema ? handler.jsonSchema() : undefined;
+	}
+
+	/**
+	 * Get the compiled validator for a data type.
+	 * @param dataType The data type to get the compiled validator for.
+	 * @returns The compiled validator for the data type or undefined if not found.
+	 */
+	public static async getCompiledValidatorForType(
+		dataType: string
+	): Promise<ICompiledValidator | undefined> {
+		const handler = DataTypeHandlerFactory.getIfExists(dataType);
+		return handler?.compiledValidator ? handler.compiledValidator() : undefined;
 	}
 
 	/**
@@ -103,27 +161,35 @@ export class DataTypeHelper {
 					hasValidated = true;
 				}
 
+				const compiledValidatorMethod = handler.compiledValidator?.bind(handler);
 				const jsonSchemaMethod = handler.jsonSchema?.bind(handler);
 				if (
 					(validationMode === ValidationMode.JsonSchema ||
 						(validationMode === ValidationMode.Either && !hasValidated) ||
 						validationMode === ValidationMode.Both) &&
-					Is.function(jsonSchemaMethod)
+					(Is.function(compiledValidatorMethod) || Is.function(jsonSchemaMethod))
 				) {
-					// Otherwise use the JSON schema if there is one
-					const schema = await jsonSchemaMethod();
+					// Otherwise use the JSON schema if there is one, preferring its compiled validator
+					let failures: IValidationFailure[] = [];
+					const compiledValidator = await compiledValidatorMethod?.();
 
-					if (Is.object<IJsonSchema>(schema)) {
-						const failures = await JsonSchemaHelper.validate(schema, data);
-						if (failures.length > 0) {
-							validationFailures.push(
-								...failures.map(f => ({
-									...f,
-									property: f.property.length > 0 ? `${propertyName}.${f.property}` : propertyName
-								}))
-							);
-							isValid = false;
+					if (Is.function(compiledValidator)) {
+						failures = JsonSchemaHelper.validateCompiled(compiledValidator, data);
+					} else {
+						const schema = await jsonSchemaMethod?.();
+						if (Is.object<IJsonSchema>(schema)) {
+							failures = await JsonSchemaHelper.validate(schema, data);
 						}
+					}
+
+					if (failures.length > 0) {
+						validationFailures.push(
+							...failures.map(f => ({
+								...f,
+								property: f.property.length > 0 ? `${propertyName}.${f.property}` : propertyName
+							}))
+						);
+						isValid = false;
 					}
 				}
 			} else if (options?.failOnMissingType ?? false) {

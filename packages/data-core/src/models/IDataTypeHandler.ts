@@ -1,6 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import type { IValidationFailure } from "@twin.org/core";
+import type { ICompiledValidator } from "./ICompiledValidator.js";
 import type { IJsonSchema } from "./IJsonSchema.js";
 
 /**
@@ -32,6 +33,12 @@ export interface IDataTypeHandler {
 	 * @returns The JSON schema for the data type.
 	 */
 	jsonSchema?(): Promise<IJsonSchema | undefined>;
+
+	/**
+	 * Get the validator compiled from the JSON schema, used in place of compiling the schema at runtime.
+	 * @returns The compiled validator for the data type.
+	 */
+	compiledValidator?(): Promise<ICompiledValidator | undefined>;
 
 	/**
 	 * A method for validating the data type.

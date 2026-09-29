@@ -1,6 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import { DataTypeHelper } from "@twin.org/data-core";
+import * as CompiledValidators from "../compiled/validators.js";
 import { JsonLdContexts } from "../models/jsonLdContexts.js";
 import { JsonLdTypes } from "../models/jsonLdTypes.js";
 import JsonLdContainerTypeSchema from "../schemas/JsonLdContainerType.json" with { type: "json" };
@@ -40,103 +41,128 @@ export class JsonLdDataTypes {
 		const types = [
 			{
 				type: JsonLdTypes.Document,
-				schema: JsonLdDocumentSchema
+				schema: JsonLdDocumentSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdDocument
 			},
 			{
 				type: JsonLdTypes.Object,
-				schema: JsonLdObjectSchema
+				schema: JsonLdObjectSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdObject
 			},
 			{
 				type: JsonLdTypes.NodeObject,
-				schema: JsonLdNodeObjectSchema
+				schema: JsonLdNodeObjectSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdNodeObject
 			},
 			{
 				type: JsonLdTypes.NodePrimitive,
-				schema: JsonLdNodePrimitiveSchema
+				schema: JsonLdNodePrimitiveSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdNodePrimitive
 			},
 			{
 				type: JsonLdTypes.GraphObject,
-				schema: JsonLdGraphObjectSchema
+				schema: JsonLdGraphObjectSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdGraphObject
 			},
 			{
 				type: JsonLdTypes.ValueObject,
-				schema: JsonLdValueObjectSchema
+				schema: JsonLdValueObjectSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdValueObject
 			},
 			{
 				type: JsonLdTypes.ListObject,
-				schema: JsonLdListObjectSchema
+				schema: JsonLdListObjectSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdListObject
 			},
 			{
 				type: JsonLdTypes.SetObject,
-				schema: JsonLdSetObjectSchema
+				schema: JsonLdSetObjectSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdSetObject
 			},
 			{
 				type: JsonLdTypes.LanguageMap,
-				schema: JsonLdLanguageMapSchema
+				schema: JsonLdLanguageMapSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdLanguageMap
 			},
 			{
 				type: JsonLdTypes.IndexMap,
-				schema: JsonLdIndexMapSchema
+				schema: JsonLdIndexMapSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdIndexMap
 			},
 			{
 				type: JsonLdTypes.IndexMapItem,
-				schema: JsonLdIndexMapItemSchema
+				schema: JsonLdIndexMapItemSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdIndexMapItem
 			},
 			{
 				type: JsonLdTypes.IdMap,
-				schema: JsonLdIdMapSchema
+				schema: JsonLdIdMapSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdIdMap
 			},
 			{
 				type: JsonLdTypes.TypeMap,
-				schema: JsonLdTypeMapSchema
+				schema: JsonLdTypeMapSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdTypeMap
 			},
 			{
 				type: JsonLdTypes.IncludedBlock,
-				schema: JsonLdIncludedBlockSchema
+				schema: JsonLdIncludedBlockSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdIncludedBlock
 			},
 			{
 				type: JsonLdTypes.ContextDefinition,
-				schema: JsonLdContextDefinitionSchema
+				schema: JsonLdContextDefinitionSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdContextDefinition
 			},
 			{
 				type: JsonLdTypes.ContextDefinitionElement,
-				schema: JsonLdContextDefinitionElementSchema
+				schema: JsonLdContextDefinitionElementSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdContextDefinitionElement
 			},
 			{
 				type: JsonLdTypes.ContextDefinitionRoot,
-				schema: JsonLdContextDefinitionRootSchema
+				schema: JsonLdContextDefinitionRootSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdContextDefinitionRoot
 			},
 			{
 				type: JsonLdTypes.ExpandedTermDefinition,
-				schema: JsonLdExpandedTermDefinitionSchema
+				schema: JsonLdExpandedTermDefinitionSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdExpandedTermDefinition
 			},
 			{
 				type: JsonLdTypes.ListOrSetItem,
-				schema: JsonLdListOrSetItemSchema
+				schema: JsonLdListOrSetItemSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdListOrSetItem
 			},
 			{
 				type: JsonLdTypes.ContainerType,
-				schema: JsonLdContainerTypeSchema
+				schema: JsonLdContainerTypeSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdContainerType
 			},
 			{
 				type: JsonLdTypes.ContainerTypeArray,
-				schema: JsonLdContainerTypeArraySchema
+				schema: JsonLdContainerTypeArraySchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdContainerTypeArray
 			},
 			{
 				type: JsonLdTypes.JsonPrimitive,
-				schema: JsonLdJsonPrimitiveSchema
+				schema: JsonLdJsonPrimitiveSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdJsonPrimitive
 			},
 			{
 				type: JsonLdTypes.JsonArray,
-				schema: JsonLdJsonArraySchema
+				schema: JsonLdJsonArraySchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdJsonArray
 			},
 			{
 				type: JsonLdTypes.JsonObject,
-				schema: JsonLdJsonObjectSchema
+				schema: JsonLdJsonObjectSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdJsonObject
 			},
 			{
 				type: JsonLdTypes.JsonValue,
-				schema: JsonLdJsonValueSchema
+				schema: JsonLdJsonValueSchema,
+				compiledValidator: CompiledValidators.CompiledJsonLdJsonValue
 			}
 		];
 
