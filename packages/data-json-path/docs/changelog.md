@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.11.0](https://github.com/iotaledger/twin-data/compare/data-json-path-v0.11.0...data-json-path-v0.11.0) (2026-09-29)
+
+
+### Features
+
+* release to production ([#82](https://github.com/iotaledger/twin-data/issues/82)) ([edd0d67](https://github.com/iotaledger/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
+* release to production ([#91](https://github.com/iotaledger/twin-data/issues/91)) ([6f77214](https://github.com/iotaledger/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
+* release to production ([#97](https://github.com/iotaledger/twin-data/issues/97)) ([7857485](https://github.com/iotaledger/twin-data/commit/7857485d50c22b005cd148d4686b736fdc4d5401))
+* release to production [skip ci] ([#105](https://github.com/iotaledger/twin-data/issues/105)) ([05e12aa](https://github.com/iotaledger/twin-data/commit/05e12aaea22cd544dde256372c62f238fc97b422))
+* release to production [skip ci] ([#116](https://github.com/iotaledger/twin-data/issues/116)) ([10d275b](https://github.com/iotaledger/twin-data/commit/10d275be04b6cd07cddad61fc335c2b2b647696e))
+
 ## [0.10.1-next.2](https://github.com/iotaledger/twin-data/compare/data-json-path-v0.10.1-next.1...data-json-path-v0.10.1-next.2) (2026-09-26)
 
 
