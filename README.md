@@ -14,3 +14,7 @@ The workspace is organised so each package focuses on one concern, while still f
 ## Contributing
 
 To contribute to this package see the guidelines for building and publishing in [CONTRIBUTING](./CONTRIBUTING.md)
+
+## Origin
+
+This repository is derived from the original [iotaledger/twin-data](https://github.com/iotaledger/twin-data) repository.

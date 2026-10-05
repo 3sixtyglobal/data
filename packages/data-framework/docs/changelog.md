@@ -1,21 +1,21 @@
 # Changelog
 
-## [0.11.0](https://github.com/iotaledger/twin-data/compare/data-framework-v0.11.0...data-framework-v0.11.0) (2026-09-29)
+## [0.11.0](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.11.0...data-framework-v0.11.0) (2026-09-29)
 
 
 ### Features
 
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* release to production ([#82](https://github.com/iotaledger/twin-data/issues/82)) ([edd0d67](https://github.com/iotaledger/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
-* release to production ([#91](https://github.com/iotaledger/twin-data/issues/91)) ([6f77214](https://github.com/iotaledger/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
-* release to production ([#97](https://github.com/iotaledger/twin-data/issues/97)) ([7857485](https://github.com/iotaledger/twin-data/commit/7857485d50c22b005cd148d4686b736fdc4d5401))
-* release to production [skip ci] ([#105](https://github.com/iotaledger/twin-data/issues/105)) ([05e12aa](https://github.com/iotaledger/twin-data/commit/05e12aaea22cd544dde256372c62f238fc97b422))
-* release to production [skip ci] ([#116](https://github.com/iotaledger/twin-data/issues/116)) ([10d275b](https://github.com/iotaledger/twin-data/commit/10d275be04b6cd07cddad61fc335c2b2b647696e))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* release to production ([#82](https://github.com/3sixtyglobal/twin-data/issues/82)) ([edd0d67](https://github.com/3sixtyglobal/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
+* release to production ([#91](https://github.com/3sixtyglobal/twin-data/issues/91)) ([6f77214](https://github.com/3sixtyglobal/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
+* release to production ([#97](https://github.com/3sixtyglobal/twin-data/issues/97)) ([7857485](https://github.com/3sixtyglobal/twin-data/commit/7857485d50c22b005cd148d4686b736fdc4d5401))
+* release to production [skip ci] ([#105](https://github.com/3sixtyglobal/twin-data/issues/105)) ([05e12aa](https://github.com/3sixtyglobal/twin-data/commit/05e12aaea22cd544dde256372c62f238fc97b422))
+* release to production [skip ci] ([#116](https://github.com/3sixtyglobal/twin-data/issues/116)) ([10d275b](https://github.com/3sixtyglobal/twin-data/commit/10d275be04b6cd07cddad61fc335c2b2b647696e))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
 
-## [0.10.1-next.2](https://github.com/iotaledger/twin-data/compare/data-framework-v0.10.1-next.1...data-framework-v0.10.1-next.2) (2026-09-26)
+## [0.10.1-next.2](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.10.1-next.1...data-framework-v0.10.1-next.2) (2026-09-26)
 
 
 ### Miscellaneous Chores
@@ -30,24 +30,24 @@
     * @twin.org/data-core bumped from 0.10.1-next.1 to 0.10.1-next.2
     * @twin.org/data-json-ld bumped from 0.10.1-next.1 to 0.10.1-next.2
 
-## [0.10.1-next.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.10.1-next.0...data-framework-v0.10.1-next.1) (2026-09-22)
+## [0.10.1-next.1](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.10.1-next.0...data-framework-v0.10.1-next.1) (2026-09-22)
 
 
 ### Features
 
-* add context id features ([#25](https://github.com/iotaledger/twin-data/issues/25)) ([6592f2e](https://github.com/iotaledger/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* add validate-locales ([cf9b761](https://github.com/iotaledger/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
-* eslint migration to flat config ([b0db6e6](https://github.com/iotaledger/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* improve data type registration ([#34](https://github.com/iotaledger/twin-data/issues/34)) ([855d110](https://github.com/iotaledger/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
-* typescript 6 update ([44cbfe8](https://github.com/iotaledger/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
-* update context naming ([#37](https://github.com/iotaledger/twin-data/issues/37)) ([9d99360](https://github.com/iotaledger/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
-* update dependencies ([b622475](https://github.com/iotaledger/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
-* update framework core ([c077b8c](https://github.com/iotaledger/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
-* use updated Is.function ([46a4715](https://github.com/iotaledger/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
+* add context id features ([#25](https://github.com/3sixtyglobal/twin-data/issues/25)) ([6592f2e](https://github.com/3sixtyglobal/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* add validate-locales ([cf9b761](https://github.com/3sixtyglobal/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
+* eslint migration to flat config ([b0db6e6](https://github.com/3sixtyglobal/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* improve data type registration ([#34](https://github.com/3sixtyglobal/twin-data/issues/34)) ([855d110](https://github.com/3sixtyglobal/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
+* typescript 6 update ([44cbfe8](https://github.com/3sixtyglobal/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
+* update context naming ([#37](https://github.com/3sixtyglobal/twin-data/issues/37)) ([9d99360](https://github.com/3sixtyglobal/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
+* update dependencies ([b622475](https://github.com/3sixtyglobal/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
+* update framework core ([c077b8c](https://github.com/3sixtyglobal/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* use updated Is.function ([46a4715](https://github.com/3sixtyglobal/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
 
 
 ### Dependencies
@@ -57,38 +57,38 @@
     * @twin.org/data-core bumped from 0.10.1-next.0 to 0.10.1-next.1
     * @twin.org/data-json-ld bumped from 0.10.1-next.0 to 0.10.1-next.1
 
-## [0.10.0](https://github.com/iotaledger/twin-data/compare/data-framework-v0.10.0...data-framework-v0.10.0) (2026-09-16)
+## [0.10.0](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.10.0...data-framework-v0.10.0) (2026-09-16)
 
 
 ### Features
 
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* release to production ([#82](https://github.com/iotaledger/twin-data/issues/82)) ([edd0d67](https://github.com/iotaledger/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
-* release to production ([#91](https://github.com/iotaledger/twin-data/issues/91)) ([6f77214](https://github.com/iotaledger/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
-* release to production ([#97](https://github.com/iotaledger/twin-data/issues/97)) ([7857485](https://github.com/iotaledger/twin-data/commit/7857485d50c22b005cd148d4686b736fdc4d5401))
-* release to production [skip ci] ([#105](https://github.com/iotaledger/twin-data/issues/105)) ([05e12aa](https://github.com/iotaledger/twin-data/commit/05e12aaea22cd544dde256372c62f238fc97b422))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* release to production ([#82](https://github.com/3sixtyglobal/twin-data/issues/82)) ([edd0d67](https://github.com/3sixtyglobal/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
+* release to production ([#91](https://github.com/3sixtyglobal/twin-data/issues/91)) ([6f77214](https://github.com/3sixtyglobal/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
+* release to production ([#97](https://github.com/3sixtyglobal/twin-data/issues/97)) ([7857485](https://github.com/3sixtyglobal/twin-data/commit/7857485d50c22b005cd148d4686b736fdc4d5401))
+* release to production [skip ci] ([#105](https://github.com/3sixtyglobal/twin-data/issues/105)) ([05e12aa](https://github.com/3sixtyglobal/twin-data/commit/05e12aaea22cd544dde256372c62f238fc97b422))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
 
-## [0.9.3-next.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.3-next.0...data-framework-v0.9.3-next.1) (2026-09-10)
+## [0.9.3-next.1](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.9.3-next.0...data-framework-v0.9.3-next.1) (2026-09-10)
 
 
 ### Features
 
-* add context id features ([#25](https://github.com/iotaledger/twin-data/issues/25)) ([6592f2e](https://github.com/iotaledger/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* add validate-locales ([cf9b761](https://github.com/iotaledger/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
-* eslint migration to flat config ([b0db6e6](https://github.com/iotaledger/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* improve data type registration ([#34](https://github.com/iotaledger/twin-data/issues/34)) ([855d110](https://github.com/iotaledger/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
-* typescript 6 update ([44cbfe8](https://github.com/iotaledger/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
-* update context naming ([#37](https://github.com/iotaledger/twin-data/issues/37)) ([9d99360](https://github.com/iotaledger/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
-* update dependencies ([b622475](https://github.com/iotaledger/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
-* update framework core ([c077b8c](https://github.com/iotaledger/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
-* use updated Is.function ([46a4715](https://github.com/iotaledger/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
+* add context id features ([#25](https://github.com/3sixtyglobal/twin-data/issues/25)) ([6592f2e](https://github.com/3sixtyglobal/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* add validate-locales ([cf9b761](https://github.com/3sixtyglobal/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
+* eslint migration to flat config ([b0db6e6](https://github.com/3sixtyglobal/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* improve data type registration ([#34](https://github.com/3sixtyglobal/twin-data/issues/34)) ([855d110](https://github.com/3sixtyglobal/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
+* typescript 6 update ([44cbfe8](https://github.com/3sixtyglobal/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
+* update context naming ([#37](https://github.com/3sixtyglobal/twin-data/issues/37)) ([9d99360](https://github.com/3sixtyglobal/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
+* update dependencies ([b622475](https://github.com/3sixtyglobal/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
+* update framework core ([c077b8c](https://github.com/3sixtyglobal/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* use updated Is.function ([46a4715](https://github.com/3sixtyglobal/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
 
 
 ### Dependencies
@@ -98,37 +98,37 @@
     * @twin.org/data-core bumped from 0.9.3-next.0 to 0.9.3-next.1
     * @twin.org/data-json-ld bumped from 0.9.3-next.0 to 0.9.3-next.1
 
-## [0.9.2](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.2...data-framework-v0.9.2) (2026-08-24)
+## [0.9.2](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.9.2...data-framework-v0.9.2) (2026-08-24)
 
 
 ### Features
 
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* release to production ([#82](https://github.com/iotaledger/twin-data/issues/82)) ([edd0d67](https://github.com/iotaledger/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
-* release to production ([#91](https://github.com/iotaledger/twin-data/issues/91)) ([6f77214](https://github.com/iotaledger/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
-* release to production ([#97](https://github.com/iotaledger/twin-data/issues/97)) ([7857485](https://github.com/iotaledger/twin-data/commit/7857485d50c22b005cd148d4686b736fdc4d5401))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* release to production ([#82](https://github.com/3sixtyglobal/twin-data/issues/82)) ([edd0d67](https://github.com/3sixtyglobal/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
+* release to production ([#91](https://github.com/3sixtyglobal/twin-data/issues/91)) ([6f77214](https://github.com/3sixtyglobal/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
+* release to production ([#97](https://github.com/3sixtyglobal/twin-data/issues/97)) ([7857485](https://github.com/3sixtyglobal/twin-data/commit/7857485d50c22b005cd148d4686b736fdc4d5401))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
 
-## [0.9.2-next.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.2-next.0...data-framework-v0.9.2-next.1) (2026-08-07)
+## [0.9.2-next.1](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.9.2-next.0...data-framework-v0.9.2-next.1) (2026-08-07)
 
 
 ### Features
 
-* add context id features ([#25](https://github.com/iotaledger/twin-data/issues/25)) ([6592f2e](https://github.com/iotaledger/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* add validate-locales ([cf9b761](https://github.com/iotaledger/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
-* eslint migration to flat config ([b0db6e6](https://github.com/iotaledger/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* improve data type registration ([#34](https://github.com/iotaledger/twin-data/issues/34)) ([855d110](https://github.com/iotaledger/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
-* typescript 6 update ([44cbfe8](https://github.com/iotaledger/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
-* update context naming ([#37](https://github.com/iotaledger/twin-data/issues/37)) ([9d99360](https://github.com/iotaledger/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
-* update dependencies ([b622475](https://github.com/iotaledger/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
-* update framework core ([c077b8c](https://github.com/iotaledger/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
-* use updated Is.function ([46a4715](https://github.com/iotaledger/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
+* add context id features ([#25](https://github.com/3sixtyglobal/twin-data/issues/25)) ([6592f2e](https://github.com/3sixtyglobal/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* add validate-locales ([cf9b761](https://github.com/3sixtyglobal/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
+* eslint migration to flat config ([b0db6e6](https://github.com/3sixtyglobal/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* improve data type registration ([#34](https://github.com/3sixtyglobal/twin-data/issues/34)) ([855d110](https://github.com/3sixtyglobal/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
+* typescript 6 update ([44cbfe8](https://github.com/3sixtyglobal/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
+* update context naming ([#37](https://github.com/3sixtyglobal/twin-data/issues/37)) ([9d99360](https://github.com/3sixtyglobal/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
+* update dependencies ([b622475](https://github.com/3sixtyglobal/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
+* update framework core ([c077b8c](https://github.com/3sixtyglobal/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* use updated Is.function ([46a4715](https://github.com/3sixtyglobal/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
 
 
 ### Dependencies
@@ -138,19 +138,19 @@
     * @twin.org/data-core bumped from 0.9.2-next.0 to 0.9.2-next.1
     * @twin.org/data-json-ld bumped from 0.9.2-next.0 to 0.9.2-next.1
 
-## [0.9.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.1...data-framework-v0.9.1) (2026-07-27)
+## [0.9.1](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.9.1...data-framework-v0.9.1) (2026-07-27)
 
 
 ### Features
 
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* release to production ([#82](https://github.com/iotaledger/twin-data/issues/82)) ([edd0d67](https://github.com/iotaledger/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
-* release to production ([#91](https://github.com/iotaledger/twin-data/issues/91)) ([6f77214](https://github.com/iotaledger/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* release to production ([#82](https://github.com/3sixtyglobal/twin-data/issues/82)) ([edd0d67](https://github.com/3sixtyglobal/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
+* release to production ([#91](https://github.com/3sixtyglobal/twin-data/issues/91)) ([6f77214](https://github.com/3sixtyglobal/twin-data/commit/6f772143556b4de81b480f454984adf0afa17d7e))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
 
-## [0.9.1-next.2](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.1-next.1...data-framework-v0.9.1-next.2) (2026-07-20)
+## [0.9.1-next.2](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.9.1-next.1...data-framework-v0.9.1-next.2) (2026-07-20)
 
 
 ### Miscellaneous Chores
@@ -165,24 +165,24 @@
     * @twin.org/data-core bumped from 0.9.1-next.1 to 0.9.1-next.2
     * @twin.org/data-json-ld bumped from 0.9.1-next.1 to 0.9.1-next.2
 
-## [0.9.1-next.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.1-next.0...data-framework-v0.9.1-next.1) (2026-06-26)
+## [0.9.1-next.1](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.9.1-next.0...data-framework-v0.9.1-next.1) (2026-06-26)
 
 
 ### Features
 
-* add context id features ([#25](https://github.com/iotaledger/twin-data/issues/25)) ([6592f2e](https://github.com/iotaledger/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* add validate-locales ([cf9b761](https://github.com/iotaledger/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
-* eslint migration to flat config ([b0db6e6](https://github.com/iotaledger/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* improve data type registration ([#34](https://github.com/iotaledger/twin-data/issues/34)) ([855d110](https://github.com/iotaledger/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
-* typescript 6 update ([44cbfe8](https://github.com/iotaledger/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
-* update context naming ([#37](https://github.com/iotaledger/twin-data/issues/37)) ([9d99360](https://github.com/iotaledger/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
-* update dependencies ([b622475](https://github.com/iotaledger/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
-* update framework core ([c077b8c](https://github.com/iotaledger/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
-* use updated Is.function ([46a4715](https://github.com/iotaledger/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
+* add context id features ([#25](https://github.com/3sixtyglobal/twin-data/issues/25)) ([6592f2e](https://github.com/3sixtyglobal/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* add validate-locales ([cf9b761](https://github.com/3sixtyglobal/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
+* eslint migration to flat config ([b0db6e6](https://github.com/3sixtyglobal/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* improve data type registration ([#34](https://github.com/3sixtyglobal/twin-data/issues/34)) ([855d110](https://github.com/3sixtyglobal/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
+* typescript 6 update ([44cbfe8](https://github.com/3sixtyglobal/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
+* update context naming ([#37](https://github.com/3sixtyglobal/twin-data/issues/37)) ([9d99360](https://github.com/3sixtyglobal/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
+* update dependencies ([b622475](https://github.com/3sixtyglobal/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
+* update framework core ([c077b8c](https://github.com/3sixtyglobal/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* use updated Is.function ([46a4715](https://github.com/3sixtyglobal/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
 
 
 ### Dependencies
@@ -192,35 +192,35 @@
     * @twin.org/data-core bumped from 0.9.1-next.0 to 0.9.1-next.1
     * @twin.org/data-json-ld bumped from 0.9.1-next.0 to 0.9.1-next.1
 
-## [0.9.0](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.0...data-framework-v0.9.0) (2026-06-22)
+## [0.9.0](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.9.0...data-framework-v0.9.0) (2026-06-22)
 
 
 ### Features
 
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* release to production ([#82](https://github.com/iotaledger/twin-data/issues/82)) ([edd0d67](https://github.com/iotaledger/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* release to production ([#82](https://github.com/3sixtyglobal/twin-data/issues/82)) ([edd0d67](https://github.com/3sixtyglobal/twin-data/commit/edd0d67b9d85e0f234c7f55ef2548baaa3596b4c))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
 
-## [0.9.0-next.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.9.0-next.0...data-framework-v0.9.0-next.1) (2026-06-22)
+## [0.9.0-next.1](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.9.0-next.0...data-framework-v0.9.0-next.1) (2026-06-22)
 
 
 ### Features
 
-* add context id features ([#25](https://github.com/iotaledger/twin-data/issues/25)) ([6592f2e](https://github.com/iotaledger/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* add validate-locales ([cf9b761](https://github.com/iotaledger/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
-* eslint migration to flat config ([b0db6e6](https://github.com/iotaledger/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* improve data type registration ([#34](https://github.com/iotaledger/twin-data/issues/34)) ([855d110](https://github.com/iotaledger/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
-* typescript 6 update ([44cbfe8](https://github.com/iotaledger/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
-* update context naming ([#37](https://github.com/iotaledger/twin-data/issues/37)) ([9d99360](https://github.com/iotaledger/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
-* update dependencies ([b622475](https://github.com/iotaledger/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
-* update framework core ([c077b8c](https://github.com/iotaledger/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
-* use updated Is.function ([46a4715](https://github.com/iotaledger/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
+* add context id features ([#25](https://github.com/3sixtyglobal/twin-data/issues/25)) ([6592f2e](https://github.com/3sixtyglobal/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* add validate-locales ([cf9b761](https://github.com/3sixtyglobal/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
+* eslint migration to flat config ([b0db6e6](https://github.com/3sixtyglobal/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* improve data type registration ([#34](https://github.com/3sixtyglobal/twin-data/issues/34)) ([855d110](https://github.com/3sixtyglobal/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
+* typescript 6 update ([44cbfe8](https://github.com/3sixtyglobal/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
+* update context naming ([#37](https://github.com/3sixtyglobal/twin-data/issues/37)) ([9d99360](https://github.com/3sixtyglobal/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
+* update dependencies ([b622475](https://github.com/3sixtyglobal/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
+* update framework core ([c077b8c](https://github.com/3sixtyglobal/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* use updated Is.function ([46a4715](https://github.com/3sixtyglobal/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
 
 
 ### Dependencies
@@ -230,7 +230,7 @@
     * @twin.org/data-core bumped from 0.9.0-next.0 to 0.9.0-next.1
     * @twin.org/data-json-ld bumped from 0.9.0-next.0 to 0.9.0-next.1
 
-## [0.0.3-next.26](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.25...data-framework-v0.0.3-next.26) (2026-06-05)
+## [0.0.3-next.26](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.25...data-framework-v0.0.3-next.26) (2026-06-05)
 
 
 ### Miscellaneous Chores
@@ -245,7 +245,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.25 to 0.0.3-next.26
     * @twin.org/data-json-ld bumped from 0.0.3-next.25 to 0.0.3-next.26
 
-## [0.0.3-next.25](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.24...data-framework-v0.0.3-next.25) (2026-06-01)
+## [0.0.3-next.25](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.24...data-framework-v0.0.3-next.25) (2026-06-01)
 
 
 ### Miscellaneous Chores
@@ -260,7 +260,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.24 to 0.0.3-next.25
     * @twin.org/data-json-ld bumped from 0.0.3-next.24 to 0.0.3-next.25
 
-## [0.0.3-next.24](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.23...data-framework-v0.0.3-next.24) (2026-05-22)
+## [0.0.3-next.24](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.23...data-framework-v0.0.3-next.24) (2026-05-22)
 
 
 ### Miscellaneous Chores
@@ -275,12 +275,12 @@
     * @twin.org/data-core bumped from 0.0.3-next.23 to 0.0.3-next.24
     * @twin.org/data-json-ld bumped from 0.0.3-next.23 to 0.0.3-next.24
 
-## [0.0.3-next.23](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.22...data-framework-v0.0.3-next.23) (2026-05-19)
+## [0.0.3-next.23](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.22...data-framework-v0.0.3-next.23) (2026-05-19)
 
 
 ### Features
 
-* update dependencies ([b622475](https://github.com/iotaledger/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
+* update dependencies ([b622475](https://github.com/3sixtyglobal/twin-data/commit/b6224758e66ac3be563d68a670636356ce033434))
 
 
 ### Dependencies
@@ -290,7 +290,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.22 to 0.0.3-next.23
     * @twin.org/data-json-ld bumped from 0.0.3-next.22 to 0.0.3-next.23
 
-## [0.0.3-next.22](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.21...data-framework-v0.0.3-next.22) (2026-05-13)
+## [0.0.3-next.22](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.21...data-framework-v0.0.3-next.22) (2026-05-13)
 
 
 ### Miscellaneous Chores
@@ -305,12 +305,12 @@
     * @twin.org/data-core bumped from 0.0.3-next.21 to 0.0.3-next.22
     * @twin.org/data-json-ld bumped from 0.0.3-next.21 to 0.0.3-next.22
 
-## [0.0.3-next.21](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.20...data-framework-v0.0.3-next.21) (2026-05-11)
+## [0.0.3-next.21](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.20...data-framework-v0.0.3-next.21) (2026-05-11)
 
 
 ### Features
 
-* typescript 6 update ([44cbfe8](https://github.com/iotaledger/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
+* typescript 6 update ([44cbfe8](https://github.com/3sixtyglobal/twin-data/commit/44cbfe87256282b9928134b2bbed1d3c6ee15acb))
 
 
 ### Dependencies
@@ -320,7 +320,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.20 to 0.0.3-next.21
     * @twin.org/data-json-ld bumped from 0.0.3-next.20 to 0.0.3-next.21
 
-## [0.0.3-next.20](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.19...data-framework-v0.0.3-next.20) (2026-03-24)
+## [0.0.3-next.20](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.19...data-framework-v0.0.3-next.20) (2026-03-24)
 
 
 ### Miscellaneous Chores
@@ -335,7 +335,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.19 to 0.0.3-next.20
     * @twin.org/data-json-ld bumped from 0.0.3-next.19 to 0.0.3-next.20
 
-## [0.0.3-next.19](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.18...data-framework-v0.0.3-next.19) (2026-03-20)
+## [0.0.3-next.19](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.18...data-framework-v0.0.3-next.19) (2026-03-20)
 
 
 ### Miscellaneous Chores
@@ -350,7 +350,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.18 to 0.0.3-next.19
     * @twin.org/data-json-ld bumped from 0.0.3-next.18 to 0.0.3-next.19
 
-## [0.0.3-next.18](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.17...data-framework-v0.0.3-next.18) (2026-03-16)
+## [0.0.3-next.18](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.17...data-framework-v0.0.3-next.18) (2026-03-16)
 
 
 ### Miscellaneous Chores
@@ -365,7 +365,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.17 to 0.0.3-next.18
     * @twin.org/data-json-ld bumped from 0.0.3-next.17 to 0.0.3-next.18
 
-## [0.0.3-next.17](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.16...data-framework-v0.0.3-next.17) (2026-03-12)
+## [0.0.3-next.17](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.16...data-framework-v0.0.3-next.17) (2026-03-12)
 
 
 ### Miscellaneous Chores
@@ -380,7 +380,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.16 to 0.0.3-next.17
     * @twin.org/data-json-ld bumped from 0.0.3-next.16 to 0.0.3-next.17
 
-## [0.0.3-next.16](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.15...data-framework-v0.0.3-next.16) (2026-03-06)
+## [0.0.3-next.16](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.15...data-framework-v0.0.3-next.16) (2026-03-06)
 
 
 ### Miscellaneous Chores
@@ -395,7 +395,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.15 to 0.0.3-next.16
     * @twin.org/data-json-ld bumped from 0.0.3-next.15 to 0.0.3-next.16
 
-## [0.0.3-next.15](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.14...data-framework-v0.0.3-next.15) (2026-02-27)
+## [0.0.3-next.15](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.14...data-framework-v0.0.3-next.15) (2026-02-27)
 
 
 ### Miscellaneous Chores
@@ -410,7 +410,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.14 to 0.0.3-next.15
     * @twin.org/data-json-ld bumped from 0.0.3-next.14 to 0.0.3-next.15
 
-## [0.0.3-next.14](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.13...data-framework-v0.0.3-next.14) (2026-02-25)
+## [0.0.3-next.14](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.13...data-framework-v0.0.3-next.14) (2026-02-25)
 
 
 ### Miscellaneous Chores
@@ -425,7 +425,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.13 to 0.0.3-next.14
     * @twin.org/data-json-ld bumped from 0.0.3-next.13 to 0.0.3-next.14
 
-## [0.0.3-next.13](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.12...data-framework-v0.0.3-next.13) (2026-02-25)
+## [0.0.3-next.13](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.12...data-framework-v0.0.3-next.13) (2026-02-25)
 
 
 ### Miscellaneous Chores
@@ -440,7 +440,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.12 to 0.0.3-next.13
     * @twin.org/data-json-ld bumped from 0.0.3-next.12 to 0.0.3-next.13
 
-## [0.0.3-next.12](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.11...data-framework-v0.0.3-next.12) (2026-02-25)
+## [0.0.3-next.12](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.11...data-framework-v0.0.3-next.12) (2026-02-25)
 
 
 ### Miscellaneous Chores
@@ -455,7 +455,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.11 to 0.0.3-next.12
     * @twin.org/data-json-ld bumped from 0.0.3-next.11 to 0.0.3-next.12
 
-## [0.0.3-next.11](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.10...data-framework-v0.0.3-next.11) (2026-02-25)
+## [0.0.3-next.11](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.10...data-framework-v0.0.3-next.11) (2026-02-25)
 
 
 ### Miscellaneous Chores
@@ -470,7 +470,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.10 to 0.0.3-next.11
     * @twin.org/data-json-ld bumped from 0.0.3-next.10 to 0.0.3-next.11
 
-## [0.0.3-next.10](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.9...data-framework-v0.0.3-next.10) (2026-02-24)
+## [0.0.3-next.10](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.9...data-framework-v0.0.3-next.10) (2026-02-24)
 
 
 ### Miscellaneous Chores
@@ -485,7 +485,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.9 to 0.0.3-next.10
     * @twin.org/data-json-ld bumped from 0.0.3-next.9 to 0.0.3-next.10
 
-## [0.0.3-next.9](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.8...data-framework-v0.0.3-next.9) (2026-02-23)
+## [0.0.3-next.9](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.8...data-framework-v0.0.3-next.9) (2026-02-23)
 
 
 ### Miscellaneous Chores
@@ -500,7 +500,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.8 to 0.0.3-next.9
     * @twin.org/data-json-ld bumped from 0.0.3-next.8 to 0.0.3-next.9
 
-## [0.0.3-next.8](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.7...data-framework-v0.0.3-next.8) (2026-02-02)
+## [0.0.3-next.8](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.7...data-framework-v0.0.3-next.8) (2026-02-02)
 
 
 ### Miscellaneous Chores
@@ -515,12 +515,12 @@
     * @twin.org/data-core bumped from 0.0.3-next.7 to 0.0.3-next.8
     * @twin.org/data-json-ld bumped from 0.0.3-next.7 to 0.0.3-next.8
 
-## [0.0.3-next.7](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.6...data-framework-v0.0.3-next.7) (2026-01-21)
+## [0.0.3-next.7](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.6...data-framework-v0.0.3-next.7) (2026-01-21)
 
 
 ### Features
 
-* update context naming ([#37](https://github.com/iotaledger/twin-data/issues/37)) ([9d99360](https://github.com/iotaledger/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
+* update context naming ([#37](https://github.com/3sixtyglobal/twin-data/issues/37)) ([9d99360](https://github.com/3sixtyglobal/twin-data/commit/9d993605aa51f27a09722729057c6ee921617c2d))
 
 
 ### Dependencies
@@ -530,7 +530,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.6 to 0.0.3-next.7
     * @twin.org/data-json-ld bumped from 0.0.3-next.6 to 0.0.3-next.7
 
-## [0.0.3-next.6](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.5...data-framework-v0.0.3-next.6) (2026-01-14)
+## [0.0.3-next.6](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.5...data-framework-v0.0.3-next.6) (2026-01-14)
 
 
 ### Miscellaneous Chores
@@ -545,12 +545,12 @@
     * @twin.org/data-core bumped from 0.0.3-next.5 to 0.0.3-next.6
     * @twin.org/data-json-ld bumped from 0.0.3-next.5 to 0.0.3-next.6
 
-## [0.0.3-next.5](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.4...data-framework-v0.0.3-next.5) (2026-01-14)
+## [0.0.3-next.5](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.4...data-framework-v0.0.3-next.5) (2026-01-14)
 
 
 ### Features
 
-* improve data type registration ([#34](https://github.com/iotaledger/twin-data/issues/34)) ([855d110](https://github.com/iotaledger/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
+* improve data type registration ([#34](https://github.com/3sixtyglobal/twin-data/issues/34)) ([855d110](https://github.com/3sixtyglobal/twin-data/commit/855d11046a4d85317b77a5c4e0f4a7b1b6d1a767))
 
 
 ### Dependencies
@@ -560,7 +560,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.4 to 0.0.3-next.5
     * @twin.org/data-json-ld bumped from 0.0.3-next.4 to 0.0.3-next.5
 
-## [0.0.3-next.4](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.3...data-framework-v0.0.3-next.4) (2026-01-06)
+## [0.0.3-next.4](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.3...data-framework-v0.0.3-next.4) (2026-01-06)
 
 
 ### Miscellaneous Chores
@@ -575,7 +575,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.3 to 0.0.3-next.4
     * @twin.org/data-json-ld bumped from 0.0.3-next.3 to 0.0.3-next.4
 
-## [0.0.3-next.3](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.2...data-framework-v0.0.3-next.3) (2026-01-05)
+## [0.0.3-next.3](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.2...data-framework-v0.0.3-next.3) (2026-01-05)
 
 
 ### Miscellaneous Chores
@@ -590,7 +590,7 @@
     * @twin.org/data-core bumped from 0.0.3-next.2 to 0.0.3-next.3
     * @twin.org/data-json-ld bumped from 0.0.3-next.2 to 0.0.3-next.3
 
-## [0.0.3-next.2](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.1...data-framework-v0.0.3-next.2) (2025-11-24)
+## [0.0.3-next.2](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.1...data-framework-v0.0.3-next.2) (2025-11-24)
 
 
 ### Miscellaneous Chores
@@ -605,20 +605,20 @@
     * @twin.org/data-core bumped from 0.0.3-next.1 to 0.0.3-next.2
     * @twin.org/data-json-ld bumped from 0.0.3-next.1 to 0.0.3-next.2
 
-## [0.0.3-next.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.3-next.0...data-framework-v0.0.3-next.1) (2025-11-10)
+## [0.0.3-next.1](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.3-next.0...data-framework-v0.0.3-next.1) (2025-11-10)
 
 
 ### Features
 
-* add context id features ([#25](https://github.com/iotaledger/twin-data/issues/25)) ([6592f2e](https://github.com/iotaledger/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* add validate-locales ([cf9b761](https://github.com/iotaledger/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
-* eslint migration to flat config ([b0db6e6](https://github.com/iotaledger/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* update framework core ([c077b8c](https://github.com/iotaledger/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
-* use updated Is.function ([46a4715](https://github.com/iotaledger/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
+* add context id features ([#25](https://github.com/3sixtyglobal/twin-data/issues/25)) ([6592f2e](https://github.com/3sixtyglobal/twin-data/commit/6592f2e4e59021cc42a079a4f46242758a54313d))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* add validate-locales ([cf9b761](https://github.com/3sixtyglobal/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
+* eslint migration to flat config ([b0db6e6](https://github.com/3sixtyglobal/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* update framework core ([c077b8c](https://github.com/3sixtyglobal/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* use updated Is.function ([46a4715](https://github.com/3sixtyglobal/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
 
 
 ### Dependencies
@@ -628,12 +628,12 @@
     * @twin.org/data-core bumped from 0.0.3-next.0 to 0.0.3-next.1
     * @twin.org/data-json-ld bumped from 0.0.3-next.0 to 0.0.3-next.1
 
-## [0.0.2-next.4](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.2-next.3...data-framework-v0.0.2-next.4) (2025-10-09)
+## [0.0.2-next.4](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.2-next.3...data-framework-v0.0.2-next.4) (2025-10-09)
 
 
 ### Features
 
-* add validate-locales ([cf9b761](https://github.com/iotaledger/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
+* add validate-locales ([cf9b761](https://github.com/3sixtyglobal/twin-data/commit/cf9b76160820fe0b13b4fe56ed241c1d5511b7c1))
 
 
 ### Dependencies
@@ -643,12 +643,12 @@
     * @twin.org/data-core bumped from 0.0.2-next.3 to 0.0.2-next.4
     * @twin.org/data-json-ld bumped from 0.0.2-next.3 to 0.0.2-next.4
 
-## [0.0.2-next.3](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.2-next.2...data-framework-v0.0.2-next.3) (2025-09-29)
+## [0.0.2-next.3](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.2-next.2...data-framework-v0.0.2-next.3) (2025-09-29)
 
 
 ### Features
 
-* use updated Is.function ([46a4715](https://github.com/iotaledger/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
+* use updated Is.function ([46a4715](https://github.com/3sixtyglobal/twin-data/commit/46a4715f995aea34f2011138662fe003c9727d07))
 
 
 ### Dependencies
@@ -658,12 +658,12 @@
     * @twin.org/data-core bumped from 0.0.2-next.2 to 0.0.2-next.3
     * @twin.org/data-json-ld bumped from 0.0.2-next.2 to 0.0.2-next.3
 
-## [0.0.2-next.2](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.2-next.1...data-framework-v0.0.2-next.2) (2025-08-29)
+## [0.0.2-next.2](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.2-next.1...data-framework-v0.0.2-next.2) (2025-08-29)
 
 
 ### Features
 
-* eslint migration to flat config ([b0db6e6](https://github.com/iotaledger/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
+* eslint migration to flat config ([b0db6e6](https://github.com/3sixtyglobal/twin-data/commit/b0db6e69a90046fc60d29e4273fcdfee13c16088))
 
 
 ### Dependencies
@@ -673,16 +673,16 @@
     * @twin.org/data-core bumped from 0.0.2-next.1 to 0.0.2-next.2
     * @twin.org/data-json-ld bumped from 0.0.2-next.1 to 0.0.2-next.2
 
-## [0.0.2-next.1](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.2-next.0...data-framework-v0.0.2-next.1) (2025-08-19)
+## [0.0.2-next.1](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.2-next.0...data-framework-v0.0.2-next.1) (2025-08-19)
 
 
 ### Features
 
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* update framework core ([c077b8c](https://github.com/iotaledger/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* update framework core ([c077b8c](https://github.com/3sixtyglobal/twin-data/commit/c077b8c07e7ee66b5482254eab6f2a52cd911270))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
 
 
 ### Dependencies
@@ -697,12 +697,12 @@
 
 ### Features
 
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
 
-## [0.0.1-next.37](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.1-next.36...data-framework-v0.0.1-next.37) (2025-06-11)
+## [0.0.1-next.37](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.1-next.36...data-framework-v0.0.1-next.37) (2025-06-11)
 
 
 ### Miscellaneous Chores
@@ -717,12 +717,12 @@
     * @twin.org/data-core bumped from 0.0.1-next.36 to 0.0.1-next.37
     * @twin.org/data-json-ld bumped from 0.0.1-next.36 to 0.0.1-next.37
 
-## [0.0.1-next.36](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.1-next.35...data-framework-v0.0.1-next.36) (2025-06-10)
+## [0.0.1-next.36](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.1-next.35...data-framework-v0.0.1-next.36) (2025-06-10)
 
 
 ### Features
 
-* expand Json LD Keyword ([70632d1](https://github.com/iotaledger/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
+* expand Json LD Keyword ([70632d1](https://github.com/3sixtyglobal/twin-data/commit/70632d1e11ad85cf3c57e118476b125a673f1681))
 
 
 ### Dependencies
@@ -732,7 +732,7 @@
     * @twin.org/data-core bumped from 0.0.1-next.35 to 0.0.1-next.36
     * @twin.org/data-json-ld bumped from 0.0.1-next.35 to 0.0.1-next.36
 
-## [0.0.1-next.35](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.1-next.34...data-framework-v0.0.1-next.35) (2025-06-03)
+## [0.0.1-next.35](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.1-next.34...data-framework-v0.0.1-next.35) (2025-06-03)
 
 
 ### Miscellaneous Chores
@@ -747,7 +747,7 @@
     * @twin.org/data-core bumped from 0.0.1-next.34 to 0.0.1-next.35
     * @twin.org/data-json-ld bumped from 0.0.1-next.34 to 0.0.1-next.35
 
-## [0.0.1-next.34](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.1-next.33...data-framework-v0.0.1-next.34) (2025-06-02)
+## [0.0.1-next.34](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.1-next.33...data-framework-v0.0.1-next.34) (2025-06-02)
 
 
 ### Miscellaneous Chores
@@ -762,7 +762,7 @@
     * @twin.org/data-core bumped from 0.0.1-next.33 to 0.0.1-next.34
     * @twin.org/data-json-ld bumped from 0.0.1-next.33 to 0.0.1-next.34
 
-## [0.0.1-next.33](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.1-next.32...data-framework-v0.0.1-next.33) (2025-06-02)
+## [0.0.1-next.33](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.1-next.32...data-framework-v0.0.1-next.33) (2025-06-02)
 
 
 ### Miscellaneous Chores
@@ -777,12 +777,12 @@
     * @twin.org/data-core bumped from 0.0.1-next.32 to 0.0.1-next.33
     * @twin.org/data-json-ld bumped from 0.0.1-next.32 to 0.0.1-next.33
 
-## [0.0.1-next.32](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.1-next.31...data-framework-v0.0.1-next.32) (2025-05-28)
+## [0.0.1-next.32](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.1-next.31...data-framework-v0.0.1-next.32) (2025-05-28)
 
 
 ### Features
 
-* use fully qualified names for data type lookups ([b7b5c74](https://github.com/iotaledger/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
+* use fully qualified names for data type lookups ([b7b5c74](https://github.com/3sixtyglobal/twin-data/commit/b7b5c746b0180a87baa976f6a7a76cedd53d8ff7))
 
 
 ### Dependencies
@@ -792,7 +792,7 @@
     * @twin.org/data-core bumped from 0.0.1-next.31 to 0.0.1-next.32
     * @twin.org/data-json-ld bumped from 0.0.1-next.31 to 0.0.1-next.32
 
-## [0.0.1-next.31](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.1-next.30...data-framework-v0.0.1-next.31) (2025-05-08)
+## [0.0.1-next.31](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.1-next.30...data-framework-v0.0.1-next.31) (2025-05-08)
 
 
 ### Miscellaneous Chores
@@ -807,12 +807,12 @@
     * @twin.org/data-core bumped from 0.0.1-next.30 to 0.0.1-next.31
     * @twin.org/data-json-ld bumped from 0.0.1-next.30 to 0.0.1-next.31
 
-## [0.0.1-next.30](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.1-next.29...data-framework-v0.0.1-next.30) (2025-04-17)
+## [0.0.1-next.30](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.1-next.29...data-framework-v0.0.1-next.30) (2025-04-17)
 
 
 ### Features
 
-* use shared store mechanism ([#3](https://github.com/iotaledger/twin-data/issues/3)) ([33eb221](https://github.com/iotaledger/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
+* use shared store mechanism ([#3](https://github.com/3sixtyglobal/twin-data/issues/3)) ([33eb221](https://github.com/3sixtyglobal/twin-data/commit/33eb221ccec2b4a79549c06e9a04225009b93a46))
 
 
 ### Dependencies
@@ -822,12 +822,12 @@
     * @twin.org/data-core bumped from 0.0.1-next.29 to 0.0.1-next.30
     * @twin.org/data-json-ld bumped from 0.0.1-next.29 to 0.0.1-next.30
 
-## [0.0.1-next.29](https://github.com/iotaledger/twin-data/compare/data-framework-v0.0.1-next.28...data-framework-v0.0.1-next.29) (2025-03-28)
+## [0.0.1-next.29](https://github.com/3sixtyglobal/twin-data/compare/data-framework-v0.0.1-next.28...data-framework-v0.0.1-next.29) (2025-03-28)
 
 
 ### Features
 
-* add document cache access methods ([dbf1e36](https://github.com/iotaledger/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
+* add document cache access methods ([dbf1e36](https://github.com/3sixtyglobal/twin-data/commit/dbf1e36d176c5f428f8c52628fb5a1ff7a6a174a))
 
 
 ### Dependencies

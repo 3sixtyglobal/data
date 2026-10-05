@@ -4,7 +4,7 @@
 	"description": "Shared schema models, identifiers, and validation utilities used across the repository.",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/iotaledger/twin-data.git",
+		"url": "git+https://github.com/3sixtyglobal/twin-data.git",
 		"directory": "packages/data-core"
 	},
 	"author": "martyn.janes@iota.org",
@@ -78,7 +78,7 @@
 		"utilities"
 	],
 	"bugs": {
-		"url": "git+https://github.com/iotaledger/twin-data/issues"
+		"url": "git+https://github.com/3sixtyglobal/twin-data/issues"
 	},
 	"homepage": "https://twindev.org"
 }
