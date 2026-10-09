@@ -1,11 +1,11 @@
-# TWIN Data Core
+# 3Sixty Data Core
 
 This package provides shared schema models, identifiers, and validation utilities that establish a reliable base for data handling across the repository. It helps centralise common behaviour around structured data and aligns with concepts used in [JSON Schema](https://json-schema.org/) so other packages can build on consistent foundations.
 
 ## Installation
 
 ```shell
-npm install @twin.org/data-core
+npm install @3sixty/data-core
 ```
 
 ## Examples

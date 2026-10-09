@@ -1,5 +1,5 @@
 {
-	"baseUrl": "https://schema.twindev.org/json-ld/",
+	"baseUrl": "https://schema.3sixty.global/json-ld/",
 	"types": [
 		"./src/models/IJsonLdDocument.ts",
 		"./src/models/IJsonLdObject.ts",

@@ -1,8 +1,8 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { AsyncCache, type IValidationFailure, SharedStore } from "@twin.org/core";
-import { entity, property, EntitySchemaHelper, SortDirection } from "@twin.org/entity";
-import { FetchHelper } from "@twin.org/web";
+import { AsyncCache, type IValidationFailure, SharedStore } from "@3sixty/core";
+import { entity, property, EntitySchemaHelper, SortDirection } from "@3sixty/entity";
+import { FetchHelper } from "@3sixty/web";
 import Ajv2020 from "ajv/dist/2020.js";
 import standaloneCode from "ajv/dist/standalone/index.js";
 import { afterEach, describe, expect, test, vi } from "vitest";
@@ -450,7 +450,7 @@ describe("JsonSchemaHelper", () => {
 							type: "array",
 							minItems: 2,
 							items: {
-								$ref: "https://schema.twindev.org/json-ld/JsonLdContextDefinitionElement"
+								$ref: "https://schema.3sixty.global/json-ld/JsonLdContextDefinitionElement"
 							},
 							minContains: 1,
 							maxContains: 1,
@@ -893,7 +893,7 @@ describe("JsonSchemaHelper", () => {
 			type: "object",
 			properties: {
 				timestamp: {
-					$ref: "https://schema.twindev.org/framework/TimestampMilliseconds.json"
+					$ref: "https://schema.3sixty.global/framework/TimestampMilliseconds.json"
 				}
 			},
 			required: ["timestamp"]

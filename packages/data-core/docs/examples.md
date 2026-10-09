@@ -5,7 +5,7 @@ These snippets show common workflows for registering types, validating payloads,
 ## DataTypeHelper
 
 ```typescript
-import { DataTypeHelper, type IJsonSchema } from '@twin.org/data-core';
+import { DataTypeHelper, type IJsonSchema } from '@3sixty/data-core';
 
 const personSchema: IJsonSchema = {
   $schema: 'https://json-schema.org/draft/2020-12/schema',
@@ -31,8 +31,8 @@ console.log('Registered schema id:', registeredSchema?.$id);
 ```
 
 ```typescript
-import { type IValidationFailure } from '@twin.org/core';
-import { DataTypeHelper, ValidationMode, type IJsonSchema } from '@twin.org/data-core';
+import { type IValidationFailure } from '@3sixty/core';
+import { DataTypeHelper, ValidationMode, type IJsonSchema } from '@3sixty/data-core';
 
 const auditSchema: IJsonSchema = {
   $schema: 'https://json-schema.org/draft/2020-12/schema',
@@ -64,7 +64,7 @@ console.log('Failure count:', failures.length);
 ## JsonSchemaHelper
 
 ```typescript
-import { JsonSchemaHelper, type IJsonSchema } from '@twin.org/data-core';
+import { JsonSchemaHelper, type IJsonSchema } from '@3sixty/data-core';
 
 const credentialSchema: IJsonSchema = {
   $schema: JsonSchemaHelper.SCHEMA_VERSION,
@@ -92,8 +92,8 @@ console.log(
 ```
 
 ```typescript
-import type { IEntitySchema } from '@twin.org/entity';
-import { JsonSchemaHelper } from '@twin.org/data-core';
+import type { IEntitySchema } from '@3sixty/entity';
+import { JsonSchemaHelper } from '@3sixty/data-core';
 
 const entitySchema: IEntitySchema = {
   type: 'Person',

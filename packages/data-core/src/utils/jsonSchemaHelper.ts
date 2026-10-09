@@ -11,11 +11,11 @@ import {
 	JsonHelper,
 	SharedStore,
 	StringHelper
-} from "@twin.org/core";
-import { Blake2b } from "@twin.org/crypto";
-import type { IEntitySchema } from "@twin.org/entity";
-import { nameof } from "@twin.org/nameof";
-import { FetchHelper, HttpMethod } from "@twin.org/web";
+} from "@3sixty/core";
+import { Blake2b } from "@3sixty/crypto";
+import type { IEntitySchema } from "@3sixty/entity";
+import { nameof } from "@3sixty/nameof";
+import { FetchHelper, HttpMethod } from "@3sixty/web";
 import Ajv2019 from "ajv/dist/2019.js";
 import Ajv2020 from "ajv/dist/2020.js";
 import type { AnyValidateFunction } from "ajv/dist/core.js";

@@ -1,11 +1,11 @@
-# TWIN Framework Data
+# 3Sixty Framework Data
 
 This package provides framework data models that define common structures consumed by other packages in the repository. It centralises shared domain shapes so integrations can rely on clearer contracts and maintain semantic consistency as the ecosystem evolves.
 
 ## Installation
 
 ```shell
-npm install @twin.org/data-framework
+npm install @3sixty/data-framework
 ```
 
 ## Examples

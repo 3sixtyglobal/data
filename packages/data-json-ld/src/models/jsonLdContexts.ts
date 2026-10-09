@@ -9,17 +9,17 @@ export const JsonLdContexts = {
 	/**
 	 * The canonical RDF namespace URI for JSON-LD.
 	 */
-	Namespace: "https://schema.twindev.org/json-ld/",
+	Namespace: "https://schema.3sixty.global/json-ld/",
 
 	/**
 	 * The value to use in JSON-LD context for JSON-LD.
 	 */
-	Context: "https://schema.twindev.org/json-ld/",
+	Context: "https://schema.3sixty.global/json-ld/",
 
 	/**
 	 * The JSON-LD Context URL for JSON-LD.
 	 */
-	JsonLdContext: "https://schema.twindev.org/json-ld/types.jsonld"
+	JsonLdContext: "https://schema.3sixty.global/json-ld/types.jsonld"
 } as const;
 
 /**

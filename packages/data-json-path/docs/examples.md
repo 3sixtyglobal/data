@@ -5,7 +5,7 @@ These snippets cover common query and update workflows for nested JSON structure
 ## JsonPathHelper
 
 ```typescript
-import { JsonPathHelper } from '@twin.org/data-json-path';
+import { JsonPathHelper } from '@3sixty/data-json-path';
 
 const sample = {
   store: {
@@ -26,7 +26,7 @@ console.log('Path is valid:', JsonPathHelper.validate('$.store.book[*].title'));
 ```
 
 ```typescript
-import { JsonPathHelper } from '@twin.org/data-json-path';
+import { JsonPathHelper } from '@3sixty/data-json-path';
 
 const profile = {
   user: {
@@ -44,7 +44,7 @@ console.log('Updated email:', profile.user.contact.email);
 ```
 
 ```typescript
-import { JsonPathHelper } from '@twin.org/data-json-path';
+import { JsonPathHelper } from '@3sixty/data-json-path';
 
 const payload = {
   user: {

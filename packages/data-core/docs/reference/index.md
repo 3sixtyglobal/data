@@ -1,4 +1,4 @@
-# @twin.org/data-core
+# @3sixty/data-core
 
 ## Classes
 

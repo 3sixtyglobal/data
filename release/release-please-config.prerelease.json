@@ -10,6 +10,7 @@
 	"versioning": "prerelease",
 	"prerelease": true,
 	"prerelease-type": "next",
+	"last-release-sha": "d07f4ef531a9567a2c3040782c432cd37f655a51",
 	"packages": {
 		"packages/data-core": {
 			"package-name": "data-core",

@@ -9,17 +9,17 @@ export const FrameworkContexts = {
 	/**
 	 * The canonical RDF namespace URI for Framework.
 	 */
-	Namespace: "https://schema.twindev.org/framework/",
+	Namespace: "https://schema.3sixty.global/framework/",
 
 	/**
 	 * The value to use in JSON-LD context for Framework.
 	 */
-	Context: "https://schema.twindev.org/framework/",
+	Context: "https://schema.3sixty.global/framework/",
 
 	/**
 	 * The JSON-LD Context URL for Framework.
 	 */
-	JsonLdContext: "https://schema.twindev.org/framework/types.jsonld"
+	JsonLdContext: "https://schema.3sixty.global/framework/types.jsonld"
 } as const;
 
 /**

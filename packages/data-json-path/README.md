@@ -1,11 +1,11 @@
-# TWIN Data JSONPath
+# 3Sixty Data JSONPath
 
 This package provides a consistent abstraction for JSONPath queries, helping teams read and filter complex JSON structures through one stable interface. It builds on [JSONPath](https://goessner.net/articles/JsonPath/) concepts and the `json-p3` implementation to support reliable document querying across the repository.
 
 ## Installation
 
 ```shell
-npm install @twin.org/data-json-path
+npm install @3sixty/data-json-path
 ```
 
 ## Examples

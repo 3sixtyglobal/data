@@ -8,6 +8,7 @@
 	"release-type": "node",
 	"initial-version": "0.0.1",
 	"versioning": "default",
+	"last-release-sha": "7eed44bcd49c88db6c958cfdc1b3147c0f5e1bf2",
 	"packages": {
 		"packages/data-core": {
 			"package-name": "data-core",

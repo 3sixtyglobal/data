@@ -1,7 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { Urn, Validation } from "@twin.org/core";
-import { DataTypeHandlerFactory } from "@twin.org/data-core";
+import { Urn, Validation } from "@3sixty/core";
+import { DataTypeHandlerFactory } from "@3sixty/data-core";
 import { FrameworkContexts } from "../models/frameworkContexts.js";
 import { FrameworkTypes } from "../models/frameworkTypes.js";
 import TimestampMillisecondsSchema from "../schemas/TimestampMilliseconds.json" with { type: "json" };

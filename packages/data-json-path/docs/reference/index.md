@@ -1,4 +1,4 @@
-# @twin.org/data-json-path
+# @3sixty/data-json-path
 
 ## Classes
 

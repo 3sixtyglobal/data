@@ -1,6 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import type { IValidationFailure } from "@twin.org/core";
+import type { IValidationFailure } from "@3sixty/core";
 
 /**
  * Interface describing a type which can handle a specific urn namespace.

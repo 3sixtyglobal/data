@@ -1,11 +1,11 @@
-# TWIN JSON LD Data
+# 3Sixty JSON LD Data
 
 This package provides JSON-LD data models and helper utilities for working with linked data documents in a predictable and reusable way. It aligns package-level data structures with the [JSON-LD](https://json-ld.org/) ecosystem, making it easier to represent interoperable semantic data across services.
 
 ## Installation
 
 ```shell
-npm install @twin.org/data-json-ld
+npm install @3sixty/data-json-ld
 ```
 
 ## Examples

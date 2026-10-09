@@ -1,4 +1,4 @@
-# TWIN Data
+# 3Sixty Data
 
 This repository provides a shared set of data building blocks that help teams describe, validate, and query structured information in a consistent way. Together, the packages establish common models and helper utilities so applications and services can exchange data with fewer integration surprises and clearer contracts.
 

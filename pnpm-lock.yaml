@@ -241,21 +241,21 @@ importers:
 
   packages/data-core:
     dependencies:
-      '@twin.org/core':
+      '@3sixty/core':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/crypto':
+        version: 0.20.0-next.1
+      '@3sixty/crypto':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/entity':
+        version: 0.20.0-next.1
+      '@3sixty/entity':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/nameof':
+        version: 0.20.0-next.1
+      '@3sixty/nameof':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/web':
+        version: 0.20.0-next.1
+      '@3sixty/web':
         specifier: next
-        version: 0.10.1-next.12
+        version: 0.20.0-next.1
       ajv:
         specifier: 8.20.0
         version: 8.20.0
@@ -263,15 +263,15 @@ importers:
         specifier: 3.0.1
         version: 3.0.1(ajv@8.20.0)
     devDependencies:
-      '@twin.org/nameof-transformer':
+      '@3sixty/nameof-transformer':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/nameof-vitest-plugin':
+        version: 0.20.0-next.1
+      '@3sixty/nameof-vitest-plugin':
         specifier: next
-        version: 0.10.1-next.12(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
-      '@twin.org/validate-locales':
+        version: 0.20.0-next.1(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
+      '@3sixty/validate-locales':
         specifier: next
-        version: 0.10.1-next.12
+        version: 0.20.0-next.1
       '@vitest/coverage-v8':
         specifier: 5.0.1
         version: 5.0.1(vitest@5.0.1)
@@ -305,31 +305,31 @@ importers:
 
   packages/data-framework:
     dependencies:
-      '@twin.org/core':
+      '@3sixty/core':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/data-core':
-        specifier: 0.11.1-next.0
+        version: 0.20.0-next.1
+      '@3sixty/data-core':
+        specifier: 0.20.0-next.0
         version: link:../data-core
-      '@twin.org/data-json-ld':
-        specifier: 0.11.1-next.0
+      '@3sixty/data-json-ld':
+        specifier: 0.20.0-next.0
         version: link:../data-json-ld
-      '@twin.org/entity':
+      '@3sixty/entity':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/nameof':
+        version: 0.20.0-next.1
+      '@3sixty/nameof':
         specifier: next
-        version: 0.10.1-next.12
+        version: 0.20.0-next.1
     devDependencies:
-      '@twin.org/nameof-transformer':
+      '@3sixty/nameof-transformer':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/nameof-vitest-plugin':
+        version: 0.20.0-next.1
+      '@3sixty/nameof-vitest-plugin':
         specifier: next
-        version: 0.10.1-next.12(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
-      '@twin.org/validate-locales':
+        version: 0.20.0-next.1(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
+      '@3sixty/validate-locales':
         specifier: next
-        version: 0.10.1-next.12
+        version: 0.20.0-next.1
       '@vitest/coverage-v8':
         specifier: 5.0.1
         version: 5.0.1(vitest@5.0.1)
@@ -363,21 +363,21 @@ importers:
 
   packages/data-json-ld:
     dependencies:
-      '@twin.org/core':
+      '@3sixty/core':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/data-core':
-        specifier: 0.11.1-next.0
+        version: 0.20.0-next.1
+      '@3sixty/data-core':
+        specifier: 0.20.0-next.0
         version: link:../data-core
-      '@twin.org/entity':
+      '@3sixty/entity':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/nameof':
+        version: 0.20.0-next.1
+      '@3sixty/nameof':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/web':
+        version: 0.20.0-next.1
+      '@3sixty/web':
         specifier: next
-        version: 0.10.1-next.12
+        version: 0.20.0-next.1
       '@types/jsonld':
         specifier: 1.5.15
         version: 1.5.15
@@ -385,18 +385,18 @@ importers:
         specifier: 9.0.0
         version: 9.0.0
     devDependencies:
-      '@twin.org/nameof-transformer':
+      '@3sixty/nameof-transformer':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/nameof-vitest-plugin':
+        version: 0.20.0-next.1
+      '@3sixty/nameof-vitest-plugin':
         specifier: next
-        version: 0.10.1-next.12(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
-      '@twin.org/ts-to-schema':
+        version: 0.20.0-next.1(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
+      '@3sixty/ts-to-schema':
         specifier: next
-        version: 0.10.1-next.1
-      '@twin.org/validate-locales':
+        version: 0.20.0-next.1
+      '@3sixty/validate-locales':
         specifier: next
-        version: 0.10.1-next.12
+        version: 0.20.0-next.1
       '@vitest/coverage-v8':
         specifier: 5.0.1
         version: 5.0.1(vitest@5.0.1)
@@ -430,25 +430,25 @@ importers:
 
   packages/data-json-path:
     dependencies:
-      '@twin.org/core':
+      '@3sixty/core':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/nameof':
+        version: 0.20.0-next.1
+      '@3sixty/nameof':
         specifier: next
-        version: 0.10.1-next.12
+        version: 0.20.0-next.1
       json-p3:
         specifier: 2.3.1
         version: 2.3.1
     devDependencies:
-      '@twin.org/nameof-transformer':
+      '@3sixty/nameof-transformer':
         specifier: next
-        version: 0.10.1-next.12
-      '@twin.org/nameof-vitest-plugin':
+        version: 0.20.0-next.1
+      '@3sixty/nameof-vitest-plugin':
         specifier: next
-        version: 0.10.1-next.12(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
-      '@twin.org/validate-locales':
+        version: 0.20.0-next.1(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
+      '@3sixty/validate-locales':
         specifier: next
-        version: 0.10.1-next.12
+        version: 0.20.0-next.1
       '@vitest/coverage-v8':
         specifier: 5.0.1
         version: 5.0.1(vitest@5.0.1)
@@ -481,6 +481,56 @@ importers:
         version: 5.0.1(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
 
 packages:
+
+  '@3sixty/cli-core@0.20.0-next.1':
+    resolution: {integrity: sha512-VB4s0nLHJEtZjq+bSR2OQ29FUWc4wspuhnqQPwRjRWPcd55fh//CRrtt/iy+e3TOEN/q77+9ZA+ur5Evowc+UA==}
+    engines: {node: '>=24.0.0'}
+
+  '@3sixty/core@0.20.0-next.1':
+    resolution: {integrity: sha512-svxI2o8AOBf0N58kNim2DybTZSMDFhrl+dv334QikJsBNI9Xj8C6Rbja83ROlpNChTul5mCq+Q/uWzR/+3tqLA==}
+    engines: {node: '>=24.0.0'}
+
+  '@3sixty/crypto@0.20.0-next.1':
+    resolution: {integrity: sha512-Na+2Ze7DtepPfO7RfOm0ztTJsPDBrNx5n+BJfiespJ2+kggDet+FcL+lPilrNNHCQO3k6jzaOa/l01s6p0OVIw==}
+    engines: {node: '>=24.0.0'}
+
+  '@3sixty/entity@0.20.0-next.1':
+    resolution: {integrity: sha512-nQyZZE5Epkz8V5BNldZvlG1joWCcUgBoQpbezqTg3XJCRbZTfafeuQJ+2Yu4iQ/Wy2URaA0/AMiH19tzupgXPQ==}
+    engines: {node: '>=24.0.0'}
+
+  '@3sixty/nameof-transformer@0.20.0-next.1':
+    resolution: {integrity: sha512-2Fk/ZfbHMn/KTPibs7WFZ2K5azOTs9QqCLjMXKx5faznRLTuQGVD3+q5uuDgjOwW9XL8I7hZY08Dtp0gO40mEA==}
+    engines: {node: '>=24.0.0'}
+
+  '@3sixty/nameof-vitest-plugin@0.20.0-next.1':
+    resolution: {integrity: sha512-MSAZfOQFteeh/84sgNkesuoF7Z6WrlZqUlm6cVoPOhg9660r60TNNO1gBSbyV1K/9Njlk0YI0WNX+BidNbHpSg==}
+    engines: {node: '>=24.0.0'}
+
+  '@3sixty/nameof@0.20.0-next.1':
+    resolution: {integrity: sha512-lj8xKghhaBsfPtkUcZ8dk41xQwTv/KgEE69cibAJxC6KzsuhM0Dbp8C0L6R8bRDkg2vnO7flxaHWBEBl9EQK1Q==}
+    engines: {node: '>=24.0.0'}
+
+  '@3sixty/tools-core@0.20.0-next.1':
+    resolution: {integrity: sha512-axh0z9bTmoMh/hAMQnDMIN+dKE+TlQ3z7w8D7jvdwBd/ZqPefQwHMl9WFSVQjGN70LHuq7Lj1hwPww4YK12y5w==}
+    engines: {node: '>=24.0.0'}
+
+  '@3sixty/tools-models@0.20.0-next.1':
+    resolution: {integrity: sha512-qE5lkX1D7oQHvZH56F1KN8T8rIxPhd9WxuFoUpGHV4U4ibccbOXcJGcQNAcW/VtvDGVjbgxqo0Q6wDn3sGT8cw==}
+    engines: {node: '>=24.0.0'}
+
+  '@3sixty/ts-to-schema@0.20.0-next.1':
+    resolution: {integrity: sha512-zs5xrQ2B9kWB6eZ2sPCiJaTOoIRlUX15ZDFVkj3Je+QdnQcRTgv8ju5TQ3Ih7FIkCGyM/epG0AjOXLTDs4evGA==}
+    engines: {node: '>=24.0.0'}
+    hasBin: true
+
+  '@3sixty/validate-locales@0.20.0-next.1':
+    resolution: {integrity: sha512-FAZbKQGllTqhYNaqT+ctHcKBJeZBinrjO5z3W4lItmT3f3FkO1BHxk/q5/kN8D00tEc+XMd/yvNunEf4ix50Bw==}
+    engines: {node: '>=24.0.0'}
+    hasBin: true
+
+  '@3sixty/web@0.20.0-next.1':
+    resolution: {integrity: sha512-lj2MNibw+Lj8QfDQX5MA/b3K9+2YKUAUitDvO3PIZqo5zRH38YtEYhUL2ioa355ZCjuZ9RdTjWO4n7stt0NAZg==}
+    engines: {node: '>=24.0.0'}
 
   '@babel/code-frame@7.29.7':
     resolution: {integrity: sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw==}
@@ -1216,56 +1266,6 @@ packages:
     resolution: {integrity: sha512-O3PDvjikVWECu078bLdRb2HwjVgR+wa7D0GX8gN1A8axlgEc7tordHOoEYcKRVxGcAw7bxXjwiKGXaY17qXD+Q==}
     peerDependencies:
       eslint: '>=7.7.0'
-
-  '@twin.org/cli-core@0.10.1-next.12':
-    resolution: {integrity: sha512-gwiW4qR06cDNF9L7aXVbw171eHYq9Zla/0EYwNuq2nM3ZHy9snr0L5fr+jhmfvWMUGeutJ04rwGqzV5HIrljfQ==}
-    engines: {node: '>=24.0.0'}
-
-  '@twin.org/core@0.10.1-next.12':
-    resolution: {integrity: sha512-vtjh7GXpjP4BLKb6Qb7fc9bH1r+TC8/yun1AClK5EHkOPj9FAB4zq/Ol9jSlC0QCmeWMQqrhV3VeVIn/4WiRXQ==}
-    engines: {node: '>=24.0.0'}
-
-  '@twin.org/crypto@0.10.1-next.12':
-    resolution: {integrity: sha512-SxNMCybYSV2eOKjMiquiz8eoHONjbGOluTgt/hfo9SmCjIwQtrtr9o3OF6bUiOmj4DwE9jVqBrGlb3O1KV9NJg==}
-    engines: {node: '>=24.0.0'}
-
-  '@twin.org/entity@0.10.1-next.12':
-    resolution: {integrity: sha512-PJn86ehg6YvqJE1lT4H+xMHB0g6TfKteqGjO+5WGMj2PMI9JNqZmixmUTyf3Jig6e1hr9qveChbLh4X68j9iRQ==}
-    engines: {node: '>=24.0.0'}
-
-  '@twin.org/nameof-transformer@0.10.1-next.12':
-    resolution: {integrity: sha512-QcUVoMT1pCNk3my2ySPBUfuXhLAQgISWykFz0BBAHhyUqFM46BwqQXohCQ7IAE9RtPUMuzoz2HyX72Q7CDu2kA==}
-    engines: {node: '>=24.0.0'}
-
-  '@twin.org/nameof-vitest-plugin@0.10.1-next.12':
-    resolution: {integrity: sha512-FbWAybTHX63ScXOujRXyg236GAmeByay2GVdcfVbLyCCmMGW1ExJ1cxU8BdWJPNoZNSM2mwvxqWytKnNBEI1QQ==}
-    engines: {node: '>=24.0.0'}
-
-  '@twin.org/nameof@0.10.1-next.12':
-    resolution: {integrity: sha512-YZSPVnjvxWcF/kN/6HaGK8Az3UtFQAbxdpA59KHhAYZW5mMKYEsESeWNPlmKgCAIgSU2voGz4sPhiaN0ErrCrw==}
-    engines: {node: '>=24.0.0'}
-
-  '@twin.org/tools-core@0.10.1-next.1':
-    resolution: {integrity: sha512-K3rLPQ7uE8Aa45RGYKpQd4P0sX8rS5Ib8A1ujLAU2SdpQExX50m237gkOcLrlCLrA/pARIccthRzm9i+h/KyOA==}
-    engines: {node: '>=24.0.0'}
-
-  '@twin.org/tools-models@0.10.1-next.1':
-    resolution: {integrity: sha512-DpIVllcrO9eBR84wAg/Wt1KplxliKqmCyS5t3eIeN3+Ums7KBI3cxdPPvCeBk8PVrC5u8BuXrU/TKsCYWtfFrg==}
-    engines: {node: '>=24.0.0'}
-
-  '@twin.org/ts-to-schema@0.10.1-next.1':
-    resolution: {integrity: sha512-BZKHsD+h2GUrFEO6P5ixV70ymOHZDLhxpTv5fKPbet0sgRXUPcSKaUCe0Kyp+NWYNm4gKxJY3Lkngn2+4sy/fA==}
-    engines: {node: '>=24.0.0'}
-    hasBin: true
-
-  '@twin.org/validate-locales@0.10.1-next.12':
-    resolution: {integrity: sha512-KiYMfNXm5SEmnk4ho4kzwW825w3qCYA9owhGgGPs1fyOcttDtDgLeHGIt5xsTJE0QG8XMM5rrG851DtPYqjm+w==}
-    engines: {node: '>=24.0.0'}
-    hasBin: true
-
-  '@twin.org/web@0.10.1-next.12':
-    resolution: {integrity: sha512-eoccJsRv/INFpqxroz6v/alwcgxTzR83XPe7L1Gg1Esl02f2yVC4ZiDUbXbN+JQNEqQwpflIZ08/pEXA18ruCw==}
-    engines: {node: '>=24.0.0'}
 
   '@tybys/wasm-util@0.10.4':
     resolution: {integrity: sha512-W3c4gRigFS0T/Ma4qIYF3GDAc5AQdHb1yL5znJT1Zv1YaD9Kitx656wBjvr19qbiosmZT8lWDM5BEMynUqX65A==}
@@ -3585,6 +3585,106 @@ packages:
 
 snapshots:
 
+  '@3sixty/cli-core@0.20.0-next.1':
+    dependencies:
+      '@3sixty/core': 0.20.0-next.1
+      '@3sixty/nameof': 0.20.0-next.1
+      chalk: 6.0.0
+      commander: 15.0.0
+      dotenv: 18.0.2
+
+  '@3sixty/core@0.20.0-next.1':
+    dependencies:
+      '@3sixty/nameof': 0.20.0-next.1
+      intl-messageformat: 12.1.2
+      rfc6902: 5.3.0
+
+  '@3sixty/crypto@0.20.0-next.1':
+    dependencies:
+      '@3sixty/core': 0.20.0-next.1
+      '@3sixty/nameof': 0.20.0-next.1
+      '@noble/ciphers': 2.4.0
+      '@noble/curves': 2.4.0
+      '@noble/hashes': 2.4.0
+      '@scure/base': 2.4.0
+      '@scure/bip32': 2.4.0
+      '@scure/bip39': 2.4.0
+      micro-key-producer: 0.10.2
+
+  '@3sixty/entity@0.20.0-next.1':
+    dependencies:
+      '@3sixty/core': 0.20.0-next.1
+      '@3sixty/nameof': 0.20.0-next.1
+      reflect-metadata: 0.2.2
+      tslib: 2.8.1
+
+  '@3sixty/nameof-transformer@0.20.0-next.1':
+    dependencies:
+      typescript: 6.0.3
+
+  '@3sixty/nameof-vitest-plugin@0.20.0-next.1(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))':
+    dependencies:
+      '@3sixty/nameof-transformer': 0.20.0-next.1
+      vitest: 5.0.1(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@opentelemetry/api'
+      - '@types/node'
+      - '@vitest/browser-playwright'
+      - '@vitest/browser-preview'
+      - '@vitest/browser-webdriverio'
+      - '@vitest/coverage-istanbul'
+      - '@vitest/coverage-v8'
+      - '@vitest/ui'
+      - happy-dom
+      - jsdom
+      - msw
+      - vite
+
+  '@3sixty/nameof@0.20.0-next.1': {}
+
+  '@3sixty/tools-core@0.20.0-next.1':
+    dependencies:
+      '@3sixty/core': 0.20.0-next.1
+      '@3sixty/nameof': 0.20.0-next.1
+      '@3sixty/tools-models': 0.20.0-next.1
+      glob: 13.0.6
+      typescript: 6.0.3
+
+  '@3sixty/tools-models@0.20.0-next.1':
+    dependencies:
+      '@3sixty/core': 0.20.0-next.1
+      '@3sixty/nameof': 0.20.0-next.1
+
+  '@3sixty/ts-to-schema@0.20.0-next.1':
+    dependencies:
+      '@3sixty/cli-core': 0.20.0-next.1
+      '@3sixty/core': 0.20.0-next.1
+      '@3sixty/nameof': 0.20.0-next.1
+      '@3sixty/tools-core': 0.20.0-next.1
+      '@3sixty/tools-models': 0.20.0-next.1
+      ajv: 8.20.0
+      ajv-formats: 3.0.1(ajv@8.20.0)
+      commander: 15.0.0
+      glob: 13.0.6
+
+  '@3sixty/validate-locales@0.20.0-next.1':
+    dependencies:
+      '@3sixty/cli-core': 0.20.0-next.1
+      '@3sixty/core': 0.20.0-next.1
+      '@3sixty/nameof': 0.20.0-next.1
+      '@3sixty/nameof-transformer': 0.20.0-next.1
+      commander: 15.0.0
+      glob: 13.0.6
+      typescript: 6.0.3
+
+  '@3sixty/web@0.20.0-next.1':
+    dependencies:
+      '@3sixty/core': 0.20.0-next.1
+      '@3sixty/crypto': 0.20.0-next.1
+      '@3sixty/nameof': 0.20.0-next.1
+      jose: 6.2.12
+
   '@babel/code-frame@7.29.7':
     dependencies:
       '@babel/helper-validator-identifier': 7.29.7
@@ -4312,106 +4412,6 @@ snapshots:
   '@tony.ganchev/eslint-plugin-header@3.4.4(eslint@10.11.0(jiti@2.6.1)(supports-color@10.2.2))':
     dependencies:
       eslint: 10.11.0(jiti@2.6.1)(supports-color@10.2.2)
-
-  '@twin.org/cli-core@0.10.1-next.12':
-    dependencies:
-      '@twin.org/core': 0.10.1-next.12
-      '@twin.org/nameof': 0.10.1-next.12
-      chalk: 6.0.0
-      commander: 15.0.0
-      dotenv: 18.0.2
-
-  '@twin.org/core@0.10.1-next.12':
-    dependencies:
-      '@twin.org/nameof': 0.10.1-next.12
-      intl-messageformat: 12.1.2
-      rfc6902: 5.3.0
-
-  '@twin.org/crypto@0.10.1-next.12':
-    dependencies:
-      '@noble/ciphers': 2.4.0
-      '@noble/curves': 2.4.0
-      '@noble/hashes': 2.4.0
-      '@scure/base': 2.4.0
-      '@scure/bip32': 2.4.0
-      '@scure/bip39': 2.4.0
-      '@twin.org/core': 0.10.1-next.12
-      '@twin.org/nameof': 0.10.1-next.12
-      micro-key-producer: 0.10.2
-
-  '@twin.org/entity@0.10.1-next.12':
-    dependencies:
-      '@twin.org/core': 0.10.1-next.12
-      '@twin.org/nameof': 0.10.1-next.12
-      reflect-metadata: 0.2.2
-      tslib: 2.8.1
-
-  '@twin.org/nameof-transformer@0.10.1-next.12':
-    dependencies:
-      typescript: 6.0.3
-
-  '@twin.org/nameof-vitest-plugin@0.10.1-next.12(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))':
-    dependencies:
-      '@twin.org/nameof-transformer': 0.10.1-next.12
-      vitest: 5.0.1(@types/node@26.6.2)(@vitest/coverage-v8@5.0.1)(vite@8.3.0(@types/node@26.6.2)(jiti@2.6.1))
-    transitivePeerDependencies:
-      - '@edge-runtime/vm'
-      - '@opentelemetry/api'
-      - '@types/node'
-      - '@vitest/browser-playwright'
-      - '@vitest/browser-preview'
-      - '@vitest/browser-webdriverio'
-      - '@vitest/coverage-istanbul'
-      - '@vitest/coverage-v8'
-      - '@vitest/ui'
-      - happy-dom
-      - jsdom
-      - msw
-      - vite
-
-  '@twin.org/nameof@0.10.1-next.12': {}
-
-  '@twin.org/tools-core@0.10.1-next.1':
-    dependencies:
-      '@twin.org/core': 0.10.1-next.12
-      '@twin.org/nameof': 0.10.1-next.12
-      '@twin.org/tools-models': 0.10.1-next.1
-      glob: 13.0.6
-      typescript: 6.0.3
-
-  '@twin.org/tools-models@0.10.1-next.1':
-    dependencies:
-      '@twin.org/core': 0.10.1-next.12
-      '@twin.org/nameof': 0.10.1-next.12
-
-  '@twin.org/ts-to-schema@0.10.1-next.1':
-    dependencies:
-      '@twin.org/cli-core': 0.10.1-next.12
-      '@twin.org/core': 0.10.1-next.12
-      '@twin.org/nameof': 0.10.1-next.12
-      '@twin.org/tools-core': 0.10.1-next.1
-      '@twin.org/tools-models': 0.10.1-next.1
-      ajv: 8.20.0
-      ajv-formats: 3.0.1(ajv@8.20.0)
-      commander: 15.0.0
-      glob: 13.0.6
-
-  '@twin.org/validate-locales@0.10.1-next.12':
-    dependencies:
-      '@twin.org/cli-core': 0.10.1-next.12
-      '@twin.org/core': 0.10.1-next.12
-      '@twin.org/nameof': 0.10.1-next.12
-      '@twin.org/nameof-transformer': 0.10.1-next.12
-      commander: 15.0.0
-      glob: 13.0.6
-      typescript: 6.0.3
-
-  '@twin.org/web@0.10.1-next.12':
-    dependencies:
-      '@twin.org/core': 0.10.1-next.12
-      '@twin.org/crypto': 0.10.1-next.12
-      '@twin.org/nameof': 0.10.1-next.12
-      jose: 6.2.12
 
   '@tybys/wasm-util@0.10.4':
     dependencies:

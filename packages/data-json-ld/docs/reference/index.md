@@ -1,4 +1,4 @@
-# @twin.org/data-json-ld
+# @3sixty/data-json-ld
 
 ## Classes
 

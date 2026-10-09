@@ -5,7 +5,7 @@ These examples walk through context management, document processing, validation,
 ## JsonLdProcessor
 
 ```typescript
-import { JsonLdProcessor } from '@twin.org/data-json-ld';
+import { JsonLdProcessor } from '@3sixty/data-json-ld';
 
 JsonLdProcessor.setCacheLimit(900000);
 console.log('Cache limit:', JsonLdProcessor.getCacheLimit());
@@ -25,7 +25,7 @@ console.log('Loader type:', typeof loader);
 ```
 
 ```typescript
-import { JsonLdProcessor, type IJsonLdNodeObject } from '@twin.org/data-json-ld';
+import { JsonLdProcessor, type IJsonLdNodeObject } from '@3sixty/data-json-ld';
 
 const compactedDoc = {
   '@context': {
@@ -46,7 +46,7 @@ console.log('Canonical includes id:', canonical.includes('urn:example:person:1')
 ```
 
 ```typescript
-import { JsonLdProcessor, type IJsonLdNodeObject } from '@twin.org/data-json-ld';
+import { JsonLdProcessor, type IJsonLdNodeObject } from '@3sixty/data-json-ld';
 
 const contextA = 'https://example.org/context/base';
 const contextB = {
@@ -76,7 +76,7 @@ console.log('Filtered context equals contextA:', filtered === contextA);
 ```
 
 ```typescript
-import { JsonLdProcessor } from '@twin.org/data-json-ld';
+import { JsonLdProcessor } from '@3sixty/data-json-ld';
 
 await JsonLdProcessor.documentCacheAdd('https://example.org/context', {
   '@context': {
@@ -98,7 +98,7 @@ When a remote `@context` URL is a string, the default document loader resolves i
 Use **manual redirects** for stable overrides, offline tests, or hosts that do not expose a suitable `Link` header. Rely on **discovery** when the namespace URL serves HTML but advertises a JSON-LD context via `Link`.
 
 ```typescript
-import { JsonLdProcessor } from '@twin.org/data-json-ld';
+import { JsonLdProcessor } from '@3sixty/data-json-ld';
 
 // Optional: force a namespace URL to a known context document (runs before discovery).
 JsonLdProcessor.addRedirect(
@@ -109,14 +109,14 @@ JsonLdProcessor.addRedirect(
 
 ### Standards packages and `registerRedirects()`
 
-Vocabulary packages (for example `@twin.org/standards-schema-org`) often expose `SchemaOrgDataTypes.registerRedirects()`, which forwards to `JsonLdProcessor.addRedirect` for a known namespace URL. That call is **optional** in many deployments: the default loader can reach the same JSON-LD context via **HTTP `Link` discovery** when the namespace URL returns HTML and advertises `rel="alternate"` with `type="application/ld+json"`. Prefer **explicit redirects** when you want predictable URLs without an extra `HEAD`/`GET` for discovery, **fully offline** or hermetic tests, or when the host does not send a usable `Link` header.
+Vocabulary packages (for example `@3sixty/standards-schema-org`) often expose `SchemaOrgDataTypes.registerRedirects()`, which forwards to `JsonLdProcessor.addRedirect` for a known namespace URL. That call is **optional** in many deployments: the default loader can reach the same JSON-LD context via **HTTP `Link` discovery** when the namespace URL returns HTML and advertises `rel="alternate"` with `type="application/ld+json"`. Prefer **explicit redirects** when you want predictable URLs without an extra `HEAD`/`GET` for discovery, **fully offline** or hermetic tests, or when the host does not send a usable `Link` header.
 
 ## JsonLdHelper
 
 ```typescript
-import { type IValidationFailure } from '@twin.org/core';
-import { ValidationMode } from '@twin.org/data-core';
-import { JsonLdHelper, type IJsonLdNodeObject } from '@twin.org/data-json-ld';
+import { type IValidationFailure } from '@3sixty/core';
+import { ValidationMode } from '@3sixty/data-core';
+import { JsonLdHelper, type IJsonLdNodeObject } from '@3sixty/data-json-ld';
 
 const compactedDocument = {
   '@context': {
@@ -155,7 +155,7 @@ console.log('Structured name:', structuredObject.name);
 ```
 
 ```typescript
-import { JsonLdHelper } from '@twin.org/data-json-ld';
+import { JsonLdHelper } from '@3sixty/data-json-ld';
 
 const expandedDocument = [
   {
@@ -184,7 +184,7 @@ console.log('Word count value:', wordCountValues?.[0]);
 ```
 
 ```typescript
-import { JsonLdHelper } from '@twin.org/data-json-ld';
+import { JsonLdHelper } from '@3sixty/data-json-ld';
 
 const node = {
   '@id': 'urn:example:item:1',
@@ -202,8 +202,8 @@ console.log('Stripped name:', stripped.name);
 ## JsonLdDataTypes
 
 ```typescript
-import { DataTypeHelper } from '@twin.org/data-core';
-import { JsonLdContexts, JsonLdDataTypes, JsonLdTypes } from '@twin.org/data-json-ld';
+import { DataTypeHelper } from '@3sixty/data-core';
+import { JsonLdContexts, JsonLdDataTypes, JsonLdTypes } from '@3sixty/data-json-ld';
 
 JsonLdDataTypes.registerTypes();
 
