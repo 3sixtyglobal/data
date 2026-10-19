@@ -8,7 +8,9 @@ import standaloneCode from "ajv/dist/standalone/index.js";
 import { afterEach, describe, expect, test, vi } from "vitest";
 import type { ICompiledValidator } from "../../src/models/ICompiledValidator.js";
 import type { IJsonSchema } from "../../src/models/IJsonSchema.js";
+import { DataTypeHelper } from "../../src/utils/dataTypeHelper.js";
 import { JsonSchemaHelper } from "../../src/utils/jsonSchemaHelper.js";
+import { SchemaAliasHelper } from "../../src/utils/schemaAliasHelper.js";
 
 /**
  * Test entity.
@@ -952,6 +954,61 @@ describe("JsonSchemaHelper", () => {
 		// Either validation fails, or loggers track the failure
 		expect(failures.length).toBe(0);
 		expect(logCalls.failed.length).toBe(1);
+	});
+
+	describe("aliases", () => {
+		const oldNamespace = "https://test.ref-alias-old.example/";
+		const namespace = "https://test.ref-alias-new.example/";
+
+		afterEach(() => {
+			SchemaAliasHelper.setAliases([]);
+			JsonSchemaHelper.clearCache();
+			vi.restoreAllMocks();
+		});
+
+		test("Can resolve an aliased reference to the registered type without fetching", async () => {
+			SchemaAliasHelper.addAlias(/^https:\/\/test\.ref-alias-old\.example\//, namespace);
+			DataTypeHelper.registerType(namespace, "RefMode", undefined, {
+				$id: `${namespace}RefMode`,
+				type: "string",
+				enum: ["on", "off"]
+			});
+			const fetchSpy = vi.spyOn(FetchHelper, "fetchJson");
+
+			const schema: IJsonSchema = {
+				$id: `${namespace}RefEntity`,
+				type: "object",
+				properties: {
+					mode: { $ref: `${oldNamespace}RefMode` }
+				},
+				required: ["mode"]
+			};
+
+			expect(await JsonSchemaHelper.validate(schema, { mode: "on" })).toHaveLength(0);
+			expect(await JsonSchemaHelper.validate(schema, { mode: "bad" })).toHaveLength(1);
+			expect(fetchSpy).not.toHaveBeenCalled();
+		});
+
+		test("Can resolve aliased and canonical references to the same type in one schema", async () => {
+			SchemaAliasHelper.addAlias(/^https:\/\/test\.ref-alias-old\.example\//, namespace);
+			DataTypeHelper.registerType(namespace, "RefBoth", undefined, {
+				$id: `${namespace}RefBoth`,
+				type: "number"
+			});
+
+			const schema: IJsonSchema = {
+				$id: `${namespace}RefBothEntity`,
+				type: "object",
+				properties: {
+					first: { $ref: `${oldNamespace}RefBoth` },
+					second: { $ref: `${namespace}RefBoth` }
+				},
+				required: ["first", "second"]
+			};
+
+			expect(await JsonSchemaHelper.validate(schema, { first: 1, second: 2 })).toHaveLength(0);
+			expect(await JsonSchemaHelper.validate(schema, { first: "a", second: 2 })).toHaveLength(1);
+		});
 	});
 
 	describe("throwOnMissing", () => {

@@ -1,6 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import { Is } from "@3sixty/core";
+import { SchemaAliasHelper } from "@3sixty/data-core";
 import { FetchHelper, HttpMethod } from "@3sixty/web";
 import type { IJsonLdDocument } from "../../src/models/IJsonLdDocument.js";
 import { JsonLdProcessor } from "../../src/utils/jsonLdProcessor.js";
@@ -41,6 +42,7 @@ describe("JsonLdProcessor Link header discovery", () => {
 	beforeEach(() => {
 		FetchHelper.clearCache();
 		JsonLdProcessor.setRedirects([]);
+		SchemaAliasHelper.setAliases([]);
 	});
 
 	afterEach(() => {
@@ -232,6 +234,92 @@ describe("JsonLdProcessor Link header discovery", () => {
 					(c[1]?.method ?? HttpMethod.GET).toUpperCase() === HttpMethod.GET
 			)
 		).toBe(true);
+	});
+
+	test("registered alias loads the context from the canonical URL", async () => {
+		const oldContextDoc = "https://alias-old.example.test/vocab/context.jsonld";
+		const aliasedContextDoc = "https://alias-new.example.test/vocab/context.jsonld";
+		SchemaAliasHelper.addAlias(
+			/^https:\/\/alias-old\.example\.test\//,
+			"https://alias-new.example.test/"
+		);
+
+		const fetchMock = vi.fn(
+			async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
+				const url = urlFromFetchInput(input);
+				const method = (init?.method ?? HttpMethod.GET).toUpperCase();
+
+				if (method === HttpMethod.GET && sameUrl(url, aliasedContextDoc)) {
+					return new Response(JSON.stringify(minimalContextDoc), {
+						status: 200,
+						headers: new Headers({ "content-type": "application/ld+json" })
+					});
+				}
+
+				if (sameUrl(url, oldContextDoc)) {
+					throw new Error(
+						`unexpected ${method} to old URL - alias should have replaced it: ${url}`
+					);
+				}
+
+				return new Response(JSON.stringify({ error: "not found" }), {
+					status: 404,
+					headers: new Headers({ "content-type": "application/json" })
+				});
+			}
+		);
+		vi.stubGlobal("fetch", fetchMock);
+
+		const doc: IJsonLdDocument = {
+			"@context": oldContextDoc,
+			"@type": "Person",
+			name: "Ada"
+		};
+
+		const expanded = await JsonLdProcessor.expand(doc);
+		expect(expanded[0]["http://schema.org/name"]).toEqual([{ "@value": "Ada" }]);
+		expect(
+			fetchMock.mock.calls.some(c => sameUrl(urlFromFetchInput(c[0]), aliasedContextDoc))
+		).toBe(true);
+	});
+
+	test("registered redirect matches the aliased URL", async () => {
+		const oldContextNs = "https://alias-old.example.test/redirect-vocab";
+		const redirectTarget = "https://redirect-override.example.test/aliased-context.jsonld";
+		SchemaAliasHelper.addAlias(
+			/^https:\/\/alias-old\.example\.test\//,
+			"https://alias-new.example.test/"
+		);
+		JsonLdProcessor.addRedirect(
+			/^https:\/\/alias-new\.example\.test\/redirect-vocab$/,
+			redirectTarget
+		);
+
+		const fetchMock = vi.fn(
+			async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
+				const url = urlFromFetchInput(input);
+				const method = (init?.method ?? HttpMethod.GET).toUpperCase();
+
+				if (method === HttpMethod.GET && sameUrl(url, redirectTarget)) {
+					return new Response(JSON.stringify(minimalContextDoc), {
+						status: 200,
+						headers: new Headers({ "content-type": "application/ld+json" })
+					});
+				}
+
+				throw new Error(`unexpected ${method} - redirect should have replaced it: ${url}`);
+			}
+		);
+		vi.stubGlobal("fetch", fetchMock);
+
+		const doc: IJsonLdDocument = {
+			"@context": oldContextNs,
+			"@type": "Person",
+			name: "Ada"
+		};
+
+		const expanded = await JsonLdProcessor.expand(doc);
+		expect(expanded[0]["http://schema.org/name"]).toEqual([{ "@value": "Ada" }]);
 	});
 
 	test("does not recurse past one Link discovery hop", async () => {

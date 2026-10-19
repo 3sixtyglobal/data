@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0.
 import { Is, type IValidationFailure } from "@3sixty/core";
 import { JsonSchemaHelper } from "./jsonSchemaHelper.js";
+import { SchemaAliasHelper } from "./schemaAliasHelper.js";
 import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory.js";
 import type { ICompiledValidator } from "../models/ICompiledValidator.js";
 import type { IJsonSchema } from "../models/IJsonSchema.js";
@@ -102,7 +103,7 @@ export class DataTypeHelper {
 	 * @returns The JSON schema for the data type or undefined if not found.
 	 */
 	public static async getSchemaForType(dataType: string): Promise<IJsonSchema | undefined> {
-		const handler = DataTypeHandlerFactory.getIfExists(dataType);
+		const handler = DataTypeHandlerFactory.getIfExists(SchemaAliasHelper.resolve(dataType));
 		return handler?.jsonSchema ? handler.jsonSchema() : undefined;
 	}
 
@@ -114,7 +115,7 @@ export class DataTypeHelper {
 	public static async getCompiledValidatorForType(
 		dataType: string
 	): Promise<ICompiledValidator | undefined> {
-		const handler = DataTypeHandlerFactory.getIfExists(dataType);
+		const handler = DataTypeHandlerFactory.getIfExists(SchemaAliasHelper.resolve(dataType));
 		return handler?.compiledValidator ? handler.compiledValidator() : undefined;
 	}
 
@@ -142,7 +143,7 @@ export class DataTypeHelper {
 		let isValid = true;
 
 		if (Is.stringValue(dataType)) {
-			const handler = DataTypeHandlerFactory.getIfExists(dataType);
+			const handler = DataTypeHandlerFactory.getIfExists(SchemaAliasHelper.resolve(dataType));
 
 			if (handler) {
 				const validationMode = options?.validationMode ?? ValidationMode.Either;

@@ -6,6 +6,7 @@ import { DataTypeHandlerFactory } from "../../src/factories/dataTypeHandlerFacto
 import type { IJsonSchema } from "../../src/models/IJsonSchema.js";
 import { DataTypeHelper } from "../../src/utils/dataTypeHelper.js";
 import { JsonSchemaHelper } from "../../src/utils/jsonSchemaHelper.js";
+import { SchemaAliasHelper } from "../../src/utils/schemaAliasHelper.js";
 
 describe("DataTypeHelper", () => {
 	beforeAll(async () => {
@@ -417,6 +418,75 @@ describe("DataTypeHelper", () => {
 			expect(
 				await DataTypeHelper.getCompiledValidatorForType(`${namespace}get-validator-missing`)
 			).toBeUndefined();
+		});
+	});
+
+	describe("aliases", () => {
+		const oldNamespace = "https://test.alias-old.example/";
+		const namespace = "https://test.alias-new.example/";
+		const schema: IJsonSchema = { type: "string" };
+
+		beforeEach(() => {
+			SchemaAliasHelper.setAliases([
+				{ from: /^https:\/\/test\.alias-old\.example\//, to: namespace }
+			]);
+		});
+
+		afterEach(() => {
+			SchemaAliasHelper.setAliases([]);
+		});
+
+		test("Can get the schema for an aliased type", async () => {
+			DataTypeHelper.registerType(namespace, "aliasSchema", undefined, schema);
+
+			expect(await DataTypeHelper.getSchemaForType(`${oldNamespace}aliasSchema`)).toEqual(schema);
+		});
+
+		test("Can get the compiled validator for an aliased type", async () => {
+			const compiled = new Ajv2020.Ajv2020().compile(schema);
+			DataTypeHelper.registerType(namespace, "aliasValidator", undefined, schema, compiled);
+
+			expect(
+				await DataTypeHelper.getCompiledValidatorForType(`${oldNamespace}aliasValidator`)
+			).toBe(compiled);
+		});
+
+		test("Can validate an aliased type against the registered type", async () => {
+			DataTypeHelper.registerType(namespace, "aliasValidate", undefined, schema);
+
+			const valid: IValidationFailure[] = [];
+			expect(
+				await DataTypeHelper.validate("value", `${oldNamespace}aliasValidate`, "text", valid)
+			).toEqual(true);
+			expect(valid).toEqual([]);
+
+			const invalid: IValidationFailure[] = [];
+			expect(
+				await DataTypeHelper.validate("value", `${oldNamespace}aliasValidate`, 123, invalid)
+			).toEqual(false);
+			expect(invalid).toHaveLength(1);
+		});
+
+		test("Can report the original data type when an aliased type is missing", async () => {
+			const validationFailures: IValidationFailure[] = [];
+			const validation = await DataTypeHelper.validate(
+				"value",
+				`${oldNamespace}aliasMissing`,
+				123,
+				validationFailures,
+				{ failOnMissingType: true }
+			);
+
+			expect(validation).toEqual(false);
+			expect(validationFailures).toEqual([
+				{
+					property: "value",
+					reason: "validation.schema.missingType",
+					properties: {
+						dataType: `${oldNamespace}aliasMissing`
+					}
+				}
+			]);
 		});
 	});
 
