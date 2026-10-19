@@ -240,7 +240,7 @@ describe("JsonLdProcessor Link header discovery", () => {
 		const oldContextDoc = "https://alias-old.example.test/vocab/context.jsonld";
 		const aliasedContextDoc = "https://alias-new.example.test/vocab/context.jsonld";
 		SchemaAliasHelper.addAlias(
-			/^https:\/\/alias-old\.example\.test\//,
+			"https://alias-old.example.test/",
 			"https://alias-new.example.test/"
 		);
 
@@ -287,7 +287,7 @@ describe("JsonLdProcessor Link header discovery", () => {
 		const oldContextNs = "https://alias-old.example.test/redirect-vocab";
 		const redirectTarget = "https://redirect-override.example.test/aliased-context.jsonld";
 		SchemaAliasHelper.addAlias(
-			/^https:\/\/alias-old\.example\.test\//,
+			"/^https:\\/\\/alias-old\\.example\\.test\\//",
 			"https://alias-new.example.test/"
 		);
 		JsonLdProcessor.addRedirect(

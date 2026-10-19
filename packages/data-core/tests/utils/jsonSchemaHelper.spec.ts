@@ -967,7 +967,7 @@ describe("JsonSchemaHelper", () => {
 		});
 
 		test("Can resolve an aliased reference to the registered type without fetching", async () => {
-			SchemaAliasHelper.addAlias(/^https:\/\/test\.ref-alias-old\.example\//, namespace);
+			SchemaAliasHelper.addAlias("/^https:\\/\\/test\\.ref-alias-old\\.example\\//", namespace);
 			DataTypeHelper.registerType(namespace, "RefMode", undefined, {
 				$id: `${namespace}RefMode`,
 				type: "string",
@@ -990,7 +990,7 @@ describe("JsonSchemaHelper", () => {
 		});
 
 		test("Can resolve aliased and canonical references to the same type in one schema", async () => {
-			SchemaAliasHelper.addAlias(/^https:\/\/test\.ref-alias-old\.example\//, namespace);
+			SchemaAliasHelper.addAlias(oldNamespace, namespace);
 			DataTypeHelper.registerType(namespace, "RefBoth", undefined, {
 				$id: `${namespace}RefBoth`,
 				type: "number"

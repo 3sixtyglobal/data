@@ -427,9 +427,7 @@ describe("DataTypeHelper", () => {
 		const schema: IJsonSchema = { type: "string" };
 
 		beforeEach(() => {
-			SchemaAliasHelper.setAliases([
-				{ from: /^https:\/\/test\.alias-old\.example\//, to: namespace }
-			]);
+			SchemaAliasHelper.setAliases([{ from: oldNamespace, to: namespace }]);
 		});
 
 		afterEach(() => {
