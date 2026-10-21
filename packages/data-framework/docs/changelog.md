@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.20.0-next.2](https://github.com/3sixtyglobal/data/compare/data-framework-v0.20.0-next.1...data-framework-v0.20.0-next.2) (2026-10-21)
+
+
+### Miscellaneous Chores
+
+* **data-framework:** Synchronize repo versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @3sixty/data-core bumped from 0.20.0-next.1 to 0.20.0-next.2
+    * @3sixty/data-json-ld bumped from 0.20.0-next.1 to 0.20.0-next.2
+
 ## [0.20.0-next.1](https://github.com/3sixtyglobal/data/compare/data-framework-v0.20.0-next.0...data-framework-v0.20.0-next.1) (2026-10-09)
 
 
