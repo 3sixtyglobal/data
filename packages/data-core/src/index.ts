@@ -11,3 +11,4 @@ export * from "./models/validationMode.js";
 export * from "./utils/dataTypeHelper.js";
 export * from "./utils/jsonSchemaFormats.js";
 export * from "./utils/jsonSchemaHelper.js";
+export * from "./utils/schemaAliasHelper.js";

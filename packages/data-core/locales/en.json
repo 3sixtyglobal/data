@@ -3,6 +3,9 @@
 		"jsonSchemaHelper": {
 			"schemaLoadFailed": "Failed to load the referenced schema \"{uri}\""
 		},
+		"schemaAliasHelper": {
+			"invalidPattern": "The alias pattern \"{pattern}\" is not a valid regular expression in the form /source/flags"
+		},
 		"validation": {
 			"schema": {
 				"missingType": "Failed to validate as there is no handler for type \"{dataType}\""

@@ -1,6 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import { BaseError, GeneralError, Is, ObjectHelper, SharedStore } from "@3sixty/core";
+import { SchemaAliasHelper } from "@3sixty/data-core";
 import { nameof } from "@3sixty/nameof";
 import {
 	FetchHelper,
@@ -80,8 +81,9 @@ export class JsonLdProcessor {
 	}
 
 	/**
-	 * Replace the global redirect list (use {@link JsonLdProcessor.addRedirect} to append without replacing).
+	 * Replace the global redirect list.
 	 * Redirects run before any HTTP GET or `Link` discovery; use them for stable overrides, tests, or hosts that do not expose a suitable `Link` header.
+	 * URLs are resolved through the SchemaAliasHelper aliases before the redirects are matched.
 	 * @param redirects The redirects to use.
 	 */
 	public static setRedirects(
@@ -390,6 +392,8 @@ export class JsonLdProcessor {
 	 * @internal
 	 */
 	private static async documentLoader(url: Url): Promise<RemoteDocument> {
+		url = SchemaAliasHelper.resolve(url);
+
 		const redirects = JsonLdProcessor.getRedirects();
 		for (const redirect of redirects) {
 			if (redirect.from.test(url)) {

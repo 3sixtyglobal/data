@@ -20,6 +20,7 @@ import Ajv2019 from "ajv/dist/2019.js";
 import Ajv2020 from "ajv/dist/2020.js";
 import type { AnyValidateFunction } from "ajv/dist/core.js";
 import formatsPlugin from "ajv-formats";
+import { SchemaAliasHelper } from "./schemaAliasHelper.js";
 import { DataTypeHandlerFactory } from "../factories/dataTypeHandlerFactory.js";
 import type { ICompiledValidator } from "../models/ICompiledValidator.js";
 import type { IJsonSchema } from "../models/IJsonSchema.js";
@@ -439,6 +440,12 @@ export class JsonSchemaHelper {
 	 */
 	private static createLoadSchema(throwOnMissing: boolean): (uri: string) => Promise<IJsonSchema> {
 		return async (uri: string) => {
+			const aliasedUri = SchemaAliasHelper.resolve(uri);
+			if (aliasedUri !== uri) {
+				// Reference the canonical schema so it is only added once under its own id
+				return { $ref: aliasedUri };
+			}
+
 			const subTypeHandler = DataTypeHandlerFactory.getIfExists(uri);
 			const jsonSchemaMethod = subTypeHandler?.jsonSchema?.bind(subTypeHandler);
 			if (Is.function(jsonSchemaMethod)) {
