@@ -6,6 +6,6 @@ Omit "id" from a type.
 
 ## Type Parameters
 
-### T
+### T {#t}
 
 `T` *extends* `object`

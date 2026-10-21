@@ -7,6 +7,6 @@ the source type when available, otherwise using the provided default.
 
 ## Type Parameters
 
-### T
+### T {#t}
 
 `T` *extends* `object`

@@ -7,18 +7,18 @@ or fall back to a default when neither exists.
 
 ## Type Parameters
 
-### T
+### T {#t}
 
 `T` *extends* `object`
 
-### P1
+### P1 {#p1}
 
 `P1` *extends* `PropertyKey`
 
-### P2
+### P2 {#p2}
 
 `P2` *extends* `PropertyKey`
 
-### D
+### D {#d}
 
 `D`

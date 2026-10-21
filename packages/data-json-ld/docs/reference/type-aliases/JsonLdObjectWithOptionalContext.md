@@ -5,18 +5,18 @@
 Add optional "@context" to a type, inferring an existing context type from
 the source type when available, otherwise using the provided default.
 
+## Type Parameters
+
+### T {#t}
+
+`T` *extends* `object`
+
+### C {#c}
+
+`C` = [`JsonLdExistingProperty`](JsonLdExistingProperty.md)\<`T`, `"@context"`, [`IJsonLdContextDefinitionRoot`](IJsonLdContextDefinitionRoot.md)\>
+
 ## Type Declaration
 
 ### @context?
 
 > `optional` **@context?**: `C`
-
-## Type Parameters
-
-### T
-
-`T` *extends* `object`
-
-### C
-
-`C` = [`JsonLdExistingProperty`](JsonLdExistingProperty.md)\<`T`, `"@context"`, [`IJsonLdContextDefinitionRoot`](IJsonLdContextDefinitionRoot.md)\>

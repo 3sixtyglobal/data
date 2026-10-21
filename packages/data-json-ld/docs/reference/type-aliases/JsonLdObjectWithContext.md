@@ -4,18 +4,18 @@
 
 Add "@context" to a type.
 
+## Type Parameters
+
+### T {#t}
+
+`T` *extends* `object`
+
+### C {#c}
+
+`C` = [`IJsonLdContextDefinitionRoot`](IJsonLdContextDefinitionRoot.md)
+
 ## Type Declaration
 
 ### @context
 
 > **@context**: `C`
-
-## Type Parameters
-
-### T
-
-`T` *extends* `object`
-
-### C
-
-`C` = [`IJsonLdContextDefinitionRoot`](IJsonLdContextDefinitionRoot.md)

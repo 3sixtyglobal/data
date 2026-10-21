@@ -86,8 +86,9 @@ The cache limit in milliseconds.
 
 > `static` **setRedirects**(`redirects`): `void`
 
-Replace the global redirect list (use [JsonLdProcessor.addRedirect](#addredirect) to append without replacing).
+Replace the global redirect list.
 Redirects run before any HTTP GET or `Link` discovery; use them for stable overrides, tests, or hosts that do not expose a suitable `Link` header.
+URLs are resolved through the SchemaAliasHelper aliases before the redirects are matched.
 
 #### Parameters
 
@@ -153,7 +154,7 @@ Compact a document according to a particular context.
 
 #### Type Parameters
 
-##### T
+##### T {#t}
 
 `T`
 
@@ -203,7 +204,7 @@ Expand a document, removing its context.
 
 #### Type Parameters
 
-##### T
+##### T {#t-1}
 
 `T`
 
@@ -231,7 +232,7 @@ Canonize a document.
 
 #### Type Parameters
 
-##### T
+##### T {#t-2}
 
 `T` *extends* [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
 
@@ -297,7 +298,7 @@ Gather all the contexts from the element and it's children.
 
 #### Type Parameters
 
-##### T
+##### T {#t-3}
 
 `T`
 

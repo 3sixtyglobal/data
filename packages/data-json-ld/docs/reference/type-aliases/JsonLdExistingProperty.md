@@ -6,14 +6,14 @@ Infer an existing property's type from a source type, or fall back to a default.
 
 ## Type Parameters
 
-### T
+### T {#t}
 
 `T` *extends* `object`
 
-### P
+### P {#p}
 
 `P` *extends* `PropertyKey`
 
-### D
+### D {#d}
 
 `D`

@@ -6,10 +6,10 @@ Keep JSON-LD keys as-is and prefix non-JSON-LD keys.
 
 ## Type Parameters
 
-### K
+### K {#k}
 
 `K` *extends* `string`
 
-### Prefix
+### Prefix {#prefix}
 
 `Prefix` *extends* `string`

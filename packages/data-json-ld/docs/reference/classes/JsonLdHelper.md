@@ -22,7 +22,7 @@ Validate a JSON-LD document.
 
 #### Type Parameters
 
-##### T
+##### T {#t}
 
 `T` *extends* [`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md) = [`IJsonLdDocument`](../type-aliases/IJsonLdDocument.md)
 
@@ -72,7 +72,7 @@ Convert an object to a JSON-LD node object.
 
 #### Type Parameters
 
-##### T
+##### T {#t-1}
 
 `T` = `unknown`
 
@@ -100,7 +100,7 @@ Convert the JSON-LD node object to a structured object.
 
 #### Type Parameters
 
-##### T
+##### T {#t-2}
 
 `T` = `unknown`
 
@@ -298,7 +298,7 @@ For example, if the prefix is "ex" and the document has a property "name", it wi
 
 #### Type Parameters
 
-##### T
+##### T {#t-3}
 
 `T` *extends* [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
 
@@ -340,7 +340,7 @@ For example, if the prefix is "ex" and the document has a property "ex:name", it
 
 #### Type Parameters
 
-##### T
+##### T {#t-4}
 
 `T` *extends* [`IJsonLdNodeObject`](../interfaces/IJsonLdNodeObject.md)
 
