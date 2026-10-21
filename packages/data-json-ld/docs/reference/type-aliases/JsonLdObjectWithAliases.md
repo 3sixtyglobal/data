@@ -7,10 +7,10 @@ non-JSON-LD keys.
 
 ## Type Parameters
 
-### T
+### T {#t}
 
 `T` *extends* `object`
 
-### Prefix
+### Prefix {#prefix}
 
 `Prefix` *extends* `string`

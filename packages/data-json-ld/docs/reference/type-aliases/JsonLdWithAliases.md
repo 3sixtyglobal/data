@@ -8,10 +8,10 @@ each key's original required/optional status.
 
 ## Type Parameters
 
-### T
+### T {#t}
 
 `T` *extends* `object`
 
-### Prefix
+### Prefix {#prefix}
 
 `Prefix` *extends* `string`

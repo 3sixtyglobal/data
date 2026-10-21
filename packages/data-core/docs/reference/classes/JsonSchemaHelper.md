@@ -74,7 +74,7 @@ Validates data against the schema.
 
 #### Type Parameters
 
-##### T
+##### T {#t}
 
 `T` = `unknown`
 
@@ -93,6 +93,8 @@ The schema to validate the data with.
 The data to be validated.
 
 ##### additionalTypes?
+
+\{\[`id`: `string`\]: `SchemaObject`; \}
 
 Additional types to add for reference, not already in DataTypeHandlerFactory.
 
@@ -126,7 +128,7 @@ Validates data with a validator compiled ahead of time from a JSON schema.
 
 #### Type Parameters
 
-##### T
+##### T {#t-1}
 
 `T` = `unknown`
 

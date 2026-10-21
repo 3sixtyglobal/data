@@ -4,6 +4,7 @@
 
 - [DataTypeHelper](classes/DataTypeHelper.md)
 - [JsonSchemaHelper](classes/JsonSchemaHelper.md)
+- [SchemaAliasHelper](classes/SchemaAliasHelper.md)
 
 ## Interfaces
 

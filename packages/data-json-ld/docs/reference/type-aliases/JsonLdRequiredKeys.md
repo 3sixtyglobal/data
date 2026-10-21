@@ -6,6 +6,6 @@ Extract the required property names from a type.
 
 ## Type Parameters
 
-### T
+### T {#t}
 
 `T`
