@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0-next.2](https://github.com/3sixtyglobal/data/compare/data-json-path-v0.20.0-next.1...data-json-path-v0.20.0-next.2) (2026-10-21)
+
+
+### Miscellaneous Chores
+
+* **data-json-path:** Synchronize repo versions
+
 ## [0.20.0-next.1](https://github.com/3sixtyglobal/data/compare/data-json-path-v0.20.0-next.0...data-json-path-v0.20.0-next.1) (2026-10-09)
 
 
