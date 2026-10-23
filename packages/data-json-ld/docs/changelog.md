@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.20.0-next.3](https://github.com/3sixtyglobal/data/compare/data-json-ld-v0.20.0-next.2...data-json-ld-v0.20.0-next.3) (2026-10-23)
+
+
+### Features
+
+* updated ts compile ([c1b9fc3](https://github.com/3sixtyglobal/data/commit/c1b9fc392590b74ab7dd5918b0bf6bc002b80f16))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @3sixty/data-core bumped from 0.20.0-next.2 to 0.20.0-next.3
+
 ## [0.20.0-next.2](https://github.com/3sixtyglobal/data/compare/data-json-ld-v0.20.0-next.1...data-json-ld-v0.20.0-next.2) (2026-10-21)
 
 
