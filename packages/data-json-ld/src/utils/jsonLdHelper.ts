@@ -1,4 +1,5 @@
 // Copyright 2024 IOTA Stiftung.
+// Copyright 2026 3Sixty Trade Ltd.
 // SPDX-License-Identifier: Apache-2.0.
 import { ArrayHelper, Guards, Is, type IValidationFailure } from "@3sixty/core";
 import { DataTypeHelper, type ValidationMode } from "@3sixty/data-core";
@@ -147,7 +148,8 @@ export class JsonLdHelper {
 				const expandedProps = ArrayHelper.fromObjectOrArray(expandedDoc[prop]);
 				if (Is.arrayValue(expandedProps)) {
 					for (const expandedProp of expandedProps) {
-						const arr = ArrayHelper.fromObjectOrArray(expandedProp);
+						const propValue: unknown = expandedProp;
+						const arr = ArrayHelper.fromObjectOrArray(propValue);
 						if (Is.arrayValue(arr)) {
 							for (const arrValue of arr) {
 								if (Is.stringValue(arrValue)) {
@@ -182,7 +184,8 @@ export class JsonLdHelper {
 				const expandedProps = ArrayHelper.fromObjectOrArray(expandedDoc[prop]);
 				if (Is.arrayValue(expandedProps)) {
 					for (const expandedProp of expandedProps) {
-						const arr = ArrayHelper.fromObjectOrArray(expandedProp);
+						const propValue: unknown = expandedProp;
+						const arr = ArrayHelper.fromObjectOrArray(propValue);
 						if (Is.arrayValue(arr)) {
 							for (const arrValue of arr) {
 								if (Is.stringValue(arrValue)) {
@@ -308,14 +311,15 @@ export class JsonLdHelper {
 
 		for (const key in nodeObject) {
 			const value = nodeObject[key];
+			const prop: string = key;
 			if (
-				Is.stringValue(key) &&
-				!key.startsWith("@") &&
-				(hasNoPropertiesFilter || properties.includes(key))
+				Is.stringValue(prop) &&
+				!prop.startsWith("@") &&
+				(hasNoPropertiesFilter || properties.includes(prop))
 			) {
-				prefixedNodeObject[`${normalizedPrefix}:${key}`] = value;
+				prefixedNodeObject[`${normalizedPrefix}:${prop}`] = value;
 			} else {
-				prefixedNodeObject[key] = value;
+				prefixedNodeObject[prop] = value;
 			}
 		}
 
@@ -345,15 +349,20 @@ export class JsonLdHelper {
 
 		for (const key in nodeObject) {
 			const value = nodeObject[key];
-			if (Is.stringValue(key) && !key.startsWith("@") && key.startsWith(`${normalizedPrefix}:`)) {
-				const strippedKey = key.slice(normalizedPrefix.length + 1);
+			const prop: string = key;
+			if (
+				Is.stringValue(prop) &&
+				!prop.startsWith("@") &&
+				prop.startsWith(`${normalizedPrefix}:`)
+			) {
+				const strippedKey = prop.slice(normalizedPrefix.length + 1);
 				if (hasNoPropertiesFilter || properties.includes(strippedKey)) {
 					strippedNodeObject[strippedKey] = value;
 				} else {
-					strippedNodeObject[key] = value;
+					strippedNodeObject[prop] = value;
 				}
 			} else {
-				strippedNodeObject[key] = value;
+				strippedNodeObject[prop] = value;
 			}
 		}
 
