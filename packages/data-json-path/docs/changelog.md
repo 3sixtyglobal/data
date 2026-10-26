@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0-next.4](https://github.com/3sixtyglobal/data/compare/data-json-path-v0.20.0-next.3...data-json-path-v0.20.0-next.4) (2026-10-26)
+
+
+### Features
+
+* release to next [skip ci] ([#20](https://github.com/3sixtyglobal/data/issues/20)) ([625b070](https://github.com/3sixtyglobal/data/commit/625b070e82a6455ab0298416771a39e135147d60))
+
 ## [0.20.0-next.3](https://github.com/3sixtyglobal/data/compare/data-json-path-v0.20.0-next.2...data-json-path-v0.20.0-next.3) (2026-10-23)
 
 
