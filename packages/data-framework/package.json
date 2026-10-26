@@ -1,6 +1,6 @@
 {
 	"name": "@3sixty/data-framework",
-	"version": "0.20.0-next.3",
+	"version": "0.20.0-next.4",
 	"description": "Framework data models that define common structures used by other packages.",
 	"repository": {
 		"type": "git",
@@ -31,7 +31,7 @@
 	},
 	"dependencies": {
 		"@3sixty/core": "next",
-		"@3sixty/data-core": "0.20.0-next.3"
+		"@3sixty/data-core": "0.20.0-next.4"
 	},
 	"devDependencies": {
 		"@3sixty/nameof-transformer": "next",
