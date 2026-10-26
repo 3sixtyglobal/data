@@ -303,7 +303,7 @@ importers:
         specifier: next
         version: 0.20.0-next.4
       '@3sixty/data-core':
-        specifier: 0.20.0-next.3
+        specifier: 0.20.0-next.4
         version: link:../data-core
     devDependencies:
       '@3sixty/nameof-transformer':
@@ -346,7 +346,7 @@ importers:
         specifier: next
         version: 0.20.0-next.4
       '@3sixty/data-core':
-        specifier: 0.20.0-next.3
+        specifier: 0.20.0-next.4
         version: link:../data-core
       '@3sixty/nameof':
         specifier: next
