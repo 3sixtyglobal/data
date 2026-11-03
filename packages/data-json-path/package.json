@@ -35,7 +35,7 @@
 	"dependencies": {
 		"@3sixty/core": "next",
 		"@3sixty/nameof": "next",
-		"json-p3": "2.3.1"
+		"json-p3": "3.0.2"
 	},
 	"devDependencies": {
 		"@3sixty/nameof-transformer": "next",
