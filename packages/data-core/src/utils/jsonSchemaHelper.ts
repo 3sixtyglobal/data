@@ -4,6 +4,7 @@ import {
 	AsyncCache,
 	BaseError,
 	Converter,
+	DurationConstants,
 	GeneralError,
 	type IError,
 	Is,
@@ -465,8 +466,7 @@ export class JsonSchemaHelper {
 					HttpMethod.GET,
 					undefined,
 					{
-						// Cache for an hour
-						cacheTtlMs: 3600000
+						cacheTtlMs: DurationConstants.MsPerHour
 					}
 				);
 				await JsonSchemaHelper._loggers?.schemaLoaded?.(uri);

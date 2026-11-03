@@ -1,6 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { Urn, Validation } from "@3sixty/core";
+import { DurationConstants, Urn, Validation } from "@3sixty/core";
 import { DataTypeHandlerFactory } from "@3sixty/data-core";
 import { FrameworkContexts } from "../models/frameworkContexts.js";
 import { FrameworkTypes } from "../models/frameworkTypes.js";
@@ -45,7 +45,7 @@ export class FrameworkDataTypes {
 				namespace: FrameworkContexts.Namespace,
 				jsonLdContext: FrameworkContexts.JsonLdContext,
 				type: FrameworkTypes.TimestampSeconds,
-				defaultValue: Math.floor(Date.now() / 1000),
+				defaultValue: Math.floor(Date.now() / DurationConstants.MsPerSecond),
 				jsonSchema: async () => TimestampSecondsSchema,
 				validate: async (propertyName, value, failures, container) =>
 					Validation.timestampSeconds(propertyName, value, failures)

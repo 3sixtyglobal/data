@@ -1,6 +1,13 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { BaseError, GeneralError, Is, ObjectHelper, SharedStore } from "@3sixty/core";
+import {
+	BaseError,
+	DurationConstants,
+	GeneralError,
+	Is,
+	ObjectHelper,
+	SharedStore
+} from "@3sixty/core";
 import { SchemaAliasHelper } from "@3sixty/data-core";
 import { nameof } from "@3sixty/nameof";
 import {
@@ -77,7 +84,7 @@ export class JsonLdProcessor {
 	 * @returns The cache limit in milliseconds.
 	 */
 	public static getCacheLimit(): number {
-		return SharedStore.get<number>("jsonLdDocumentCacheLimit", () => 3600000);
+		return SharedStore.get<number>("jsonLdDocumentCacheLimit", () => DurationConstants.MsPerHour);
 	}
 
 	/**
