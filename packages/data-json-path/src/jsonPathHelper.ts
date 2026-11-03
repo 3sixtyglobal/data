@@ -1,8 +1,9 @@
 // Copyright 2025 IOTA Stiftung.
+// Copyright 2026 3Sixty Trade Ltd.
 // SPDX-License-Identifier: Apache-2.0.
 import { BaseError, GeneralError, Guards, Is } from "@3sixty/core";
 import { nameof } from "@3sixty/nameof";
-import { jsonpath, type JSONValue } from "json-p3";
+import { compile, find, findAll, findOne, type JSONValue, test } from "json-p3";
 import type { IJsonPathLocation } from "./models/IJsonPathLocation.js";
 import type { IJsonPathResult } from "./models/IJsonPathResult.js";
 
@@ -26,14 +27,14 @@ export class JsonPathHelper {
 		Guards.stringValue(JsonPathHelper.CLASS_NAME, nameof(path), path);
 
 		try {
-			const results = jsonpath.query(path, data as JSONValue);
-			// Convert JSONPathNodeList to array of IJsonPathResult
+			const results = find(path, data as JSONValue);
+			// Convert the JSONPathNode array to an array of IJsonPathResult
 			const resultArray: IJsonPathResult[] = [];
 			for (const node of results) {
 				resultArray.push({
 					value: node.value,
 					location: node.location,
-					path: node.getPath({ form: "canonical" })
+					path: node.normalizedPath()
 				});
 			}
 			return resultArray;
@@ -59,8 +60,7 @@ export class JsonPathHelper {
 		Guards.stringValue(JsonPathHelper.CLASS_NAME, nameof(path), path);
 
 		try {
-			const results = jsonpath.query(path, data as JSONValue);
-			return !results.empty();
+			return test(path, data as JSONValue);
 		} catch {
 			return false;
 		}
@@ -77,7 +77,7 @@ export class JsonPathHelper {
 		Guards.stringValue(JsonPathHelper.CLASS_NAME, nameof(path), path);
 
 		try {
-			const node = jsonpath.match(path, data as JSONValue);
+			const node = findOne(path, data as JSONValue);
 			return node?.value;
 		} catch (error) {
 			throw new GeneralError(
@@ -102,8 +102,7 @@ export class JsonPathHelper {
 		Guards.stringValue(JsonPathHelper.CLASS_NAME, nameof(path), path);
 
 		try {
-			const results = jsonpath.query(path, data as JSONValue);
-			return results.values();
+			return findAll(path, data as JSONValue);
 		} catch (error) {
 			throw new GeneralError(
 				JsonPathHelper.CLASS_NAME,
@@ -128,8 +127,7 @@ export class JsonPathHelper {
 		}
 
 		try {
-			// Query with empty object to test syntax
-			jsonpath.query(path, {});
+			compile(path);
 			return true;
 		} catch (error) {
 			throw new GeneralError(
