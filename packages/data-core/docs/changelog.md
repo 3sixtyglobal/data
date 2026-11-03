@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0-next.5](https://github.com/3sixtyglobal/data/compare/data-core-v0.20.0-next.4...data-core-v0.20.0-next.5) (2026-11-03)
+
+
+### Miscellaneous Chores
+
+* **data-core:** Synchronize repo versions
+
 ## [0.20.0-next.4](https://github.com/3sixtyglobal/data/compare/data-core-v0.20.0-next.3...data-core-v0.20.0-next.4) (2026-10-26)
 
 

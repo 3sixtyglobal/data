@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0-next.5](https://github.com/3sixtyglobal/data/compare/data-json-path-v0.20.0-next.4...data-json-path-v0.20.0-next.5) (2026-11-03)
+
+
+### Bug Fixes
+
+* update json-p3 to 3.0.2 ([#23](https://github.com/3sixtyglobal/data/issues/23)) ([ba5883c](https://github.com/3sixtyglobal/data/commit/ba5883c54bdfa68bfdb2359e87c757b0d4ff31e9))
+
 ## [0.20.0-next.4](https://github.com/3sixtyglobal/data/compare/data-json-path-v0.20.0-next.3...data-json-path-v0.20.0-next.4) (2026-10-26)
 
 
