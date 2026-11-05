@@ -4,7 +4,6 @@
 /**
  * The types of JSON-LD data.
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const JsonLdTypes = {
 	/**
 	 * Represents JSON-LD Document.

@@ -15,7 +15,7 @@ import type { IJsonLdNodeObject } from "./IJsonLdNodeObject.js";
  */
 export interface IJsonLdGraphObject {
 	"@graph": IJsonLdNodeObject | IJsonLdNodeObject[];
-	"@index"?: string | undefined;
-	"@id"?: string | string[] | undefined;
-	"@context"?: IJsonLdContextDefinitionRoot | undefined;
+	"@index"?: string;
+	"@id"?: string | string[];
+	"@context"?: IJsonLdContextDefinitionRoot;
 }

@@ -15,13 +15,13 @@ import type { IJsonLdJsonObject } from "./IJsonLdJsonObject.js";
  * @see https://www.w3.org/TR/json-ld11/#value-objects
  */
 export type IJsonLdValueObject = {
-	"@index"?: string | undefined;
-	"@context"?: IJsonLdContextDefinitionRoot | undefined;
+	"@index"?: string;
+	"@context"?: IJsonLdContextDefinitionRoot;
 } & (
 	| {
 			"@value": null | boolean | number | string;
-			"@language"?: string | undefined;
-			"@direction"?: "ltr" | "rtl" | null | undefined;
+			"@language"?: string;
+			"@direction"?: "ltr" | "rtl" | null;
 	  }
 	| {
 			"@value": null | boolean | number | string;

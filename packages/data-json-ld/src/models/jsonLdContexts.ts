@@ -4,7 +4,6 @@
 /**
  * The contexts of JSON-LD data.
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const JsonLdContexts = {
 	/**
 	 * The canonical RDF namespace URI for JSON-LD.

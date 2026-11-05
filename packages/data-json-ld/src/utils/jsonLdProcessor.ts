@@ -214,13 +214,13 @@ export class JsonLdProcessor {
 	public static async canonize<T extends IJsonLdNodeObject>(
 		document: T,
 		options?: {
-			algorithm?: "URDNA2015" | "URGNA2012" | undefined;
+			algorithm?: "URDNA2015" | "URGNA2012";
 		}
 	): Promise<string> {
 		try {
 			const normalized = await jsonLd.canonize(ObjectHelper.removeEmptyProperties(document), {
 				algorithm: options?.algorithm ?? "URDNA2015",
-				format: "application/n-quads",
+				format: MimeTypes.NQuads,
 				documentLoader: JsonLdProcessor.getDocumentLoader()
 			});
 			return normalized;

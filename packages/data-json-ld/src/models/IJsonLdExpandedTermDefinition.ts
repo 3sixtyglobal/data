@@ -16,26 +16,25 @@ import type { IJsonLdContextDefinition } from "./IJsonLdContextDefinition.js";
  * @see https://www.w3.org/TR/json-ld11/#expanded-term-definition
  */
 export type IJsonLdExpandedTermDefinition = {
-	"@type"?: "@id" | "@json" | "@none" | "@vocab" | string | undefined;
-	"@language"?: string | undefined;
-	"@index"?: string | undefined;
-	"@context"?: IJsonLdContextDefinition | undefined;
-	"@prefix"?: boolean | undefined;
-	"@propagate"?: boolean | undefined;
-	"@protected"?: boolean | undefined;
+	"@type"?: "@id" | "@json" | "@none" | "@vocab" | string;
+	"@language"?: string;
+	"@index"?: string;
+	"@context"?: IJsonLdContextDefinition;
+	"@prefix"?: boolean;
+	"@propagate"?: boolean;
+	"@protected"?: boolean;
 } & (
 	| {
-			"@id"?: string | string[] | null | undefined;
-			"@nest"?: "@nest" | string | undefined;
+			"@id"?: string | string[] | null;
+			"@nest"?: "@nest" | string;
 			"@container"?:
 				| ("@list" | "@set" | IJsonLdContainerType)
 				| ("@list" | "@set" | IJsonLdContainerType)[]
 				| IJsonLdContainerTypeArray
-				| null
-				| undefined;
+				| null;
 	  }
 	| {
 			"@reverse": string;
-			"@container"?: "@set" | "@index" | null | undefined;
+			"@container"?: "@set" | "@index" | null;
 	  }
 );

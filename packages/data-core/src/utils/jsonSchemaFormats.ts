@@ -5,7 +5,6 @@ import { fullFormats } from "ajv-formats/dist/formats.js";
 /**
  * The JSON schema format validators, used by compiled validators so they do not depend on AJV.
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const JsonSchemaFormats = fullFormats;
 
 /**

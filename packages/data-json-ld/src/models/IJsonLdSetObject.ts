@@ -14,5 +14,5 @@ import type { IJsonLdListOrSetItem } from "./IJsonLdListOrSetItem.js";
  */
 export interface IJsonLdSetObject {
 	"@set": IJsonLdListOrSetItem | IJsonLdListOrSetItem[];
-	"@index"?: string | undefined;
+	"@index"?: string;
 }

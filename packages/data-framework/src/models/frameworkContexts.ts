@@ -4,7 +4,6 @@
 /**
  * The contexts of framework data.
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const FrameworkContexts = {
 	/**
 	 * The canonical RDF namespace URI for Framework.

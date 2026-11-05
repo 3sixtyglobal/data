@@ -4,7 +4,6 @@
 /**
  * Validation modes for validating data types.
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ValidationMode = {
 	/**
 	 * Use the validation method of the data type.

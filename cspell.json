@@ -19,6 +19,8 @@
 		"changelog.md"
 	],
 	"words": [
+		"3sixtyglobal",
+		"abbrev",
 		"autorelease",
 		"hotfixes",
 		"iotaledger",
@@ -27,8 +29,7 @@
 		"Stiftung",
 		"URDNA",
 		"URGNA",
-		"vocab",
-		"abbrev"
+		"vocab"
 	],
 	"ignoreRegExpList": [
 		"/from\\s+(['\"]).*\\1/",

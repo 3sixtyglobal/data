@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0.
 import { Is } from "@3sixty/core";
 import { SchemaAliasHelper } from "@3sixty/data-core";
-import { FetchHelper, HttpMethod } from "@3sixty/web";
+import { FetchHelper, HttpMethod, MimeTypes } from "@3sixty/web";
 import type { IJsonLdDocument } from "../../src/models/IJsonLdDocument.js";
 import { JsonLdProcessor } from "../../src/utils/jsonLdProcessor.js";
 
@@ -79,14 +79,14 @@ describe("JsonLdProcessor Link header discovery", () => {
 					return new Response(JSON.stringify(minimalContextDoc), {
 						status: 200,
 						headers: new Headers({
-							"content-type": "application/ld+json"
+							"content-type": MimeTypes.JsonLd
 						})
 					});
 				}
 
 				return new Response(JSON.stringify({ error: "not found" }), {
 					status: 404,
-					headers: new Headers({ "content-type": "application/json" })
+					headers: new Headers({ "content-type": MimeTypes.Json })
 				});
 			})
 		);
@@ -110,13 +110,13 @@ describe("JsonLdProcessor Link header discovery", () => {
 				if (method === HttpMethod.GET && sameUrl(url, contextNs)) {
 					return new Response(JSON.stringify({ error: "not found" }), {
 						status: 404,
-						headers: new Headers({ "content-type": "application/json" })
+						headers: new Headers({ "content-type": MimeTypes.Json })
 					});
 				}
 
 				return new Response(JSON.stringify({ error: "not found" }), {
 					status: 404,
-					headers: new Headers({ "content-type": "application/json" })
+					headers: new Headers({ "content-type": MimeTypes.Json })
 				});
 			}
 		);
@@ -167,14 +167,14 @@ describe("JsonLdProcessor Link header discovery", () => {
 					return new Response(JSON.stringify(minimalContextDoc), {
 						status: 200,
 						headers: new Headers({
-							"content-type": "application/ld+json"
+							"content-type": MimeTypes.JsonLd
 						})
 					});
 				}
 
 				return new Response(JSON.stringify({ error: "not found" }), {
 					status: 404,
-					headers: new Headers({ "content-type": "application/json" })
+					headers: new Headers({ "content-type": MimeTypes.Json })
 				});
 			})
 		);
@@ -201,7 +201,7 @@ describe("JsonLdProcessor Link header discovery", () => {
 				if (method === HttpMethod.GET && sameUrl(url, redirectTarget)) {
 					return new Response(JSON.stringify(minimalContextDoc), {
 						status: 200,
-						headers: new Headers({ "content-type": "application/ld+json" })
+						headers: new Headers({ "content-type": MimeTypes.JsonLd })
 					});
 				}
 
@@ -213,7 +213,7 @@ describe("JsonLdProcessor Link header discovery", () => {
 
 				return new Response(JSON.stringify({ error: "not found" }), {
 					status: 404,
-					headers: new Headers({ "content-type": "application/json" })
+					headers: new Headers({ "content-type": MimeTypes.Json })
 				});
 			}
 		);
@@ -252,7 +252,7 @@ describe("JsonLdProcessor Link header discovery", () => {
 				if (method === HttpMethod.GET && sameUrl(url, aliasedContextDoc)) {
 					return new Response(JSON.stringify(minimalContextDoc), {
 						status: 200,
-						headers: new Headers({ "content-type": "application/ld+json" })
+						headers: new Headers({ "content-type": MimeTypes.JsonLd })
 					});
 				}
 
@@ -264,7 +264,7 @@ describe("JsonLdProcessor Link header discovery", () => {
 
 				return new Response(JSON.stringify({ error: "not found" }), {
 					status: 404,
-					headers: new Headers({ "content-type": "application/json" })
+					headers: new Headers({ "content-type": MimeTypes.Json })
 				});
 			}
 		);
@@ -303,7 +303,7 @@ describe("JsonLdProcessor Link header discovery", () => {
 				if (method === HttpMethod.GET && sameUrl(url, redirectTarget)) {
 					return new Response(JSON.stringify(minimalContextDoc), {
 						status: 200,
-						headers: new Headers({ "content-type": "application/ld+json" })
+						headers: new Headers({ "content-type": MimeTypes.JsonLd })
 					});
 				}
 
@@ -351,20 +351,20 @@ describe("JsonLdProcessor Link header discovery", () => {
 				if (method === HttpMethod.GET && (sameUrl(url, hop1) || sameUrl(url, hop2))) {
 					return new Response("<html></html>", {
 						status: 200,
-						headers: new Headers({ "content-type": "text/html" })
+						headers: new Headers({ "content-type": MimeTypes.Html })
 					});
 				}
 				if (method === HttpMethod.GET && sameUrl(url, contextDoc)) {
 					return new Response(JSON.stringify(minimalContextDoc), {
 						status: 200,
 						headers: new Headers({
-							"content-type": "application/ld+json"
+							"content-type": MimeTypes.JsonLd
 						})
 					});
 				}
 				return new Response(JSON.stringify({ error: "not found" }), {
 					status: 404,
-					headers: new Headers({ "content-type": "application/json" })
+					headers: new Headers({ "content-type": MimeTypes.Json })
 				});
 			})
 		);

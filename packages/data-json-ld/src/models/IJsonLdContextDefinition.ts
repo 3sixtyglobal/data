@@ -19,18 +19,16 @@ export interface IJsonLdContextDefinition {
 		| IJsonLdExpandedTermDefinition
 		| IJsonLdContextDefinition[keyof IJsonLdContextDefinition];
 
-	"@base"?: string | null | undefined;
-	"@direction"?: "ltr" | "rtl" | null | undefined;
-	"@import"?: string | undefined;
-	"@language"?: string | undefined;
-	"@propagate"?: boolean | undefined;
-	"@protected"?: boolean | undefined;
-	"@type"?:
-		| {
-				"@container": "@set";
-				"@protected"?: boolean | undefined;
-		  }
-		| undefined;
-	"@version"?: "1.1" | undefined;
-	"@vocab"?: string | null | undefined;
+	"@base"?: string | null;
+	"@direction"?: "ltr" | "rtl" | null;
+	"@import"?: string;
+	"@language"?: string;
+	"@propagate"?: boolean;
+	"@protected"?: boolean;
+	"@type"?: {
+		"@container": "@set";
+		"@protected"?: boolean;
+	};
+	"@version"?: "1.1";
+	"@vocab"?: string | null;
 }

@@ -4,7 +4,6 @@
 /**
  * The types of framework data.
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const FrameworkTypes = {
 	/**
 	 * Represents a urn.

@@ -17,12 +17,12 @@ import type { IJsonLdNodeObject } from "./IJsonLdNodeObject.js";
  * @see https://www.w3.org/TR/json-ld11/#node-objects
  */
 export interface IJsonLdObject {
-	"@context"?: IJsonLdContextDefinitionRoot | undefined;
-	"@id"?: string | string[] | undefined;
-	"@included"?: IJsonLdIncludedBlock | undefined;
-	"@graph"?: IJsonLdNodeObject | IJsonLdNodeObject[] | undefined;
-	"@nest"?: IJsonLdJsonObject | IJsonLdJsonObject[] | undefined;
-	"@type"?: string | string[] | undefined;
-	"@reverse"?: { [key: string]: string } | undefined;
-	"@index"?: string | undefined;
+	"@context"?: IJsonLdContextDefinitionRoot;
+	"@id"?: string | string[];
+	"@included"?: IJsonLdIncludedBlock;
+	"@graph"?: IJsonLdNodeObject | IJsonLdNodeObject[];
+	"@nest"?: IJsonLdJsonObject | IJsonLdJsonObject[];
+	"@type"?: string | string[];
+	"@reverse"?: { [key: string]: string };
+	"@index"?: string;
 }
