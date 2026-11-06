@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.20.0-next.7](https://github.com/3sixtyglobal/data/compare/data-core-v0.20.0-next.6...data-core-v0.20.0-next.7) (2026-11-06)
+
+
+### Features
+
+* release to next [skip ci] ([#28](https://github.com/3sixtyglobal/data/issues/28)) ([92c0d3d](https://github.com/3sixtyglobal/data/commit/92c0d3d0ebbd2ca613f85c20c1f40fcb6a5570dc))
+
+
+### Bug Fixes
+
+* keep the json schema formats out of the models folder ([02a3d40](https://github.com/3sixtyglobal/data/commit/02a3d406e318c14b01475f83cd1250a8f2e3d418))
+
 ## [0.20.0-next.6](https://github.com/3sixtyglobal/data/compare/data-core-v0.20.0-next.5...data-core-v0.20.0-next.6) (2026-11-06)
 
 

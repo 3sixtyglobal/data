@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.20.0-next.7](https://github.com/3sixtyglobal/data/compare/data-json-ld-v0.20.0-next.6...data-json-ld-v0.20.0-next.7) (2026-11-06)
+
+
+### Features
+
+* release to next [skip ci] ([#28](https://github.com/3sixtyglobal/data/issues/28)) ([92c0d3d](https://github.com/3sixtyglobal/data/commit/92c0d3d0ebbd2ca613f85c20c1f40fcb6a5570dc))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @3sixty/data-core bumped from 0.20.0-next.6 to 0.20.0-next.7
+
 ## [0.20.0-next.6](https://github.com/3sixtyglobal/data/compare/data-json-ld-v0.20.0-next.5...data-json-ld-v0.20.0-next.6) (2026-11-06)
 
 
