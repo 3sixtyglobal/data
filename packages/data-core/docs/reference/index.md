@@ -16,12 +16,12 @@
 
 - [IJsonSchema](type-aliases/IJsonSchema.md)
 - [IJsonSchemaError](type-aliases/IJsonSchemaError.md)
-- [ValidationMode](type-aliases/ValidationMode.md)
 - [JsonSchemaFormats](type-aliases/JsonSchemaFormats.md)
+- [ValidationMode](type-aliases/ValidationMode.md)
 
 ## Variables
 
 - [DataTypeHandlerFactory](variables/DataTypeHandlerFactory.md)
 - [IdentifierHandlerFactory](variables/IdentifierHandlerFactory.md)
-- [ValidationMode](variables/ValidationMode.md)
 - [JsonSchemaFormats](variables/JsonSchemaFormats.md)
+- [ValidationMode](variables/ValidationMode.md)
