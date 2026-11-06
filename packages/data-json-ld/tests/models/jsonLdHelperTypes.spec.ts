@@ -1,23 +1,24 @@
 // Copyright 2026 IOTA Stiftung.
+// Copyright 2026 3Sixty Trade Ltd.
 // SPDX-License-Identifier: Apache-2.0.
-import type { JsonLdKeys } from "../../src/helpers/jsonLdKeys.js";
-import type { JsonLdObjectWithAliases } from "../../src/helpers/jsonLdObjectWithAliases.js";
-import type { JsonLdObjectWithAtId } from "../../src/helpers/jsonLdObjectWithAtId.js";
-import type { JsonLdObjectWithAtType } from "../../src/helpers/jsonLdObjectWithAtType.js";
-import type { JsonLdObjectWithContext } from "../../src/helpers/jsonLdObjectWithContext.js";
-import type { JsonLdObjectWithId } from "../../src/helpers/jsonLdObjectWithId.js";
-import type { JsonLdObjectWithNoAtId } from "../../src/helpers/jsonLdObjectWithNoAtId.js";
-import type { JsonLdObjectWithNoAtType } from "../../src/helpers/jsonLdObjectWithNoAtType.js";
-import type { JsonLdObjectWithNoContext } from "../../src/helpers/jsonLdObjectWithNoContext.js";
-import type { JsonLdObjectWithNoId } from "../../src/helpers/jsonLdObjectWithNoId.js";
-import type { JsonLdObjectWithNoType } from "../../src/helpers/jsonLdObjectWithNoType.js";
-import type { JsonLdObjectWithOptionalAtId } from "../../src/helpers/jsonLdObjectWithOptionalAtId.js";
-import type { JsonLdObjectWithOptionalAtType } from "../../src/helpers/jsonLdObjectWithOptionalAtType.js";
-import type { JsonLdObjectWithOptionalContext } from "../../src/helpers/jsonLdObjectWithOptionalContext.js";
-import type { JsonLdObjectWithOptionalId } from "../../src/helpers/jsonLdObjectWithOptionalId.js";
-import type { JsonLdObjectWithOptionalType } from "../../src/helpers/jsonLdObjectWithOptionalType.js";
-import type { JsonLdObjectWithType } from "../../src/helpers/jsonLdObjectWithType.js";
-import type { JsonLdWithAliases } from "../../src/helpers/jsonLdWithAliases.js";
+import type { JsonLdKeys } from "../../src/models/jsonLdKeys.js";
+import type { JsonLdObjectWithAliases } from "../../src/models/jsonLdObjectWithAliases.js";
+import type { JsonLdObjectWithAtId } from "../../src/models/jsonLdObjectWithAtId.js";
+import type { JsonLdObjectWithAtType } from "../../src/models/jsonLdObjectWithAtType.js";
+import type { JsonLdObjectWithContext } from "../../src/models/jsonLdObjectWithContext.js";
+import type { JsonLdObjectWithId } from "../../src/models/jsonLdObjectWithId.js";
+import type { JsonLdObjectWithNoAtId } from "../../src/models/jsonLdObjectWithNoAtId.js";
+import type { JsonLdObjectWithNoAtType } from "../../src/models/jsonLdObjectWithNoAtType.js";
+import type { JsonLdObjectWithNoContext } from "../../src/models/jsonLdObjectWithNoContext.js";
+import type { JsonLdObjectWithNoId } from "../../src/models/jsonLdObjectWithNoId.js";
+import type { JsonLdObjectWithNoType } from "../../src/models/jsonLdObjectWithNoType.js";
+import type { JsonLdObjectWithOptionalAtId } from "../../src/models/jsonLdObjectWithOptionalAtId.js";
+import type { JsonLdObjectWithOptionalAtType } from "../../src/models/jsonLdObjectWithOptionalAtType.js";
+import type { JsonLdObjectWithOptionalContext } from "../../src/models/jsonLdObjectWithOptionalContext.js";
+import type { JsonLdObjectWithOptionalId } from "../../src/models/jsonLdObjectWithOptionalId.js";
+import type { JsonLdObjectWithOptionalType } from "../../src/models/jsonLdObjectWithOptionalType.js";
+import type { JsonLdObjectWithType } from "../../src/models/jsonLdObjectWithType.js";
+import type { JsonLdWithAliases } from "../../src/models/jsonLdWithAliases.js";
 
 interface ITestJsonLdShape {
 	"@id": string;
@@ -131,18 +132,18 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can use custom context type parameter", () => {
-		interface TCustomContext {
+		interface ICustomContext {
 			custom: string;
 		}
 
-		const requiredCustomContext: JsonLdObjectWithContext<{ name: string }, TCustomContext> = {
+		const requiredCustomContext: JsonLdObjectWithContext<{ name: string }, ICustomContext> = {
 			name: "CustomRequired",
 			"@context": {
 				custom: "value"
 			}
 		};
 
-		const optionalCustomContext: JsonLdObjectWithOptionalContext<{ name: string }, TCustomContext> =
+		const optionalCustomContext: JsonLdObjectWithOptionalContext<{ name: string }, ICustomContext> =
 			{
 				name: "CustomOptional"
 			};
@@ -152,23 +153,23 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can replace existing @context from source type", () => {
-		interface TSourceWithContext {
+		interface ISourceWithContext {
 			name: string;
 			"@context": number;
 		}
 
-		interface TContextReplacement {
+		interface IContextReplacement {
 			custom: string;
 		}
 
-		const replacedRequired: JsonLdObjectWithContext<TSourceWithContext, TContextReplacement> = {
+		const replacedRequired: JsonLdObjectWithContext<ISourceWithContext, IContextReplacement> = {
 			name: "ReplacedRequired",
 			"@context": { custom: "ctx" }
 		};
 
 		const replacedOptional: JsonLdObjectWithOptionalContext<
-			TSourceWithContext,
-			TContextReplacement
+			ISourceWithContext,
+			IContextReplacement
 		> = {
 			name: "ReplacedOptional"
 		};
@@ -178,16 +179,16 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can infer existing @context type for optional helper", () => {
-		interface TSourceWithContext {
+		interface ISourceWithContext {
 			name: string;
 			"@context": number;
 		}
 
-		const inferredOptionalWithoutContext: JsonLdObjectWithOptionalContext<TSourceWithContext> = {
+		const inferredOptionalWithoutContext: JsonLdObjectWithOptionalContext<ISourceWithContext> = {
 			name: "InferredNoContext"
 		};
 
-		const inferredOptionalWithContext: JsonLdObjectWithOptionalContext<TSourceWithContext> = {
+		const inferredOptionalWithContext: JsonLdObjectWithOptionalContext<ISourceWithContext> = {
 			name: "InferredWithContext",
 			"@context": 42
 		};
@@ -197,17 +198,17 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can override inferred @context type with explicit generic", () => {
-		interface TSourceWithContext {
+		interface ISourceWithContext {
 			name: string;
 			"@context": number;
 		}
 
-		const explicitContext: JsonLdObjectWithOptionalContext<TSourceWithContext, string> = {
+		const explicitContext: JsonLdObjectWithOptionalContext<ISourceWithContext, string> = {
 			name: "ExplicitContext",
 			"@context": "https://schema.org"
 		};
 
-		const invalidExplicitContext: JsonLdObjectWithOptionalContext<TSourceWithContext, string> = {
+		const invalidExplicitContext: JsonLdObjectWithOptionalContext<ISourceWithContext, string> = {
 			name: "InvalidExplicitContext",
 			// @ts-expect-error Explicit generic should override inferred number context.
 			"@context": 99
@@ -218,17 +219,17 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can infer @context from optional source property type", () => {
-		interface TSourceWithOptionalContext {
+		interface ISourceWithOptionalContext {
 			name: string;
 			"@context"?: number;
 		}
 
-		const inferredOptional: JsonLdObjectWithOptionalContext<TSourceWithOptionalContext> = {
+		const inferredOptional: JsonLdObjectWithOptionalContext<ISourceWithOptionalContext> = {
 			name: "InferredOptionalContext",
 			"@context": 5
 		};
 
-		const invalidInferredOptional: JsonLdObjectWithOptionalContext<TSourceWithOptionalContext> = {
+		const invalidInferredOptional: JsonLdObjectWithOptionalContext<ISourceWithOptionalContext> = {
 			name: "InvalidInferredOptionalContext",
 			// @ts-expect-error Inferred context type should be number.
 			"@context": "not-a-number"
@@ -239,12 +240,12 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can omit @context from a type", () => {
-		interface TSourceWithContext {
+		interface ISourceWithContext {
 			name: string;
 			"@context": number;
 		}
 
-		const withoutContext: JsonLdObjectWithNoContext<TSourceWithContext> = {
+		const withoutContext: JsonLdObjectWithNoContext<ISourceWithContext> = {
 			name: "NoContext"
 		};
 
@@ -282,11 +283,11 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can use custom @type type parameter", () => {
-		interface TTypeReplacement {
+		interface ITypeReplacement {
 			value: string;
 		}
 
-		const customType: JsonLdObjectWithAtType<{ name: string }, TTypeReplacement> = {
+		const customType: JsonLdObjectWithAtType<{ name: string }, ITypeReplacement> = {
 			name: "CustomType",
 			"@type": {
 				value: "custom"
@@ -297,21 +298,21 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can replace existing @type from source type", () => {
-		interface TSourceWithType {
+		interface ISourceWithType {
 			name: string;
 			"@type": number;
 		}
 
-		interface TTypeReplacement {
+		interface ITypeReplacement {
 			value: string;
 		}
 
-		const replacedRequired: JsonLdObjectWithAtType<TSourceWithType, TTypeReplacement> = {
+		const replacedRequired: JsonLdObjectWithAtType<ISourceWithType, ITypeReplacement> = {
 			name: "ReplacedRequiredType",
 			"@type": { value: "replacement" }
 		};
 
-		const replacedOptional: JsonLdObjectWithOptionalAtType<TSourceWithType, TTypeReplacement> = {
+		const replacedOptional: JsonLdObjectWithOptionalAtType<ISourceWithType, ITypeReplacement> = {
 			name: "ReplacedOptionalType"
 		};
 
@@ -320,21 +321,21 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can infer existing @type type for helpers", () => {
-		interface TSourceWithType {
+		interface ISourceWithType {
 			name: string;
 			"@type": number;
 		}
 
-		const inferredRequired: JsonLdObjectWithAtType<TSourceWithType> = {
+		const inferredRequired: JsonLdObjectWithAtType<ISourceWithType> = {
 			name: "InferredRequiredType",
 			"@type": 10
 		};
 
-		const inferredOptionalWithoutType: JsonLdObjectWithOptionalAtType<TSourceWithType> = {
+		const inferredOptionalWithoutType: JsonLdObjectWithOptionalAtType<ISourceWithType> = {
 			name: "InferredOptionalType"
 		};
 
-		const inferredOptionalWithType: JsonLdObjectWithOptionalAtType<TSourceWithType> = {
+		const inferredOptionalWithType: JsonLdObjectWithOptionalAtType<ISourceWithType> = {
 			name: "InferredOptionalTypeWithValue",
 			"@type": 11
 		};
@@ -345,17 +346,17 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can override inferred @type with explicit generic", () => {
-		interface TSourceWithType {
+		interface ISourceWithType {
 			name: string;
 			"@type": number;
 		}
 
-		const explicitType: JsonLdObjectWithAtType<TSourceWithType, string> = {
+		const explicitType: JsonLdObjectWithAtType<ISourceWithType, string> = {
 			name: "ExplicitType",
 			"@type": "CustomType"
 		};
 
-		const invalidExplicitType: JsonLdObjectWithAtType<TSourceWithType, string> = {
+		const invalidExplicitType: JsonLdObjectWithAtType<ISourceWithType, string> = {
 			name: "InvalidExplicitType",
 			// @ts-expect-error Explicit generic should override inferred number type.
 			"@type": 12
@@ -366,17 +367,17 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can exclude undefined when inferring @type from optional source property", () => {
-		interface TSourceWithOptionalType {
+		interface ISourceWithOptionalType {
 			name: string;
 			"@type"?: number;
 		}
 
-		const inferredRequired: JsonLdObjectWithAtType<TSourceWithOptionalType> = {
+		const inferredRequired: JsonLdObjectWithAtType<ISourceWithOptionalType> = {
 			name: "InferredRequiredTypeFromOptional",
 			"@type": 13
 		};
 
-		const invalidInferredRequired: JsonLdObjectWithAtType<TSourceWithOptionalType> = {
+		const invalidInferredRequired: JsonLdObjectWithAtType<ISourceWithOptionalType> = {
 			name: "InvalidInferredRequiredTypeFromOptional",
 			// @ts-expect-error Inferred type excludes undefined.
 			"@type": undefined
@@ -387,12 +388,12 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can omit @type from a type", () => {
-		interface TSourceWithType {
+		interface ISourceWithType {
 			name: string;
 			"@type": number;
 		}
 
-		const withoutType: JsonLdObjectWithNoAtType<TSourceWithType> = {
+		const withoutType: JsonLdObjectWithNoAtType<ISourceWithType> = {
 			name: "NoType"
 		};
 
@@ -425,11 +426,11 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can use custom @id type parameter", () => {
-		interface TIdReplacement {
+		interface IIdReplacement {
 			id: string;
 		}
 
-		const customId: JsonLdObjectWithAtId<{ name: string }, TIdReplacement> = {
+		const customId: JsonLdObjectWithAtId<{ name: string }, IIdReplacement> = {
 			name: "CustomId",
 			"@id": {
 				id: "custom"
@@ -440,21 +441,21 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can replace existing @id from source type", () => {
-		interface TSourceWithId {
+		interface ISourceWithId {
 			name: string;
 			"@id": number;
 		}
 
-		interface TIdReplacement {
+		interface IIdReplacement {
 			id: string;
 		}
 
-		const replacedRequired: JsonLdObjectWithAtId<TSourceWithId, TIdReplacement> = {
+		const replacedRequired: JsonLdObjectWithAtId<ISourceWithId, IIdReplacement> = {
 			name: "ReplacedRequiredId",
 			"@id": { id: "replacement" }
 		};
 
-		const replacedOptional: JsonLdObjectWithOptionalAtId<TSourceWithId, TIdReplacement> = {
+		const replacedOptional: JsonLdObjectWithOptionalAtId<ISourceWithId, IIdReplacement> = {
 			name: "ReplacedOptionalId"
 		};
 
@@ -463,21 +464,21 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can infer existing @id type for helpers", () => {
-		interface TSourceWithId {
+		interface ISourceWithId {
 			name: string;
 			"@id": number;
 		}
 
-		const inferredRequired: JsonLdObjectWithAtId<TSourceWithId> = {
+		const inferredRequired: JsonLdObjectWithAtId<ISourceWithId> = {
 			name: "InferredRequiredId",
 			"@id": 20
 		};
 
-		const inferredOptionalWithoutId: JsonLdObjectWithOptionalAtId<TSourceWithId> = {
+		const inferredOptionalWithoutId: JsonLdObjectWithOptionalAtId<ISourceWithId> = {
 			name: "InferredOptionalId"
 		};
 
-		const inferredOptionalWithId: JsonLdObjectWithOptionalAtId<TSourceWithId> = {
+		const inferredOptionalWithId: JsonLdObjectWithOptionalAtId<ISourceWithId> = {
 			name: "InferredOptionalIdWithValue",
 			"@id": 21
 		};
@@ -488,17 +489,17 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can override inferred @id with explicit generic", () => {
-		interface TSourceWithId {
+		interface ISourceWithId {
 			name: string;
 			"@id": number;
 		}
 
-		const explicitId: JsonLdObjectWithAtId<TSourceWithId, string> = {
+		const explicitId: JsonLdObjectWithAtId<ISourceWithId, string> = {
 			name: "ExplicitId",
 			"@id": "did:example:explicit"
 		};
 
-		const invalidExplicitId: JsonLdObjectWithAtId<TSourceWithId, string> = {
+		const invalidExplicitId: JsonLdObjectWithAtId<ISourceWithId, string> = {
 			name: "InvalidExplicitId",
 			// @ts-expect-error Explicit generic should override inferred number id.
 			"@id": 22
@@ -509,17 +510,17 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can exclude undefined when inferring @id from optional source property", () => {
-		interface TSourceWithOptionalId {
+		interface ISourceWithOptionalId {
 			name: string;
 			"@id"?: number;
 		}
 
-		const inferredRequired: JsonLdObjectWithAtId<TSourceWithOptionalId> = {
+		const inferredRequired: JsonLdObjectWithAtId<ISourceWithOptionalId> = {
 			name: "InferredRequiredIdFromOptional",
 			"@id": 23
 		};
 
-		const invalidInferredRequired: JsonLdObjectWithAtId<TSourceWithOptionalId> = {
+		const invalidInferredRequired: JsonLdObjectWithAtId<ISourceWithOptionalId> = {
 			name: "InvalidInferredRequiredIdFromOptional",
 			// @ts-expect-error Inferred id type excludes undefined.
 			"@id": undefined
@@ -530,12 +531,12 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can omit @id from a type", () => {
-		interface TSourceWithId {
+		interface ISourceWithId {
 			name: string;
 			"@id": number;
 		}
 
-		const withoutId: JsonLdObjectWithNoAtId<TSourceWithId> = {
+		const withoutId: JsonLdObjectWithNoAtId<ISourceWithId> = {
 			name: "NoId"
 		};
 
@@ -544,7 +545,7 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can add and infer plain type keys", () => {
-		interface TSourceWithType {
+		interface ISourceWithType {
 			name: string;
 			type: number;
 		}
@@ -554,7 +555,7 @@ describe("JsonLdHelperTypes", () => {
 			type: "ExampleType"
 		};
 
-		const inferredType: JsonLdObjectWithType<TSourceWithType> = {
+		const inferredType: JsonLdObjectWithType<ISourceWithType> = {
 			name: "InferredPlainType",
 			type: 7
 		};
@@ -564,7 +565,7 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can add optional and omit plain type keys", () => {
-		interface TSourceWithType {
+		interface ISourceWithType {
 			name: string;
 			type: number;
 		}
@@ -578,7 +579,7 @@ describe("JsonLdHelperTypes", () => {
 			type: "OptionalType"
 		};
 
-		const omittedType: JsonLdObjectWithNoType<TSourceWithType> = {
+		const omittedType: JsonLdObjectWithNoType<ISourceWithType> = {
 			name: "OmittedPlainType"
 		};
 
@@ -588,7 +589,7 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can add and infer plain id keys", () => {
-		interface TSourceWithId {
+		interface ISourceWithId {
 			name: string;
 			id: number;
 		}
@@ -598,7 +599,7 @@ describe("JsonLdHelperTypes", () => {
 			id: "did:example:plain"
 		};
 
-		const inferredId: JsonLdObjectWithId<TSourceWithId> = {
+		const inferredId: JsonLdObjectWithId<ISourceWithId> = {
 			name: "InferredPlainId",
 			id: 8
 		};
@@ -608,7 +609,7 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can add optional and omit plain id keys", () => {
-		interface TSourceWithId {
+		interface ISourceWithId {
 			name: string;
 			id: number;
 		}
@@ -622,7 +623,7 @@ describe("JsonLdHelperTypes", () => {
 			id: "did:example:optional-plain"
 		};
 
-		const omittedId: JsonLdObjectWithNoId<TSourceWithId> = {
+		const omittedId: JsonLdObjectWithNoId<ISourceWithId> = {
 			name: "OmittedPlainId"
 		};
 
@@ -632,12 +633,12 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can infer plain type from @type and remove both source variants", () => {
-		interface TSourceWithAtType {
+		interface ISourceWithAtType {
 			name: string;
 			"@type": number;
 		}
 
-		const inferredFromAtType: JsonLdObjectWithType<TSourceWithAtType> = {
+		const inferredFromAtType: JsonLdObjectWithType<ISourceWithAtType> = {
 			name: "InferredFromAtType",
 			type: 14
 		};
@@ -647,12 +648,12 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can infer @type from plain type and remove both source variants", () => {
-		interface TSourceWithType {
+		interface ISourceWithType {
 			name: string;
 			type: number;
 		}
 
-		const inferredFromType: JsonLdObjectWithAtType<TSourceWithType> = {
+		const inferredFromType: JsonLdObjectWithAtType<ISourceWithType> = {
 			name: "InferredFromType",
 			"@type": 16
 		};
@@ -662,12 +663,12 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can infer plain id from @id and remove both source variants", () => {
-		interface TSourceWithAtId {
+		interface ISourceWithAtId {
 			name: string;
 			"@id": number;
 		}
 
-		const inferredFromAtId: JsonLdObjectWithId<TSourceWithAtId> = {
+		const inferredFromAtId: JsonLdObjectWithId<ISourceWithAtId> = {
 			name: "InferredFromAtId",
 			id: 24
 		};
@@ -677,12 +678,12 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can infer @id from plain id and remove both source variants", () => {
-		interface TSourceWithId {
+		interface ISourceWithId {
 			name: string;
 			id: number;
 		}
 
-		const inferredFromId: JsonLdObjectWithAtId<TSourceWithId> = {
+		const inferredFromId: JsonLdObjectWithAtId<ISourceWithId> = {
 			name: "InferredFromId",
 			"@id": 25
 		};
@@ -692,34 +693,34 @@ describe("JsonLdHelperTypes", () => {
 	});
 
 	test("can infer union when both plain and @ variants exist", () => {
-		interface TSourceWithBothTypeKeys {
+		interface ISourceWithBothTypeKeys {
 			name: string;
 			type: number;
 			"@type": string;
 		}
 
-		interface TSourceWithBothIdKeys {
+		interface ISourceWithBothIdKeys {
 			name: string;
 			id: number;
 			"@id": string;
 		}
 
-		const typeFromBothAsNumber: JsonLdObjectWithType<TSourceWithBothTypeKeys> = {
+		const typeFromBothAsNumber: JsonLdObjectWithType<ISourceWithBothTypeKeys> = {
 			name: "TypeFromBothAsNumber",
 			type: 26
 		};
 
-		const typeFromBothAsString: JsonLdObjectWithType<TSourceWithBothTypeKeys> = {
+		const typeFromBothAsString: JsonLdObjectWithType<ISourceWithBothTypeKeys> = {
 			name: "TypeFromBothAsString",
 			type: "TwentySix"
 		};
 
-		const idFromBothAsNumber: JsonLdObjectWithAtId<TSourceWithBothIdKeys> = {
+		const idFromBothAsNumber: JsonLdObjectWithAtId<ISourceWithBothIdKeys> = {
 			name: "IdFromBothAsNumber",
 			"@id": 27
 		};
 
-		const idFromBothAsString: JsonLdObjectWithAtId<TSourceWithBothIdKeys> = {
+		const idFromBothAsString: JsonLdObjectWithAtId<ISourceWithBothIdKeys> = {
 			name: "IdFromBothAsString",
 			"@id": "did:example:twenty-seven"
 		};

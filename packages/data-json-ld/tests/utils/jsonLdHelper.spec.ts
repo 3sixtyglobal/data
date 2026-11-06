@@ -1,4 +1,5 @@
 // Copyright 2024 IOTA Stiftung.
+// Copyright 2026 3Sixty Trade Ltd.
 // SPDX-License-Identifier: Apache-2.0.
 import type { IValidationFailure } from "@3sixty/core";
 import type { IJsonLdDocument } from "../../src/models/IJsonLdDocument.js";
@@ -126,7 +127,7 @@ describe("JsonLdHelper", () => {
 	});
 
 	test("toStructuredObject returns the same object reference", () => {
-		interface TPerson {
+		interface IPerson {
 			name: string;
 			jobTitle: string;
 		}
@@ -137,7 +138,7 @@ describe("JsonLdHelper", () => {
 			jobTitle: "Professor"
 		};
 
-		const structured = JsonLdHelper.toStructuredObject<TPerson>(nodeObject);
+		const structured = JsonLdHelper.toStructuredObject<IPerson>(nodeObject);
 
 		expect(structured).toBe(nodeObject);
 		expect(structured).toEqual({
