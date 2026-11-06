@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0-next.6](https://github.com/3sixtyglobal/data/compare/data-core-v0.20.0-next.5...data-core-v0.20.0-next.6) (2026-11-06)
+
+
+### Bug Fixes
+
+* apply the shared lint rules for interface names, model locations and deprecated apis ([7d0c5b3](https://github.com/3sixtyglobal/data/commit/7d0c5b31e5bde56d66f33164bb669f09645a4a1e))
+
 ## [0.20.0-next.5](https://github.com/3sixtyglobal/data/compare/data-core-v0.20.0-next.4...data-core-v0.20.0-next.5) (2026-11-03)
 
 
