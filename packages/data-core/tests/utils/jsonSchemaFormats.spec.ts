@@ -2,7 +2,7 @@
 // Copyright 2026 3Sixty Trade Ltd.
 // SPDX-License-Identifier: Apache-2.0.
 import { describe, expect, test } from "vitest";
-import { JsonSchemaFormats } from "../../src/models/jsonSchemaFormats.js";
+import { JsonSchemaFormats } from "../../src/utils/jsonSchemaFormats.js";
 
 describe("JsonSchemaFormats", () => {
 	test("Can validate a date-time format", () => {
